@@ -113,7 +113,7 @@ The third method is to impose covariance restrictions on panel data of income an
 For a more complete overview of the literature on consumption responses to income changes, see \cite{jappelli_consumption_2010}. Figure \ref{fig:MPCtable} from \cite{carroll_distribution_2016} shows the range of estimates available in the literature. As well as different identification methods, the statistics reported differ in the time period over which the MPC is measured, as well as the inclusion of durable goods in the measure. Estimates that include durable goods tend to be significantly larger than those for non-durables.
 	\begin{figure} 
 	\begin{centering}
-	\includegraphics[scale=0.5]{MPCEmpiricalTable.jpg}
+	\includegraphics[scale=0.5]{Figures/MPCEmpiricalTable.jpg}
 	\caption{Table from \cite{carroll_distribution_2016}}
 	\label{fig:MPCtable}
 	\end{centering}
@@ -121,7 +121,7 @@ For a more complete overview of the literature on consumption responses to incom
 \cite{auclert_monetary_2015} provides a nice example of how the literature could greatly benefit from better empirics on the marginal propensity to consume. He identifies the distribution of MPC across individuals with different interest rate exposure to be a particularly important feature of the monetary policy transmission mechanism. Intuitively if households with large variable rate mortgages have higher MPCs than the households that have lent to them, then a decrease in short term interest rates will redistribute wealth from the low MPC group to the high MPC group resulting in a increase in aggregate demand. Figure \ref{fig:Auclert} shows how far the empirics are behind the theory in this respect. The figure exhibits the best estimates available from each of the three methods of the MPC (y-axis) against unhedged interest rate exposure (x-axis). The left panel uses the self reported MPCs in the Italian data, the center panel makes use of the BPP methodology using PSID data and the right panel follows the \cite{johnson_household_2006} study of 2001 tax rebates. Not only are the average levels of MPCs very different in each of the three studies, the standard errors are very large and there is no agreement on the steepness of the gradient across unhedged interest rate exposure.
 	\begin{figure} 
 	\begin{centering}
-	\includegraphics[scale=0.7]{MPCDistributionAuclert.jpg}
+	\includegraphics[scale=0.7]{Figures/MPCDistributionAuclert.jpg}
 	\caption{Figure from \cite{auclert_monetary_2015}}
 	\label{fig:Auclert}
 	\end{centering}
@@ -135,7 +135,7 @@ Once we correct for the time aggregation problem, it is apparent that the identi
 \cite{working_note_1960} was the first to note that if the observation period is longer than the underlying process and we observed the sum (or mean) of a random walk over the observation period, then the resulting observed process in not a random walk and has a positive autocorrelation. Intuition on this can be gained from figure \ref{fig:TimeAgg}. Here the underlying process (thin black line) is a random walk in continuous time while the observed process (think red line) is the mean of the underlying process over each time period. If a shock to the underlying process happens half way through a time period the expected value of the process will jump by the full amount of the shock, but the mean value observed in the current period will only jump by half the value of the shock. Therefore an increase in the time aggregated process in the current period is predictive of another increase in the next period. Consider the time period from 4 to 5 in figure \ref{fig:TimeAgg}. In this period the underlying process increases substantially from around -5 to 5. However, we only observe the time aggregate process increase by about half this amount, with the rest of the increase occuring in the following period despite the fact that the underlying process does not increase in the following period. If the underlying process is a random walk in continuous time (possibly with jumps), the first autocorrelation is 1/6 and the autocorrelation beyond one period is 0.
 	\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.7]{timeagg_rw.pdf} 
+		\includegraphics[scale=0.7]{Figures/timeagg_rw.pdf} 
 		\caption{Time Aggregated Random Walk}
 		\label{fig:TimeAgg}
 	\end{centering}
@@ -274,7 +274,7 @@ c_t  &= \phi \int_{0}^{t}dP_s  + \int_{t-2}^{t} g(s-(t-2))dQ_s  \\
 \end{align*}
 	\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{GenericTransitoryConsumptionWithBPP.png} 
+		\includegraphics[scale=0.6]{Figures/GenericTransitoryConsumptionWithBPP.png} 
 		\caption{Generic Transitory Shock Impulse Response}
 		\label{fig:GenericTransitoryBPP}
 	\end{centering}
@@ -340,7 +340,7 @@ Our results show:
 \subsection{Income Variance} \label{inc_variance}
 \begin{figure} 
 \begin{centering}
-	\includegraphics[scale=0.6]{VarianceByAge.png} 
+	\includegraphics[scale=0.6]{Figures/VarianceByAge.png} 
 	\caption{Permanent and Transitory Shock Variance by Age}
 	\label{fig:VarianceByAge}
 \end{centering}
@@ -356,7 +356,7 @@ The level of both permanent and transitory shock variance for households aged 35
 \subsection{Consumption Response}
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{MPXByAge.png} 
+		\includegraphics[scale=0.6]{Figures/MPXByAge.png} 
 		\caption{MPX by Age}
 		\label{fig:MPXByAge}
 	\end{centering}
@@ -364,9 +364,9 @@ The level of both permanent and transitory shock variance for households aged 35
 Figure \ref{fig:MPXByAge} shows the model's estimates for $\psi$, informally labeled as the MPX (Marginal Propensity to eXpend). MPX out of permanent shocks remains relatively steady above 0.8 up to the head of household's early 50's (representing the 10 year's from the head's early 40's to early 50's) at which point it starts to fall. This is consistent with a lifecycle model in which a `permanent' shock to income represents a much smaller share of the household's lifetime budget constraint as retirement approaches. The MPX out of transitory shocks is notable for being high relative to other estimates in the literature, averaging around 0.7. It similarly declines towards retirement, but the decline starts earlier than the permanent MPX and is less steep. The pattern of this data is consistent with the majority of households acting as buffer stock savers in their early careers and then building up wealth as they approach retirement, giving them more room to smooth consumption. However, the magnitudes of the transitory MPX are larger than standard parameterizations of such models would imply.
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.45]{VarianceByLiquidWealth.png}
+	\includegraphics[scale=0.45]{Figures/VarianceByLiquidWealth.png}
 	\centering
-	\includegraphics[scale=0.45]{MPXByLiquidWealth.png}
+	\includegraphics[scale=0.45]{Figures/MPXByLiquidWealth.png}
 	\caption{Variance and MPX by Liquid Wealth Quintile}
 	\label{fig:MPXByLiquidWealth}
 \end{figure}
@@ -381,7 +381,7 @@ A key part of our identification method is the assumption that the impulse respo
 The dashed black line and solid green line repeat this experiment with the covariance on income and consumption over increasing years of growth. This time the solid green line is equation \ref{covariance} with parameters identified by 3, 4 and 5 years of growth. As with income, the model says that this covariance should grow linearly for $n \geq 3$. The assumption that the transitory consumption response goes to zero within 2 years is less common than the equivalent assumption on income and is key to our identification. The data again show that for $n < 3$ the covariance is below the green line, but that for growth over 6 and 7 years the model does a good job.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{IncreasingDiff.png}
+		\includegraphics[scale=0.6]{Figures/IncreasingDiff.png}
 		\caption{Variance and Covariance Over n Years of Growth}
 		\label{fig:IncreasingDiff}
 	\end{centering}
