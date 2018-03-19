@@ -1,0 +1,110 @@
+
+In this appendix we formally derive the key identification formulas. We start by defining permanent income. Let $p_t$ for $t\in\mathbb{R}^+$ be a martingale process (possibly with jumps) with independent stationary increments and $\nu$ be such that $\mathbb{E}(e^{p_t - p_{t-1}})=e^{\nu}$. Define permanent income as:
+\begin{align*}
+P_t = e^{p_t - t \nu}
+\end{align*}
+Note that $\mathbb{E}\Big(\frac{P_{t+s}}{P_t}\Big)=1$ for all $s\geq 0$. Define the variance of log permanent shocks to be:
+\begin{align*} \sigma^2_P=\mathrm{Var}\Big(\log\big(\frac{P_{t+1}}{P_t}\big)\Big) = \mathrm{Var}(p_{t+1}-p_t)
+\end{align*}
+We will assume changes in permanent income over a one year period are small enough such that:
+\begin{align} \mathrm{Var}\Big(\frac{P_{t+1}}{P_t}\Big) &= \mathrm{Var}\Big(\frac{P_{t+1}-P_t}{P_t}\Big) \nonumber \\
+& \approx \mathrm{Var}\Big(\log\big(1+\frac{P_{t+1}-P_t}{P_t}\big)\Big) \nonumber \\
+&= \mathrm{Var}\Big(\log\big(\frac{P_{t+1}}{P_t}\big)\Big) = \sigma^2_P \label{permvar_approx}
+\end{align}
+
+For transitory shocks, we define an increasing stochastic process, $\Theta_t$, which also has independent stationary increments. The increments in this process will define the transitory shocks. We set the expectation of increments, and the variance of the log of an increment of length 1 as:
+\begin{align*}
+\mathbb{E}(\Theta_{t+s}-\Theta_t) = s \\
+\mathrm{Var}\Big( \log\big(\Theta_{t+1}-\Theta_t\big)  \Big) = \sigma^2_{\Theta}
+\end{align*}
+Note that for this to be well defined, $\Theta_t$ must not only be increasing but also its increments are almost surely strictly positive (so that log of the increment is defined almost everywhere). Examples of such a stochastic process would be a gamma process, or a process that increases linearly with time (non-stochastically) but is also subject to positive shocks that arrive as a Poisson process. The stochastic part of this process has no Brownian motion component as this would necessarily lead to non-zero probability of a decreasing increment.
+
+We will use these two processes to define an income process in discrete time with $m$ intervals per period, and then look at the limit as $m\rightarrow \infty$. Define $\theta_{t,m}$ for $t \in \{\frac{1}{m},\frac{2}{m},\frac{3}{m}...\}$ to be the increment of $\Theta_t$ from $t-\frac{1}{m}$ to $t$:
+\begin{align*}
+\theta_{t,m} = \Theta_{t}-\Theta_{1-\frac{1}{m}}
+\end{align*}
+Income is defined for each period $t \in \{\frac{1}{m},\frac{2}{m},\frac{3}{m}...\}$ as:
+\begin{align*}
+Y_{t,m} = P_t \theta_{t,m}
+\end{align*}
+Therefore the underlying income process has a pure division into permanent and transitory shocks. Income is observed for $T \in \{1,2,3...\}$ as the sum of income in each of the subperiods:
+\begin{align*}
+\bar{Y}_{T,m} = \sum_{i=0}^{m-1} P_{T-\frac{i}{m}} \theta_{T-\frac{i}{m},m}
+\end{align*}
+Note that for $m=1$ this the same as the underlying income process, with permanent and transitory variance as defined above. We are interested in the log of observable income growth over $N$ periods:
+\begin{align*}
+\Delta^N \bar{y}_{T,m} &= \log{\bar{Y}_{T,m}} - \log{\bar{Y}_{T-N,m}} \\
+&= \log\Bigg(\sum_{i=0}^{m-1} P_{T-\frac{i}{m}} \theta_{T-\frac{i}{m},m}\Bigg)
+-\log\Bigg(\sum_{i=0}^{m-1} P_{T-N-\frac{i}{m}} \theta_{T-N-\frac{i}{m},m}\Bigg) \\
+&= \log\Bigg(P_{T-1}\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m}\Bigg)
+-\log\Bigg(P_{T-N}\sum_{i=0}^{m-1}\frac{ P_{T-N-\frac{i}{m}}}{P_{T-N}} \theta_{T-N-\frac{i}{m},m}\Bigg) \\
+&= \log(P_{T-1})-\log(P_{T-N}) \\
+& \qquad +\log\Bigg(\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m}\Bigg)
+-\log\Bigg(\sum_{i=0}^{m-1}\frac{ P_{T-N-\frac{i}{m}}}{P_{T-N}} \theta_{T-N-\frac{i}{m},m}\Bigg) 
+\end{align*}
+As $P_t$ and $\Theta_t$ have independent increments, the covariance between each of the three parts of the sum above is 0. Therefore:
+\begin{align*}
+\mathrm{Var}\Big(\Delta^N \bar{y}_{T,m}\Big) 
+&= \mathrm{Var}\Big(\log(P_{T-1})-\log(P_{T-N}) \Big)\\
+& \qquad +\mathrm{Var}\Bigg(\log\Bigg(\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m}\Bigg)\Bigg)
++\mathrm{Var}\Bigg(\log\Bigg(\sum_{i=0}^{m-1}\frac{ P_{T-N-\frac{i}{m}}}{P_{T-N}} \theta_{T-N-\frac{i}{m},m}\Bigg) \Bigg)
+\end{align*}
+We will look at each of these three variances individually. Starting with the easiest:
+\begin{align*}
+ \mathrm{Var}\Big(\log(P_{T-1})-\log(P_{T-N}) \Big)
+&=  \mathrm{Var}\Bigg( \sum_{t=T-N+1}^{T-1} \log \Big(\frac{P_t}{P_{t-1}}\Big) \Bigg) \\
+&= (N-1)\sigma^2_P
+\end{align*}
+Now consider the second variance. We begin by looking at the variable:
+\begin{align*}
+\log \Bigg(\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m} \Bigg)
+&= \log \Bigg(\sum_{i=0}^{m-1} \theta_{T-\frac{i}{m},m} + \sum_{i=0}^{m-1} \Big(\frac{P_{T-\frac{i}{m}}}{P_{T-1}}-1\Big) \theta_{T-\frac{i}{m},m} \Bigg) \\
+&= \log\Big( \Theta_T-\Theta_{T-1}\Big) + \log \Bigg(1 + \sum_{i=0}^{m-1} \Big(\frac{P_{T-\frac{i}{m}}}{P_{T-1}}-1\Big) \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg) \\
+&\approx \log\Big( \Theta_T-\Theta_{T-1}\Big) +  \sum_{i=0}^{m-1} \Big(\frac{P_{T-\frac{i}{m}}}{P_{T-1}}-1\Big) \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}}
+\end{align*}
+Where the approximation comes from the fact that the shocks to permanent income in a one year period are small. Defining
+\begin{align*}
+\zeta_{t,m} = \frac{P_{t}}{P_{t-\frac{1}{m}}}
+\end{align*}
+we have that
+\begin{align*}
+ \mathrm{Var}\Bigg(\log &\Bigg(\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m} \Bigg) \Bigg)
+\approx \sigma^2_{\Theta} + \mathrm{Var}\Bigg( \sum_{i=0}^{m-1} \Big(\prod_{j=i}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big) \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg) \\
+&= \sigma^2_{\Theta} + \mathbb{E}\Bigg[ \sum_{i=0}^{m-1} \Big(\prod_{j=i}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big) \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg]^2 \\
+&= \sigma^2_{\Theta} + \mathbb{E}\Bigg[ \sum_{i=0}^{m-1} \Bigg( \Big(\prod_{j=i}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big)^2 \Bigg(\frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 \\
+& \qquad \qquad \qquad + 2 \sum_{k<i} \Big(\prod_{j=k}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big) \Big(\prod_{j=i}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big) \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2}  \Bigg) \Bigg] \\
+&= \sigma^2_{\Theta} + \frac{\sigma^2_P}{m} \sum_{i=0}^{m-1} \Bigg( i\mathbb{E} \Bigg(\frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2  + 2 \sum_{k<i} (m-1-i)\mathbb{E}\Bigg( \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2} \Bigg) \Bigg)  \\
+&= \sigma^2_{\Theta} + \frac{\sigma^2_P}{m} \frac{m(m-1)}{2}\mathbb{E} \Bigg(\frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 \\
+& \qquad \qquad + 2  \frac{\sigma^2_P}{m} \sum_{i=1}^{m-1} i (m-1-i)\mathbb{E}\Bigg( \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2} \Bigg)  \\
+&= \sigma^2_{\Theta} + \sigma^2_P \frac{m-1}{2}\mathbb{E} \Bigg(\frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 \\
+& \qquad \qquad +   \sigma^2_P\Bigg[ (m-1)^2 - \frac{(m-1)(2m-1)}{3} \Bigg]\mathbb{E}\Bigg( \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2} \Bigg) 
+\end{align*}
+Note that:
+\begin{align*}
+1 &= \mathbb{E} \Bigg(\sum_{i=0}^{m-1} \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 \\
+&= \sum_{i=0}^{m-1}\mathbb{E} \Bigg( \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 + 2 \sum_{k<i} \mathbb{E} \Bigg( \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2} \Bigg) 
+\end{align*}
+So that
+\begin{align*}
+  \mathbb{E} \Bigg( \frac{\theta_{T-\frac{k}{m},m} \theta_{T-\frac{i}{m},m}}{\Big( \sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m} \Big)^2} \Bigg) &= \frac{1}{m(m-1)} -\frac{1}{m-1} \mathbb{E} \Bigg( \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2
+\end{align*}
+This gives:
+\begin{align*}
+ \mathrm{Var}\Bigg(\log &\Bigg(\sum_{i=0}^{m-1} \frac{P_{T-\frac{i}{m}}}{P_{T-1}} \theta_{T-\frac{i}{m},m} \Bigg) \Bigg)
+\approx \sigma^2_{\Theta} + \mathrm{Var}\Bigg( \sum_{i=0}^{m-1} \Big(\prod_{j=i}^{m-1} \zeta_{T-\frac{j}{m}}   -1\Big) \frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg) \\
+&\approx \sigma^2_{\Theta} +  \frac{m-2}{3m} \sigma^2_P +  \frac{m+1}{6}\mathbb{E} \Bigg(\frac{\theta_{T-\frac{i}{m},m}}{\sum_{l=0}^{m-1} \theta_{T-\frac{l}{m},m}} \Bigg)^2 \sigma^2_P \\
+& \rightarrow \sigma^2_{\Theta} +  \frac{1}{3} \sigma^2_P \qquad \text{  as } m\rightarrow \infty
+\end{align*}
+A very similar calculation shows that:
+\begin{align*}
+\mathrm{Var}\Bigg(\log\Bigg(\sum_{i=0}^{m-1}\frac{ P_{T-N-\frac{i}{m}}}{P_{T-N}} \theta_{T-N-\frac{i}{m},m}\Bigg) \Bigg) \rightarrow \sigma^2_{\Theta} +  \frac{1}{3} \sigma^2_P \qquad \text{  as } m\rightarrow \infty
+\end{align*}
+Putting this all together gives:
+\begin{align*}
+\mathrm{Var}\Big(\Delta^N \bar{y}_{T,m}\Big)  \rightarrow (N-\frac{1}{3})\sigma^2_P + 2\sigma^2_{\Theta} \qquad \text{  as } m\rightarrow \infty
+\end{align*}
+
+
+
+
+

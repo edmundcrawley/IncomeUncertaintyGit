@@ -1,0 +1,141 @@
+
+In this section we formalize the continuous time model and calculate the relevant variance and covariances. We begin by defining permanent income. Let $p_t$ for $t \in \mathbb{R}^+$ be a martingale process (possibly with jumps) with independent stationary increments and $\nu_p$ be such that $\mathbb{E}(e^{p_t-p_{t-1}})=e^{\nu_p}$. Define the permanent component of income as:
+\begin{align*}
+P_t = e^{p_t - t\nu_p}
+\end{align*}
+Note that $\mathbb{E}\Big(\frac{P_{t+s}}{P_t}\Big)=1$ for all $s\geq 0$.
+
+Next we define transitory income. Let $q_t$ on $t \in \mathbb{R}^+$ also be a martingale process, independent of $p_t$, with independent stationary increments. Let $f:\mathbb{R}^+ \rightarrow \mathbb{R}$ be the impulse response of income to changes in $q_t$. We will assume that the impulse response to a transitory shock to income is over after two years, that is $f(s)=0$ for $s>2$. The transitory component of income is then defined as:
+\begin{align*}
+\theta_t =  e^{\int_{t-2}^{t} f(t-s)dq_s -\nu_q} 
+\end{align*}
+where $e^{\nu_q } = \mathbb{E}e^{\int_{t-2}^{t} f(t-s)dq_s}$ so that $\mathbb{E}\theta_t=1$.
+
+We are now in a position to talk about total income. Total income \textit{flow} at time $t$ is given by:
+\begin{align*}
+Y_t &= P_t \theta_t \\
+&= e^{p_t - t\nu_p + \int_{t-2}^{t} f(t-s)dq_s -\nu_q}
+\end{align*}
+Observable income is the sum of income \textit{flow} over a one year period, that is:
+\begin{align*}
+\bar{Y}_T &= \int_{T-1}^{T}P_t \theta_t dt 
+\end{align*}
+We will be focused on the log of observable income growth over $N$ years:
+\begin{align}
+\Delta^N\log(\bar{y}_T) &= \log\Big(\int_{T-1}^{T}P_t \theta_t dt \Big) - \log\Big(\int_{T-N-1}^{T-N}P_t \theta_t dt \Big) \nonumber \\
+&= \log(\frac{P_{T-1}}{P_{T-N}})  + \log \Bigg(  \int_{T-1}^{T} \frac{P_t}{P_{T-1}} \theta_t dt\Bigg)  - \log \Bigg(  \int_{T-N-1}^{T-N}  \frac{P_t}{P_{T-N}} \theta_t  dt\Bigg) \label{income_growth_eq}
+\end{align}
+Note that if $N\geq3$ each of the three components of equation \ref{income_growth_eq} are mutually independent because both $p_t$ and $q_t$ have independent increments, and $\theta_t$ is independent of $q_s$ for $s<t-2$ and $s>t$. Defining $\mathcal{P}_{T,N}$, $\mathcal{Q}^1_{T,N}$ and $\mathcal{Q}^2_{T,N}$ to be the three parts of the sum in equation \ref{income_growth_eq} respectively, we have:
+\begin{align*}
+\mathcal{P}_{T,N} &= \log(\frac{P_{T-1}}{P_{T-N}}) \\
+\Rightarrow \mathrm{Var}(\mathcal{P}_{T,N}) &= (N-1)\mathrm{Var}\Big(\log(\frac{P_{T}}{P_{T-1}})\Big) \\
+&= (N-1)\sigma^2_P
+\end{align*}
+where $\sigma^2_P$ is defined to be $\mathrm{Var}\Big(\log(\frac{P_{T}}{P_{T-1}})\Big)$, which does not depend on T because $p_t$ has independent increments.
+Moving on to the components that contain a mix of both permanent and transitory income, and defining $\bar{\theta}_T=\int_{T-1}^{T}\theta_t dt$, we have
+\begin{align*}
+\mathcal{Q}^1_{T,N} &= \log \Bigg(  \int_{T-1}^{T} \frac{P_t}{P_{T-1}} \theta_t dt\Bigg) \\
+&= \log \Bigg(\int_{T-1}^{T}  \theta_t dt  +   \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\theta_t dt\Bigg) \\
+&= \log \Big(\bar{\theta}_T \Big) + \log \Bigg( 1+ \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\frac{\theta_t}{\bar{\theta}_T} dt\Bigg) \\
+&\approx \log \Big(\bar{\theta}_T \Big) + \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\frac{\theta_t}{\bar{\theta}_T} dt
+\end{align*}
+Where the approximation holds so long as $\frac{P_{t}}{P_{T-1}}$ is close to 1 for $T-1 \leq t \leq T$, that is the permanent shock does not move a lot in the course of one year \textbf{(*********NOTE: What is the exact notion of approx that I am using here. It should be some probabilistic notion, as it is clearly not true over the entire space of possibly values for $P_t$)}. Define:
+\begin{align*}
+\sigma^2_{\theta}&= \mathrm{Var}\Bigg(\log \Big(\bar{\theta}_T \Big) \Bigg)
+\end{align*}
+So that
+\begin{align*}
+\mathrm{Var}\big(\mathcal{Q}^1_{T,N}\big) &\approx \sigma^2_{\theta} + \mathbb{E} \Bigg(\int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\frac{\theta_t}{\bar{\theta}_T} dt \Bigg)^2 \\
+&= \sigma^2_{\theta} + \mathbb{E} \Bigg(\int_{T-1}^{T} \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big) \Big(\frac{P_s}{P_{T-1}}-1\Big) \frac{\theta_t \theta_s}{\bar{\theta}_T^2}  dt ds \Bigg) \\
+&= \sigma^2_{\theta} +  \int_{T-1}^{T} \int_{T-1}^{T} \mathbb{E}\Bigg(\Big(\frac{P_{\min(t,s)}}{P_{T-1}}\Big)^2 \frac{P_{\max(t,s)}}{P_{\min(t,s)}}-\frac{P_t}{P_{T-1}}-\frac{P_s}{P_{T-1}}-1\Bigg) \mathbb{E} \Bigg( \frac{\theta_t \theta_s}{\bar{\theta}_T^2} \Bigg)  dt ds \\
+&= \sigma^2_{\theta} +    \int_{T-1}^{T} \int_{T-1}^{T} \mathrm{Var}\Bigg(\frac{P_{\min(t,s)}}{P_{T-1}} \Bigg) \mathbb{E}\Bigg( \frac{\theta_t \theta_s}{\bar{\theta}_T^2} \Bigg) dt ds \\
+&\approx \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \int_{T-1}^{T}  \min(t,s)  \mathbb{E} \Bigg( \frac{\theta_t \theta_s}{\bar{\theta}_T^2} \Bigg) dt ds \\
+&= \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \int_{T-1}^{T}  \min(t,s)  \mathbb{E} \Bigg(\Big( 1 +\frac{\theta_t-\bar{\theta}_T}{\bar{\theta}_T} \Big) \Big( 1 +\frac{\theta_s-\bar{\theta}_T}{\bar{\theta}_T} \Big)\Bigg) dt ds \\
+&= \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \int_{T-1}^{T}  \min(t,s)   \Bigg(1+\mathbb{E}\Big( \hat{\theta}_{t,T} \Big) +\mathbb{E} \Big( \hat{\theta}_{s,T} \Big) +\mathbb{E}\Big( \hat{\theta}_{t,T} \hat{\theta}_{s,T}\Big)\Bigg) dt ds
+\end{align*}
+where $\hat{\theta}_{t,T} = \frac{\theta_t-\bar{\theta}_T}{\bar{\theta}_T}$. Continuing:
+\begin{align*}
+\mathrm{Var}\big(\mathcal{Q}^1_{T,N}\big) 
+&\approx \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \int_{T-1}^{T}  \min(t,s)    dt ds \\
+& \qquad \qquad +\sigma^2_P \underbrace{\int_{T-1}^{T} \int_{T-1}^{T}  \min(t,s)   \Bigg(\mathbb{E}\Big( \hat{\theta}_{t,T} \Big) +\mathbb{E} \Big( \hat{\theta}_{s,T} \Big) +\mathbb{E}\Big( \hat{\theta}_{t,T} \hat{\theta}_{s,T}\Big)\Bigg) dt ds }_{\approx 0} \\
+&= \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \Bigg( \int_{T-1}^{s}  t dt +  \int_{s}^{T}  s dt\Bigg) ds \\
+&= \sigma^2_{\theta} +  \frac{1}{3}\sigma^2_P
+\end{align*}
+\textbf{*******NOTE: why and I able to set the $\hat{\theta}_{t,T}$ parts to zero. I believe it it exactly true when there is no persistence in the transitory shocks, and also if the variance of $\theta$ is zero. What exact notions am I calling on here...?}
+
+A very similar calculation shows that:
+\begin{align*}
+\mathrm{Var}\big(\mathcal{Q}^2_{T,N}\big) 
+&\approx  \sigma^2_{\theta} +  \frac{1}{3}\sigma^2_P
+\end{align*}
+So we get that:
+\begin{align*}
+\mathrm{Var}\Big(\Delta^N\log(\bar{y}_T) \Big)&= \mathrm{Var}\big(\mathcal{P}_{T,N}\big) +\mathrm{Var}\big(\mathcal{Q}^1_{T,N}\big) +\mathrm{Var}\big(\mathcal{Q}^2_{T,N}\big) \\
+&\approx (N-1)\sigma^2_P + (\sigma^2_{\theta} +  \frac{1}{3}\sigma^2_P)+(\sigma^2_{\theta} +  \frac{1}{3}\sigma^2_P) \\
+&= (N-\frac{1}{3})\sigma^2_P +2\sigma^2_{\theta}
+\end{align*}
+Now we turn to consumption. Consumption responds to permanent income with elasticity $\phi$, while the impulse response to a transitory shock is given by some function $g:\mathbb{R}^+ \rightarrow \mathbb{R}$ with $g(s)=0$ for $s>2$. Total consumption \textit{flow} is then given by:
+\begin{align*}
+C_t&= C^{P}_t C^{\theta}_t 
+\end{align*}
+where
+\begin{align*}
+C^P_t &= e^{\phi p_t - t\nu_{p_c} }\\
+C^{\theta}_t &=	e^{ \int_{t-2}^{t} g(t-s)dq_s -\nu_{q_c}}
+\end{align*}
+and $\nu_{p_c}$ and $\nu_{q_c}$ are defined such that $\mathbb{E}\Big(\frac{C^P_t}{C^P_s}\Big)=\mathbb{E}(C^{\theta}_t)=1$ for all $t \geq s$. Analogous to the case with log income growth over $N$ years (equation \ref{income_growth_eq}) we get:
+\begin{align}
+\Delta^N\log(\bar{c}_T) &=   \log(\frac{C^P_{T-1}}{C^P_{T-N}})  + \log \Bigg(  \int_{T-1}^{T} \frac{C^P_t}{C^P_{T-1}}C^{\theta}_t dt\Bigg)  - \log \Bigg(  \int_{T-N-1}^{T-N}  \frac{C^P_t}{C^P_{T-N}} C^{\theta}_t  dt\Bigg) \label{cons_growth_eq}
+\end{align}
+Defining $\mathcal{C}^P_{T,N}$, $\mathcal{C}^1_{T,N}$ and $\mathcal{C}^2_{T,N}$ to be the three parts of the sum in equation \ref{cons_growth_eq} respectively, we have:
+\begin{align*}
+\mathcal{C}^P_{T,N} &= \log(\frac{C^P_{T-1}}{C^P_{T-N}}) \\
+& = \phi \log(\frac{P_{T-1}}{P_{T-N}}) -(N-1)(\nu_{p_c}-\phi \nu_p) \\
+\Rightarrow \mathrm{Cov}(\mathcal{P}_{T,N},\mathcal{C}^P_{T,N}) &= (N-1)\phi \mathrm{Var}\Big(\log(\frac{P_{T}}{P_{T-1}})\Big) \\
+&= (N-1)\phi\sigma^2_P
+\end{align*}
+and that:
+\begin{align*}
+\mathcal{C}^1_{T,N} &= \log \Bigg(  \int_{T-1}^{T} \frac{C^P_t}{C^P_{T-1}} C^{\theta}_t dt\Bigg) \\
+&= \log \Bigg(  \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}\Big)^{\phi} e^{-(t-(T-1))(\nu_{p_c}-\phi \nu_p)} C^{\theta}_t dt\Bigg) \\
+&\approx \log \Big( \bar{C^{\theta}_T} \Big) + \int_{T-1}^{T} \Big( \Big(\frac{P_t}{P_{T-1}}\Big)^{\phi}e^{-(t-(T-1))(\nu_{p_c}-\phi \nu_p)}-1\Big)\frac{C^{\theta}_t}{\bar{C^{\theta}_T}} dt 
+\end{align*}
+where the steps taken in the approximation are the same as we did in the case of income.
+\begin{align*}
+\mathrm{Cov}\Big(\mathcal{Q}^1_{T,N},\mathcal{C}^1_{T,N} \Big) 
+&=\mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+& \qquad + \mathbb{E} \Bigg(\int_{T-1}^{T} \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\Big( \Big(\frac{P_s}{P_{T-1}}\Big)^{\phi}e^{-(s-(T-1))(\nu_{p_c}-\phi \nu_p)}-1\Big)\frac{\theta_t}{\bar{\theta}_T} \frac{C^{\theta}_s}{\bar{C^{\theta}_T}} dt ds \Bigg) \\
+&=\mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+& \qquad + \mathbb{E} \Bigg(\int_{T-1}^{T} \int_{T-1}^{T} \Big( \Big(\frac{P_{\min(t,s)}}{P_{T-1}}\Big)^{1+\phi}e^{-(\min(t,s)-(T-1))(\nu_{p_c}-\phi \nu_p)}-1\Big)\frac{\theta_t}{\bar{\theta}_T} \frac{C^{\theta}_s}{\bar{C^{\theta}_T}} dt ds \Bigg) \\
+&=\mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+& \qquad +  \int_{T-1}^{T} \int_{T-1}^{T} \mathbb{E}\Big( \Big(\frac{P_{\min(t,s)}}{P_{T-1}}\Big)^{1+\phi}e^{-(\min(t,s)-(T-1))(\nu_{p_c}-\phi \nu_p)}-1\Big) dt ds  \\
+& \approx 0
+\begin{cases}
+ \qquad +  \int_{T-1}^{T} \int_{T-1}^{T} \mathbb{E}\Bigg(\Big( \Big(\frac{P_{\min(t,s)}}{P_{T-1}}\Big)^{1+\phi}e^{-(\min(t,s)-(T-1))(\nu_{p_c}-\phi \nu_p)}-1\Big) \\
+  \qquad \qquad \qquad \qquad \qquad \qquad \times \Big(\mathbb{E}\Big(\hat{\theta_t}\Big)  + \mathbb{E}\Big(\hat{C}^{\theta}_s \Big) + \mathbb{E}\Big(\hat{\theta_t} \hat{C}^{\theta}_s\Big)\Big)\Bigg) dt ds 
+ \end{cases} \\
+ &= \mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+ & \qquad +  \int_{0}^{1} \int_{0}^{1} \mathbb{E}\Big( P_{\min(t,s)}^{1+\phi}e^{-\min(t,s)(\nu_{p_c}-\phi \nu_p)}-1\Big) dt ds
+\end{align*}
+where $\hat{C}^{\theta}_{t,T} = \frac{C^{\theta}_t-\bar{C}^{\theta}_T}{\bar{C}^{\theta}_T}$. We now assume that $p_t$ has no jumps, and is therefore a Brownian motion. With this assumption, $\nu_p = \frac{1}{2}\sigma^2_P$ and $\nu_{p_c}= \frac{1}{2}\phi^2\sigma^2_P$ and $\mathbb{E}(P^{1+\phi}_t) = e^{\frac{1}{2}t(1+\phi)^2\sigma^2_P - \frac{1}{2}t(1+\phi)\sigma^2_P}$ so that:
+\begin{align*}
+\mathrm{Cov}\Big(\mathcal{Q}^1_{T,N},\mathcal{C}^1_{T,N} \Big) 
+&= \mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+& \qquad +  \int_{0}^{1} \int_{0}^{1} \Big(e^{\frac{1}{2}\min(s,t)\sigma^2_P((1+\phi)^2 -(1+\phi) - \phi^2 +\phi  )}-1\Big) dt ds \\
+&= \mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big) \\
+& \qquad +  \int_{0}^{1} \int_{0}^{1} \Big(e^{\min(s,t)\phi\sigma^2_P}-1\Big) dt ds \\
+&\approx \mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big)  +  \phi\sigma^2_P \int_{0}^{1} \int_{0}^{1} \min(s,t)dt ds \\
+&=\mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big)  +  \frac{1}{3}\phi\sigma^2_P 
+\end{align*}
+Similarly
+\begin{align*}
+\mathrm{Cov}\Big(\mathcal{Q}^2_{T,N},\mathcal{C}^2_{T,N} \Big) 
+&\approx \mathrm{Cov}\Big( \log \Big( \bar{\theta}_T \Big), \log \Big( \bar{C^{\theta}_T} \Big) \Big)  +  \frac{1}{3}\phi\sigma^2_P 
+\end{align*}
+So that the covariance of income growth with consumption growth over $N$ years is:
+\begin{align*}
+\mathrm{Cov}\Big(\Delta^N\log(\bar{y}_T), \Delta^N\log(\bar{c}_T)\Big) 
+&= (N-\frac{1}{3})\phi \sigma^2_P + 2 \mathrm{Cov}(\tilde{y},\tilde{c})
+\end{align*}
+where $\tilde{y} = \log \Big( \bar{\theta}_T \Big)$ and $\tilde{c} =\log \Big( \bar{C^{\theta}_T} \Big) $
+

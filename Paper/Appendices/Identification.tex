@@ -1,0 +1,53 @@
+
+In this appendix we formally derive the key identification formulas. We start by assuming an income process that can be decomposed into purely permanent and transitory shocks. We assume each observable time period is divided into $m$ subperiods with income in each subperiod given by:
+\begin{align*}
+	Y_{t/m} = \frac{1}{m} P_{t/m} \theta_{t/m} \\
+	P_{t/m} = P_{(t-1)/m} \zeta_{t/m}
+\end{align*}
+Observed aggregate income is given by the sum of income over $m$ subperiods:
+\begin{align*}
+\bar{Y}_{T/m} &=  \sum_{t=T-m+1}^{T} Y_{t/m} \\
+&=  P_{T/m-1} \frac{1}{m} \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} 
+\end{align*}
+for $T \in \{m, 2m, 3m... \}$. $\theta_{t/m}$ and $\zeta_{t/m}$ are each iid and independent of each other. We assume both have mean one:
+\begin{align*}
+\mathbb{E} \theta_{t/m} = 1\\
+\mathbb{E} \zeta_{t/m} = 1
+\end{align*}
+and choose another moment to ensure the size of the shocks in the observable process are similar across $m$:
+\begin{align*}
+\mathrm{Var}\Bigg( \log \Big( \sum_{t=T-m+1}^{T}  \theta_{t/m} \Big)\Bigg) &= \sigma^2_Q \\
+\mathrm{Var}\Bigg( \log \Big( \prod_{t=T-m+1}^{T} \zeta_{t/m}\Big) \Bigg) &= m \mathrm{Var}\Bigg( \log  \zeta_{t/m} \Bigg) \\
+&= \sigma^2_P
+\end{align*}
+We can think of $\sigma^2_Q$ as ``the transitory variance of log time aggregated income'' and  $\sigma^2_P$ as ``the permanent variance of log time aggregated income''. Note that with this pure division between permanent and transitory shocks, the variance of $\theta_{t/m}$ will grow infinitely large as $m$ goes to infinity. This is not the case when we allow some persistence in the transitory shock.
+
+Our object of interest is log income growth over $N$ observable periods:
+\begin{align}
+\Delta^N \log(\bar{Y}_{T/m}) &=  \log\Bigg(P_{T/m-1} \frac{1}{m} \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \nonumber \\
+& \qquad - \log\Bigg(P_{T/m-N-1} \frac{1}{m} \sum_{t=T-(N+1)m+1}^{T-Nm} \Big(\prod_{j=T-(N+1)m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \nonumber \\
+&=  \log \Bigg( \frac{P_{T/m-1}}{P_{T/m-N}} \Bigg) \nonumber \\
+& \qquad +\log\Bigg( \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \nonumber \\
+& \qquad - \log\Bigg(\frac{P_{T/m-N-1}}{P_{T/m-N}}  \sum_{t=T-(N+1)m+1}^{T-Nm} \Big(\prod_{j=T-(N+1)m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \nonumber \\
+&=  \log \Bigg(  \prod_{t=T-Nm+1}^{T-m} \zeta_{t/m} \Bigg) \label{sum1} \\
+& \qquad +\log\Bigg( \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \label{sum2} \\
+& \qquad - \log\Bigg(  \sum_{t=T-(N+1)m+1}^{T-Nm} \Big(\prod_{j=t+1}^{T-Nm} \frac{1}{\zeta_{j/m}}\Big) \theta_{t/m} \Bigg) \label{sum3}
+\end{align}
+Note the three parts of the sum above, (\ref{sum1}), (\ref{sum2}) and (\ref{sum3}), are each independent. Therefore the variance of the left hand side is the sum of the variance of each of these. Starting with (\ref{sum1}):
+\begin{align*}
+\mathrm{Var} \Bigg(\log \Bigg(  \prod_{t=T-Nm+1}^{T-m} \zeta_{t/m} \Bigg)\Bigg) &= (N-1)m\mathrm{Var}\Bigg( \log  \zeta_{t/m} \Bigg) \\
+&= (N-1) \sigma^2_P
+\end{align*}
+For (\ref{sum2}) and (\ref{sum3}) we will need to make some approximations and assume the cumulative permanent shock over one year is small. Inspecting (\ref{sum2}):
+\begin{align}
+\log\Bigg( \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) &= \log\Bigg(  \sum_{t=T-m+1}^{T} \theta_{t/m} \Bigg) \\
+& \qquad+ \log\Bigg(1+  \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m} -1\Big) \frac{\theta_{t/m} }{\sum_{t=T-m+1}^{T} \theta_{t/m}}\Bigg) \\
+&\approx \log\Bigg(  \sum_{t=T-m+1}^{T} \theta_{t/m} \Bigg) \label{sum4}\\
+& \qquad+  \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m} -1\Big) \frac{\theta_{t/m} }{\sum_{t=T-m+1}^{T} \theta_{t/m}} \label{sum5}
+\end{align}
+The covariance between (\ref{sum4}) and (\ref{sum5}) is zero. Furthermore, for large $m$ the covariance between each of the components of (\ref{sum5}) is close to zero (NOTE: I need to show the exact approximation I am using here). Therefore we can calculate the variance as the sum of the variance of each of the individual components:
+\begin{align*}
+\mathrm{Var} \Bigg( \log\Bigg( \sum_{t=T-m+1}^{T} \Big(\prod_{j=T-m+1}^{t} \zeta_{j/m}\Big) \theta_{t/m} \Bigg) \Bigg) &\approx \sigma^2_Q \\
+& +  \sum_{t=T-m+1}^{T} \mathrm{Var} \Bigg(\Big(\prod_{j=T-m+1}^{t} \zeta_{j/m} -1\Big) \frac{\theta_{t/m} }{\sum_{t=T-m+1}^{T} \theta_{t/m}} \Bigg)
+\end{align*}
+
