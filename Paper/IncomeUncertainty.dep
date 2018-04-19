@@ -48,7 +48,7 @@
   *{file}   {t3enc.def}   {2001/12/31 v3}
   *{file}   {t1cmss.fd}   {2014/09/29 v2.5h}
   *{file}   {t1enc.def}   {2016/06/19 v1.99m}
-  *{package}{color}       {2016/07/10 v1.1e}
+  *{package}{color}       {1999/02/16 v0.0}
   *{file}   {color.cfg}   {2016/01/02 v1.6}
   *{file}   {pdftex.def}  {2016/07/10 v0.06j}
   *{package}{infwarerr}   {2016/05/16 v1.4}
@@ -108,6 +108,30 @@
   *{package}{./texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{package}{endfloat}    {2011/12/25 v2.5d}
   *{package}{titlesec}    {2016/03/21 v2.10.2}
+  *{package}{tikz}        {2015/08/07 v3.0.1a}
+  *{package}{pgf}         {2015/08/07 v3.0.1a}
+  *{package}{pgfrcs}      {2015/08/07 v3.0.1a}
+  *{package}{everyshi}    {2001/05/15 v3.00}
+  *{file}   {pgfrcs.code.tex}{0000/00/00 v0.0}
+  *{package}{pgfcore}     {2010/04/11 v3.0.1a}
+  *{package}{pgfsys}      {2014/07/09 v3.0.1a}
+  *{file}   {pgfsys.code.tex}{0000/00/00 v0.0}
+  *{file}   {pgfsyssoftpath.code.tex}{2013/09/09 v1.9)}
+  *{file}   {pgfsysprotocol.code.tex}{2006/10/16 v1.4)}
+  *{package}{xcolor}      {2016/05/11 v2.12}
+  *{file}   {color.cfg}   {2016/01/02 v1.6}
+  *{file}   {pgfcore.code.tex}{0000/00/00 v0.0}
+  *{package}{pgfcomp-version-0-65}{2007/07/03 v3.0.1a}
+  *{package}{pgfcomp-version-1-18}{2007/07/23 v3.0.1a}
+  *{package}{pgffor}      {2013/12/13 v3.0.1a}
+  *{package}{pgfkeys}     {0000/00/00 v0.0}
+  *{file}   {pgfkeys.code.tex}{0000/00/00 v0.0}
+  *{package}{pgfmath}     {0000/00/00 v0.0}
+  *{file}   {pgfmath.code.tex}{0000/00/00 v0.0}
+  *{file}   {pgffor.code.tex}{0000/00/00 v0.0}
+  *{file}   {tikz.code.tex}{0000/00/00 v0.0}
+  *{package}{caption}     {2016/02/21 v3.3-144}
+  *{package}{caption3}    {2016/05/22 v1.7-166}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2016/05/15 v2.6}

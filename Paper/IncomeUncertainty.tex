@@ -2,6 +2,8 @@
 \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
 \usepackage[nolists,nomarkers,tablesonly]{endfloat}
 \usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{caption}
 \setcounter{secnumdepth}{4}
 
 \provideboolean{ifWeb}
@@ -35,6 +37,10 @@
 %rm%\provideboolean{PrintVersion}
 %rm%\setboolean{PrintVersion}{false}
 %rm%\setboolean{PrintVersion}{true}
+
+%circled draws a circle around a number
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 \begin{document}\bibliographystyle{\econtexBibStyle}
 	
@@ -415,9 +421,13 @@ Our novel method of measuring the consumption response to income shocks, along w
 
 \section{Identification with Time Aggregation}\label{sec:Identification}
 
-%\input\econtexRoot/Appendices/Identification.tex
+\input\econtexRoot/Appendices/Identification3.tex
 
 \input\econtexRoot/Appendices/Identification2.tex
+
+\section{Simulation Results}\label{sec:Simulation}
+\input\econtexRoot/Appendices/Simulation.tex
+
 
 \end{document}
 

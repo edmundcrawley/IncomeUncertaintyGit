@@ -1,0 +1,12 @@
+\begin{table}[h!]
+\caption{Estimates of $\sigma_p$} \label{table:simulation_sigma_p}
+\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_array1.tex \input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_array2.tex
+\end{table}
+\efloatseparator
+ 
+\begin{table}[h!]
+\caption{Estimates of $\sigma_q$} \label{table:simulation_sigma_q}
+\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_array1.tex \input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_array2.tex
+\end{table}
+\efloatseparator
+ 

@@ -1,0 +1,38 @@
+
+In this appendix we test how the estimation method performs on simulated data in a simple incomplete markets model. The upshot is that when the consumption response to transitory shocks is small, the number of periods over which income and consumption growth are measured needs to be high to accurately estimate $\psi$. With too few periods $\psi$ is underestimated. For the values of $\psi$ that we see in the data, using 3 years of growth as we do in the paper, is sufficient to get close to unbiased results.
+
+\subsection{A Standard Incomplete Market Model}
+Describe the standard model here...
+
+Calibration
+
+\subsection{Simulation Results}
+Tables \ref{table:simulation_psi} and \ref{table:simulation_phi} show the result of simulating the model above and running the estimation procedure on the output. The results from the estimation procedure are shown for varying values of $n_1$ and $n_2$, the years over which income and consumption growth are measured. The left hand panel in each table shows the results for a model calibrated to have very low levels of assets, to approximately match the levels for $\psi$ that we see in the data. For these values the estimation procedure works well for $n_1$ and $n_2$ between 3 and 5, which is what we use on the actual data. The estimated level of $\psi$ does not change as we increase the number of years needed for the consumption response to decay to zero ($n_1-1$). However, the estimate for $phi$ is biased upwards and an $n_1$ of 4 or more works better. It is also interesting to see how our estimates perform on a model calibrated to the actual distribution of liquid wealth in the Danish economy (cf \cite{carroll_distribution_2016}). Here, the estimates for $\psi$ are much lower than those we get in the data. As a result, the consumption response decays more slowly and the estimates for $\psi$ are strongly biased down for levels of $n_1$ below 5.
+
+The results of these simulations suggest that our method works well when the consumption response is large and short lived, but underestimates the consumption response to transitory shocks, and overestimates the consumption response to permanent shocks, when the response is smaller but longer lasting. Our empirical results suggest a large, but short lived response, suggesting the estimation procedure is not problematically biased.
+
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Psi_array1.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Psi_array2.tex
+	\captionof{table}{Estimates of $\psi$}
+	\label{table:simulation_psi}
+\end{center}
+
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Phi_array1.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Phi_array2.tex
+	\captionof{table}{Estimates of $\phi$} 
+	\label{table:simulation_phi}
+\end{center}
+
+\begin{comment}
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_array1.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_array2.tex
+	\captionof{table}{Estimates of $\sigma_p$} \label{table:simulation_sigma_p}
+\end{center}
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_array1.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_array2.tex
+	\captionof{table}{Estimates of $\sigma_q$} \label{table:simulation_sigma_q}
+\end{center}
+\end{comment}
+
+
+

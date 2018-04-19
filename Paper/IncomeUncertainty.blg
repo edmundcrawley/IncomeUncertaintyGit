@@ -1,11 +1,7 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: IncomeUncertainty.aux
 The style file: ./texmf-local/bibtex/bst/econtex.bst
 Database file #1: AllPapers.bib
-Repeated entry---line 1575 of file AllPapers.bib
- : @techreport{fuster_what_2018
- :                             ,
-I'm skipping whatever remains of this entry
 Warning--empty journal in commault_how_2017
 Warning--empty publisher in nielsen_impact_2004
 Done.
-(There was 1 error message)
+(There were 2 warnings)
