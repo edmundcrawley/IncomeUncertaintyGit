@@ -61,8 +61,8 @@ IndL = 1.0               # Labor supply per individual (constant)
 PermGroFac_i = [1.000**0.25]  # Permanent income growth factor (no perm growth)
 DiscFac_i = 0.97              # Default intertemporal discount factor
 LivPrb_i = [1.0 - 1.0/160.0]  # Survival probability
-PermShkStd_i = [0.06/4.0] # Standard deviation of permanent shocks to income
-TranShkStd_i = [0.06*4.0]    # Standard deviation of transitory shocks to income
+PermShkStd_i = [0.06/2.0] # Standard deviation of permanent shocks to income
+TranShkStd_i = [0.06*2.0]    # Standard deviation of transitory shocks to income
 
 
 # Make a dictionary for the infinite horizon type

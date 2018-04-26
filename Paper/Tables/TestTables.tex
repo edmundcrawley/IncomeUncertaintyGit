@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[nolists,nomarkers,tablesonly]{endfloat}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{caption}
+\setcounter{secnumdepth}{4}
+
+
+\newlength\TableWidth
+
+
+%circled draws a circle around a number
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+	
+\newcommand{\fileone}{arrayNoElasorPref}
+\newcommand{\filetwo}{arrayPrefShock_newcode}
+
+\begin{document}
+	
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Psi_\fileone.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Psi_\filetwo.tex
+	\captionof{table}{Estimates of $\psi$}
+	\label{table:simulation_psi}
+\end{center}
+	
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Phi_\fileone.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/Phi_\filetwo.tex
+	\captionof{table}{Estimates of $\psi$}
+	\label{table:simulation_phi}
+\end{center}
+
+
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_\fileone.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmap_\filetwo.tex
+	\captionof{table}{Estimates of $\sigma_p$} \label{table:simulation_sigma_p}
+\end{center}
+\begin{center}
+	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_\fileone.tex	\input C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Tables/sigmaq_\filetwo.tex
+	\captionof{table}{Estimates of $\sigma_q$} \label{table:simulation_sigma_q}
+\end{center}
+
+
+\end{document}
+	
+\input Switches.tex

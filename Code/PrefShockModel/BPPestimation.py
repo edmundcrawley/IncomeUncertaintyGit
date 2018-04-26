@@ -4,7 +4,7 @@ Functions to do BPP style estimations on simulated data
 """
 import numpy as np
 
-def SelectMicroSample(Economy,years_in_sample,periods_per_year):
+def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
     '''
     Selects consumption and income data to use in estimation
     Sorts into sample of a fixed length and eliminates agents who die in that
@@ -28,7 +28,10 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year):
        
     not_newborns = (np.concatenate([this_type.t_age_hist for this_type in Economy.agents],axis=1) > 1)
     cLvlAll_hist = np.concatenate([this_type.cNrmNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
-    yLvlAll_hist = np.concatenate([this_type.TranShkNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
+    if do_labor:
+        yLvlAll_hist = np.concatenate([this_type.lIncomeLvl_hist for this_type in Economy.agents],axis=1)
+    else:
+        yLvlAll_hist = np.concatenate([this_type.TranShkNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
     
     ignore_periods = Economy.ignore_periods
     #ignore the periods at beginning of simulation
@@ -84,8 +87,8 @@ def CS_estimation(log_C_agg, log_Y_agg,n1,n2):
         Consumption response to transitory shocks
     '''
     
-    #time_agg_adj_fac = 1.0/3.0
-    time_agg_adj_fac = 0.0
+    time_agg_adj_fac = 1.0/3.0
+    #time_agg_adj_fac = 0.0
     
     y_growth1 = log_Y_agg[n1:,:]-log_Y_agg[:-n1,:]
     y_growth2 = log_Y_agg[n2:,:]-log_Y_agg[:-n2,:]

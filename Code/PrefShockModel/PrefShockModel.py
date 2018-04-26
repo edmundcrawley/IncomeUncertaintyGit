@@ -139,10 +139,8 @@ class PrefLaborShockSetup(ConsPerfForesightSolver):
         self.IncomeAndPrefDist     = IncomeAndPrefDstn
         self.ShkPrbsNext      = IncomeAndPrefDstn[0]
         self.PermShkValsNext  = IncomeAndPrefDstn[1]
-        self.TranWAGEShkValsNext  = IncomeAndPrefDstn[2]
+        self.TranShkValsNext  = IncomeAndPrefDstn[2]
         self.PrefShkValsNext  = IncomeAndPrefDstn[3]
-        self.LaborNext  = (self.PrefShkValsNext*self.TranWAGEShkValsNext)**LaborElas #Labor supply is a function of preference shocks and wages ONLY with GHH preferences
-        self.TranShkValsNext  = self.LaborNext*self.TranWAGEShkValsNext
 #        self.PermShkMinNext   = np.min(self.PermShkValsNext)    
 #        self.TranShkMinNext   = np.min(self.TranShkValsNext)
         self.vPfuncNext       = solution_next.vPfunc        
@@ -460,6 +458,14 @@ class PrefLaborConsumerType(IndShockConsumerType):
         # Add consumer-type specific objects, copying to create independent versions
         self.solveOnePeriod = solvePrefLaborShock # idiosyncratic shocks solver
         self.update() # Make assets grid, income process, terminal solution
+        
+    def reset(self):
+        self.initializeSim()
+        self.t_age = drawDiscrete(self.AgentCount,P=self.AgeDstn,X=np.arange(self.AgeDstn.size),exact_match=False,seed=self.RNG.randint(0,2**31-1)).astype(int)
+        self.t_cycle = copy(self.t_age)
+        
+    def marketAction(self):
+        self.simulate(1)
                       
     def updateIncomeProcess(self):
         '''
@@ -628,7 +634,7 @@ class PrefLaborConsumerType(IndShockConsumerType):
 ####################################################################################################     
     
 if __name__ == '__main__':
-    import ConsumerParameters as Params
+    import SetupParamsSimulations as Params
     from HARKutilities import plotFuncsDer, plotFuncs
     from time import clock
     mystr = lambda number : "{:.4f}".format(number)
@@ -636,16 +642,16 @@ if __name__ == '__main__':
     do_simulation           = True
     
     # Make and solve an example consumer with preference shocks
-    init_pref = copy(Params.init_idiosyncratic_shocks)
+    init_pref = copy(Params.init_infinite)
     init_pref['TranShkStd'] = [0.06]
     init_pref['PermShkStd'] = [0.06]
     
-    init_pref['PrefShkStd'] = [0.3]
+    init_pref['PrefShkStd'] = [0.00001]
     init_pref['PrefShkCount'] = 5
-    init_pref['LaborElas'] = 0.5
+    init_pref['LaborElas'] = 0.1
     
     init_pref['DiscFac'] = 0.9
-    init_pref['LivPrb'] = [1.0]
+    #init_pref['LivPrb'] = [1.0]
     
     #replicate no labor,no pref shock
 #    init_pref['PrefShkStd'] = [0.000001]
@@ -776,89 +782,89 @@ if __name__ == '__main__':
     print(MeanAggB)
     
     
-#***********************
-# Do some loops
-
-num_loops = 5
-LaborElas_loops = np.linspace(0.00000001,0.8, num_loops)
-phi_loop = np.zeros(num_loops)
-psi_loop = np.zeros(num_loops)
-sigmaq_loop = np.zeros(num_loops)
-sigmap_loop = np.zeros(num_loops)
-
-phiBPP_loop = np.zeros(num_loops)
-psiBPP_loop = np.zeros(num_loops)
-sigmaqBPP_loop = np.zeros(num_loops)
-sigmapBPP_loop = np.zeros(num_loops)
-
-MeanAggMPC_loop = np.zeros(num_loops)
-MeanAggB_loop = np.zeros(num_loops)
-ConsGrowthVar_loop = np.zeros(num_loops)
-
-for i in range(num_loops):
-#    init_pref['LaborElas'] = LaborElas_loops[i]
-    init_pref['PrefShkStd'] = [LaborElas_loops[i]]
+    #***********************
+    # Do some loops
     
-   
-    PrefShockExample = PrefLaborConsumerType(**init_pref)
-    PrefShockExample.cycles = 0 # Make this type have an infinite horizon
-    PrefShockExample.solve()
+    num_loops = 5
+    LaborElas_loops = np.linspace(0.00000001,0.8, num_loops)
+    phi_loop = np.zeros(num_loops)
+    psi_loop = np.zeros(num_loops)
+    sigmaq_loop = np.zeros(num_loops)
+    sigmap_loop = np.zeros(num_loops)
     
-    PrefShockExample.T_sim = 200
-    PrefShockExample.track_vars = ['bNrmNow','cNrmNow','MPCnow','lNow','TranShkNow','PrefShkNow','pLvlNow','cLvlNow','lIncomeLvl','t_age']
-    PrefShockExample.initializeSim()
-    PrefShockExample.simulate() 
+    phiBPP_loop = np.zeros(num_loops)
+    psiBPP_loop = np.zeros(num_loops)
+    sigmaqBPP_loop = np.zeros(num_loops)
+    sigmapBPP_loop = np.zeros(num_loops)
     
-    ignore_periods = 50
-    extra = 0
-    n1 = 3+extra
-    n2 = 5+extra
-    logLaborInc = np.log(PrefShockExample.lIncomeLvl_hist)
-    logCons = np.log(PrefShockExample.cLvlNow_hist)
-    IncGrowth1 = logLaborInc[ignore_periods+n1:,:]-logLaborInc[ignore_periods:-n1,:]
-    IncGrowth2 = logLaborInc[ignore_periods+n2:,:]-logLaborInc[ignore_periods:-n2,:]
-    ConGrowth1 = logCons[ignore_periods+n1:,:]-logCons[ignore_periods:-n1,:]
-    ConGrowth2 = logCons[ignore_periods+n2:,:]-logCons[ignore_periods:-n2,:]
+    MeanAggMPC_loop = np.zeros(num_loops)
+    MeanAggB_loop = np.zeros(num_loops)
+    ConsGrowthVar_loop = np.zeros(num_loops)
     
-    varIncGrowth1 = np.var(IncGrowth1)
-    varIncGrowth2 = np.var(IncGrowth2)
-    impliedPermVar = (varIncGrowth2-varIncGrowth1)/(n2-n1)
-    impliedPermStd = impliedPermVar**0.5
-    impliedTranVar = (varIncGrowth1 - n1*impliedPermVar)/2.0
-    impliedTranStd = impliedTranVar**0.5
-    
-    covGrowth1 = np.cov(IncGrowth1.flatten(),ConGrowth1.flatten())[1][0]
-    covGrowth2 = np.cov(IncGrowth2.flatten(),ConGrowth2.flatten())[1][0]
-    
-    phi_loop[i] = (covGrowth2-covGrowth1)/((n2-n1)*impliedPermVar)
-    psi_loop[i] = (covGrowth1 - n1*phi*impliedPermVar)/(2.0*impliedTranVar)
-    sigmaq_loop[i] = impliedTranStd
-    sigmap_loop[i] = impliedPermStd
-    
-    
-    IncGrowthOnePeriod = logLaborInc[ignore_periods+1:,:]-logLaborInc[ignore_periods:-1,:]
-    ConGrowthOnePeriod = logCons[ignore_periods+1:,:]-logCons[ignore_periods:-1,:]
-    covYYnext = np.cov(IncGrowthOnePeriod[2:,].flatten(),IncGrowthOnePeriod[1:-1,].flatten())[1][0]
-    covCYnext = np.cov(IncGrowthOnePeriod[2:,].flatten(),ConGrowthOnePeriod[1:-1,].flatten())[1][0]
-    
-    IncGrowthThreePeriod = logLaborInc[ignore_periods+4:,:]-logLaborInc[ignore_periods:-4,:]
-    covYYnext3 = np.cov(IncGrowthThreePeriod.flatten(),IncGrowthOnePeriod[2:-1,].flatten())[1][0]
-    covCYnext3 = np.cov(IncGrowthThreePeriod.flatten(),ConGrowthOnePeriod[2:-1,].flatten())[1][0]
-    
-    psiBPP_loop[i] = covCYnext/covYYnext
-    phiBPP_loop[i] = covCYnext3/covYYnext3
-    
-    impliedPermStdBPP = covYYnext3**0.5
-    impliedTranStdBPP = (-covYYnext)**0.5
-    
-    sigmaqBPP_loop[i] = impliedTranStdBPP
-    sigmapBPP_loop[i] = impliedPermStdBPP
-    
-    
-    AggB = np.mean(PrefShockExample.bNrmNow_hist,axis=1)   
-    AggMPC = np.mean(PrefShockExample.MPCnow_hist,axis=1) 
-    
-    MeanAggMPC_loop[i] = np.mean(AggMPC[ignore_periods:,])
-    MeanAggB_loop[i] = np.mean(AggB[ignore_periods:,])
-    
-    ConsGrowthVar_loop[i] = np.var(ConGrowthOnePeriod)
+    for i in range(num_loops):
+    #    init_pref['LaborElas'] = LaborElas_loops[i]
+        init_pref['PrefShkStd'] = [LaborElas_loops[i]]
+        
+       
+        PrefShockExample = PrefLaborConsumerType(**init_pref)
+        PrefShockExample.cycles = 0 # Make this type have an infinite horizon
+        PrefShockExample.solve()
+        
+        PrefShockExample.T_sim = 200
+        PrefShockExample.track_vars = ['bNrmNow','cNrmNow','MPCnow','lNow','TranShkNow','PrefShkNow','pLvlNow','cLvlNow','lIncomeLvl','t_age']
+        PrefShockExample.initializeSim()
+        PrefShockExample.simulate() 
+        
+        ignore_periods = 50
+        extra = 0
+        n1 = 3+extra
+        n2 = 5+extra
+        logLaborInc = np.log(PrefShockExample.lIncomeLvl_hist)
+        logCons = np.log(PrefShockExample.cLvlNow_hist)
+        IncGrowth1 = logLaborInc[ignore_periods+n1:,:]-logLaborInc[ignore_periods:-n1,:]
+        IncGrowth2 = logLaborInc[ignore_periods+n2:,:]-logLaborInc[ignore_periods:-n2,:]
+        ConGrowth1 = logCons[ignore_periods+n1:,:]-logCons[ignore_periods:-n1,:]
+        ConGrowth2 = logCons[ignore_periods+n2:,:]-logCons[ignore_periods:-n2,:]
+        
+        varIncGrowth1 = np.var(IncGrowth1)
+        varIncGrowth2 = np.var(IncGrowth2)
+        impliedPermVar = (varIncGrowth2-varIncGrowth1)/(n2-n1)
+        impliedPermStd = impliedPermVar**0.5
+        impliedTranVar = (varIncGrowth1 - n1*impliedPermVar)/2.0
+        impliedTranStd = impliedTranVar**0.5
+        
+        covGrowth1 = np.cov(IncGrowth1.flatten(),ConGrowth1.flatten())[1][0]
+        covGrowth2 = np.cov(IncGrowth2.flatten(),ConGrowth2.flatten())[1][0]
+        
+        phi_loop[i] = (covGrowth2-covGrowth1)/((n2-n1)*impliedPermVar)
+        psi_loop[i] = (covGrowth1 - n1*phi*impliedPermVar)/(2.0*impliedTranVar)
+        sigmaq_loop[i] = impliedTranStd
+        sigmap_loop[i] = impliedPermStd
+        
+        
+        IncGrowthOnePeriod = logLaborInc[ignore_periods+1:,:]-logLaborInc[ignore_periods:-1,:]
+        ConGrowthOnePeriod = logCons[ignore_periods+1:,:]-logCons[ignore_periods:-1,:]
+        covYYnext = np.cov(IncGrowthOnePeriod[2:,].flatten(),IncGrowthOnePeriod[1:-1,].flatten())[1][0]
+        covCYnext = np.cov(IncGrowthOnePeriod[2:,].flatten(),ConGrowthOnePeriod[1:-1,].flatten())[1][0]
+        
+        IncGrowthThreePeriod = logLaborInc[ignore_periods+4:,:]-logLaborInc[ignore_periods:-4,:]
+        covYYnext3 = np.cov(IncGrowthThreePeriod.flatten(),IncGrowthOnePeriod[2:-1,].flatten())[1][0]
+        covCYnext3 = np.cov(IncGrowthThreePeriod.flatten(),ConGrowthOnePeriod[2:-1,].flatten())[1][0]
+        
+        psiBPP_loop[i] = covCYnext/covYYnext
+        phiBPP_loop[i] = covCYnext3/covYYnext3
+        
+        impliedPermStdBPP = covYYnext3**0.5
+        impliedTranStdBPP = (-covYYnext)**0.5
+        
+        sigmaqBPP_loop[i] = impliedTranStdBPP
+        sigmapBPP_loop[i] = impliedPermStdBPP
+        
+        
+        AggB = np.mean(PrefShockExample.bNrmNow_hist,axis=1)   
+        AggMPC = np.mean(PrefShockExample.MPCnow_hist,axis=1) 
+        
+        MeanAggMPC_loop[i] = np.mean(AggMPC[ignore_periods:,])
+        MeanAggB_loop[i] = np.mean(AggB[ignore_periods:,])
+        
+        ConsGrowthVar_loop[i] = np.var(ConGrowthOnePeriod)
