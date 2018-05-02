@@ -42,7 +42,8 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
-\begin{document}\bibliographystyle{\econtexBibStyle}
+%\begin{document}\bibliographystyle{\econtexBibStyle}
+\begin{document}\bibliographystyle{Paper/texmf-local/bibtex/bst/econtex}
 	
 \input Switches.tex
 
@@ -113,7 +114,7 @@ In representative agent models of the macroeconomy, the agent is usually found t
 Three methods are used to empirically determine the marginal propensity to consume. The first is to identify a natural experiment and then measure the consumption response to it. Often this is done using the Consumer Expenditure Survey in the US. For example \cite{johnson_household_2006} use randomly assigned timing of 2001 tax rebates and specially included questions in the Consumer Expenditure Survey to identify a three month aggregate marginal propensity to consume of 0.2-0.4. This method is generally considered the most reliable, but estimates vary and there is no strong consensus. Identification issues arise as to when exactly households learn about the payment versus when it is received and it is unclear the extent to which external validity extends from these natural experiments to the kinds of transitory shocks found in heterogeneous agent models. As most of these studies rely on consumer survey data they tend to lack power due to high measurement error and low sample sizes. As a result they have produced very little evidence of how the MPC varies among different groups in the economy. A recent paper by \cite{fagereng_mpc_2016} overcomes some of these problems. By using lottery data, the shock to income is truly random.\footnote{We should note that even lottery winnings have some problems. First the results hold for winners of the lottery who may not be representative of the wider population. Second the consumption response to a lottery win may be very different to other income shocks. For example you may spend a significant portion of a small lottery win just celebrating the fact.} They use registry data from Norway similar to the data we use from Denmark and have a sample of over 30,000 lottery winners over 10 years. As a result they can identify the MPC for households with differing liquid wealth, as well as by the size of the lottery win. They find that households in the lowest quartile of liquid wealth have an MPC of approximately 0.4 over a 6 month period, as opposed to 0.2 for households in the highest quartile of liquid wealth.
 	\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.5]{Figures/MPCEmpiricalTable.jpg}
+		\includegraphics[scale=0.5]{Figures/MPCEmpiricalTable.JPG}
 		\caption{Table from \cite{carroll_distribution_2016}}
 		\label{fig:MPCtable}
 	\end{centering}
@@ -129,7 +130,7 @@ For a more complete overview of the literature on consumption responses to incom
 The attempt by \cite{auclert_monetary_2015} to quantify his sufficient statistics for monetary policy transmission demonstrates how the literature could greatly benefit from better empirics on the marginal propensity to consume. He identifies the distribution of MPC across individuals with different interest rate exposure to be a particularly important feature of the monetary policy transmission mechanism. Intuitively if households with large variable rate mortgages have higher MPCs than the households that have lent to them, then a decrease in short term interest rates will redistribute wealth from the low MPC group to the high MPC group resulting in a increase in aggregate demand. Figure \ref{fig:Auclert} shows how far the empirics are behind the theory in this respect. The figure exhibits the best estimates available from each of the three methods of the MPC (y-axis) against unhedged interest rate exposure (x-axis). The left panel uses the self reported MPCs in the Italian data, the center panel makes use of the BPP methodology using PSID data and the right panel follows the \cite{johnson_household_2006} study of 2001 tax rebates. Not only are the average levels of MPCs very different in each of the three studies, the standard errors are very large and there is no agreement on the steepness of the gradient across unhedged interest rate exposure.
 	\begin{figure} 
 	\begin{centering}
-	\includegraphics[scale=0.7]{Figures/MPCDistributionAuclert.jpg}
+	\includegraphics[scale=0.7]{Figures/MPCDistributionAuclert.JPG}
 	\caption{Figure from \cite{auclert_monetary_2015}}
 	\label{fig:Auclert}
 	\end{centering}
@@ -426,7 +427,7 @@ Our novel method of measuring the consumption response to income shocks, along w
 \input\econtexRoot/Appendices/Identification2.tex
 
 \section{Simulation Results}\label{sec:Simulation}
-%\input\econtexRoot/Appendices/Simulation.tex
+\input\econtexRoot/Appendices/Simulation.tex
 
 \end{document}
 
