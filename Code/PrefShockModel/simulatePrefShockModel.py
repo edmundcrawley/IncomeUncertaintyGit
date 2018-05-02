@@ -40,10 +40,11 @@ agent_params['LaborElas'] = 0.5
 
 EconomiesList = []
 KY_target = 0.5
-num_pref_vals = 2
-num_labelas_vals = 2
-pref_vals = np.linspace(0.0001,0.5,2)
-labor_elas = np.linspace(0.0001,0.5,2)
+num_pref_vals = 1
+num_labelas_vals = 5
+#pref_vals = np.linspace(0.0001,0.5,2)
+pref_vals = [0.5]
+labor_elas = np.linspace(0.0001,1,num_labelas_vals)
 dc_agg_std = np.zeros((num_pref_vals,num_labelas_vals))
 dy_agg_std = np.zeros((num_pref_vals,num_labelas_vals))
 sigma_p_array = np.zeros((num_pref_vals,num_labelas_vals))
@@ -52,7 +53,7 @@ phi_array = np.zeros((num_pref_vals,num_labelas_vals))
 psi_array = np.zeros((num_pref_vals,num_labelas_vals))
 n1=5
 n2=7
-override_vals = [[0.98969176446617346, 0.98879860253255925],[0.98936009948530024,0.98863515013811432]]
+override_vals = [[0.98530260726030949, 0.98448638567918789], [0.95743847873752896, 0.97371191833205228]]
 for i in range(num_pref_vals):
     agent_params['PrefShkStd'] = [pref_vals[i]]
     for j in range(num_labelas_vals):
@@ -74,7 +75,7 @@ for i in range(num_pref_vals):
 
 EstimationEconomy = SetupAndSimulate(agent_params, market_params, KY_target, lorenz_target,override_center=override_center,override_spread=override_spread,PrefShk=True)
 
-PrintTables(EstimationEconomy,'PrefShock_newcode2',True)
+PrintTables(EstimationEconomy,'PrefShock_newcode2',do_labor=True)
 
 log_C_agg, log_Y_agg = SelectMicroSample(EstimationEconomy,20,4,True)
 n1=3
