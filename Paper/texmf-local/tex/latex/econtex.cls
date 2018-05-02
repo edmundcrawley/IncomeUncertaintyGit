@@ -110,7 +110,7 @@ amsmath,amssymb,amsfonts,amsthm
 ,moreverb
 ,hhline    % Allow double hlines
 ,tipa      % Define more characters, in particular the \textthorn character
-,color
+,xcolor
 }
 
 % \RequirePackage{econtex} % Removed 20170801 because won't work when invoked from nonroot paths
