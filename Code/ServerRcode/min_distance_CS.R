@@ -3,7 +3,7 @@
 
 require(numDeriv)
 
-implied_cov_CS <-function(params,T, diff_to_use=3:5) {
+implied_cov_CS <-function(params,T, diff_to_use=3:5,cols_per_diff=NULL) {
     var_perm <- params[1] 
     var_tran <- params[2]
     ins_perm <- params[3] 
@@ -11,7 +11,10 @@ implied_cov_CS <-function(params,T, diff_to_use=3:5) {
 
     num_diffs=length(diff_to_use)
     max_diff = max(diff_to_use)
-    diff_cols = sum(max_diff - diff_to_use+1)
+    if (is.null(cols_per_diff)){
+      cols_per_diff=max_diff - diff_to_use+1
+    }
+    diff_cols = sum(cols_per_diff)
     diff_rows = T- max_diff+1
     moment_y2 = array(0.0, dim=c(diff_rows,diff_cols))
     moment_cy = array(0.0, dim=c(diff_rows,diff_cols))
@@ -20,16 +23,17 @@ implied_cov_CS <-function(params,T, diff_to_use=3:5) {
       this_col=1
       for (j in 1:num_diffs){
         n = diff_to_use[j]
-        moment_y2[,this_col:(this_col+max_diff-n)] = (n-1.0/3.0)*var_perm + 2.0*var_tran
-        moment_cy[,this_col:(this_col+max_diff-n)] = (n-1.0/3.0)*ins_perm*var_perm + 2.0*ins_tran*var_tran
-        this_col=this_col+max_diff-n+1
+        n_cols = cols_per_diff[j]
+        moment_y2[,this_col:(this_col+n_cols-1)] = (n-1.0/3.0)*var_perm + 2.0*var_tran
+        moment_cy[,this_col:(this_col+n_cols-1)] = (n-1.0/3.0)*ins_perm*var_perm + 2.0*ins_tran*var_tran
+        this_col=this_col+n_cols
       }
     }
     implied_cov = c(as.vector(t(moment_y2)),as.vector(t(moment_cy)))
 
         return (implied_cov)
 }
-CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5){
+CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5,cols_per_diff=NULL){
 
     init_params <- matrix(0,nrow=4,ncol=1)
 
@@ -38,22 +42,23 @@ CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5){
     init_params[3] <-0.7
     init_params[4] <-0.7
 
-    objectiveFun <-function(params, empirical_cov, weight_matrix,T,diff_to_use=3:5){
-        model_cov <- implied_cov_CS(params,T,diff_to_use)
+    objectiveFun <-function(params, empirical_cov, weight_matrix,T,diff_to_use=3:5,cols_per_diff=NULL){
+        model_cov <- implied_cov_CS(params,T,diff_to_use,cols_per_diff)
         distance <- (model_cov-empirical_cov) %*% weight_matrix %*% (model_cov-empirical_cov)
         return (distance)
     }
 
     # Define the weight matrix as Equal Weight Minimum Distance
     weight_matrix <- diag(diag(omega)^(-1))
+    #weight_matrix <- diag(dim(omega)[1])
 
-    ret <- objectiveFun(init_params, c_vector, weight_matrix,T)
+    ret <- objectiveFun(init_params, c_vector, weight_matrix,T,diff_to_use,cols_per_diff)
 
-    solved_objective <- nlm(objectiveFun, init_params, c_vector, weight_matrix,T, iterlim = 1000, steptol=1e-12)
+    solved_objective <- nlm(objectiveFun, init_params, c_vector, weight_matrix,T,diff_to_use,cols_per_diff, iterlim = 1000, steptol=1e-12)
     solved_params <- solved_objective$estimate
     
     jacobFun <-function(params){
-      return (implied_cov_CS(params,T,diff_to_use))
+      return (implied_cov_CS(params,T,diff_to_use,cols_per_diff))
     }    
     
     jacob <- jacobian(jacobFun, solved_params)
@@ -73,6 +78,6 @@ CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5){
     ins_perm_se <- standard_errors[3] 
     ins_tran_se <- standard_errors[4] 
 
-    output = list("var_perm"=var_perm, "var_perm_se"=var_perm_se, "var_tran"=var_tran, "var_tran_se"=var_tran_se, "ins_perm"=ins_perm, "ins_perm_se"=ins_perm_se, "ins_tran"=ins_tran, "ins_tran_se"=ins_tran_se, "implied_cov"=(implied_cov_CS(solved_params,T,diff_to_use)))
+    output = list("var_perm"=var_perm, "var_perm_se"=var_perm_se, "var_tran"=var_tran, "var_tran_se"=var_tran_se, "ins_perm"=ins_perm, "ins_perm_se"=ins_perm_se, "ins_tran"=ins_tran, "ins_tran_se"=ins_tran_se, "implied_cov"=(implied_cov_CS(solved_params,T,diff_to_use,cols_per_diff)))
     return (output)
 }

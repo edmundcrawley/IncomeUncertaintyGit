@@ -14,13 +14,14 @@ create_moments_CS <- function(all_data, diff_to_use=3:5) {
 
     # length of panel. Assumes all individuals appear in all years
     T  <- max(all_data[,col_year])-min(all_data[,col_year])+1 
-    y      <-nrow(all_data) 
+    y  <- nrow(all_data) 
 
     #matrix containing the 3/4/5th (or diff_to_use) differences
+    #First half of the columns are income growth, second half are consumption growth
+    #diff_matrix_exist contains 1 if that element of the matrix has good data, 0 otherise
     num_diffs=length(diff_to_use)
     diff_matrix = array(0.0, dim=c(y,2*num_diffs))
     diff_matrix_exist = array(0, dim=c(y,2*num_diffs))
-
     for (k in 0:((y/T)-1)){
   	i <- k*T
     	for (j in 1:num_diffs){
@@ -90,12 +91,13 @@ create_moments_CS <- function(all_data, diff_to_use=3:5) {
           }
         }
       }
-      c_vector_j = c(as.vector(t(moment_y2_j)),as.vector(t(moment_cy_j)))
-      d_vector_j = c(as.vector(t(d_dif_j)),as.vector(t(d_dif_j)))
-      omega=omega+(((c_vector_j-c_vector) %o% (c_vector_j-c_vector))*((d_vector_j %o% d_vector_j)))
+        c_vector_j = c(as.vector(t(moment_y2_j)),as.vector(t(moment_cy_j)))
+        d_vector_j = c(as.vector(t(d_dif_j)),as.vector(t(d_dif_j)))
+        omega=omega+(((c_vector_j-c_vector) %o% (c_vector_j-c_vector))*((d_vector_j %o% d_vector_j)))
     }
     omega = omega/(d_vector %o% d_vector)
 
+    
     #Also calculate first difference income variance
     delta_y_var = sum((all_data[,coly_dif]^2)*diff_matrix_exist[,1])/sum(diff_matrix_exist[,1])
     #And regression coefficients of consumption change vs income change for different time periods

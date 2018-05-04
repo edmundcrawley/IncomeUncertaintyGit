@@ -99,7 +99,7 @@ region_total_var = output$category_total_var
 
 # 5) Do by highest_educ
 highest_educ_col = 14
-highest_educ_set = c("Basic school","High school etc","Professional education","Short-term education","Medium-term education","Higher education")
+highest_educ_set = c("Primary","Upper secondary","Vocational","Short cycle","BA","Masters +")
 output =params_by_subset(all_data,highest_educ_col, highest_educ_set,age_range)
 highest_educ_output=output
 highest_educ_params = output$category_params

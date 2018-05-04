@@ -1,22 +1,30 @@
-# Calculates Insurance Parameters using Carroll Samwick like identification
-
-#library(zoo)
 
 ###############################################################################
-#First create the empirical moments for whole sample
-empirical_input_file = "E:/ProjektDB/706172/Workdata/706172/Husholdningsprojekt/Precautionary saving with time varying risk/Edmund/BPP/save/Input_for_R.csv"
-raw_data = read.csv(empirical_input_file, sep=",")
+#Set folders and load code
+Rcode_folder = "E:/ProjektDB/706172/Workdata/706172/Husholdningsprojekt/Precautionary saving with time varying risk/Edmund/BPP/Rcode/BPPLikeCarrollSamwick/"
+empirical_input_folder = "E:/ProjektDB/706172/Workdata/706172/Husholdningsprojekt/Precautionary saving with time varying risk/Edmund/BPP/save/"
+library(zoo)
+source(paste(Rcode_folder,"BPPLikeCarrollSamwick.r",sep=""))
+source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 
-#drop years 2014 and 2015
+# Choose which input data to use
+#empirical_input_file="Input_for_R_fullsample.csv"
+empirical_input_file="input_for_R_5percentsample.csv"
+
+#load the data
+raw_data = read.csv(paste(empirical_input_folder,empirical_input_file,sep=""), sep=",")
 year_col = 2
+#drop years 2014 and 2015 if required
 # raw_data = raw_data[raw_data[,year_col]<2014,]
-
+#format input data as a martrix
 all_data<- as.matrix(raw_data[,1:9]) 
 
+#create moments
 moments <- create_moments_CS(all_data)
-
 c_vector <- moments[["c_vector"]]
 omega <- moments[["omega"]]
+
+###############################################################################
 
 age_col = 10
 T  <- max(all_data[,year_col])-min(all_data[,year_col])+1 
