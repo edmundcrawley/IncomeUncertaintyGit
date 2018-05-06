@@ -12,6 +12,7 @@ moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertai
 figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
+require(zoo)
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 ###############################################################################
 
@@ -134,4 +135,84 @@ wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealt
 wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealth_quantile$quantiles[[4]]),'+',sep=''))
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Net Wealth Quantile","NetWealth")
 ###############################################################################
+
+###############################################################################
+# Moments by age
+# saved data is divided into two files to reduce file size, put them together first
+moments_by_age=list()
+load(paste(moments_dir,'moments_by_age_28to55','.RData',sep=''))
+load(paste(moments_dir,'moments_by_age_56to80','.RData',sep=''))
+for (this_age in 28:55){
+  this_moment = paste('age',this_age,sep='')
+  moments_by_age[[this_moment]] = moments_by_age_28to55[[this_moment]]
+}
+for (this_age in 56:80){
+  this_moment = paste('age',this_age,sep='')
+  moments_by_age[[this_moment]] = moments_by_age_56to80[[this_moment]]
+}
+age_set = 28:80
+age_params = array(0, dim=c(length(age_set),4))
+age_se = array(0, dim=c(length(age_set),4))
+age_obs = array(0, dim=c(length(age_set)))
+age_total_var = array(0, dim=c(length(age_set)))
+for (i in 1:length(age_set)){
+  this_age = age_set[i]
+  this_moments <- moments_by_age[[paste('age',this_age,sep='')]]
+  this_c_vector <- this_moments[["c_vector"]]
+  this_omega <- this_moments[["omega"]]
+  T <- this_moments[["T"]]
+  this_CS_output = CS_parameter_estimation(this_c_vector, this_omega, T) 
+  age_params[i,1] = this_CS_output$var_perm
+  age_params[i,2] = this_CS_output$var_tran
+  age_params[i,3] = this_CS_output$ins_perm
+  age_params[i,4] = this_CS_output$ins_tran
+  age_se[i,1] = this_CS_output$var_perm_se
+  age_se[i,2] = this_CS_output$var_tran_se
+  age_se[i,3] = this_CS_output$ins_perm_se
+  age_se[i,4] = this_CS_output$ins_tran_se
+  age_total_var[i] = this_moments$delta_y_var
+}
+
+png(filename=paste(figures_dir,'VarianceByAge.png',sep=''))
+plot(age_set, age_params[,1],col="green",main="Permanent and Transitory Variance by Age",xlab="Age",ylab="Shock Variance",ylim=c(0,0.04))
+points(age_set, age_params[,2],col="red")
+points(age_set, age_total_var,col="black")
+lines(age_set, rollmean(age_params[,1],5,fill=NA), col="green")
+lines(age_set, rollmean(age_params[,2],5,fill=NA), col="red")
+lines(age_set, rollmean(age_total_var,5,fill=NA), col="black")
+lines(age_set, rollmean(2.0/3.0*age_params[,1]+2.0*age_params[,2],5,fill=NA), col="black",lty="dashed")
+legend(40, 0.035, legend=c("Permanent Var", "Transitory Var", expression(paste("var(",Delta,"y)")),expression(paste("Model implied var(",Delta,"y)"))), col=c("green","red","black","black"),lty=c("solid","solid","solid","dashed"))
+dev.off()
+
+png(filename=paste(figures_dir,'MPXByAge.png',sep=''))
+plot(age_set, age_params[,3],col="green",main="Expenditure Elasticity by Age",xlab="Age",ylab="Elasticity",ylim=c(0,1))
+points(age_set, age_params[,4],col="red")
+lines(age_set, rollmean(age_params[,3],5,fill=NA), col="green")
+lines(age_set, rollmean(age_params[,4],5,fill=NA), col="red")
+legend(38, 0.24, legend=c("Permanent", "Transitory"), col=c("green","red"),lty=c("solid","solid"))
+dev.off()
+###############################################################################
+
+###############################################################################
+# Moments by different growth period
+# saved data is divided into two files to reduce file size, put them together first
+moments_loop=list()
+load(paste(moments_dir,'moments_loop_4to7','.RData',sep=''))
+load(paste(moments_dir,'moments_loop_8to10','.RData',sep=''))
+for (i in 4:7){
+  this_moment = paste('moments_',i,sep='')
+  moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
+}
+for (i in 8:10){
+  this_moment = paste('moments_',i,sep='')
+  moments_loop[[this_moment]] = moments_loop_8to10[[this_moment]]
+}
+
+# Plot regression coefficient of expenditure growth vs income growth for different growth periods
+reg_coefs = array(0,dim=c(10,1))
+start_col=1
+for (n in 1:10){
+  reg_coefs[n] = mean(moments_loop$moments_10$moment_cy[,start_col:(start_col+10-n)])/mean(moments_loop$moments_10$moment_y2[,start_col:(start_col+10-n)])
+  start_col = start_col+n
+}
 
