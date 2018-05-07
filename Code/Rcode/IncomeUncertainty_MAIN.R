@@ -13,6 +13,7 @@ figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertai
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
+require(latex2exp)
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 ###############################################################################
 
@@ -207,12 +208,171 @@ for (i in 8:10){
   this_moment = paste('moments_',i,sep='')
   moments_loop[[this_moment]] = moments_loop_8to10[[this_moment]]
 }
-
+###############################################################################
 # Plot regression coefficient of expenditure growth vs income growth for different growth periods
-reg_coefs = array(0,dim=c(10,1))
-start_col=1
-for (n in 1:10){
-  reg_coefs[n] = mean(moments_loop$moments_10$moment_cy[,start_col:(start_col+10-n)])/mean(moments_loop$moments_10$moment_y2[,start_col:(start_col+10-n)])
-  start_col = start_col+n
+max_diff = 10
+this_moment = paste('moments_',max_diff,sep='')
+reg_coefs = array(0,dim=c(max_diff,1))
+std_errors = array(0,dim=c(max_diff,1))
+# Use an average of the variance of delta y over every year, and an average of the covariance of delta y and delta c
+for (n in 1:max_diff){
+  moments_used =c()
+  k=1
+  for (i in 1:max_diff){
+    if (i==n){
+      moments_used = c(moments_used, k:(k+max_diff-i))
+    }
+    k=k+max_diff-i+1
+  }
+  moments_used_all=c()
+  for (i in 0:(2*(T-max_diff+1)-1)){
+    moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
+  }
+  num_moments = length(moments_used_all)/2
+  reg_coefs[n] = mean(moments_loop[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]])/mean(moments_loop[[this_moment]]$c_vector[moments_used_all[1:num_moments]])
+  omega = moments_loop[[this_moment]]$omega
+  function_gradient = array(0,dim=c(dim(omega)[1],1))
+  function_gradient[moments_used_all[(num_moments+1):(2*num_moments)],] = 1.0/((moments_loop[[this_moment]]$c_vector[moments_used_all[1:num_moments]])*length(moments_used_all[(num_moments+1):(2*num_moments)]))
+  function_gradient[moments_used_all[1:num_moments],] = -moments_loop[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]]/((moments_loop[[this_moment]]$c_vector[moments_used_all[1:num_moments]])**2 *length(moments_used_all[(num_moments+1):(2*num_moments)]))
+  std_errors[n] = (t(function_gradient)  %*% omega %*% function_gradient)**0.5
+}
+# Pull in consumption saving numbers from Python output
+PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
+FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
+# Now draw graph
+png(paste(figures_dir, "basic_regression.png",sep=""))
+plot(reg_coefs, ylim=c(0,1), xlab='n, Years of Growth',ylab=TeX('$\\beta^n$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
+lines(reg_coefs)
+lines(reg_coefs+1.96*std_errors,lty='dashed')
+lines(reg_coefs-1.96*std_errors,lty='dashed')
+lines(array(1,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
+lines(array(0.0,dim=dim(reg_coefs)),lty='solid',col='blue',type='o')
+lines(FromPython[1:dim(reg_coefs)[1]],lty='solid',col='red',type='o')
+legend(6, 0.65, legend=c("Data", "Solow", "Complete Markets", "Buffer-Stock"), col=c("black","green","blue","red"),lty=c("solid","solid","solid","solid"))
+dev.off()
+
+###############################################################################
+# Plot how estimates vary using different growth periods
+params_loop = list()
+for (max_diff in 4:10){
+  this_moments = paste('moments_',max_diff,sep='')
+  moments_all = moments_loop[[this_moments]]
+  
+  var_tran_array = array(0.0, dim=c(max_diff,max_diff))
+  var_perm_array = array(0.0, dim=c(max_diff,max_diff))
+  ins_tran_array = array(0.0, dim=c(max_diff,max_diff))
+  ins_perm_array = array(0.0, dim=c(max_diff,max_diff))
+  
+  var_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
+  var_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
+  ins_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
+  ins_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
+  
+  for (n1 in 1:(max_diff-1)){
+    for (n2 in (n1+1):max_diff){
+      diff_to_use = c(n1,n2)
+      cols_per_diff = max_diff-diff_to_use+1
+      moments_used =c()
+      j=1
+      k=1
+      for (i in 1:max_diff){
+        if (i==diff_to_use[j]){
+          moments_used = c(moments_used, k:(k+max_diff-i))
+          j = j+1
+          if (j>2){
+            break
+          }
+        }
+        k=k+max_diff-i+1
+      }
+      moments_used_all=c()
+      for (i in 0:(2*(T-max_diff+1)-1)){
+        moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
+      }
+      c_vector_sub = moments_all$c_vector[moments_used_all]
+      omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
+      CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff) 
+      var_perm_array[n1,n2] = CS_output_sub$var_perm
+      var_tran_array[n1,n2] = CS_output_sub$var_tran
+      ins_perm_array[n1,n2] = CS_output_sub$ins_perm
+      ins_tran_array[n1,n2] = CS_output_sub$ins_tran
+      
+      var_perm_array_se[n1,n2] = CS_output_sub$var_perm_se
+      var_tran_array_se[n1,n2] = CS_output_sub$var_tran_se
+      ins_perm_array_se[n1,n2] = CS_output_sub$ins_perm_se
+      ins_tran_array_se[n1,n2] = CS_output_sub$ins_tran_se
+    }
+  }
+  params_loop[[paste('var_perm_array_',max_diff,sep='')]] =  var_perm_array
+  params_loop[[paste('var_tran_array_',max_diff,sep='')]] =  var_tran_array
+  params_loop[[paste('ins_perm_array_',max_diff,sep='')]] =  ins_perm_array
+  params_loop[[paste('ins_tran_array_',max_diff,sep='')]] =  ins_tran_array
+  
+  params_loop[[paste('var_perm_array_se_',max_diff,sep='')]] =  var_perm_array_se
+  params_loop[[paste('var_tran_array_se_',max_diff,sep='')]] =  var_tran_array_se
+  params_loop[[paste('ins_perm_array_se_',max_diff,sep='')]] =  ins_perm_array_se
+  params_loop[[paste('ins_tran_array_se_',max_diff,sep='')]] =  ins_tran_array_se
 }
 
+to_plot = 'ins_tran_array_'
+n2_minum_n1 = 2
+max_diff = 8
+plot(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]))
+for (i in 4:max_diff){
+  points(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
+  lines(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
+}
+lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+###############################################################################
+# Plot both variance and covariance at different growth periods
+max_diff=10
+y2_diff = array(0.0, dim=c(max_diff,1))
+cy_diff = array(0.0, dim=c(max_diff,1))
+regcoef_diff = array(0.0, dim=c(max_diff,1))
+
+this_col=1
+for (i in 1:max_diff){
+  y2_diff[i] = mean(moments_all$moment_y2[,(this_col):(this_col+max_diff-i)])
+  cy_diff[i] = mean(moments_all$moment_cy[,(this_col):(this_col+max_diff-i)])
+  regcoef_diff[i] = mean(moments_all$reg_coef[,(this_col):(this_col+max_diff-i)])
+  this_col = this_col+max_diff-i+1
+}
+n1=3
+n2=5
+diff_to_use = c(n1,n2)
+cols_per_diff = max_diff-diff_to_use+1
+moments_used =c()
+j=1
+k=1
+for (i in 1:max_diff){
+  if (i==diff_to_use[j]){
+    moments_used = c(moments_used, k:(k+max_diff-i))
+    j = j+1
+    if (j>2){
+      break
+    }
+  }
+  k=k+max_diff-i+1
+}
+moments_used_all=c()
+for (i in 0:(2*(T-max_diff+1)-1)){
+  moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
+}
+c_vector_sub = moments_all$c_vector[moments_used_all]
+omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
+CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff) 
+
+png(paste(figures_dir, "IncreasingDiff.png",sep=""))
+plot(1:max_diff,y2_diff,ylim=c(0,1.2*max(y2_diff)),xlim=c(0,max_diff),
+     main="Covariance with Increasing Difference Operator",xlab="n",ylab="variance/covariance")
+lines(1:max_diff,y2_diff)
+points(1:max_diff,cy_diff)
+lines(1:max_diff,cy_diff,lty="dashed")
+lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$var_perm + 2*CS_output_sub$var_tran, col="red")
+lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$ins_perm*CS_output_sub$var_perm + 2*CS_output_sub$ins_tran*CS_output_sub$var_tran, col="green")
+legend(0.25, 0.05, legend=c(expression(paste("var(",Delta^n,"y) Empirical"),paste("var(",Delta^n,"y) matched to n=3,4,5"), paste("cov(",Delta^n,"y,",Delta^n,"c) Empirical"),paste("cov(",Delta^n,"y,",Delta^n,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"))
+dev.off()
+###############################################################################

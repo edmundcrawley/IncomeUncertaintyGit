@@ -3,6 +3,7 @@
 Functions to do BPP style estimations on simulated data
 """
 import numpy as np
+import statsmodels.api as sm
 
 def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
     '''
@@ -161,6 +162,28 @@ def EstimateTable(EstimateArray, filename,circle3_5=False, width=1.0):
         f.write(output)
         f.close()
     
+def BasicRegressionTables(Economy,max_diff=10,filename=False,do_labor=False):
+    log_C_agg, log_Y_agg = SelectMicroSample(Economy,20,4,do_labor)
+    result = np.zeros(max_diff)
+    for i in range(max_diff):
+        diff_C = log_C_agg[i+1:]-log_C_agg[:-(i+1)]
+        diff_Y = log_Y_agg[i+1:]-log_Y_agg[:-(i+1)]
+        model = sm.OLS(diff_C.flatten(),diff_Y.flatten())
+        solve_model = model.fit()
+        result[i] = solve_model.params[0]
+    if filename!=False:
+        output = ""
+        for i in range(max_diff):
+            output += str(result[i])
+            if i<max_diff-1:
+                output += ","
+            else:
+                output += "\n"
+        with open('./Results/' + filename + '.txt','w') as f:
+            f.write(output)
+            f.close()
+    return result
+        
     
     
 

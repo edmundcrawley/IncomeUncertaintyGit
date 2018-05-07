@@ -100,7 +100,10 @@ def SetupAndSimulate(agent_params, market_params, KY_target, lorenz_target=[], p
     EstimationEconomy.spread_estimate = spread_estimate
     for i in range(len(EstimationEconomy.agents)):
         this_agent = EstimationEconomy.agents[i]
-        this_agent.track_vars = ['bNrmNow','cNrmNow','MPCnow','lNow','TranShkNow','PrefShkNow','pLvlNow','cLvlNow','lIncomeLvl','t_age']
+        if PrefShk:
+            this_agent.track_vars = ['bNrmNow','cNrmNow','MPCnow','lNow','TranShkNow','PrefShkNow','pLvlNow','cLvlNow','lIncomeLvl','t_age']
+        else:
+            this_agent.track_vars = ['bNrmNow','cNrmNow','MPCnow','TranShkNow','pLvlNow','t_age']
     EstimationEconomy.makeHistory()
     
     return EstimationEconomy
@@ -123,6 +126,7 @@ def PrintTables(Economy, filename_end, max_n1=12,width = 0.45,do_labor=False):
     EstimateTable(phi_array[0:10,0:10], 'Phi_array'+filename_end,True,width=width)
     EstimateTable(sigma_p_array[0:10,0:10], 'SigmaP_array'+filename_end,True,width=width)
     EstimateTable(sigma_q_array[0:10,0:10], 'SigmaQ_array'+filename_end,True,width=width)
+    
 
 if __name__ == '__main__':
     #Run estimate twice, first with very low assets to replicate the kind of 
@@ -164,3 +168,9 @@ if __name__ == '__main__':
     
     PrintTables(EstimationEconomy1,'1')
     PrintTables(EstimationEconomy2,'2')
+    BasicRegressionTables(EstimationEconomy1,filename="basic_regressions_HighMPC")
+    BasicRegressionTables(EstimationEconomy2,filename="basic_regressions")
+    
+    EstimationEconomy3 = SetupAndSimulate(agent_params1, market_params1, KY_target1, lorenz_target1,override_center=0.97,override_spread=override_spread1)
+    BasicRegressionTables(EstimationEconomy3,filename="basic_regressions")
+    
