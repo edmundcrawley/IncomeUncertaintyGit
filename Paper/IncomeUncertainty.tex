@@ -422,6 +422,82 @@ Another possibility, that deserves further investigation, is that our method may
 
 A final possibility is that measurement error is driving our results to some extent. Our method is robust to classical measurement error in consumption. The permanent MPX is robust to classical measurement error in income while the transitory MPX would be biased downwards with classical measurement error in income uncorrelated with consumption. However, our method of imputing expenditure from income and wealth will pass any measurement error in income over to expenditure. Thus the portion of transitory income variance that is due to measurement error will have a related MPX of 1. Due to the fact that our income data comes from third party reported tax data we believe this portion is likely very small. We plan to investigate this by reducing the sample to households for whom we have reason to believe our income data is particularly accurate. We are also hoping to get access to monthly earnings data which will provide us with an independent source of income data, separate from that with which we imputed expenditure. A further test we plan to carry out is to use car purchases instead of total expenditure. This gives us a source of very well measured expenditure totally independent of our imputed expenditure method. This will act as a robustness test to our surprising result that even households with high levels of liquid wealth have expenditure tied closely with income.
 
+\section{Models and Simulation}
+What can these results tell us about the types of models typically used for modeling consumption behavior? Two natural questions arise:
+\begin{itemize}
+	\item How well does the econometric method work on standard incomplete market models?
+	\item Can we calibrate a standard model to match the results we see, and if not are there changes we could make to the model that might help?
+\end{itemize}
+In this section we first introduce what is now the canonical buffer-stock savings model. We show that the econometric method is downward biased for the transitory consumption elasticity and upward biased for the permanent elasticity. When calibrated to the levels of transitory elasticity in the data, this bias is very small.
+Motivated by the fact that, in the data, the consumption response to transitory shocks appears larger than much of the rest of the literature, we  build a model in which there is a reverse causality problem. We show that while the reverse causality can help to generate the high numbers we see for households with few liquid assets, the puzzle remains for households rich in liquid assets.
+
+\subsection{The Standard Incomplete Markets Model} \label{standard_model}
+Our baseline model is the now very familiar buffer-stock saving model of \cite{carroll_buffer_1997}. Given market resources ($\boldmath{\mLevBF}_t$), households in this model maximize expected utility:
+\begin{align*}
+	\mathbb{E}_t \sum_{i=t}^{\infty} \beta^i u(\cLevBF_i)
+\end{align*}
+subject to the constraints:
+\begin{align*}
+	\aLevBF_t = \mLevBF_t - \cLevBF_t \\
+	\bLevBF_t = R\aLevBF_t \\
+	\yLevBF_t = \theta_t \pLevBF_t \\
+	\pLevBF_t = \Psi_t \pLevBF_{t-1} \\
+	\mLevBF_t = \bLevBF_t + \yLevBF_t
+\end{align*}
+Where the felicity function, $u(\cLevBF)$ is CRRA. We will use this model to test the accuracy of our empirical method on simulated data. We chose two calibrations, presented in table *******. The first matches the distribution of liquid wealth in the economy, while the second is calibrated to more closely match the transitory consumption elasticity as measured in the data. In the first calibration, the economy is made up of agents with heterogenous discount factors following \cite{carroll_distribution_2016}. Agent $i$ has a discount factor $\beta_i$ where $beta_i$ is i.i.d across agents and follows a uniform distribution between $\beta_{low}$ and $\beta_{high}$. These two parameters allow us to match the fact that while the mean level of liquid assets is high, about to half of all households have close to zero liquid assets. Matching the lower part of this distribution is critical to generate transitory consumption elasticities substantially above zero. In the second calibration all the agents in the economy have the same discount rate. This is chosen to give a much higher transitory consumption elasticity, close to what we see in the data. To generate such a high elasticity it is necessary to introduce an unfeasibly low discount factor. In the following sections we will show how a model of this type could possibly be reconciled with the data.
+Table \ref{table:simulation_psi} shows the estimates of $\psi$ using simulated data. The left hand panel shows the calibration to match the distribution of liquid assets. Here we see that using $n1=3$ and $n2=5$ underestimates the true elasticity, giving a value of 0.34 versus the `true' value of 0.38 obtained as $n1$ gets large (and hence the assumption that the consumption response lasts no longer that $n1-1$ years holds true). Thus, if this model was an accurate representation of the economy we would need to use a larger value of $n1$ or risk underestimating $\psi$. In the data we find our estimate for $\psi$ is in fact much \textit{larger} than implied by this model. In the second calibration the simulated estimate using $n1=3$ and $n2=5$, at 0.78, is very close to the `true' value of 0.79.
+\begin{center}
+	\input\econtexRoot/Tables/experimental/Psi_array2.tex	\input\econtexRoot/Tables/experimental/Psi_array1.tex
+	\captionof{table}{Simulation estimates of $\psi$}
+	\label{table:simulation_psi}
+\end{center}
+Table \ref{table:empirical_psi} shows how the estimate of $\psi$ varies when using different values of $n1$ and $n2$ in the data. The estimates around $n1$=3 and $n2$=5 are relatively stable at 0.76, but grow significantly as $n1$ increases beyond 5. This is likely due to the permanent shock in fact having some slow reversion to the mean that makes the method unreliable for larger values of $n1$. Appendix ****** shows that when permanent income follows an AR(1) process with persistence 0.95, the method is accurate for small values of $n1$ but becomes significantly upward biased as $n1$ gets large. This creates a tension between choosing $n1$ low enough to avoid this bias, but high enough such that we allow time for the consumption response to die and do not underestimate the coefficient.
+\begin{center}
+	\input\econtexRoot/Tables/experimental/Psi_array_empirical.tex		\captionof{table}{Empirical Estimates of $\psi$}
+	\label{table:empirical_psi}
+\end{center}
+Table \ref{table:simulation_phi} shows the results of the simulation for the consumption elasticity to the permanent shock. Here we see very reliable estimates for any choice of $n1$ and $n2$ we care to make. Agents in the model adjust permanent consumption one for one with permanent income (in the medium run) and this comes through clearly in the estimates. The empirical counterpart to this, table \ref{table:empirical_phi}, also shows robustness to the choice of $n1$ and $n2$, apart from for larger values of $n1$. This is likely due to the same reason as the upward bias of $\psi$ for large $n1$, namely that the permanent shock is not entirely permanent.
+\begin{center}
+	\input\econtexRoot/Tables/experimental/Phi_array2.tex	\input\econtexRoot/Tables/experimental/Phi_array1.tex
+	\captionof{table}{Simulation Estimates of $\phi$} 
+	\label{table:simulation_phi}
+\end{center}
+
+\begin{center}
+	\input\econtexRoot/Tables/experimental/Phi_array_empirical.tex		\captionof{table}{Empirical estimates of $\phi$}
+	\label{table:empirical_phi}
+\end{center}
+
+\subsection{Preference Shock Model with Elastic Labor Supply} \label{pref_shock_model}
+The empirical results of this paper suggest that the consumption response to a transitory shock to income lies at the high end of the existing literature. In this section we try to reconcile the results we get with the existing literature by asking if we can build a model in which our empirical method would estimate much larger elasticities than more traditional approaches to measuring the marginal propensity to consume out of transitory shocks. The intuition we build upon is that the households may wish to work longer hours, and hence earn more, in years when their expenditure is particularly high. If this were the case the income process would not be well modeled as being exogenous and our method would have a reverse causality problem embedded in it. Here we build such a model and see how much reverse causality can plausibly contribute to the results we obtain.
+The model extends the standard incomplete markets model from section \ref{standard_model}, incorporating both preference shocks, so that households have some years when their utility of consumption is greater than others, and labor elasticity, so that households can adjust their income based on the marginal utility of consumption. The household's problem is to maximize expected lifetime utility:
+\begin{align*}
+\mathbb{E}_t \sum_{n=t}^{\infty} \beta^n \Bigg(\mathcal{X}_n \frac{ \cLevBF_n^{1-\rho}}{1-\rho}-\frac{\lLevBF_n^{1-\xi}}{1-\xi} \Bigg)
+\end{align*}
+subject to the constraints:
+\begin{align*}
+\aLevBF_t = \mLevBF_t - \cLevBF_t \\
+\bLevBF_t = R\aLevBF_t \\
+\yLevBF_t =  l_t w_t \\
+\lLevBF_t = l_t \pLevBF_t^{\frac{1-\rho}{1-\xi}}\\
+w_t = \theta_t \pLevBF_t \\
+\pLevBF_t = \Psi_t \pLevBF_{t-1} \\
+\mLevBF_t = \bLevBF_t + \yLevBF_t
+\end{align*}
+The normalization of labor $(\lLevBF_t = l_t \pLevBF_t^{\frac{1-\rho}{1-\xi}})$ is set up to allow labor supply to move elastically with transitory income, but the long run supply of labor does not depend on permanent income (as observed in the consistency of hours worked over long time periods and across countries). The key additional features of this model are i) the preference shock factor and ii) the elasticity of labor.
+
+The preference shock factor, $\mathcal{X}_t$, multiplies the marginal utility of consumption in that period. When it is high the effective discount factor for consumption between this period and next is low so households will wish to spend much of their resources this period and will have little incentive to save for the next period. Equivalently when it is low, households will prefer to delay consumption to the following periods. There is little empirical evidence on the size of preference shocks, largely because consumption data usually has so much measurement error that estimating the standard deviation of consumption growth is very difficult. While a model with no preference shocks will normally imply a consumption path that is significantly smoother than the income process, our data suggests the standard deviation of income growth is 0.12 while the standard deviation of consumption growth is 0.37. Such a high standard deviation in consumption growth is likely to be mostly driven by measurement error on the asset side of the balance sheet, but it is certainly consistent with very large preference shocks. In our simulations we consider annualized preference shocks with standard deviations up to 0.5.
+
+Labor elasticity is controlled by the Frisch elasticity $\xi$. When the wage (relative to permanent income) increases by $x\%$, hours worked increase by $\xi\%$. Estimates of the Frisch elasticity in micro-data studies range from 0 to 0.5, while macroeconomic studies generally find a much larger elasticity of between 2 and 4 (see \cite{peterman_reconciling_2016}). We will study a range of elasticities between 0 and 1, easily covering the microeconomic estimate range. We will not consider estimates of the Frisch elasticity in the macroeconomic range as it seems likely to us that these estimates are high due to labor market frictions over the business cycle, rather than genuine labor supply choices of households.
+
+\begin{center}
+	\input\econtexRoot/Tables/experimental/psi_laborsupply.tex		\captionof{table}{Simulation estimates of $\psi$ with varying preference shocks and Frisch elasticity}
+	\label{table:psi_laborsupply}
+\end{center}
+
+Tables...
+
+
 \section{Conclusion}
 Our novel method of measuring the consumption response to income shocks, along with its application to Danish registry data, shows that households with little liquid wealth have spending that moves almost one for one with income, while even households with relatively high levels of liquid wealth also tie their spending closely to their income. We have shown serious flaws in previous methods that have tried to uncover this relation by imposing structure on the income and consumption processes. Our method and results have also opened up new questions, including whether it is reasonable to assume income follows exogenous shocks when doing this kind of work. In future work we plan to look more closely at how labor responds to preference shocks and what implications that might have for the macroeconomy. Our results suggest that households may use adjustments in their labor supply as much as their wealth to self-insure. In a recession voluntarily adjusting one's labor supply become much harder to do as work is much less freely available. One response to this may be for households to increase their precautionary savings to protect against future income or spending shocks. Such a mechanism would further dampen aggregate demand and aggregate the recession.
 
@@ -443,8 +519,8 @@ Our novel method of measuring the consumption response to income shocks, along w
 
 \input\econtexRoot/Appendices/Identification2.tex
 
-\section{Simulation Results}\label{sec:Simulation}
-\input\econtexRoot/Appendices/Simulation.tex
+%\section{Simulation Results}\label{sec:Simulation}
+%\input\econtexRoot/Appendices/Simulation.tex
 
 \end{document}
 

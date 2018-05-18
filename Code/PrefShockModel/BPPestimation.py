@@ -22,9 +22,11 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
     Returns
     -------
     log_C_all : np.array
-        array contained log consumption histories
+        array containing log consumption histories
     log_Y_all : np.array
-        array contained log income histories
+        array containing log income histories
+    B_agg : np.array
+        array containing mean bond holdings over the year
     '''
        
     not_newborns = (np.concatenate([this_type.t_age_hist for this_type in Economy.agents],axis=1) > 1)
@@ -33,30 +35,34 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
         yLvlAll_hist = np.concatenate([this_type.lIncomeLvl_hist for this_type in Economy.agents],axis=1)
     else:
         yLvlAll_hist = np.concatenate([this_type.TranShkNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
+    bLvlAll_hist = np.concatenate([this_type.bNrmNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
     
     ignore_periods = Economy.ignore_periods
     #ignore the periods at beginning of simulation
-    for array in [not_newborns,cLvlAll_hist,yLvlAll_hist]:
+    for array in [not_newborns,cLvlAll_hist,yLvlAll_hist,bLvlAll_hist]:
         array = array[ignore_periods:,:]
 
     sample_length = years_in_sample*periods_per_year
     C_all = np.concatenate([cLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
     Y_all = np.concatenate([yLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
+    B_all = np.concatenate([bLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
     not_newborns_all = np.concatenate([not_newborns[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
      
     #delete observations containing a newborn
     not_newborns_all = not_newborns_all.all(axis=0)
     C_all = C_all[:,not_newborns_all]
     Y_all = Y_all[:,not_newborns_all]
+    B_all = B_all[:,not_newborns_all]
     
     #sum up over periods_per_year
     C_agg = np.stack([np.sum(C_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
     Y_agg = np.stack([np.sum(Y_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
+    B_agg = np.stack([np.mean(B_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
  
     log_C_agg = np.log(C_agg)
     log_Y_agg = np.log(Y_agg)
     
-    return log_C_agg, log_Y_agg
+    return log_C_agg, log_Y_agg, B_agg
 
 def CS_estimation(log_C_agg, log_Y_agg,n1,n2):
     '''
@@ -161,6 +167,8 @@ def EstimateTable(EstimateArray, filename,circle3_5=False, width=1.0):
     with open('./Tables/' + filename + '.tex','w') as f:
         f.write(output)
         f.close()
+        
+        
     
 def BasicRegressionTables(Economy,max_diff=10,filename=False,do_labor=False):
     log_C_agg, log_Y_agg = SelectMicroSample(Economy,20,4,do_labor)
@@ -184,7 +192,8 @@ def BasicRegressionTables(Economy,max_diff=10,filename=False,do_labor=False):
             f.close()
     return result
         
-    
+
+
     
 
 

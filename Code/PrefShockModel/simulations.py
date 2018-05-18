@@ -16,7 +16,7 @@ from ConsIndShockModel import ConsPerfForesightSolver, ConsumerSolution, IndShoc
                         MargValueFunc
 from HARKsimulation import drawDiscrete, drawBernoulli, drawLognormal, drawUniform
 from cstwMPC import cstwMPCmarket, getKYratioDifference, findLorenzDistanceAtTargetKY, cstwMPCagent
-from BPPestimation import SelectMicroSample, CS_estimation, EstimateTable
+from BPPestimation import SelectMicroSample, CS_estimation, EstimateTable, BasicRegressionTables
 from PrefShockModel import PrefLaborConsumerType
 import SetupParamsSimulations as Params
 from scipy.optimize import golden, brentq
@@ -157,7 +157,7 @@ if __name__ == '__main__':
     agent_params2 = Params.init_infinite
     market_params2 = Params.init_market
     if override:
-        override_center2 = 0.981410478305
+        override_center2 = 0.976 #0.981410478305
         override_spread2 = 0.0173080674799
     else:
         override_center2 = False
@@ -169,8 +169,16 @@ if __name__ == '__main__':
     PrintTables(EstimationEconomy1,'1')
     PrintTables(EstimationEconomy2,'2')
     BasicRegressionTables(EstimationEconomy1,filename="basic_regressions_HighMPC")
-    BasicRegressionTables(EstimationEconomy2,filename="basic_regressions")
+    BasicRegressionTables(EstimationEconomy2,filename="basic_regressions2")
     
     EstimationEconomy3 = SetupAndSimulate(agent_params1, market_params1, KY_target1, lorenz_target1,override_center=0.97,override_spread=override_spread1)
     BasicRegressionTables(EstimationEconomy3,filename="basic_regressions")
+    
+    #Write table containing actual empirical data for different values of n1 and n2
+    empirical_table_psi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_tran_array_10.txt")
+    empirical_table_phi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_perm_array_10.txt")
+    empirical_table_psi[empirical_table_psi==0] = np.nan
+    empirical_table_phi[empirical_table_phi==0] = np.nan
+    EstimateTable(empirical_table_psi, 'Psi_array_empirical',True,width=0.45)
+    EstimateTable(empirical_table_phi, 'Phi_array_empirical',True,width=0.45)
     
