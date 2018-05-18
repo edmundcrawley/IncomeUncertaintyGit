@@ -10,6 +10,7 @@
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
 moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
 figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
+tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
@@ -212,6 +213,7 @@ for (i in 8:10){
 # Plot regression coefficient of expenditure growth vs income growth for different growth periods
 max_diff = 10
 this_moment = paste('moments_',max_diff,sep='')
+T = moments_loop[[this_moment]]$T
 reg_coefs = array(0,dim=c(max_diff,1))
 std_errors = array(0,dim=c(max_diff,1))
 # Use an average of the variance of delta y over every year, and an average of the covariance of delta y and delta c
@@ -312,6 +314,11 @@ for (max_diff in 4:10){
   params_loop[[paste('var_tran_array_se_',max_diff,sep='')]] =  var_tran_array_se
   params_loop[[paste('ins_perm_array_se_',max_diff,sep='')]] =  ins_perm_array_se
   params_loop[[paste('ins_tran_array_se_',max_diff,sep='')]] =  ins_tran_array_se
+  
+  write.table(var_perm_array, file=paste(tables_dir,'var_perm_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(var_tran_array, file=paste(tables_dir,'var_tran_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_perm_array, file=paste(tables_dir,'ins_perm_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_tran_array, file=paste(tables_dir,'ins_tran_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
 }
 
 to_plot = 'ins_tran_array_'
