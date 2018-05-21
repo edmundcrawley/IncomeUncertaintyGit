@@ -39,7 +39,7 @@ Moving on to the components that contain a mix of both permanent and transitory 
 &= \log \Big(\bar{\theta}_T \Big) + \log \Bigg( 1+ \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\frac{\theta_t}{\bar{\theta}_T} dt\Bigg) \\
 &\approx \log \Big(\bar{\theta}_T \Big) + \int_{T-1}^{T} \Big(\frac{P_t}{P_{T-1}}-1\Big)\frac{\theta_t}{\bar{\theta}_T} dt
 \end{align*}
-Where the approximation holds so long as $\frac{P_{t}}{P_{T-1}}$ is close to 1 for $T-1 \leq t \leq T$, that is the permanent shock does not move a lot in the course of one year \textbf{(*********NOTE: What is the exact notion of approx that I am using here. It should be some probabilistic notion, as it is clearly not true over the entire space of possibly values for $P_t$)}. Define:
+Where the approximation holds so long as $\frac{P_{t}}{P_{T-1}}$ is close to 1 for $T-1 \leq t \leq T$, that is the permanent shock does not move a lot in the course of one year. Define:
 \begin{align*}
 \sigma^2_{\theta}&= \mathrm{Var}\Bigg(\log \Big(\bar{\theta}_T \Big) \Bigg)
 \end{align*}
@@ -61,8 +61,6 @@ where $\hat{\theta}_{t,T} = \frac{\theta_t-\bar{\theta}_T}{\bar{\theta}_T}$. Con
 &= \sigma^2_{\theta} +  \sigma^2_P\int_{T-1}^{T} \Bigg( \int_{T-1}^{s}  t dt +  \int_{s}^{T}  s dt\Bigg) ds \\
 &= \sigma^2_{\theta} +  \frac{1}{3}\sigma^2_P
 \end{align*}
-\textbf{*******NOTE: why and I able to set the $\hat{\theta}_{t,T}$ parts to zero. I believe it it exactly true when there is no persistence in the transitory shocks, and also if the variance of $\theta$ is zero. What exact notions am I calling on here...?}
-
 A very similar calculation shows that:
 \begin{align*}
 \mathrm{Var}\big(\mathcal{Q}^2_{T,N}\big) 
