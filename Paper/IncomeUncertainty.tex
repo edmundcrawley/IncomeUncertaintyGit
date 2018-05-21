@@ -518,11 +518,27 @@ Table \ref{table:psi_mpc_laborsupply} compares the actual mean six month MPC in 
 
 The right hand panel of table \ref{table:psi_mpc_laborsupply} shows the effect of preference shocks and labor elasticity on our empirical estimates of $\psi$, the transitory expenditure elasticity. The top row shows that our estimate is lower than the six month MPC (due to the fact that at these low levels of MPC, more than three years is required for the transitory effect to decay away). It does however follow the same pattern as the MPC and falls in magnitude as the ability of households to adjust labor supply increases. Similarly, going down the first row shows that the estimated expenditure elasticity increases with the preference shock. However, the similarity to the MPC table ends when we increase \textit{both} labor elasticity \textit{and} the size of the preference shocks. Our estimate can grow large, up to a value of 0.64, getting close to our empirical estimates, when the Frisch elasticity is 0.5 and the preference shock standard deviation is 0.4. This measured consumption elasticity to transitory income shocks now bears little relation to the six month MPC (which is 0.16). Instead it is being driven by reverse causality, whereby preference shocks are driving consumption along with the decision to increase labor. The observed `shocks' to income are therefore highly correlated with consumption, but they are not causing the consumption dynamics exogenously.
 
+\subsection{Robustness to Auto Regressive Permanent Income}
+The previous sections attempted to reconcile the results we obtain with modern consumption savings models. Our conclusion from that exercise is that these models cannot reproduce the observed results unless we assume empirically unrealistic levels of preference shocks and income elasticity. In the models we considered we did not change the income process, which we assumed consisted of both a permanent and a transitory component. In this section we will consider non-structural models, closer to that of our empirical method itself, but instead explore how misspecification in the income process may affect our results. In particular we will simulate a model of the form:
+\begin{align*}
+p_{t} = \rho p_{t-1} + \varepsilon_{t} \\
+y_t = p_t + q_t \\
+c_{t} = \phi y_t + \psi q_t
+\end{align*}
+where $p_t$ is the log of permanent income, $y_t$ the log of total income, and $q_t$ a transitory shock to income. We choose the variance of the permanent and transitory shocks to be equal. We also set the consumption elasticity to permanent shocks, $\phi$ to be 0.8 (to match our empirical results) and the consumption elasticity to transitory shocks, $\psi$, to be 0.4. This is chosen to be closer to the rest of the empirical literature on marginal propensities to consume. We are interested in seeing if our empirical method may significantly bias this 0.4 value in the case that the income process is misspecified.
+
+\begin{center}
+	\input\econtexRoot/Tables/experimental/phi_AR1.tex	
+	\input\econtexRoot/Tables/experimental/psi_AR1.tex		\captionof{table}{Estimates with AR(1) income process}
+	\label{table:AR1}
+\end{center}
+
+Table \ref{table:AR1} shows the results of our simulation for various values of $\rho$ and $n_1$ ($n_2$ is always chosen to be $n_1+2$). Remember in our core results we use values of $n_1=3$ and $n_2=5$. The left hand panel of table \ref{table:AR1} shows the misspecification of the income process does not bias the estimate of $\phi$. However, the right hand panel shows a slight upward bias for our estimate of $\psi$ as the value of $\rho$ decreases. This bias increases with the value of $n_1$. This is because the total income variance does not grow linearly with time. Instead the growth in variance starts to taper off as the period of over which income growth is measured increases. This leads to the empirical methodology interpreting much of the `permanent' variance as transitory, and associating a higher consumption elasticity with it. This effect is small for reasonable values of $\rho$ at $n_1=3$. Furthermore as the difference between the true $\phi$ and $\psi$ becomes smaller, so does this bias. When $\phi=\psi$ there is no bias at all, as it makes no difference if the empirical methodology interprets the income variance as permanent or transitory.
+
 
 
 \section{Conclusion}
 Our novel method of measuring the consumption response to income shocks, along with its application to Danish registry data, shows that households with little liquid wealth have spending that moves almost one for one with income, while even households with relatively high levels of liquid wealth also tie their spending closely to their income. We have shown serious flaws in previous methods that have tried to uncover this relation by imposing structure on the income and consumption processes. Our method and results have also opened up new questions, including whether it is reasonable to assume income follows exogenous shocks when doing this kind of work. In future work we plan to look more closely at how labor responds to preference shocks and what implications that might have for the macroeconomy. Our results suggest that households may use adjustments in their labor supply as much as their wealth to self-insure. In a recession voluntarily adjusting one's labor supply become much harder to do as work is much less freely available. One response to this may be for households to increase their precautionary savings to protect against future income or spending shocks. Such a mechanism would further dampen aggregate demand and aggregate the recession.
-
 
 \processdelayedfloats
 
