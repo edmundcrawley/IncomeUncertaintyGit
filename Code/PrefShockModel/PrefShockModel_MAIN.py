@@ -28,7 +28,7 @@ mystr = lambda number : "{:.4f}".format(number)
 
 ##################################################################
 #These are the inputs
-b_to_yagg_target = 1.0/12.0*2.0
+b_to_yagg_target = 0.2 #1.0/12.0*2.0
 income_var_target = 0.012
 sim_periods = 1200
 ignore_periods = 200
@@ -40,6 +40,8 @@ AgentCount = 1000
 
 bounds=[(0.85,0.99),(0.002,0.2)]
 run_optimization = True
+
+#following is for 0-1 range for both pref shocks and elasticity, with 5 points
 optimized_DiscFac = np.array([[ 0.9849,  0.9858,  0.9864,  0.98,  0.98],
        [ 0.9817,  0.9838,  0.9851,   0.98,   0.98],
        [ 0.9692,  0.9754,  0.9804,  0.9830,  0.9846],
@@ -52,10 +54,10 @@ optimized_TranShkStd = np.array([[ 0.1478,  0.1215,  0.1024,  0.1,  0.1],
        [ 0.1478,  0.0989,  0.1,  0.1,  0.1]])
         
 num_pref_vals = 5
-max_pref_val = 1.0
+max_pref_val = 0.8
 pref_vals = np.linspace(0.0001,max_pref_val,num_pref_vals)
 num_labelas_vals = 5
-max_labor_elas = 1.0
+max_labor_elas = 0.5
 labor_elas = np.linspace(0.0001,max_labor_elas,num_labelas_vals)
 n1=3
 n2=5
@@ -85,7 +87,7 @@ EstimationEconomy.ignore_periods = ignore_periods
 
 #options for root finding
 options = dict()
-options['maxiter']=20
+options['maxiter']=10
 options['disp']=True
 
 def ObjectiveFunc(params_to_solve, Economy, b_to_yagg_target, income_var_target):
@@ -144,12 +146,13 @@ for i in range(len(pref_vals)):
         TranShkStd_array[i,j] = EstimationEconomy.agents[0].TranShkStd[0]
         
 #### Save arrays to LaTex tables
-def PrintEstimateTable(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,filename,width=0.45):
+def PrintEstimateTable(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,filename,width=0.45,name=""):
     output = "\\begin{minipage}{" + str(width) + "\\textwidth}\n"
    
     output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lc|*{" + str(num_labelas_vals) + "}{c}}  \n"
+    output += "& " + name 
     for i in range(num_labelas_vals/2):
-        output += "& "
+        output +=  "& "
     output += " Frisch Elasticity \n"
     output += "\\\\ &  "
     for i in range(num_labelas_vals):
@@ -174,5 +177,16 @@ def PrintEstimateTable(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,
     with open('./Tables/' + filename + '.tex','w') as f:
         f.write(output)
         f.close()
-        
-PrintEstimateTable(psi_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'test')
+   
+PrintEstimateTable(phi_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'phi_laborsupply',name="$\\phi$")
+PrintEstimateTable(psi_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'psi_laborsupply',name="$\\psi$")
+PrintEstimateTable(DiscFac_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'beta_laborsupply',name="$\\beta$")
+# divide TranShkStd_array by 2 to get annualized std
+PrintEstimateTable(TranShkStd_array/2.0,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'TranShk_laborsupply',name="$\\sigma_q$")
+#Also annualize the MPC
+PrintEstimateTable(1-(1-MPC_array)**2,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'mpc_laborsupply',name="MPC")
+PrintEstimateTable(DiscFac_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'beta_laborsupply',name="$\\beta$")
+PrintEstimateTable(dc_agg_std,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'c_std_laborsupply',name="Std($\Delta \log c$)")
+
+
+
