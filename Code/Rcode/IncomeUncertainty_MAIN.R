@@ -6,6 +6,8 @@
 # 
 ###############################################################################
 
+tag = "_level_lincome_spouse"
+
 # Set folders
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
 moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
@@ -71,7 +73,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
          t(params[,1:2]+se[,1:2]*1.96), lwd=1.5,
          angle=90,code=3, length=0.05)
   legend(2, plotTop, legend=c("Permanent Var", "Transitory Var"), fill=c("green","red"),bty="n")
-  dev.copy(png, paste(figures_dir, "VarianceBy",category_for_save,".png",sep=""))
+  dev.copy(png, paste(figures_dir, "VarianceBy",category_for_save,tag,".png",sep=""))
   dev.off()
   
   # Now plot the Expenditure Elasticities
@@ -95,14 +97,14 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
          t(params[,3:4]+se[,3:4]*1.96), lwd=1.5,
          angle=90,code=3, length=0.05)
   legend(2, plotTop, legend=c("Permanent", "Transitory"), fill=c("green","red"),bty="n")
-  dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,".png",sep=""))
+  dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,tag,".png",sep=""))
   dev.off()
 }
 ###############################################################################
 
 ###############################################################################
 # load liquid weath quintile data and create graph
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile','.RData',sep=''))
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
 num_quantiles = 5
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
@@ -121,7 +123,7 @@ plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantil
 
 ###############################################################################
 # load net weath quintile data and create graph
-load(paste(moments_dir,'moments_by_net_wealth_quantile','.RData',sep=''))
+load(paste(moments_dir,'moments_by_net_wealth_quantile',tag,'.RData',sep=''))
 num_quantiles = 5
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_net_wealth_quantile, make.names(wealth_quantile_set))
@@ -142,8 +144,8 @@ plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantil
 # Moments by age
 # saved data is divided into two files to reduce file size, put them together first
 moments_by_age=list()
-load(paste(moments_dir,'moments_by_age_28to55','.RData',sep=''))
-load(paste(moments_dir,'moments_by_age_56to80','.RData',sep=''))
+load(paste(moments_dir,'moments_by_age_28to55',tag,'.RData',sep=''))
+load(paste(moments_dir,'moments_by_age_56to80',tag,'.RData',sep=''))
 for (this_age in 28:55){
   this_moment = paste('age',this_age,sep='')
   moments_by_age[[this_moment]] = moments_by_age_28to55[[this_moment]]
@@ -175,7 +177,7 @@ for (i in 1:length(age_set)){
   age_total_var[i] = this_moments$delta_y_var
 }
 
-png(filename=paste(figures_dir,'VarianceByAge.png',sep=''))
+png(filename=paste(figures_dir,'VarianceByAge',tag,'.png',sep=''))
 plot(age_set, age_params[,1],col="green",main="Permanent and Transitory Variance by Age",xlab="Age",ylab="Shock Variance",ylim=c(0,0.04))
 points(age_set, age_params[,2],col="red")
 points(age_set, age_total_var,col="black")
@@ -186,7 +188,7 @@ lines(age_set, rollmean(2.0/3.0*age_params[,1]+2.0*age_params[,2],5,fill=NA), co
 legend(40, 0.035, legend=c("Permanent Var", "Transitory Var", expression(paste("var(",Delta,"y)")),expression(paste("Model implied var(",Delta,"y)"))), col=c("green","red","black","black"),lty=c("solid","solid","solid","dashed"))
 dev.off()
 
-png(filename=paste(figures_dir,'MPXByAge.png',sep=''))
+png(filename=paste(figures_dir,'MPXByAge',tag,'.png',sep=''))
 plot(age_set, age_params[,3],col="green",main="Expenditure Elasticity by Age",xlab="Age",ylab="Elasticity",ylim=c(0,1))
 points(age_set, age_params[,4],col="red")
 lines(age_set, rollmean(age_params[,3],5,fill=NA), col="green")
@@ -199,8 +201,8 @@ dev.off()
 # Moments by different growth period
 # saved data is divided into two files to reduce file size, put them together first
 moments_loop=list()
-load(paste(moments_dir,'moments_loop_4to7','.RData',sep=''))
-load(paste(moments_dir,'moments_loop_8to10','.RData',sep=''))
+load(paste(moments_dir,'moments_loop_4to7',tag,'.RData',sep=''))
+load(paste(moments_dir,'moments_loop_8to10',tag,'.RData',sep=''))
 for (i in 4:7){
   this_moment = paste('moments_',i,sep='')
   moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
@@ -242,7 +244,7 @@ for (n in 1:max_diff){
 PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
 FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
 # Now draw graph
-png(paste(figures_dir, "basic_regression.png",sep=""))
+png(paste(figures_dir, "basic_regression",tag,".png",sep=""))
 plot(reg_coefs, ylim=c(0,1), xlab='n, Years of Growth',ylab=TeX('$\\beta^n$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(reg_coefs)
 lines(reg_coefs+1.96*std_errors,lty='dashed')
@@ -315,10 +317,10 @@ for (max_diff in 4:10){
   params_loop[[paste('ins_perm_array_se_',max_diff,sep='')]] =  ins_perm_array_se
   params_loop[[paste('ins_tran_array_se_',max_diff,sep='')]] =  ins_tran_array_se
   
-  write.table(var_perm_array, file=paste(tables_dir,'var_perm_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-  write.table(var_tran_array, file=paste(tables_dir,'var_tran_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-  write.table(ins_perm_array, file=paste(tables_dir,'ins_perm_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-  write.table(ins_tran_array, file=paste(tables_dir,'ins_tran_array_',max_diff,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(var_perm_array, file=paste(tables_dir,'var_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(var_tran_array, file=paste(tables_dir,'var_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_perm_array, file=paste(tables_dir,'ins_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_tran_array, file=paste(tables_dir,'ins_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
 }
 
 to_plot = 'ins_tran_array_'
@@ -372,7 +374,7 @@ c_vector_sub = moments_all$c_vector[moments_used_all]
 omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
 CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff) 
 
-png(paste(figures_dir, "IncreasingDiff.png",sep=""))
+png(paste(figures_dir, "IncreasingDiff",tag,".png",sep=""))
 plot(1:max_diff,y2_diff,ylim=c(0,1.2*max(y2_diff)),xlim=c(0,max_diff),
      main="Covariance with Increasing Difference Operator",xlab="n",ylab="variance/covariance")
 lines(1:max_diff,y2_diff)
