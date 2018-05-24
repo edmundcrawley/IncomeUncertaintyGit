@@ -9,12 +9,12 @@ import numpy as np
 import pylab as plt                 # Python's plotting library
 import pandas as pd
 
-periods = 10000000
+periods = 100000
 shocks = np.random.normal(0,1,periods)
 tran_shocks = (1.0**0.5)*np.random.normal(0,1,periods)
 n2_add = 2
 phi = 0.8
-psi = 0.4
+psi = 0.8
 
 
 rho_values = [1.0,0.98,0.96,0.94,0.92,0.9]
@@ -64,7 +64,7 @@ def PrintAR1Table(estimate_array,rho_values,n1_values,filename,width=0.45,name="
         output +=  "& "
     output += " $n_1$ \n"
     output += "\\\\ &  "
-    for i in range(num_rho_values):
+    for i in range(num_n1_values):
         output += " & " + str(n1_values[i]) 
     output += "\\\\ \\toprule  \n"
     for row in range(num_rho_values):
