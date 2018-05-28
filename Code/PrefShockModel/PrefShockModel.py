@@ -309,7 +309,7 @@ class PrefLaborShockSolver(PrefLaborShockSetup):
         '''
         Sets the interior disutility of labor
         '''
-        lab_disutil = (labor**(1-1/self.LaborElas))/(1-1/self.LaborElas)
+        lab_disutil = (labor**(1+1/self.LaborElas))/(1+1/self.LaborElas)
         return lab_disutil
         
     def LabSupply(self,marg_val_labor):
