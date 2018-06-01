@@ -14,13 +14,34 @@
 
 # Choose which input data to use
 five_percent_sample = FALSE
+levels = TRUE
+lincome_head = FALSE       # Labor income hh head 
+lincome_spouse = TRUE     # Labor income spouse
 
-if (five_percent_sample) {
-  empirical_input_file="input_for_R_5percentsample.csv"
-  tag = "_fivepercent"
+if (levels) {
+	if (five_percent_sample) {
+	  empirical_input_file="input_for_R_5percentsample_level.csv"
+	  tag = "_level_fivepercent"
+	} else {
+		if (lincome_head) {
+		  empirical_input_file="input_for_R_fullsample_level_lincome_head.csv"
+		  tag = "_level_lincome_head"
+		} else if (lincome_spouse) {
+		  empirical_input_file="input_for_R_fullsample_level_lincome_spouse.csv"
+		  tag = "_level_lincome_spouse"
+		} else {
+		empirical_input_file="input_for_R_fullsample_level.csv"
+		  tag = "_level"
+		}
+	}
 } else {
-  empirical_input_file="Input_for_R_fullsample.csv"
-  tag = ""
+	if (five_percent_sample) {
+  	empirical_input_file="input_for_R_5percentsample.csv"
+  	tag = "_fivepercent"
+	} else {
+  	empirical_input_file="input_for_R_fullsample.csv"
+  	tag = ""
+	}
 }
 
 # Set folders and load code
@@ -120,6 +141,20 @@ for (i in 1:length(age_set)){
   print(paste("Minimum number of individuals in a cell of ", this_moments, " = ", min(moments_by_age[[this_moments]]$d_dif)))
 }
 save(moments_by_age,file=paste(moments_dir,'moments_by_age',tag,'.RData',sep=''))
+
+# break up into two smaller files
+moments_by_age_28to55 = list()
+for (this_age in 28:55){
+  this_moments = paste('age',this_age,sep='')
+  moments_by_age_28to55[[this_moments]]=moments_by_age[[this_moments]]
+}
+save(moments_by_age_28to55,file=paste(moments_dir,'moments_by_age_28to55',tag,'.RData',sep=''))
+moments_by_age_56to80 = list()
+for (this_age in 56:80){
+  this_moments = paste('age',this_age,sep='')
+  moments_by_age_56to80[[this_moments]]=moments_by_age[[this_moments]]
+}
+save(moments_by_age_56to80,file=paste(moments_dir,'moments_by_age_56to80',tag,'.RData',sep=''))
 ###############################################################################
 
 ###############################################################################
@@ -184,23 +219,13 @@ wealth_quantile_set = as.character(1:num_quantiles)
 moments_by_liquid_wealth_quantile =moments_by_category(wealth_quantile, wealth_quantile_set,age_range)
 # Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
 quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
-quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+if (levels==TRUE) {
+  quantiles = quantiles/6.87 #convert to 2015 USD
+} else {
+  quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+}
 moments_by_liquid_wealth_quantile$quantiles = quantiles
 save(moments_by_liquid_wealth_quantile,file=paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
-###############################################################################
-
-###############################################################################
-# Look at data growth over periods other than 3 to 5 years
-# Increasing the maximum growth period reduces the sample (with possible sample selection)
-# Therefore we calculate the moments consistently based on the sample that exists for each 'max_diff' 
-this_data = all_data[age_range,]
-moments_loop = list()
-for (max_diff in 4:10){
-  this_moments = paste('moments_',max_diff,sep='')
-  moments_loop[[this_moments]]=create_moments_CS(this_data,1:max_diff)
-  print(paste("Minimum number of individuals in a cell of ", this_moments, " = ", min(moments_loop[[this_moments]]$d_dif)))
-}
-save(moments_loop,file=paste(moments_dir,'moments_loop',tag,'.RData',sep=''))
 ###############################################################################
 
 ###############################################################################
@@ -218,9 +243,41 @@ netwealth_quantile_set = as.character(1:num_quantiles)
 moments_by_net_wealth_quantile =moments_by_category(netwealth_quantile, netwealth_quantile_set,age_range)
 # Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
 quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
-quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+if (levels==TRUE) {
+  quantiles = quantiles/6.87 #convert to 2015 USD
+} else {
+  quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+}
 moments_by_net_wealth_quantile$quantiles = quantiles
 save(moments_by_net_wealth_quantile,file=paste(moments_dir,'moments_by_net_wealth_quantile',tag,'.RData',sep=''))
 ###############################################################################
+
+###############################################################################
+# Look at data growth over periods other than 3 to 5 years
+# Increasing the maximum growth period reduces the sample (with possible sample selection)
+# Therefore we calculate the moments consistently based on the sample that exists for each 'max_diff' 
+this_data = all_data[age_range,]
+moments_loop = list()
+for (max_diff in 4:10){
+  this_moments = paste('moments_',max_diff,sep='')
+  moments_loop[[this_moments]]=create_moments_CS(this_data,1:max_diff)
+  print(paste("Minimum number of individuals in a cell of ", this_moments, " = ", min(moments_loop[[this_moments]]$d_dif)))
+}
+save(moments_loop,file=paste(moments_dir,'moments_loop',tag,'.RData',sep=''))
+# break up into two smaller files
+moments_loop_4to7 = list()
+for (max_diff in 4:7){
+  this_moments = paste('moments_',max_diff,sep='')
+  moments_loop_4to7[[this_moments]]=moments_loop[[this_moments]]
+}
+save(moments_loop_4to7,file=paste(moments_dir,'moments_loop_4to7',tag,'.RData',sep=''))
+moments_loop_8to10 = list()
+for (max_diff in 8:10){
+  this_moments = paste('moments_',max_diff,sep='')
+  moments_loop_8to10[[this_moments]]=moments_loop[[this_moments]]
+}
+save(moments_loop_8to10,file=paste(moments_dir,'moments_loop_8to10',tag,'.RData',sep=''))
+###############################################################################
+
 
 sink() # End log

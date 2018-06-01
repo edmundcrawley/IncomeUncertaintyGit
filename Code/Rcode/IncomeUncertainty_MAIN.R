@@ -6,7 +6,7 @@
 # 
 ###############################################################################
 
-tag = "_level_lincome_spouse"
+tag = "_level_lincome_head"
 
 # Set folders
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
