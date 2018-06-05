@@ -6,7 +6,14 @@
 # 
 ###############################################################################
 
-tag = "_level_lincome_head"
+tag = "_level_lincome"
+if (substr(tag,1,6)=="_level") {
+  title_string = "MPX"
+  axis_string = "MPX"
+} else {
+  title_string = "Expenditure Elasticity"
+  axis_string = "Elasticity"
+}
 
 # Set folders
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
@@ -86,8 +93,8 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         cex.names=0.75,
                         beside=TRUE,col=c("green","red"),
                         las=2,ylim=c(0,plotTop), xaxt="n",
-                        main=paste("Expenditure Elasticities by ",category_for_title),
-                        ylab = "Elasticity", border="black", axes=TRUE)
+                        main=paste(title_string, " by ",category_for_title),
+                        ylab = axis_string, border="black", axes=TRUE)
   text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
   segments(barCenters, t(params[,3:4]-se[,3:4]*1.96),
            barCenters,
@@ -106,6 +113,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
 # load liquid weath quintile data and create graph
 load(paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
 num_quantiles = 5
+round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output=output
@@ -113,11 +121,11 @@ wealth_quantile_params = output$category_params
 wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
-wealth_quantile_set = c(paste('$0-',round(moments_by_liquid_wealth_quantile$quantiles[[1]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_liquid_wealth_quantile$quantiles[[1]]),'-',round(moments_by_liquid_wealth_quantile$quantiles[[2]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_liquid_wealth_quantile$quantiles[[2]]),'-',round(moments_by_liquid_wealth_quantile$quantiles[[3]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_liquid_wealth_quantile$quantiles[[3]]),'-',round(moments_by_liquid_wealth_quantile$quantiles[[4]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_liquid_wealth_quantile$quantiles[[4]]),'+',sep=''))
+wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Liquid Wealth Quantile","LiquidWealth")
 ###############################################################################
 
@@ -125,6 +133,7 @@ plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantil
 # load net weath quintile data and create graph
 load(paste(moments_dir,'moments_by_net_wealth_quantile',tag,'.RData',sep=''))
 num_quantiles = 5
+round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_net_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output=output
@@ -132,11 +141,11 @@ wealth_quantile_params = output$category_params
 wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
-wealth_quantile_set = c(paste('$...-',round(moments_by_net_wealth_quantile$quantiles[[1]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealth_quantile$quantiles[[1]]),'-',round(moments_by_net_wealth_quantile$quantiles[[2]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealth_quantile$quantiles[[2]]),'-',round(moments_by_net_wealth_quantile$quantiles[[3]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealth_quantile$quantiles[[3]]),'-',round(moments_by_net_wealth_quantile$quantiles[[4]]),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',round(moments_by_net_wealth_quantile$quantiles[[4]]),'+',sep=''))
+wealth_quantile_set = c(paste('$...-',format(round(moments_by_net_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Net Wealth Quantile","NetWealth")
 ###############################################################################
 
@@ -155,6 +164,7 @@ for (this_age in 56:80){
   moments_by_age[[this_moment]] = moments_by_age_56to80[[this_moment]]
 }
 age_set = 28:80
+age_set = 28:70
 age_params = array(0, dim=c(length(age_set),4))
 age_se = array(0, dim=c(length(age_set),4))
 age_obs = array(0, dim=c(length(age_set)))
@@ -189,7 +199,7 @@ legend(40, 0.035, legend=c("Permanent Var", "Transitory Var", expression(paste("
 dev.off()
 
 png(filename=paste(figures_dir,'MPXByAge',tag,'.png',sep=''))
-plot(age_set, age_params[,3],col="green",main="Expenditure Elasticity by Age",xlab="Age",ylab="Elasticity",ylim=c(0,1))
+plot(age_set, age_params[,3],col="green",main=paste(title_string, " by Age",sep=""),xlab="Age",ylab=axis_string,ylim=c(0,1))
 points(age_set, age_params[,4],col="red")
 lines(age_set, rollmean(age_params[,3],5,fill=NA), col="green")
 lines(age_set, rollmean(age_params[,4],5,fill=NA), col="red")
