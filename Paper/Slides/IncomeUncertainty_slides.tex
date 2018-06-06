@@ -22,7 +22,7 @@
 %% preamble
 \title[Income Uncertainty and Consumption Dynamics]{Income Uncertainty and Consumption Dynamics}
 \author{Edmund Crawley \& Andreas Kuchler}
-%\date[2/27/2018]{February 27, 2018}
+\date[6/21/2018]{June 21, 2018}
 \usetheme{Frankfurt}
 \begin{document}
 
@@ -34,44 +34,51 @@
 \frame
 {
 	\frametitle{Overview}
-	1) How well are households insured against shocks to their income?\\
+	1) How does household expenditure respond to income shocks?
 	\begin{itemize}
-		\item MPC is a key statistic for many macro questions
+		\item To transitory shocks?
+		\item To permanent shocks?
 	\end{itemize}
-	2) How does this vary across the population?\\
+	2) How does this vary across the population?
 	\begin{itemize}
-		\item Across wealth (Standard incomplete market model)
-		\item Across liquid wealth (Wealthy hand-to-mouth models)
-		\item Across interest rate exposure (monetary policy implications)
-		\item Across income uncertainty (precautionary saving)
+		\item Across (liquid) wealth
+		\item Across age
+		\item Across interest rate exposure
 	\end{itemize}
 	Empirical evidence on 1 weak, on 2 it is VERY weak
 }
 \frame{
-	\frametitle{How is MPC measured?}
+	\frametitle{How Have Consumption Responses Been Measured?}
 	Three methods:
 	\begin{itemize}
-		\item[1] (Natural) Experiments - stimulus checks, tax rebates etc
+		\item[1] (Natural) Experiments - stimulus checks, lotteries etc
+		\begin{itemize}
+			\item Few true experiments, especially for permanent shocks
+			\item Data limitations
+		\end{itemize}
 		\item[2] Ask people
+		\begin{itemize}
+			\item Unclear how to interpret
+		\end{itemize}
 		\item[3] Use covariance structure of income and consumption
+		\begin{itemize}
+			\item Empirical methods (until now!) have been flawed
+		\end{itemize}
 	\end{itemize}
 	\pause
 	Our contribution
 	\begin{itemize}
-	\item Show previous methods based on 3 are flawed
-	\item Develop an alternative robust method
-	\item Apply it to Danish registry data
+		\item Develop a robust method based on 3
+		\item Apply it to Danish registry data
 \end{itemize}
 The Danish data allows us to build a detailed picture of the distribution over different household characteristics
 }
 \frame
 {
-	\frametitle{Empirical Evidence on the MPC}
+	\frametitle{Evidence on Magnitude of Consumption Response}
 	\begin{center}
 	\begin{tikzpicture}
 	\node (img1) {\includegraphics[height=5cm]{../Figures/MPCEmpiricalTable}};
-	\pause
-	\node (img2) at (img1) 		{\includegraphics[height=5cm]{../Figures/MPCEmpiricalTable2}};
 	\end{tikzpicture}
 	\tiny{Table from Carroll et al 2018}
 \end{center}
@@ -79,7 +86,7 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 }
 \frame
 {
-	\frametitle{Empirical Evidence on the Distribution of MPC}
+	\frametitle{Evidence on Distribution of Consumption Response}
 	Auclert (2018) uses the 3 different methods to identify the distribution of MPC by unhedged interest rate exposure
 	\begin{figure}
 		\includegraphics[scale=0.6]{../Figures/MPCDistributionAuclert}
@@ -88,212 +95,163 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 }
 \frame{
 	\frametitle{Results Preview}
-	Spending is VERY closely tied with transitory income\\
-	\begin{itemize}
-		\item Far more than standard models would suggest
-	\end{itemize}
-	High levels of liquid wealth reduce this relation
-	\begin{itemize}
-		\item As standard models suggest
-	\end{itemize}
-	\pause
-	\bigskip
-	\$1000 of extra transitory income in a year is associated with \$700 of extra spending that year\\
-	\bigskip
-	Possible Interpretation:
-	\begin{itemize}
-		\item Labor supply responds to transitory spending needs
-		\item eg Car break down, work extra hours
-	\end{itemize}
+	\begin{figure}
+	\includegraphics[scale=0.5]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
+	\end{figure}
 }
-\begin{comment}
-\frame
-{
-	\frametitle{Range of Theories}
-	\begin{itemize}
-		\item Complete Markets: No consumption response to idiosyncratic income shocks
-		\item Permanent Income Hypothesis: MPC out of permanent income is 1, out of transitory is 0
-		\item Standard incomplete market model: Somewhere in between. Depends strongly on wealth and income uncertainty
-		\item Two asset models: Depends strongly on liquid wealth
-	\end{itemize}
-
-}
-\end{comment}
 \section{Empirical Strategy}
 \setbeamercovered{invisible}
 \frame
 {
-	\frametitle{Blundell Pistaferri and Preston 2008}
-	Question:\\
-	\bigskip
-	\qquad \textit{How well insured are households against idiosyncratic income shocks?}\\
-	\bigskip
-	Key idea: 
-	\begin{itemize}
-		\item[1] Make a few core assumptions on the dynamics of income and consumption
-		\item[2] Use the covariance matrix of income and consumption to identify key parameters
-		\begin{itemize}
-			\item $\phi \approx 0.65$ Partial permanent shock insurance
-			\item $\psi \approx 0.05$ Almost complete transitory shock insurance
-		\end{itemize}
-	\end{itemize}
+	\frametitle{Methodology Intuition}
+	Exploit increasing importance of permanent shocks as the time over which growth is measured increases
+	\begin{center}
+	\begin{tikzpicture}
+	\node (img1) {\includegraphics[height=5cm]{../Figures/basic_regression_complete_level_lincome_head.png}};
 	\pause
-	Kaplan \& Violante (2010)``The BPP insurance coefficients should become central in quantitative macroeconomics"
-}
-\frame
-{
-	\frametitle{Blundell Pistaferri and Preston 2008}
-	Assumptions on the log income process
-	\begin{itemize}
-		\item $y_t = p_t + \varepsilon_t$
-		\item $p_t = p_{t-1} + \zeta_t$
-	\end{itemize}
-	Standard Friedman transitory/permanent decomposition (can easily extend to an MA(q) transitory process)\\
+	\node (img2) {\includegraphics[height=5cm]{../Figures/basic_regression_solow_level_lincome_head.png}};
 	\pause
-	\bigskip
-	Assumptions on the log consumption process
-	\begin{itemize}
-		\item $\Delta c_t = \phi \Delta p_t + \psi \varepsilon_t$
-	\end{itemize}
-	Hall random walk\\
-}
-\frame
-{
-	\frametitle{BPP: Identification}
-	Key identification moments for $\phi$ and $\psi$
+	\node (img3) {\includegraphics[height=5cm]{../Figures/basic_regression_BS_level_lincome_head.png}};
+	\pause
+	\node (img4) {\includegraphics[height=5cm]{../Figures/basic_regression_level_lincome_head.png}};
+	\end{tikzpicture}
+	\end{center}
 	\begin{align*}
-		\phi &= \frac{\mathrm{Cov}(\Delta c_t, \zeta_t)}{\mathrm{Var}(\zeta_t)}\\
-		     &= \frac{\mathrm{Cov}(\Delta c_t, \Delta y_{t+1}+ \Delta y_t+ \Delta y_{t-1}))}{\mathrm{Cov}(\Delta y_t, \Delta y_{t+1}+ \Delta y_t+ \Delta y_{t-1})}\\
-		\\
-		\psi &= \frac{\mathrm{Cov}(\Delta c_t, \varepsilon_t)}{\mathrm{Var}(\varepsilon_t)}\\
-		&= \frac{\mathrm{Cov}(\Delta c_t, \Delta y_{t+1})}{\mathrm{Cov}( \Delta y_t, \Delta y_{t+1})}
+	\Delta^N c = \beta \Delta^N y +\varepsilon
 	\end{align*}
-		Kaplan \& Violante (2010) show these work well for reasonable parameterizations of standard consumption models
 }
 \frame
 {
-	\frametitle{BPP: Two Improvements}
+	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
+	1) Time Aggregation Problem (Crawley 2018)
+	\begin{columns}
+	\column{0.5\linewidth}
+	\centering
+	\onslide<1->{
+	\begin{tikzpicture}
+	\node (img1) {\includegraphics[height=5cm]{../Figures/TimeAggExample1.png}};
+	\onslide<2->{
+	\node (img2) {\includegraphics[height=5cm]{../Figures/TimeAggExample2.png}};
+	}
+	\end{tikzpicture}
+	}
+	\column{0.5\linewidth}
+	\onslide<3->{
+	PIH Example:\\
 	\begin{itemize}
-		\item Time Aggregation
-		\item Short term dynamics
+	\item MPC out of Permanent Shocks = 1\\
+	\item MPC out of Transitory Shocks = 0\\
+	\item Variances approx. equal
+	\end{itemize}
+	BPP method estimates MPC out of transitory shocks to be -0.6
+	\end{columns}
+	}
+}
+\frame
+{
+	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
+	2) BPP assume consumption is a random walk
+	\begin{itemize}
+		\item High transitory MPCs are incompatible with consumption following a random walk
 	\end{itemize}
 }
 \frame
 {
-	\frametitle{BPP: Time Aggregation}
-	Working (1960) showed that the a time aggregated random walk is autocorrelated
-	\begin{figure}
-		\includegraphics[scale=0.4]{../Figures/timeagg_rw.pdf}
-	\end{figure}
-	\pause
-	Macroeconomics has (mostly) absorbed this point\\
-	The household finance literature has not - this is particularly problematic for BPP
+	\frametitle{Identification of the Income Process}
+	We follow the spirit of Carroll \& Samwick (1997):\\
+	\begin{itemize}
+		\item Permanent income follows a random walk
+		\begin{align*}
+			p_t = p_{t-1} + \zeta_t
+		\end{align*}
+		\item Total income includes a transitory component
+		\begin{align*}
+			y_t = p_t +\varepsilon_t
+		\end{align*}
+	\end{itemize}
+	Growth over N years is:
+	\begin{align*}
+	\Delta^N y_T &=  (\zeta_{T-N+1} + ... +\zeta_T) + \varepsilon_T - \varepsilon_{T-N} \\
+	\mathrm{Var}(\Delta^N y_T) &= N\mathrm{Var}(\zeta) + 2\mathrm{Var}(\varepsilon)
+	\end{align*}
 }
 \frame
 {
-	\frametitle{BPP: Time Aggregation}
-	BPP use the (non time-aggregated) moment
-	\begin{align*}
-		\frac{\mathrm{Cov}(\Delta c_t, \Delta y_{t+1})}{\mathrm{Cov}( \Delta y_t, \Delta y_{t+1})} &= \frac{-\psi \mathrm{Var}(\varepsilon)}{-\mathrm{Var}( \varepsilon)}= \psi
-	\end{align*}
-	\pause
-	But if the underlying processes are continuous
-	\begin{align*}
-	\frac{\mathrm{Cov}(\Delta \bar{c_t}, \Delta \bar{y}_{t+1})}{\mathrm{Cov}( \Delta \bar{y}_t, \Delta \bar{y}_{t+1})}
-	&= \frac{ \frac{1}{6}\phi \mathrm{Var}(\zeta) - \frac{1}{2}\psi \mathrm{Var}(\varepsilon)}{ \frac{1}{6} \mathrm{Var}(\zeta) -  \mathrm{Var}(\varepsilon)}
-	\end{align*}
-	So the moment used for identification of $\psi$ is messed up
-}
-\frame
-{
-	\frametitle{BPP Time Aggregation Problem}
-	Problem: BPP estimates (from PSID data) are wildly out of sync with the rest of the literature\\
-	\bigskip
-	MPC out of transitory estimate:  $\sim 5\%$\\
-	MPC out of permanent estimate:  $\sim 65\%$ \\
-	\pause
-	\bigskip
-	Fixing time aggregation we get\\
-	\bigskip
-	MPC out of transitory estimate:  $\sim 25\%$\\
-	MPC out of permanent estimate:  $\sim 30-100\%$ \\
-	\bigskip
-	Results become VERY sensitive to exact nature of short term income dynamics
-}
-\frame
-{
-	\frametitle{BPP Short Term Dynamics}
-	Identification in BPP comes primarily from covariances from one period to the next\\
-	\bigskip
-	Carroll \& Samwick (1997) use a similar technique to identify shock variances, but use a longer time frame
-	\begin{align*}
-		\mathrm{Var}(\Delta^n y_t) = n \mathrm{Var} (\zeta) + 2 \mathrm{Var}(\varepsilon)
-	\end{align*}
-	Using $n=3,4,5$ the identification is robust to MA(2) transitory shocks\\
+	\frametitle{Identification of the Income Process}
+	We follow the spirit of Carroll \& Samwick (1997):\\
+	\begin{itemize}
+		\item If transitory income follows an MA(2) process:
+		\begin{align*}
+			y_t &= p_t + \varepsilon_t + \theta_1 \varepsilon_{t-1} +\theta_2 \varepsilon_{t-2} \\
+			\implies \mathrm{Var}(\Delta^N y_T) &= N\underbrace{\mathrm{Var}(\zeta)}_{\text{Perm var}} + 2\underbrace{(1+\theta_1^2+\theta_2^2)\mathrm{Var}(\varepsilon)}_{\text{``Total" trans var}} \text{ if } N\geq 3
+		\end{align*}
+	\end{itemize}
+	Carroll \& Samwick use $N=3,4,5$ to identify permanent shock variance and ``total" transitory shock variance
 	\bigskip
 	\pause
 	\begin{itemize}
-		\item[1] What might the equivalent of ``robust to MA(2) transitory shocks" be in continuous time?
-		\item[2] Can we extend this more robust method to consumption?
+		\item[1] How does time aggregation affect this identification?
+		\item[2] What might the equivalent of ``robust to MA(2) transitory shocks" be in continuous time?
 	\end{itemize}
 }
 \frame
 {
-	\frametitle{BPP Short Term Dynamics}
-	Carroll \& Samwick in Discrete Time
-	\begin{figure}
-	\includegraphics[scale=0.3]{../Figures/MA2.png}
-	\end{figure}
-	\begin{align*}
-		y_t &= p_t + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \theta_2 \varepsilon_{t-2} \\
-		p_t &= p_{t-1} +\zeta_t\\
-		\implies \mathrm{Var}(\Delta^n y_t) &= n \mathrm{Var}(\zeta) + 2\underbrace{(1+\theta_1^2 + \theta_2^2)\mathrm{Var}(\varepsilon)}_\text{``Total" transitory variance} \qquad \text{ for $n \geq 3$} \\
-	\end{align*}	
-
-}
-\frame
-{
-	\frametitle{BPP Short Term Dynamics}
+	\frametitle{Identification of the Income Process}
 	Carroll \& Samwick in Continuous Time with Aggregation\\
-	\bigskip
-	To begin assume no persistence in the transitory shock
+	\begin{itemize}
+		\item To begin assume no persistence in the transitory shock
+		\item $p_t$ and $q_t$ are independent martingale processes with independent increments
+		\begin{align*}
+			\mathrm{Var}(p_t-p_{t-1}) &= \sigma^2_p \\
+			\mathrm{Var}(q_t-q_{t-1}) &= \sigma^2_q
+		\end{align*}
+		\item Instantaneous income is equal to the flow of permanent income plus the transitory income component
+		\begin{align*}
+		dy_t = p_t dt + dq_t
+		\end{align*}
+	\end{itemize}
+	\pause
+	We observe $\bar{y}_T$, total income over year $T$:
 	\begin{align*}
-		y_t dt = p_t dt + dq_t
-	\end{align*}
-	where $p_t$ and $q_t$ are independent stationary martingale processes with variances $\sigma^2_p$ and $\sigma^2_q$
-	\begin{align*}
-	\bar{y}_T &= \int_{T-1}^{T}p_t dt + \int_{T-1}^{T}dq_t \\
-	\implies  \mathrm{Var}(\Delta^n \bar{y}_T) &= (n-\frac{1}{3})\sigma_p + 2\sigma_q
+	\bar{y}_T &= \int_{T-1}^{T}p_t dt + q_T - q_{T-1} \\
+	\implies  \mathrm{Var}(\Delta^N \bar{y}_T) &= (N-\frac{1}{3})\sigma_p + 2\sigma_q
 	\end{align*}
 }
 \frame
 {
-	\frametitle{BPP Short Term Dynamics}
-	Allow a generic transitory shock, $f(t)$ where $f(t)=0$ if $t>2$
+	\frametitle{Identification of the Income Process}
+	Allow a generic persistence in transitory shock
+	\begin{itemize}
+		\item Following shock, transitory income flow decays as:
+		\begin{align*}
+			f(t)  \text{ where } f(t)=0 \text{ if } t>2
+		\end{align*}
+	\end{itemize}
+	\vspace*{-0.15in}
 	\begin{figure}
-		\includegraphics[scale=0.3]{../Figures/GenericTransitory.png}
+		\includegraphics[scale=0.3]{../Figures/GenericTransitory.pdf}
 	\end{figure}
-	\vspace*{-0.3in}
+	\vspace*{-0.15in}
 	\begin{align*}
-	y_t &= p_t + \int_{t-2}^{t} f(s-(t-2))dq_s\\
-	\implies \mathrm{Var}(\Delta^n \bar{y}_T) &= (n-\frac{1}{3})\sigma^2_p +  2 \mathrm{Var}(\tilde{y}) \text{   for }n \geq 3
+	y_t &= p_t + \int_{t-2}^{t} f(t-s)dq_s\\
+	\implies \mathrm{Var}(\Delta^n \bar{y}_T) &= (n-\frac{1}{3})\sigma^2_p +  2 \sigma^2_{\tilde{q}} \text{   for }n \geq 3
 	\end{align*}	
-	where $	\tilde{y_T} = \int_{T-1}^{T}\int_{t-2}^{t} f(s-(t-2))dq_s dt$ is the time aggregated transitory component of income
+	where $	\tilde{q_T} = \int_{T-1}^{T}\int_{t-2}^{t} f(t-s)dq_s dt$ is the time aggregated transitory component of income
 }
 \frame
 {
-	\frametitle{BPP Short Term Dynamics}
+	\frametitle{Identification of the Consumption Response}
 	Assumptions on Consumption\\
 	\begin{itemize}
-		\item Permanent: Same as BPP $c_t = \phi y_t$ (+constant)
+		\item Permanent: Consumption permanently moves by fraction $\phi$ of the income shock
 		\item Transitory: Allow for generic impulse response $g(t)$ where $g(t) = 0$ for $t>2$
 	\end{itemize}
 	\vspace*{-0.2in}
 	\begin{center}
 	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumption.png}};
+	\node (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumption.pdf}};
 	\pause
-	\node (img2) at (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumptionWithBPP.png}};
+	\node (img2) at (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}};
 	\end{tikzpicture}
 	\end{center}
 	\vspace*{-0.2in}
@@ -301,44 +259,35 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 }
 \frame
 {
-	\frametitle{BPP Short Term Dynamics}
+	\frametitle{Identification of the Consumption Response}
+	Consumption flow is given by:
 	\begin{align*}
-	c_t dt &= \phi y_t dt + \int_{t-2}^{t} g(s-(t-2))dq_s dt \\
-	\implies \mathrm{Cov}(\Delta^n \bar{c_T},\Delta^n \bar{y_T} ) &= \phi (n-\frac{1}{3}) \sigma^2_p + 2 \mathrm{Cov}(\tilde{c},\tilde{y})
+	c_t  &= \phi p_t  + \int_{t-2}^{t} g(t-s)dq_s  \\
+	\implies \mathrm{Cov}(\Delta^N \bar{c_T},\Delta^n \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
 	\end{align*}
-	where $\tilde{c}$ and $\tilde{y}$ are the time aggregated \textit{transitory} components of consumption and income	\\
-}
-\frame
-{
-	\frametitle{BPP Short Term Dynamics}
-	Is 2 years long enough?
-    \begin{columns}
-	\column{0.5\linewidth}
-	\centering
-	\includegraphics[scale=0.35]{../Figures/IncreasingDiff.png}
-	\column{0.5\linewidth}
-	Should be linear in $n$:
-	\begin{align*}
-		\mathrm{Var}(\Delta^n \bar{y}_T) = (n-\frac{1}{3})\sigma_p + 2\mathrm{Var}(\tilde{y}) \\[5pt]
-		\mathrm{Cov}(\Delta^n \bar{y}_T, \Delta^n \bar{c}_T) \qquad \qquad \qquad \\
-		\qquad = \phi(n-\frac{1}{3})\sigma_p + 2\mathrm{Cov}(\tilde{c},\tilde{y})
-	\end{align*}
-	\end{columns} 
-}
-\frame
-{
-	\frametitle{BPP Short Term Dynamics}
-	We can now identify:
-	\begin{itemize}
-		\item $\sigma^2_p$ Variance of permanent shocks
-		\item $\mathrm{Var}(\tilde{y})$ Variance of transitory income received in a year
-		\item $\phi$ Elasticity of consumption w.r.t permanent income
-		\item $\psi = \frac{\mathrm{Cov}(\tilde{c},\tilde{y})}{\mathrm{Var}(\tilde{y})}$ Elasticity of transitory consumption w.r.t transitory income over a year
-	\end{itemize}
+	where  $\psi = \frac{\mathrm{Cov}(\tilde{c},\tilde{q})}{\mathrm{Var}(\tilde{q})}$, the regression coefficient of `transitory' consumption on transitory income \\
 	\pause
-	$\psi=0.7$ means \textit{``If income this year is 1\% higher than it would have been with no transitory shocks this year or in the last 2 years, then consumption is on average 0.7\% higher than it would have been''}\\
 	\bigskip
-	or equivalently $\psi$ is \textit{the regression coefficient of transitory consumption on transitory income over a one year period}
+	\begin{itemize}
+		\item $\phi$: MPX out of permanent income shocks
+		\item $\psi$: MPX out of transitory income shocks
+	\end{itemize}
+}
+\frame
+{
+	\frametitle{Full Identification}
+We use GMM on the equations:
+\begin{align*}
+\mathrm{Var}(\Delta^n \bar{y_T} ) &=  (N-\frac{1}{3}) \sigma^2_p + 2  \sigma^2_{\tilde{q}} \\
+\mathrm{Cov}(\Delta^N \bar{c_T},\Delta^n \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
+\end{align*}
+with $N=3,4,5$ (total of six equations) to identify the four unknowns:
+\begin{itemize}
+	\item $\sigma^2_p$: Permanent shock variance
+	\item $\sigma^2_{\tilde{q}}$: (Time aggregated) transitory shock variance
+	\item $\phi$: MPX out of permanent income shocks
+	\item $\psi$: MPX out of transitory income shocks
+\end{itemize}
 }
 \section{Data}
 \frame
@@ -348,9 +297,9 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 		\item Starting point: Register based micro data for all Danish households made available by Statistics Denmark
 		\item Really good income data
 		\begin{itemize}
-			\item We use total income (i.e. labor income, transfers, and capital income) after tax, based on third-party reported tax data
+			\item We use after-tax income for the household head, based on third-party reported tax data
 		\end{itemize}
-		\item Work with the residual of log income after controlling for age, education, marital status etc. (along with interactions of these)
+		\item We divide through by permanent income (mean income over all observed years) and take the residual after controlling for age, education, marital status etc. (along with interactions of these)
 		\item Expenditure data imputed from income and wealth
 		\begin{itemize}
 			\item Deposit and brokerage accounts all third party reported
@@ -380,29 +329,12 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 \section{Results}
 \frame
 {
-	\frametitle{Results Overview}
-	\begin{itemize}
-		\item Elasticity of consumption with transitory income is VERY high
-		\item Lots of heterogeneity in transitory and permanent variance
-		\item Surprisingly little heterogeneity in either transitory or permanent consumption responses
-		\item Low liquid wealth associated with high $\phi$ and $\psi$
-	\end{itemize}
-	\pause
-	Possible explanations
-	\begin{itemize}
-	\item MPC is much higher than we think
-	\item Income variance reflects choices, not exogenous risk 
-	\item Measurement error
-	\end{itemize}
-}
-\frame
-{
 	\frametitle{Shock Variance by Age}
 	\begin{figure}
-		\includegraphics[scale=0.35]{../Figures/VarianceByAge.png}
+		\includegraphics[scale=0.35]{../Figures/VarianceByAge_level_lincome_head.png}
 	\end{figure}
 	\vspace{-0.25in}
-	The assumption of constant variance works well from mid-30's to retirement
+	The assumption of constant variance works reasonably well from mid-30's to retirement
 }
 \frame
 {
@@ -410,12 +342,11 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/MPXByAge.png}
+		\includegraphics[scale=0.35]{../Figures/MPXByAge_level_lincome_head.png}
 		\column{0.5\linewidth}
 		\begin{itemize}
-			\item MPX is very high
-			\item No large difference between permanent and transitory MPX
-			\item Both decline towards retirement
+			\item $\phi \approx 0.8$, declines towards retirement
+			\item $\psi \approx 0.5$, constant
 		\end{itemize}
 	\end{columns} 	
 }
@@ -425,25 +356,16 @@ Rough consensus on (3 month) MPC $\sim 30\%$
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/VarianceByLiquidWealth.png}
+		\includegraphics[scale=0.35]{../Figures/VarianceByLiquidWealth_level_lincome_head.png}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth.png}
+		\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
 	\end{columns} 	
 }
 \frame
 {
-	\frametitle{Little Relation between Shock Variance and MPX}
-	\begin{columns}
-		\column{0.5\linewidth}
-		\centering
-		\includegraphics[scale=0.2]{../Figures/VarianceByEducation.png}\\
-		\includegraphics[scale=0.2]{../Figures/VarianceByRegion.png}
-		\column{0.5\linewidth}
-		\centering
-		\includegraphics[scale=0.2]{../Figures/MPXByEducation.png}\\
-		\includegraphics[scale=0.2]{../Figures/MPXByRegion.png}
-	\end{columns} 
+	\frametitle{Durables}
+
 }
 \frame
 {

@@ -1,6 +1,6 @@
 \beamer@endinputifotherversion {3.36pt}
 \beamer@sectionintoc {1}{Motivation}{2}{0}{1}
-\beamer@sectionintoc {2}{Empirical Strategy}{10}{0}{2}
-\beamer@sectionintoc {3}{Data}{33}{0}{3}
-\beamer@sectionintoc {4}{Results}{35}{0}{4}
-\beamer@sectionintoc {5}{Way Forward}{46}{0}{5}
+\beamer@sectionintoc {2}{Empirical Strategy}{8}{0}{2}
+\beamer@sectionintoc {3}{Data}{27}{0}{3}
+\beamer@sectionintoc {4}{Results}{29}{0}{4}
+\beamer@sectionintoc {5}{Way Forward}{38}{0}{5}
