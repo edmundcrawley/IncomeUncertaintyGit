@@ -365,7 +365,64 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 \frame
 {
 	\frametitle{Durables}
-
+	Our expenditure measure include ALL expenditure
+	\begin{itemize}
+		\item Household goods (electronics, kitchen equipment, etc)
+		\item Cars
+		\item Home improvements (roof repair, extensions)
+	\end{itemize}
+	Durables make up about 10\% of total expenditure\\
+	\pause
+	\bigskip
+	But theory suggests durable expenditures should not be proportional to permanent income changes 
+	\begin{itemize}
+		\item This may bias our results
+	\end{itemize}
+}
+\frame
+{
+	\frametitle{Durables}
+	Suppose households \textit{instantaneously} upgrade their durable goods and then pay a constant flow of depreciation:
+	\begin{align*}
+	dc_t = \phi p_t dt + \color{red} \phi_{d} dp_t \color{black} + \psi dq_t
+	\end{align*}
+	\begin{itemize}
+		\item $\phi$ can be interpreted as the MP\color{red}C \color{black}to permanent shocks, where consumption includes non-durables and the service \textit{flow} from durable goods
+		\item $\phi_{d}$ is the proportion of the (annual) permanent shock that is spent instantaneously on durables
+		\item $\psi$ is the MPX out of transitory income, exactly as before
+	\end{itemize}
+	\pause
+	Then our estimates of $\phi$ and $\psi$ are unbiased. We have no way of estimating $\phi_d$
+}
+\frame
+{
+	\frametitle{Durables}
+	If households act with some delay things are different. Suppose they wait 1 year
+	\begin{align*}
+	dc_t = \phi p_t dt + \color{red} \phi_{d} dp_{t-1} \color{black} + \psi dq_t
+	\end{align*}
+	\begin{itemize}
+		\item $\mathbb{E}(\hat{\phi})=\phi$ Permanent MPC is unbiased
+		\item $\mathbb{E}(\hat{\psi})=\psi \color{red} + \frac{\sigma^2_p}{2\sigma^2_q}\phi_d$ Transitory MPX is upward biased
+	\end{itemize}
+	\begin{figure}
+	\includegraphics[scale=0.3]{../Figures/DurableBias.png}
+	\end{figure}
+}
+\frame
+{
+	\frametitle{Durables}
+	We have data on value of household cars\\
+	\begin{itemize}
+		\item Construct expenditure excluding car purchases and sales
+		\begin{align*}
+		C_T^{\text{nocar}} = C_T - \Delta \text{CarValue}
+		\end{align*}
+		\item Construct proxy for non durable consumption (Cars $\approx \frac{1}{3}$ durable expenditure)
+		\begin{align*}
+		C_T^{\text{nondurable}} = C_T - 3\Delta \text{CarValue}
+		\end{align*}
+	\end{itemize}
 }
 \frame
 {

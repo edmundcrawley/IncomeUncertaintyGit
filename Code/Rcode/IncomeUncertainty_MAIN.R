@@ -196,7 +196,7 @@ lines(age_set, rollmean(age_params[,1],5,fill=NA), col="green")
 lines(age_set, rollmean(age_params[,2],5,fill=NA), col="red")
 lines(age_set, rollmean(age_total_var,5,fill=NA), col="black")
 lines(age_set, rollmean(2.0/3.0*age_params[,1]+2.0*age_params[,2],5,fill=NA), col="black",lty="dashed")
-legend(40, 0.022, legend=c(expression(paste(sigma[p]^2," Permanent Var")), expression(paste(sigma[q]^2," Transitory Var")), expression(paste("var(",Delta,"y)")),expression(paste(frac(2,3),sigma[p]^2,"+2",sigma[q]^2,sep=""))), col=c(colors[1],colors[2],"black","black"),lty=c("solid","solid","solid","dashed"),bty="n")
+legend(40, 0.022, legend=c(expression(paste(sigma[p]^2," Permanent Var")), expression(paste(sigma[q]^2," Transitory Var")), expression(paste("var(",Delta,"y)")),expression(paste(frac(2,3),sigma[p]^2,"+2",sigma[q]^2,sep=""))), col=c("green","red","black","black"),lty=c("solid","solid","solid","dashed"),bty="n")
 dev.off()
 
 png(filename=paste(figures_dir,'MPXByAge',tag,'.png',sep=''))
@@ -204,7 +204,7 @@ plot(age_set, age_params[,3],col="green",main=paste(title_string, " by Age",sep=
 points(age_set, age_params[,4],col="red")
 lines(age_set, rollmean(age_params[,3],5,fill=NA), col="green")
 lines(age_set, rollmean(age_params[,4],5,fill=NA), col="red")
-legend(38, 0.24, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Tramsitory MPX"))), col=c(colors[1],colors[2]),lty=c("solid","solid"))
+legend(38, 0.24, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Tramsitory MPX"))), col=c("green","red"),lty=c("solid","solid"))
 dev.off()
 ###############################################################################
 

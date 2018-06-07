@@ -59,3 +59,21 @@ lines(x,cBPP, xlim= c(0,5),ylim=c(0,1.2),col="green",type="l",lwd=4,xlab="Time",
 legend(2.0,1.0, legend=c("Income f(t)", "Consumption g(t)","BPP Random Walk"),col=c("red","black","green"),lty=1,lwd=4)
 dev.print(pdf,  paste(figures_dir,'GenericTransitoryConsumptionWithBPP.pdf',sep=""))
 
+
+######################################################################
+# Plot showing how delayed durable response changes with the length of delay
+num_points = 1000
+x = c(1:num_points)/num_points
+y = (2*x-x^2)
+x = c(x,x+1)
+y = c(y, y*0+1)
+y2 = c(y*0+1)
+dev.new()
+plot(x*12,y,type="l",xlab="Delay, Months",ylab="Bias",xaxt="n",yaxt="n",main=expression(paste("Bias in ",psi," vs Durable Delay")))
+lines(x*12,y2,lty="dashed")
+axis(side = 1, at = c(0,6,12,18,24))
+axis(side = 2, at = c(0,1), labels = c("0",expression(paste(frac(sigma[p]^2,2*sigma[q]^2),phi[d]))), las=1)
+dev.copy(png, paste(figures_dir,'DurableBias.png',sep=""))
+dev.off()
+
+
