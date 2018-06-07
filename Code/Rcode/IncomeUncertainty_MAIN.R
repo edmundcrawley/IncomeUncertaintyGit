@@ -104,7 +104,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
          barCenters,
          t(params[,3:4]+se[,3:4]*1.96), lwd=1.5,
          angle=90,code=3, length=0.05)
-  legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Tramsitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
+  legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
   dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,tag,".png",sep=""))
   dev.off()
 }
@@ -204,7 +204,7 @@ plot(age_set, age_params[,3],col="green",main=paste(title_string, " by Age",sep=
 points(age_set, age_params[,4],col="red")
 lines(age_set, rollmean(age_params[,3],5,fill=NA), col="green")
 lines(age_set, rollmean(age_params[,4],5,fill=NA), col="red")
-legend(38, 0.24, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Tramsitory MPX"))), col=c("green","red"),lty=c("solid","solid"))
+legend(38, 0.24, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), col=c("green","red"),lty=c("solid","solid"))
 dev.off()
 ###############################################################################
 
@@ -431,4 +431,79 @@ home_owner_obs = output$category_obs
 home_owner_total_var = output$category_total_var
 home_owner_set = c("Renter","Owner")
 plot_estimataion_output(home_owner_params,home_owner_se,home_owner_set ,"Homeownership","")
+###############################################################################
+
+###############################################################################
+# load liquid weath quintile data by non-durable proxyand create graph
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_0nocar_2005','.RData',sep=''))
+num_quantiles = 5
+round_digits = -3
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output=output
+wealth_quantile_params = output$category_params
+wealth_quantile_se = output$category_se
+wealth_quantile_obs = output$category_obs
+wealth_quantile_total_var = output$category_total_var
+
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_nocar_2005','.RData',sep=''))
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output_nocar=output
+wealth_quantile_params_nocar = output$category_params
+wealth_quantile_se_nocar = output$category_se
+wealth_quantile_obs_nocar = output$category_obs
+wealth_quantile_total_var_nocar = output$category_total_var
+
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_nodurableproxy_2005','.RData',sep=''))
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output_nodurableproxy=output
+wealth_quantile_params_nodurableproxy = output$category_params
+wealth_quantile_se_nodurableproxy = output$category_se
+wealth_quantile_obs_nodurableproxy = output$category_obs
+wealth_quantile_total_var_nodurableproxy = output$category_total_var
+
+wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
+
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c("grey90","grey85"),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth"),
+                      ylab = axis_string, border=NA, axes=TRUE)
+barCenters <- barplot(height=t(wealth_quantile_params_nocar[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c("grey80","grey75"),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth"),
+                      ylab = axis_string, border=NA, axes=TRUE,add=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+barCenters <- barplot(height=t(wealth_quantile_params_nodurableproxy[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[2]),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth"),
+                      ylab = axis_string, border="black", axes=TRUE,add=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+segments(barCenters, t(params[,3:4]-se[,3:4]*1.96),
+         barCenters,
+         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+arrows(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-wealth_quantile_se_nodurableproxy[,3:4]*1.96),
+       barCenters,
+       t(wealth_quantile_params_nodurableproxy[,3:4]+wealth_quantile_se_nodurableproxy[,3:4]*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
+dev.copy(png, paste(figures_dir, "MPXByDurables.png",sep=""))
+dev.off()
 ###############################################################################
