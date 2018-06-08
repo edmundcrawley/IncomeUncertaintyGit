@@ -441,99 +441,17 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\end{tikzpicture}
 \end{center}
 }
+\section{Model}
 \frame
 {
-	\frametitle{Sensitivity to Misspecification}
-	Given the MPX out of transitory and permanent income are both similar, results are not very sensitive to exact modeling assumptions
+	\frametitle{Model}
+	How does this compare with a standard buffer-stock saving model?
 	\begin{itemize}
-		\item AR(1) in permanent shock
-		\item Correlation between permanent and transitory shocks
+		\item Build model to match Danish income process
+		\item Allow \textit{heterogenous discount factors} in order to match the distribution of \textit{liquid} assets in Denmark
+		\item See how the distribution of transitory MPX varies with liquid asset holdings
 	\end{itemize}
-}
-\frame
-{
-	\frametitle{Why is Transitory MPX so large?}
-	Explantion 1: It just is \\
-	\bigskip
-	In line with some other estimates e.g.
-	\begin{itemize}
-		\item Agarwal \& Quin (2014) find 90\% 10 month MPX from the 2011 Singapore Growth Dividend Program (excellent data)
-		\item Parker et al. (2013) find 50-90\% 3 month MPX out of 2008 stimulus
-		\item Souleles (2002) finds 60-90\% 12 month MPX out of Reagan tax cuts
-	\end{itemize}
-	\pause
-	However, Fagereng et al (2017) find an MPX of 35\% using lottery winnings and similar expenditure data in Norway
 
-}
-\frame
-{
-	\frametitle{Why is Transitory MPX so large?}
-	Explantion 2: Income is Endogenous\\
-	\bigskip
-	Potential model would need
-	\begin{itemize}
-		\item Permanent and transitory income uncertainty
-		\item Transitory taste shocks
-		\item Endogenous labor supply
-	\end{itemize}
-	Is a quantitatively reasonable model feasible?
-	\begin{itemize}
-	\item How big (or small) will labor elasticity need to be?
-	\item Seems unlikely the high wealthy MPX can be matched
-\end{itemize}
-}
-\frame
-{
-	\frametitle{Why is Transitory MPX so large?}
-	Explantion 3: Measurement Error\\
-	\bigskip
-	\begin{itemize}
-		\item Method is robust to \textit{classical} measurement error in expenditure
-		\item Method is (mostly) robust to \textit{classical} measurement error in income
-		\item The imputation method potentially introduces correlation between measurement error in income and expenditure (a problem)
-	\end{itemize}
-	Unobserved income uncorrelated with observed income is OK\\
-	Problem if income is observed with error
-}
-\section{Way Forward}
-\frame
-{
-	\frametitle{Why is Transitory MPX so large?}
-	How can we dig into this?\\
-	\bigskip
-	\begin{itemize}
-		\item Break down sources of income
-		\begin{itemize}
-			\item MPX from secondary earner is much higher than primary earner
-			\item Look only at households who have little choice over work hours
-			\item Look at wages and hours worked rather than income
-		\end{itemize}	
-		\item Use income data from an independent source (employer payment data)
-	\end{itemize}
-}
-\frame
-{
-	\frametitle{Model}
-	How will a model in which labor decisions are driven by spending needs behave over the business cycle?\\
-	\begin{itemize}
-		\item In a recession households have much less ability to insure themselves through their labor supply
-		\item May increase saving to compensate
-	\end{itemize}
-}
-\frame
-{
-	\frametitle{Model}
-	GHH preferences with a taste shifter
-	\begin{align*}
-	u(c,l,\varphi) &= U(\varphi c - G(l))
-	\end{align*}
-	First order condition w.r.t $l$
-	\begin{align*}
-	\implies l = G^{'-1}(\varphi w)
-	\end{align*}
-	where $w$ is the wage\\
-	\bigskip
-	Note - even the wealthy adjust their labor
 }
 \end{document}
 

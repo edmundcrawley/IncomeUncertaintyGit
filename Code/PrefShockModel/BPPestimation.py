@@ -5,7 +5,7 @@ Functions to do BPP style estimations on simulated data
 import numpy as np
 import statsmodels.api as sm
 
-def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
+def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor,logs=True):
     '''
     Selects consumption and income data to use in estimation
     Sorts into sample of a fixed length and eliminates agents who die in that
@@ -58,9 +58,13 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor):
     C_agg = np.stack([np.sum(C_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
     Y_agg = np.stack([np.sum(Y_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
     B_agg = np.stack([np.mean(B_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
- 
-    log_C_agg = np.log(C_agg)
-    log_Y_agg = np.log(Y_agg)
+    
+    if logs:
+        log_C_agg = np.log(C_agg)
+        log_Y_agg = np.log(Y_agg)
+    else:
+        log_C_agg = C_agg
+        log_Y_agg = Y_agg
     
     return log_C_agg, log_Y_agg, B_agg
 
@@ -94,7 +98,8 @@ def CS_estimation(log_C_agg, log_Y_agg,n1,n2):
         Consumption response to transitory shocks
     '''
     
-    time_agg_adj_fac = 1.0/3.0
+    #time_agg_adj_fac = 1.0/3.0
+    time_agg_adj_fac =0.3125    #this is the value for 4 quarters
     #time_agg_adj_fac = 0.0
     
     y_growth1 = log_Y_agg[n1:,:]-log_Y_agg[:-n1,:]

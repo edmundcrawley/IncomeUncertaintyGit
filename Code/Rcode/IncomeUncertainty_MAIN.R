@@ -478,14 +478,14 @@ barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       cex.names=0.75,
                       beside=TRUE,col=c("grey90","grey85"),
                       las=2,ylim=c(-0.2,plotTop), xaxt="n",
-                      main=paste("MPX by Liquid Wealth"),
+                      main=paste("MPX by Liquid Wealth Quantile"),
                       ylab = axis_string, border=NA, axes=TRUE)
 barCenters <- barplot(height=t(wealth_quantile_params_nocar[,3:4]),
                       names.arg=wealth_quantile_set,
                       cex.names=0.75,
                       beside=TRUE,col=c("grey80","grey75"),
                       las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("MPX by Liquid Wealth"),
+                      main=paste("MPX by Liquid Wealth Quantile"),
                       ylab = axis_string, border=NA, axes=TRUE,add=TRUE)
 text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
 barCenters <- barplot(height=t(wealth_quantile_params_nodurableproxy[,3:4]),
@@ -493,17 +493,93 @@ barCenters <- barplot(height=t(wealth_quantile_params_nodurableproxy[,3:4]),
                       cex.names=0.75,
                       beside=TRUE,col=c(colors[1],colors[2]),
                       las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("MPX by Liquid Wealth"),
+                      main=paste("MPX by Liquid Wealth Quantile"),
                       ylab = axis_string, border="black", axes=TRUE,add=TRUE)
 text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
-segments(barCenters, t(params[,3:4]-se[,3:4]*1.96),
+segments(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-se[,3:4]*1.96),
          barCenters,
          t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
 arrows(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-wealth_quantile_se_nodurableproxy[,3:4]*1.96),
        barCenters,
        t(wealth_quantile_params_nodurableproxy[,3:4]+wealth_quantile_se_nodurableproxy[,3:4]*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
+text_x_pos = barCenters[1,4]
+text_y_pos = 1.0
+text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE,col="grey90")
+text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Cars",xpd=TRUE,col="grey80")
+text(x=barCenters[1,4]+1, y =text_y_pos-0.1, adj = c(0,0), labels="Non-durable Proxy",xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
-dev.copy(png, paste(figures_dir, "MPXByDurables.png",sep=""))
+dev.copy(png, paste(figures_dir, "MPXByDurables_nodurableproxy.png",sep=""))
+dev.off()
+
+
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c("grey90","grey85"),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth Quantile"),
+                      ylab = axis_string, border=NA, axes=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+barCenters <- barplot(height=t(wealth_quantile_params_nocar[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[2]),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth Quantile"),
+                      ylab = axis_string, border="black", axes=TRUE,add=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+segments(barCenters, t(wealth_quantile_params_nocar[,3:4]-wealth_quantile_se_nocar[,3:4]*1.96),
+         barCenters,
+         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+arrows(barCenters, t(wealth_quantile_params_nocar[,3:4]-wealth_quantile_se_nocar[,3:4]*1.96),
+       barCenters,
+       t(wealth_quantile_params_nocar[,3:4]+wealth_quantile_se_nocar[,3:4]*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE,col="grey80")
+text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Cars",xpd=TRUE)
+legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
+dev.copy(png, paste(figures_dir, "MPXByDurables_nocar.png",sep=""))
+dev.off()
+
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[2]),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth Quantile"),
+                      ylab = axis_string, border="black", axes=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+segments(barCenters, t(wealth_quantile_params[,3:4]-wealth_quantile_se[,3:4]*1.96),
+         barCenters,
+         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+arrows(barCenters, t(wealth_quantile_params[,3:4]-wealth_quantile_se[,3:4]*1.96),
+       barCenters,
+       t(wealth_quantile_params[,3:4]+wealth_quantile_se[,3:4]*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE)
+legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
+dev.copy(png, paste(figures_dir, "MPXByDurables_all.png",sep=""))
+dev.off()
+
+#create black white graph, for use in slides
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[2]),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("MPX by Liquid Wealth Quantile"),
+                      ylab = axis_string, border="black", axes=TRUE)
+rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "white",border=NA)
+dev.copy(png, paste(figures_dir, "MPXByDurables_blank.png",sep=""))
 dev.off()
 ###############################################################################
