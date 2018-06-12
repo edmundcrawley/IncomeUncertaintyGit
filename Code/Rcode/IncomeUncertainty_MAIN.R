@@ -20,13 +20,15 @@ Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncerta
 moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
 figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
 tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
+PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
+
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
 require(latex2exp)
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 ###############################################################################
-colors = c("#fc8d59","#91bfdb")
+colors = c("#fc8d59","#91bfdb","#ffffbf")
 
 
 ###############################################################################
@@ -252,7 +254,6 @@ for (n in 1:max_diff){
   std_errors[n] = (t(function_gradient)  %*% omega %*% function_gradient)**0.5
 }
 # Pull in consumption saving numbers from Python output
-PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
 FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
 # Now draw graph
 png(paste(figures_dir, "basic_regression_complete",tag,".png",sep=""))
@@ -496,9 +497,9 @@ barCenters <- barplot(height=t(wealth_quantile_params_nodurableproxy[,3:4]),
                       main=paste("MPX by Liquid Wealth Quantile"),
                       ylab = axis_string, border="black", axes=TRUE,add=TRUE)
 text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
-segments(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-se[,3:4]*1.96),
+segments(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-wealth_quantile_se_nodurableproxy[,3:4]*1.96),
          barCenters,
-         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+         t(params[,3:4]+wealth_quantile_se_nodurableproxy[,3:4]*1.96), lwd=1.5)
 arrows(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-wealth_quantile_se_nodurableproxy[,3:4]*1.96),
        barCenters,
        t(wealth_quantile_params_nodurableproxy[,3:4]+wealth_quantile_se_nodurableproxy[,3:4]*1.96), lwd=1.5,
@@ -534,7 +535,7 @@ barCenters <- barplot(height=t(wealth_quantile_params_nocar[,3:4]),
 text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
 segments(barCenters, t(wealth_quantile_params_nocar[,3:4]-wealth_quantile_se_nocar[,3:4]*1.96),
          barCenters,
-         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+         t(wealth_quantile_params_nocar[,3:4]+wealth_quantile_se_nocar[,3:4]*1.96), lwd=1.5)
 arrows(barCenters, t(wealth_quantile_params_nocar[,3:4]-wealth_quantile_se_nocar[,3:4]*1.96),
        barCenters,
        t(wealth_quantile_params_nocar[,3:4]+wealth_quantile_se_nocar[,3:4]*1.96), lwd=1.5,
@@ -558,7 +559,7 @@ barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
 text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
 segments(barCenters, t(wealth_quantile_params[,3:4]-wealth_quantile_se[,3:4]*1.96),
          barCenters,
-         t(params[,3:4]+se[,3:4]*1.96), lwd=1.5)
+         t(wealth_quantile_params[,3:4]+wealth_quantile_se[,3:4]*1.96), lwd=1.5)
 arrows(barCenters, t(wealth_quantile_params[,3:4]-wealth_quantile_se[,3:4]*1.96),
        barCenters,
        t(wealth_quantile_params[,3:4]+wealth_quantile_se[,3:4]*1.96), lwd=1.5,
@@ -583,3 +584,61 @@ rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "white",borde
 dev.copy(png, paste(figures_dir, "MPXByDurables_blank.png",sep=""))
 dev.off()
 ###############################################################################
+
+################################################################################
+# Get CSTW estimated data from Python
+cstw_results <- read.csv(paste(PythonResults_folder,'cstw_denmark.txt',sep=''), sep=" ",header=FALSE)
+#cstw_results <- read.csv(paste(PythonResults_folder,'cstw_denmark_pref_shocks.txt',sep=''), sep=" ",header=FALSE)
+
+
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+quantile_names = c("1","2","3","4","5")
+params = matrix(c(wealth_quantile_params_nodurableproxy[,4],cstw_results[,4]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se_nodurableproxy[,4],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[2],colors[3]),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, border="black", axes=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
+segments(barCenters, t(params-se*1.96),
+         barCenters,
+         t(params+se*1.96), lwd=1.5)
+arrows(barCenters, t(params-se*1.96),
+       barCenters,
+       t(params+se*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(2, plotTop, legend=c(expression(paste("Data, non-durable proxy")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
+dev.copy(png, paste(figures_dir, "CSTW_tran_denmark.png",sep=""))
+dev.off()
+
+dev.new()
+par(mar=c(8,7,4,5)+0.1)
+quantile_names = c("1","2","3","4","5")
+params = matrix(c(wealth_quantile_params_nodurableproxy[,3],cstw_results[,3]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se_nodurableproxy[,3],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(wealth_quantile_params[,3:4])*1.2
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[3]),
+                      las=2,ylim=c(-0.2,plotTop), xaxt="n",
+                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, border="black", axes=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
+segments(barCenters, t(params-se*1.96),
+         barCenters,
+         t(params+se*1.96), lwd=1.5)
+arrows(barCenters, t(params-se*1.96),
+       barCenters,
+       t(params+se*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(2, -0.04, legend=c(expression(paste("Data, non-durable proxy")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
+dev.copy(png, paste(figures_dir, "CSTW_perm_denmark.png",sep=""))
+dev.off()
+
+

@@ -5,7 +5,7 @@ Functions to do BPP style estimations on simulated data
 import numpy as np
 import statsmodels.api as sm
 
-def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor,logs=True):
+def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor,logs=True,do_MPC=False):
     '''
     Selects consumption and income data to use in estimation
     Sorts into sample of a fixed length and eliminates agents who die in that
@@ -37,10 +37,16 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor,logs=Tru
         yLvlAll_hist = np.concatenate([this_type.TranShkNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
     bLvlAll_hist = np.concatenate([this_type.bNrmNow_hist*this_type.pLvlNow_hist for this_type in Economy.agents],axis=1)
     
+   
     ignore_periods = Economy.ignore_periods
     #ignore the periods at beginning of simulation
     for array in [not_newborns,cLvlAll_hist,yLvlAll_hist,bLvlAll_hist]:
         array = array[ignore_periods:,:]
+        
+    #Calculate 6 month MPC
+    if do_MPC:
+        MPCAll_hist = np.concatenate([1.0-(1.0-this_type.MPCnow_hist)**2 for this_type in Economy.agents],axis=1)
+    
 
     sample_length = years_in_sample*periods_per_year
     C_all = np.concatenate([cLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
@@ -59,12 +65,20 @@ def SelectMicroSample(Economy,years_in_sample,periods_per_year,do_labor,logs=Tru
     Y_agg = np.stack([np.sum(Y_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
     B_agg = np.stack([np.mean(B_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
     
+    if do_MPC:
+        MPC_all = np.concatenate([MPCAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
+        MPC_all = MPC_all[:,not_newborns_all]
+        MPC_agg = np.stack([np.mean(MPC_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
+    
     if logs:
         log_C_agg = np.log(C_agg)
         log_Y_agg = np.log(Y_agg)
     else:
         log_C_agg = C_agg
         log_Y_agg = Y_agg
+        
+    if do_MPC:
+        return log_C_agg, log_Y_agg, B_agg, MPC_agg
     
     return log_C_agg, log_Y_agg, B_agg
 

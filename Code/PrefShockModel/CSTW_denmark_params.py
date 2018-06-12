@@ -7,7 +7,7 @@ from copy import  deepcopy
 import os
 
 # Choose percentiles of the data to match and which estimation to run
-do_pref_shocks = True
+do_pref_shocks = False
 
 spec_name = 'BetaDistPY'
 dist_type = 'uniform'         # Which type of distribution to use
@@ -16,7 +16,7 @@ percentiles_to_match = [0.2, 0.4, 0.6, 0.8]    # Which points of the Lorenz curv
 #percentiles_to_match = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] # Can use this line if you want to match more percentiles
 do_param_dist = True
 if do_param_dist:
-    pref_type_count = 7       # Number of discrete beta types in beta-dist
+    pref_type_count = 5       # Number of discrete beta types in beta-dist
 else:
     pref_type_count = 1       # Just one beta type in beta-point
 
@@ -27,10 +27,10 @@ working_T = 41*4              # Number of working periods
 retired_T = 55*4              # Number of retired periods
 T_cycle = working_T+retired_T # Total number of periods
 CRRA = 1.0                    # Coefficient of relative risk aversion   
-DiscFac_guess = 0.99          # Initial starting point for discount factor
+DiscFac_guess = 0.97          # Initial starting point for discount factor
 UnempPrb = 0.07               # Probability of unemployment while working
 UnempPrbRet = 0.0005          # Probabulity of "unemployment" while retired
-IncUnemp = 0.15               # Unemployment benefit replacement rate
+IncUnemp = 0.6  #0.15               # Unemployment benefit replacement rate
 IncUnempRet = 0.0             # Ditto when retired
 BoroCnstArt = 0.0             # Artificial borrowing constraint
 

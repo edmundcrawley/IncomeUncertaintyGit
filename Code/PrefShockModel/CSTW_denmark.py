@@ -163,6 +163,7 @@ class cstwMPCmarket_denmark(cstwMPCmarket):
         
         # Make a string of results to display
         results_string = 'Estimate is center=' + str(self.center_estimate) + ', spread=' + str(self.spread_estimate) + '\n'
+        results_string += 'KtoY is ' + str(self.KtoYnow) + '\n'
         results_string += 'Lorenz distance is ' + str(self.LorenzDistance) + '\n'
         results_string += 'Average MPC for all consumers is ' + mystr(MPCall) + '\n'
         results_string += 'Average MPC in the top percentile of W/Y is ' + mystr(MPCbyWealthRatio[0]) + '\n'
@@ -204,7 +205,7 @@ KY_target = 6.60
 if Params.do_pref_shocks:
     agent_params = copy(Params.init_infinite)
     
-    agent_params['PrefShkStd'] = [0.00001]
+    agent_params['PrefShkStd'] = [0.6]
     agent_params['PrefShkCount'] = 3
     agent_params['LaborElas'] = 0.0
 
@@ -221,7 +222,7 @@ for n in range(Params.pref_type_count):
 # Give all the AgentTypes different seeds
 for j in range(len(EstimationAgentList)):
     EstimationAgentList[j].seed = j
-    EstimationAgentList[j].track_vars = ['t_age','cNrmNow','pLvlNow','TranShkNow','pLvlNow','bNrmNow']
+    EstimationAgentList[j].track_vars = ['t_age','cNrmNow','pLvlNow','TranShkNow','pLvlNow','bNrmNow','MPCnow']
     
 # Make an economy for the consumers to live in
 EstimationEconomy = cstwMPCmarket_denmark(**Params.init_market)
@@ -252,12 +253,39 @@ spread_range = [0.006,0.008]
 #t_end = clock()
 #print('Estimate is center=' + str(center_estimate) + ', spread=' + str(spread_estimate) + ', took ' + str((t_end-t_start)/60.0) + ' minutes.')
 
+
+def Objective(center_spread, Economy, param_name, param_count, dist_type):
+    Economy(LorenzBool = True) # Make sure we actually calculate simulated Lorenz points
+    Economy.distributeParams(param_name,param_count,center_spread[0],center_spread[1],dist_type) # Distribute parameters
+    Economy.solveAgents()
+    Economy.makeHistory()
+    dist = Economy.calcLorenzDistance()
+    KYratioDiff = Economy.calcKYratioDifference()
+    Economy(LorenzBool = False)
+    print ('center = ' + str(center_spread[0]) +' spread = ' + str(center_spread[1]) )
+    print ('KtoYDiff = ' + str(KYratioDiff) +' Lorenz diff = ' + str(dist))
+    to_minimize = 100*KYratioDiff**2 + dist
+    return to_minimize
+
+bounds = bounds=[(0.95,0.99),(0.006,0.04)]
+options = dict()
+options['maxiter']=10
+options['disp']=True
+    
+t_start = clock()
+solution = sc.optimize.minimize(Objective, [0.975,0.02], (EstimationEconomy, Params.param_name, Params.pref_type_count, Params.dist_type),bounds=bounds,options=options)
+center_estimate = solution.x[0]
+spread_estimate = solution.x[1]
+t_end = clock()
+print('Estimate is center=' + str(center_estimate) + ', spread=' + str(spread_estimate) + ', took ' + str((t_end-t_start)/60.0) + ' minutes.')
+
+
 # Display statistics about the estimated model
 #center_estimate = 0.986609223266
 #spread_estimate = 0.00853886395698
 
-center_estimate=0.974458239575
-spread_estimate=0.0213638661052
+#center_estimate=0.974458239575
+#spread_estimate=0.0213638661052
 
 EstimationEconomy.LorenzBool = True
 EstimationEconomy.ManyStatsBool = True
@@ -270,7 +298,7 @@ EstimationEconomy.spread_estimate = spread_estimate
 EstimationEconomy.showManyStats(Params.spec_name)
 
 # Get time aggregated income and consumption over 1 year
-C_agg, Y_agg, B_agg = SelectMicroSample(EstimationEconomy,10,4,False,False)
+C_agg, Y_agg, B_agg, MPC_agg = SelectMicroSample(EstimationEconomy,10,4,False,False,True)
 #normalize by 'permanent' income
 Y_agg_nrm = Y_agg/np.mean(Y_agg,0)
 C_agg_nrm = C_agg/np.mean(Y_agg,0)
@@ -286,14 +314,17 @@ quantiles = np.array([20,40,60,80])
 quantile_cutoffs = np.percentile(B_agg_average,quantiles)
 which_quantile = np.digitize(B_agg_average,quantile_cutoffs)
 
-estimation_output = np.zeros((num_quantiles,4))
+estimation_output = np.zeros((num_quantiles,5))
 for i in range(num_quantiles):
-    estimation_output[i,:] = CS_estimation(C_agg_nrm[:,which_quantile==i], Y_agg_nrm[:,which_quantile==i],n1,n2)
+    estimation_output[i,0:4] = CS_estimation(C_agg_nrm[:,which_quantile==i], Y_agg_nrm[:,which_quantile==i],n1,n2)
+    estimation_output[i,4] = np.mean(MPC_agg[:,which_quantile==i])
 
 if Params.do_pref_shocks:
     np.savetxt('./Results/cstw_denmark_pref_shocks.txt',estimation_output)
+    np.savetxt('./Results/cstw_denmark_pref_centerspread.txt',[center_estimate,spread_estimate])
 else:
     np.savetxt('./Results/cstw_denmark.txt',estimation_output)
+    np.savetxt('./Results/cstw_denmark_centerspread.txt',[center_estimate,spread_estimate])
 
 
 

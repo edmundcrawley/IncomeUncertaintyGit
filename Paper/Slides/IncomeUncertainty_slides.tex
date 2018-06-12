@@ -1,3 +1,4 @@
+\input{./econtexRoot}\input{\econtexRoot/econtexPaths.tex}
 \documentclass{beamer}
 \usepackage{remreset}
 \usepackage{etoolbox}
@@ -6,9 +7,12 @@
 %\usepackage{dtklogos}
 \usepackage{dsfont}
 \usepackage{amsmath,amssymb}
+\usepackage{econtexShortcuts}
 \usepackage{tikz} 
 \usepackage{cancel}
 \setbeamercovered{invisible}
+
+\usepackage{dcolumn}
 
 
 \makeatletter
@@ -25,6 +29,7 @@
 \date[6/21/2018]{June 21, 2018}
 \usetheme{Frankfurt}
 \begin{document}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
 
 
 \frame{\titlepage}
@@ -448,10 +453,64 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	How does this compare with a standard buffer-stock saving model?
 	\begin{itemize}
 		\item Build model to match Danish income process
-		\item Allow \textit{heterogenous discount factors} in order to match the distribution of \textit{liquid} assets in Denmark
+		\item Allow \textit{heterogeneous discount factors} in order to match the distribution of \textit{liquid} assets in Denmark
 		\item See how the distribution of transitory MPX varies with liquid asset holdings
 	\end{itemize}
-
+}
+\frame
+{
+	\frametitle{Model}
+Given market resources ($\boldmath{\mLevBF}_t$), households in this model maximize expected utility:
+\begin{align*}
+\mathbb{E}_t \sum_{i=t}^{\infty} \beta^i(1-D)^i  u(\cLevBF_i)
+\end{align*}
+subject to the constraints:
+\begin{align*}
+\aLevBF_t = \mLevBF_t - \cLevBF_t \\
+\bLevBF_t = R\aLevBF_t \\
+\yLevBF_t = \theta_t \pLevBF_t \\
+\pLevBF_t = \Psi_t \pLevBF_{t-1} \\
+\mLevBF_t = \bLevBF_t + \yLevBF_t
+\end{align*}
+}
+\frame
+{
+	\frametitle{Model}
+Calibration table\\
+Fit to wealth distribution
+}
+\frame
+{
+	\frametitle{Model}
+	How does the model compare with the data?
+	\begin{columns}
+	\column{0.5\linewidth}
+	\centering
+	\includegraphics[scale=0.35]{../Figures/CSTW_perm_denmark.png}
+	\column{0.5\linewidth}
+	\centering
+	\includegraphics[scale=0.35]{../Figures/CSTW_tran_denmark.png}
+	\end{columns} 
+}
+\section{Robustness}
+\frame
+{
+	\frametitle{Sources of Bias}
+  \begin{minipage}{\textwidth}
+  \begin{table}
+	\label{table:sourcesofbias}
+	\begin{tabular}{lcc}  
+		\\ & \multicolumn{2}{c}{\textbf{Direction of Bias} }  
+		\\ & Perm MPX & Tran MPX
+		\\ \hline
+		\\ Income Measurement Error &  Neutral & +ve
+		\\ Permanent Shock Decays & Neutral & +ve
+		\\ Persistent Consumption Response & +ve & -ve
+		\\ Endogenous Income Shocks & Neutral & +ve
+		\\ Non-linear MPX	& ? & ?
+	\end{tabular}
+	\end{table}
+	\end{minipage}
 }
 \end{document}
 

@@ -68,8 +68,19 @@
 \headcommand {\beamer@subsectionpages {29}{40}}
 \headcommand {\slideentry {5}{1}{27}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\beamer@partpages {1}{41}}
-\headcommand {\beamer@subsectionpages {41}{41}}
-\headcommand {\beamer@sectionpages {41}{41}}
-\headcommand {\beamer@documentpages {41}}
-\headcommand {\def \inserttotalframenumber {27}}
+\headcommand {\slideentry {5}{1}{28}{42/42}{}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {5}{1}{29}{43/43}{}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {5}{1}{30}{44/44}{}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\sectionentry {6}{Robustness}{45}{Robustness}{0}}
+\headcommand {\beamer@sectionpages {41}{44}}
+\headcommand {\beamer@subsectionpages {41}{44}}
+\headcommand {\slideentry {6}{1}{31}{45/45}{}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\beamer@partpages {1}{45}}
+\headcommand {\beamer@subsectionpages {45}{45}}
+\headcommand {\beamer@sectionpages {45}{45}}
+\headcommand {\beamer@documentpages {45}}
+\headcommand {\def \inserttotalframenumber {31}}

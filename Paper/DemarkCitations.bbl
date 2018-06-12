@@ -1,0 +1,226 @@
+\ifx\undefined\BySame
+\newcommand{\BySame}{\leavevmode\rule[.5ex]{3em}{.5pt}\ }
+\fi
+\ifx\undefined\textsc
+\newcommand{\textsc}[1]{{\sc #1}}
+\newcommand{\emph}[1]{{\em #1\/}}
+\let\tmpsmall\small
+\renewcommand{\small}{\tmpsmall\sc}
+\fi
+\begin{thebibliography}{}
+
+\harvarditem[noa]{noa}{????}{noauthor_imputing_nodate}
+ (????): ``Imputing consumption in the {PSID} using food demand estimates from
+  the {CEX} ({PDF} {Download} {Available}),'' .
+
+\harvarditem[Agarwal and Qian]{Agarwal and
+  Qian}{2014}{agarwal_consumption_2014}
+\textsc{Agarwal, Sumit,  {and} Wenlan Qian}  (2014): ``Consumption and {Debt}
+  {Response} to {Unanticipated} {Income} {Shocks}: {Evidence} from a {Natural}
+  {Experiment} in {Singapore},'' \emph{American Economic Review}, 104(12),
+  4205--4230.
+
+\harvarditem[Arellano, Blundell, and Bonhomme]{Arellano, Blundell, and
+  Bonhomme}{2017}{arellano_earnings_2017}
+\textsc{Arellano, Manuel, Richard Blundell,  {and} St\'ephane Bonhomme}
+  (2017): ``Earnings and {Consumption} {Dynamics}: {A} {Nonlinear} {Panel}
+  {Data} {Framework},'' \emph{Econometrica}, 85(3), 693--734.
+
+\harvarditem[Attanasio and Weber]{Attanasio and Weber}{1995}{attanasio_is_1995}
+\textsc{Attanasio, Orazio~P.,  {and} Guglielmo Weber}  (1995): ``Is
+  {Consumption} {Growth} {Consistent} with {Intertemporal} {Optimization}?
+  {Evidence} from the {Consumer} {Expenditure} {Survey},'' \emph{Journal of
+  Political Economy}, 103(6), 1121--1157.
+
+\harvarditem[Auclert]{Auclert}{2015}{auclert_monetary_2015}
+\textsc{Auclert, Adrien}  (2015): ``Monetary policy and the redistribution
+  channel,'' \emph{Unpublished manuscript}.
+
+\harvarditem[Baker]{Baker}{2015}{baker_debt_2015}
+\textsc{Baker, Scott~R.}  (2015): ``Debt and the {Consumption} {Response} to
+  {Household} {Income} {Shocks},'' {SSRN} {Scholarly} {Paper} ID 2541142,
+  Social Science Research Network, Rochester, NY.
+
+\harvarditem[Blundell, Pistaferri, and Preston]{Blundell, Pistaferri, and
+  Preston}{2008}{blundell_consumption_2008}
+\textsc{Blundell, Richard, Luigi Pistaferri,  {and} Ian Preston}  (2008):
+  ``Consumption {Inequality} and {Partial} {Insurance},'' \emph{American
+  Economic Review}, 98(5), 1887--1921.
+
+\harvarditem[Broda and Parker]{Broda and Parker}{2014}{broda_economic_2014}
+\textsc{Broda, Christian,  {and} Jonathan~A. Parker}  (2014): ``The {Economic}
+  {Stimulus} {Payments} of 2008 and the {Aggregate} {Demand} for
+  {Consumption},'' \emph{Journal of Monetary Economics}, 68, S20--S36.
+
+\harvarditem[Browning and Leth-Petersen]{Browning and
+  Leth-Petersen}{2003}{browning_imputing_2003}
+\textsc{Browning, Martin,  {and} S{\o}ren Leth-Petersen}  (2003): ``Imputing
+  consumption from income and wealth information,'' \emph{Economic Journal},
+  113(488), F282--F301.
+
+\harvarditem[Campbell and Deaton]{Campbell and Deaton}{1989}{campbell_why_1989}
+\textsc{Campbell, John,  {and} Angus Deaton}  (1989): ``Why is {Consumption}
+  {So} {Smooth}?,'' \emph{The Review of Economic Studies}, 56(3), 357--373.
+
+\harvarditem[Campbell and Mankiw]{Campbell and
+  Mankiw}{1989}{campbell_consumption_1989}
+\textsc{Campbell, John~Y.,  {and} N.~Gregory Mankiw}  (1989): ``Consumption,
+  {Income} and {Interest} {Rates}: {Reinterpreting} the {Time} {Series}
+  {Evidence},'' {NBER} {Chapters}, National Bureau of Economic Research, Inc.
+
+\harvarditem[Carroll and Samwick]{Carroll and
+  Samwick}{1997}{carroll_nature_1997}
+\textsc{Carroll, Christopher,  {and} Andrew Samwick}  (1997): ``The nature of
+  precautionary wealth,'' \emph{Journal of Monetary Economics}, 40(1), 41--71.
+
+\harvarditem[Carroll]{Carroll}{2009}{carroll_precautionary_2009}
+\textsc{Carroll, Christopher~D.}  (2009): ``Precautionary saving and the
+  marginal propensity to consume out of permanent income,'' \emph{Journal of
+  Monetary Economics}, 56(6), 780--790.
+
+\harvarditem[Carroll, Slacalek, Tokuoka, and White]{Carroll, Slacalek, Tokuoka,
+  and White}{2016}{carroll_distribution_2016}
+\textsc{Carroll, Christopher~D., Jiri Slacalek, Kiichi Tokuoka,  {and}
+  Matthew~N. White}  (2016): ``The {Distribution} of {Wealth} and the
+  {Marginal} {Propensity} to {Consume},'' Draft, Johns Hopkins University, At
+  http://econ.jhu.edu/people/ccarroll/papers/cstwMPC (this is a revision of
+  http://econ.jhu.edu/people/ccarroll/papers/cstMPC{\textbackslash}textttcstMPC).
+
+\harvarditem[Commault]{Commault}{2017}{commault_how_2017}
+\textsc{Commault, Jeanne}  (2017): ``How {Does} {Consumption} {Respond} to a
+  {Transitory} {Income} {Shock}? {Reconciling} {Natural} {Experiments} and
+  {Structural} {Estimations},'' .
+
+\harvarditem[Fagereng and Halvorsen]{Fagereng and
+  Halvorsen}{2015}{fagereng_imputing_2015}
+\textsc{Fagereng, Andreas,  {and} Elin Halvorsen}  (2015): ``Imputing
+  consumption from {Norwegian} income and wealth registry data,'' Discussion
+  {Paper}, Statistics Norway, Research Department.
+
+\harvarditem[Fagereng, Holm, and Natvik]{Fagereng, Holm, and
+  Natvik}{2016}{fagereng_mpc_2016}
+\textsc{Fagereng, Andreas, M.~B. Holm,  {and} G.~J. Natvik}  (2016): ``{MPC}
+  {Heterogeneity} and {Household} {Balance} {Sheets},'' \emph{Discussion Paper,
+  Statistics Norway}.
+
+\harvarditem[Fuster, Kaplan, and Zafar]{Fuster, Kaplan, and
+  Zafar}{2018}{fuster_what_2018}
+\textsc{Fuster, Andreas, Greg Kaplan,  {and} Basit Zafar}  (2018): ``What
+  {Would} {You} {Do} {With} \$500? {Spending} {Responses} to {Gains}, {Losses},
+  {News} and {Loans},'' Working {Paper} 24386, National Bureau of Economic
+  Research.
+
+\harvarditem[Ganong and Noel]{Ganong and Noel}{2017}{ganong_consumer_2017}
+\textsc{Ganong, Peter,  {and} Pascal Noel}  (2017): ``Consumer {Spending}
+  {During} {Unemployment}: {Positive} and {Normative} {Implications},'' .
+
+\harvarditem[Gelman]{Gelman}{2016}{gelman_what_2016}
+\textsc{Gelman, Michael}  (2016): ``What Drives Heterogeneity in the Marginal
+  Propensity to Consume? Temporary Shocks vs Persistent Characteristics,'' .
+
+\harvarditem[Gelman, Gorodnichenko, Kariv, Koustas, Shapiro, Silverman, and
+  Tadelis]{Gelman, Gorodnichenko, Kariv, Koustas, Shapiro, Silverman, and
+  Tadelis}{2016}{gelman_response_2016}
+\textsc{Gelman, Michael, Yuriy Gorodnichenko, Shachar Kariv, Dmitri Koustas,
+  Matthew~D. Shapiro, Dan Silverman,  {and} Steven Tadelis}  (2016): ``The
+  {Response} of {Consumer} {Spending} to {Changes} in {Gasoline} {Prices},''
+  Working {Paper} 22969, National Bureau of Economic Research.
+
+\harvarditem[Gelman, Kariv, Shapiro, Silverman, and Tadelis]{Gelman, Kariv,
+  Shapiro, Silverman, and Tadelis}{2015}{gelman_how_2015}
+\textsc{Gelman, Michael, Shachar Kariv, Matthew~D. Shapiro, Dan Silverman,
+  {and} Steven Tadelis}  (2015): ``How {Individuals} {Respond} to a {Liquidity}
+  {Shock}: {Evidence} from the 2013 {Government} {Shutdown},'' Working {Paper}
+  21025, National Bureau of Economic Research.
+
+\harvarditem[Heathcote, Perri, and Violante]{Heathcote, Perri, and
+  Violante}{2010}{heathcote_unequal_2010}
+\textsc{Heathcote, Jonathan, Fabrizio Perri,  {and} Giovanni~L. Violante}
+  (2010): ``Unequal we stand: {An} empirical analysis of economic inequality in
+  the {United} {States}, 1967-2006,'' \emph{Review of Economic Dynamics},
+  13(1), 15--51.
+
+\harvarditem[Jappelli and Pistaferri]{Jappelli and
+  Pistaferri}{2010}{jappelli_consumption_2010}
+\textsc{Jappelli, Tullio,  {and} Luigi Pistaferri}  (2010): ``The {Consumption}
+  {Response} to {Income} {Changes},'' \emph{Annual Review of Economics}, 2(1),
+  479--506.
+
+\harvarditem[Kaplan, Moll, and Violante]{Kaplan, Moll, and
+  Violante}{2016}{kaplan_monetary_2016}
+\textsc{Kaplan, Greg, Benjamin Moll,  {and} Giovanni~L. Violante}  (2016):
+  ``Monetary {Policy} {According} to {HANK},'' Working {Paper} 21897, National
+  Bureau of Economic Research.
+
+\harvarditem[Kaplan and Violante]{Kaplan and Violante}{2010}{kaplan_how_2010}
+\textsc{Kaplan, Greg,  {and} Giovanni~L. Violante}  (2010): ``How {Much}
+  {Consumption} {Insurance} beyond {Self}-{Insurance}?,'' \emph{American
+  Economic Journal: Macroeconomics}, 2(4), 53--87.
+
+\harvarditem[Koustas]{Koustas}{2018}{koustas_consumption_2018}
+\textsc{Koustas, Dmitri}  (2018): ``Consumption Insurance and Multiple
+  Jobs:Evidence from Rideshare Drivers,'' .
+
+\harvarditem[Lupton, Sheiner, and Coronado]{Lupton, Sheiner, and
+  Coronado}{2005}{lupton_household_2005}
+\textsc{Lupton, Joseph, Louise Sheiner,  {and} Julia~Lynn Coronado}  (2005):
+  ``The {Household} {Spending} {Response} to the 2003 {Tax} {Cut}: {Evidence}
+  from {Survey} {Data},'' {SSRN} {Scholarly} {Paper} ID 813264, Social Science
+  Research Network, Rochester, NY.
+
+\harvarditem[Meghir and Pistaferri]{Meghir and
+  Pistaferri}{2004}{meghir_income_2004}
+\textsc{Meghir, Costas,  {and} Luigi Pistaferri}  (2004): ``Income {Variance}
+  {Dynamics} and {Heterogeneity},'' \emph{Econometrica}, 72(1), 1--32.
+
+\harvarditem[Moffitt and Gottschalk]{Moffitt and
+  Gottschalk}{2012}{moffitt_trends_2012}
+\textsc{Moffitt, Robert~A.,  {and} Peter Gottschalk}  (2012): ``Trends in the
+  {Transitory} {Variance} of {Male} {Earnings} {Methods} and {Evidence},''
+  \emph{Journal of Human Resources}, 47(1), 204--236.
+
+\harvarditem[Moffitt and Zhang]{Moffitt and Zhang}{2018}{moffitt_income_2018}
+\textsc{Moffitt, Robert~A.,  {and} Sisi Zhang}  (2018): ``Income {Volatility}
+  and the {PSID}: {Past} {Research} and {New} {Results},'' Working {Paper}
+  24390, National Bureau of Economic Research.
+
+\harvarditem[Nielsen and Vissing-jorgensen]{Nielsen and
+  Vissing-jorgensen}{2004}{nielsen_impact_2004}
+\textsc{Nielsen, Helena~Skyt,  {and} Annette Vissing-jorgensen}  (2004):
+  \emph{The {Impact} of {Labor} {Income} {Risk} on {Educational} {Choices}:
+  {Estimates} and {Implied} {Risk} {Aversion}}.
+
+\harvarditem[Parker, Souleles, Johnson, and McClelland]{Parker, Souleles,
+  Johnson, and McClelland}{2013}{parker_consumer_2013}
+\textsc{Parker, Jonathan~A, Nicholas~S Souleles, David~S Johnson,  {and} Robert
+  McClelland}  (2013): ``Consumer spending and the economic stimulus payments
+  of 2008,'' \emph{The American Economic Review}, 103(6), 2530--2553.
+
+\harvarditem[Storesletten, Telmer, and Yaron]{Storesletten, Telmer, and
+  Yaron}{2004}{storesletten_consumption_2004}
+\textsc{Storesletten, Kjetil, Chris Telmer,  {and} Amir Yaron}  (2004):
+  ``Consumption and risk sharing over the life cycle,'' \emph{Journal of
+  Monetary Economics}, 51(3), 609--633.
+
+\harvarditem[Vidangos]{Vidangos}{2013}{vidangos_rising_2013}
+\textsc{Vidangos, Jason~DeBacker, Bradley Heim Shanthi Ramnath {and} Ivan
+  Vasia~Panousi}  (2013): ``Rising {Inequality}: {Transitory} or {Persistent}?
+  {New} {Evidence} from a {Panel} of {U}.{S}. {Tax} {Returns},'' .
+
+\harvarditem[Violante, Kaplan, and Weidner]{Violante, Kaplan, and
+  Weidner}{2014}{violante_wealthy_2014}
+\textsc{Violante, Gianluca, Greg Kaplan,  {and} Justin Weidner}  (2014): ``The
+  {Wealthy} {Hand}-to-{Mouth},'' 2014 {Meeting} {Paper} 192, Society for
+  Economic Dynamics.
+
+\harvarditem[Wong]{Wong}{2016}{wong_population_2016}
+\textsc{Wong, Arlene}  (2016): ``Population aging and the transmission of
+  monetary policy to consumption,'' 2016 {Meeting} {Paper} 716, Society for
+  Economic Dynamics.
+
+\harvarditem[Working]{Working}{1960}{working_note_1960}
+\textsc{Working, Holbrook}  (1960): ``Note on the {Correlation} of {First}
+  {Differences} of {Averages} in a {Random} {Chain},'' \emph{Econometrica},
+  28(4), 916--918.
+
+\end{thebibliography}
