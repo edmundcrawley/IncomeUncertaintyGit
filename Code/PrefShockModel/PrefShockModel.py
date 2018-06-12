@@ -391,6 +391,8 @@ def constructLognormalIncomeAndPreferenceProcess(parameters):
     PrefShkStd    = parameters.PrefShkStd
     PrefShkCount  = parameters.PrefShkCount
     T_cycle       = 1
+    UnempPrb      = parameters.UnempPrb
+    IncUnemp      = parameters.IncUnemp
     
     IncomeDstn    = [] # Discrete approximations to income process in each period
     PermShkDstn   = [] # Discrete approximations to permanent income shocks
@@ -399,6 +401,8 @@ def constructLognormalIncomeAndPreferenceProcess(parameters):
 
     t=0
     TranShkDstn_t    = approxMeanOneLognormal(N=TranShkCount, sigma=TranShkStd[t], tail_N=0)
+    if UnempPrb > 0:
+        TranShkDstn_t = addDiscreteOutcomeConstantMean(TranShkDstn_t, p=UnempPrb, x=IncUnemp)
     #add in a shock at zero to impose natural borrowing constraint
     TranShkDstn_t = addDiscreteOutcomeConstantMean(TranShkDstn_t, p=0.000000001, x=0.0)
     PermShkDstn_t    = approxMeanOneLognormal(N=PermShkCount, sigma=PermShkStd[t], tail_N=0)
