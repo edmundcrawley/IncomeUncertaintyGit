@@ -38,6 +38,12 @@
   ``Consumption {Inequality} and {Partial} {Insurance},'' \emph{American
   Economic Review}, 98(5), 1887--1921.
 
+\harvarditem[Browning and Collado]{Browning and
+  Collado}{2001}{browningCollado:AntIncChanges}
+\textsc{Browning, Martin,  {and} M.~Dolores Collado}  (2001): ``The Response of
+  Expenditures to Anticipated Income Changes: Panel Data Estimates,''
+  \emph{American Economic Review}, 91(3), 681--692.
+
 \harvarditem[Browning and Leth-Petersen]{Browning and
   Leth-Petersen}{2003}{browning_imputing_2003}
 \textsc{Browning, Martin,  {and} S{\o}ren Leth-Petersen}  (2003): ``Imputing
@@ -73,6 +79,12 @@
   {Transitory} {Income} {Shock}? {Reconciling} {Natural} {Experiments} and
   {Structural} {Estimations},'' .
 
+\harvarditem[Coronado, Lupton, and Sheiner]{Coronado, Lupton, and
+  Sheiner}{2005}{coronadoEtAl}
+\textsc{Coronado, Julia~Lynn, Joseph~P. Lupton,  {and} Louise~M. Sheiner}
+  (2005): ``The Household Spending Response to the 2003 Tax Cut: Evidence from
+  Survey Data,'' FEDS discussion paper~32, Federal Reserve Board.
+
 \harvarditem[Crawley]{Crawley}{2018}{crawley_time_2018}
 \textsc{Crawley, Edmund}  (2018): ``Time Aggregation in Panel Data on Income
   and Consumption,'' Mimeo, Department of Economics, Johns Hopkins University.
@@ -102,10 +114,27 @@
   {News} and {Loans},'' Working {Paper} 24386, National Bureau of Economic
   Research.
 
+\harvarditem[Gelman]{Gelman}{2016}{gelman_what_2016}
+\textsc{Gelman, Michael}  (2016): ``What Drives Heterogeneity in the Marginal
+  Propensity to Consume? Temporary Shocks vs Persistent Characteristics,'' .
+
+\harvarditem[Gelman, Gorodnichenko, Kariv, Koustas, Shapiro, Silverman, and
+  Tadelis]{Gelman, Gorodnichenko, Kariv, Koustas, Shapiro, Silverman, and
+  Tadelis}{2016}{gelman_response_2016}
+\textsc{Gelman, Michael, Yuriy Gorodnichenko, Shachar Kariv, Dmitri Koustas,
+  Matthew~D. Shapiro, Dan Silverman,  {and} Steven Tadelis}  (2016): ``The
+  {Response} of {Consumer} {Spending} to {Changes} in {Gasoline} {Prices},''
+  Working {Paper} 22969, National Bureau of Economic Research.
+
 \harvarditem[Hall]{Hall}{1978}{hall_stochastic_1978}
 \textsc{Hall, Robert~E.}  (1978): ``Stochastic {Implications} of the
   {Life}-{Cycle}/{Permanent} {Income} {Hypothesis}: {Theory} and {Evidence},''
   \emph{Journal of Political Economy}, 96, 971--87.
+
+\harvarditem[Hausman]{Hausman}{2012}{hausmanVeteransBonus}
+\textsc{Hausman, Joshua~K.}  (2012): ``Fiscal Policy and Economic Recovery: The
+  Case of the 1936 Veterans' Bonus,'' mimeo, University of California,
+  Berkeley.
 
 \harvarditem[Heathcote, Perri, and Violante]{Heathcote, Perri, and
   Violante}{2010}{heathcote_unequal_2010}
@@ -113,6 +142,11 @@
   (2010): ``Unequal we stand: {An} empirical analysis of economic inequality in
   the {United} {States}, 1967-2006,'' \emph{Review of Economic Dynamics},
   13(1), 15--51.
+
+\harvarditem[Hsieh]{Hsieh}{2003}{hsieh:alaska}
+\textsc{Hsieh, Chang-Tai}  (2003): ``Do Consumers React to Anticipated Income
+  Changes? Evidence from the Alaska Permanent Fund,'' \emph{American Economic
+  Review}, 99, 397--405.
 
 \harvarditem[Jappelli and Pistaferri]{Jappelli and
   Pistaferri}{2010}{jappelli_consumption_2010}
@@ -130,6 +164,12 @@
 \textsc{Johnson, David~S., Jonathan~A. Parker,  {and} Nicholas~S. Souleles}
   (2006): ``Household {Expenditure} and the {Income} {Tax} {Rebates} of 2001,''
   \emph{American Economic Review}, 96(5), 1589--1610.
+
+\harvarditem[Johnson, Parker, and Souleles]{Johnson, Parker, and
+  Souleles}{2009}{johnsonEtAl:2003childTaxCredit}
+\textsc{\BySame{}}  (2009): ``The Response of Consumer Spending to Rebates
+  During an Expansion: Evidence from the 2003 Child Tax Credit,'' working
+  paper, The Wharton School.
 
 \harvarditem[Kaplan, Moll, and Violante]{Kaplan, Moll, and
   Violante}{2016}{kaplan_monetary_2016}
@@ -152,6 +192,11 @@
   ``Macroeconomics and {Household} {Heterogeneity},'' Working {Paper} 22319,
   National Bureau of Economic Research.
 
+\harvarditem[Lusardi]{Lusardi}{1996}{lusardi}
+\textsc{Lusardi, Annamaria}  (1996): ``Permanent Income, Current Income, and
+  Consumption: Evidence from Two Panel Data Sets,'' \emph{Journal of Business
+  and Economic Statistics}, 14(1), 81--90.
+
 \harvarditem[Meghir and Pistaferri]{Meghir and
   Pistaferri}{2004}{meghir_income_2004}
 \textsc{Meghir, Costas,  {and} Luigi Pistaferri}  (2004): ``Income {Variance}
@@ -169,6 +214,11 @@
   \emph{The {Impact} of {Labor} {Income} {Risk} on {Educational} {Choices}:
   {Estimates} and {Implied} {Risk} {Aversion}}.
 
+\harvarditem[Parker]{Parker}{1999}{parkerSocSec}
+\textsc{Parker, Jonathan~A.}  (1999): ``The Reaction of Household Consumption
+  to Predictable Changes in Social Security Taxes,'' \emph{American Economic
+  Review}, 89(4), 959--973.
+
 \harvarditem[Parker, Souleles, Johnson, and McClelland]{Parker, Souleles,
   Johnson, and McClelland}{2013}{parker_consumer_2013}
 \textsc{Parker, Jonathan~A, Nicholas~S Souleles, David~S Johnson,  {and} Robert
@@ -180,10 +230,25 @@
   {Estimates} of the {Frisch} {Labor} {Supply} {Elasticity},'' \emph{Economic
   Inquiry}, 54(1), 100--120.
 
+\harvarditem[Sahm, Shapiro, and Slemrod]{Sahm, Shapiro, and
+  Slemrod}{2010}{Sahmetal:2008TaxRebates}
+\textsc{Sahm, Claudia~R., Matthew~D. Shapiro,  {and} Joel~B. Slemrod}  (2010):
+  ``Household Response to the 2008 Tax Rebate: Survey Evidence and Aggregate
+  Implications,'' \emph{Tax Policy and the Economy}, 24, 69--110.
+
+\harvarditem[Shapiro and Slemrod]{Shapiro and Slemrod}{2009}{ssBang}
+\textsc{Shapiro, Matthew~D.,  {and} Joel Slemrod}  (2009): ``Did the 2008 Tax
+  Rebates Stimulate Spending?,'' \emph{American Economic Review}, 99(2),
+  374--79.
+
 \harvarditem[Souleles]{Souleles}{1999}{souleles_response_1999}
 \textsc{Souleles, Nicholas~S.}  (1999): ``The {Response} of {Household}
   {Consumption} to {Income} {Tax} {Refunds},'' \emph{American Economic Review},
   89(4), 947--958.
+
+\harvarditem[Souleles]{Souleles}{2002}{souleles:responseToReaganCuts}
+\textsc{\BySame{}}  (2002): ``Consumer Response to the Reagan Tax Cuts,''
+  \emph{Journal of Public Economics}, 85, 99--120.
 
 \harvarditem[Thaler]{Thaler}{1985}{thaler_mental_1985}
 \textsc{Thaler, Richard}  (1985): ``Mental {Accounting} and {Consumer}

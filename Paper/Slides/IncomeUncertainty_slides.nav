@@ -79,8 +79,15 @@
 \headcommand {\beamer@subsectionpages {41}{44}}
 \headcommand {\slideentry {6}{1}{31}{45/45}{}{0}}
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\beamer@partpages {1}{45}}
-\headcommand {\beamer@subsectionpages {45}{45}}
+\headcommand {\sectionentry {7}{References}{46}{References}{0}}
 \headcommand {\beamer@sectionpages {45}{45}}
-\headcommand {\beamer@documentpages {45}}
-\headcommand {\def \inserttotalframenumber {31}}
+\headcommand {\beamer@subsectionpages {45}{45}}
+\headcommand {\slideentry {7}{1}{32}{46/46}{}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\slideentry {7}{1}{32}{46/47}{}{0}}
+\headcommand {\beamer@framepages {46}{47}}
+\headcommand {\beamer@partpages {1}{47}}
+\headcommand {\beamer@subsectionpages {45}{47}}
+\headcommand {\beamer@sectionpages {45}{47}}
+\headcommand {\beamer@documentpages {47}}
+\headcommand {\def \inserttotalframenumber {33}}

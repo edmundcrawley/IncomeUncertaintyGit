@@ -130,6 +130,7 @@
   *{package}{caption}     {2016/02/21 v3.3-144}
   *{package}{caption3}    {2016/05/22 v1.7-166}
   *{package}{titlesec}    {2016/03/21 v2.10.2}
+  *{package}{rotating}    {2016/05/22 v2.16c}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2016/05/15 v2.6}
@@ -143,7 +144,6 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/MPCEmpiricalTable.JPG}{0000/00/00 v0.0}
   *{file}   {./Figures/MPCDistributionAuclert.JPG}{0000/00/00 v0.0}
   *{file}   {./Figures/basic_regression.png}{0000/00/00 v0.0}
   *{file}   {./Figures/timeagg_rw.pdf}{0000/00/00 v0.0}

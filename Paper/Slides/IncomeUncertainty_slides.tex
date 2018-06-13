@@ -8,8 +8,10 @@
 \usepackage{dsfont}
 \usepackage{amsmath,amssymb}
 \usepackage{econtexShortcuts}
+\usepackage[english]{babel}
 \usepackage{tikz} 
 \usepackage{cancel}
+\usepackage{booktabs,natbib}
 \setbeamercovered{invisible}
 
 \usepackage{dcolumn}
@@ -81,13 +83,11 @@ The Danish data allows us to build a detailed picture of the distribution over d
 \frame
 {
 	\frametitle{Evidence on Magnitude of Consumption Response}
-	\begin{center}
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=5cm]{../Figures/MPCEmpiricalTable}};
-	\end{tikzpicture}
-	\tiny{Table from Carroll et al 2018}
-\end{center}
-Rough consensus on (3 month) MPC $\sim 30\%$
+	\resizebox{\textwidth}{!}{
+	\centering
+		\input ../Tables/MPCLiterature.tex }
+\tiny{$^{\star}$ Elasticity. Methods: 1) Natural Experiment 2) Survey question 3) Covariance restrictions} \\
+\scriptsize Rough consensus on (3 month) transitory MPC $\sim 30\%$
 }
 \frame
 {
@@ -512,6 +512,22 @@ Fit to wealth distribution
 	\end{table}
 	\end{minipage}
 }
+
+
+%%%%%%%%%%%%%%%  bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tiny
+
+\beamerdefaultoverlayspecification{<*>}
+
+\begin{frame}[t,allowframebreaks]
+	\frametitle{References}
+	
+	\bibliographystyle{econtex}
+	\bibliography{../AllPapers}
+\end{frame}
+
+\normalsize
 \end{document}
 
 
