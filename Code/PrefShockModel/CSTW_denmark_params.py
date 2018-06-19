@@ -7,7 +7,7 @@ from copy import  deepcopy
 import os
 
 # Choose percentiles of the data to match and which estimation to run
-do_pref_shocks = False
+do_pref_shocks = True
 
 spec_name = 'BetaDistPY'
 dist_type = 'uniform'         # Which type of distribution to use

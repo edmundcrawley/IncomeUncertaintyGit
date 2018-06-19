@@ -20,6 +20,7 @@ from BPPestimation import SelectMicroSample, CS_estimation
 from scipy.optimize import golden, brentq
 from copy import copy, deepcopy
 from time import clock
+import matplotlib.pyplot as plt
 mystr = lambda number : "{:.4f}".format(number)
 
 class cstwMPCmarket_denmark(cstwMPCmarket):
@@ -95,7 +96,8 @@ class cstwMPCmarket_denmark(cstwMPCmarket):
             IncLvl = TranShk*pLvl # Labor income this period
                 
             # Calculate overall population MPC and by subpopulations
-            MPCsixmonths = 1.0 - (1.0 - MPC)**2
+            #MPCsixmonths = 1.0 - 0.25*((1.0 - MPC) + (1.0 - MPC)**2 + (1.0 - MPC)**3 + (1.0 - MPC)**4)
+            MPCsixmonths = 1.0 - (1.0 - MPC)**2 
             self.MPCall = np.sum(MPCsixmonths*CohortWeight)/np.sum(CohortWeight)
             employed =  Emp
             unemployed = np.logical_not(employed)
@@ -198,9 +200,13 @@ class cstwMPCmarket_denmark(cstwMPCmarket):
                 f.close()
 
 
-# Target wealth distribution - need to check this with Danish data
-lorenz_target = np.array([0.0, 0.004, 0.025,0.117])
-KY_target = 6.60
+## Target wealth distribution - need to check this with Danish data
+#lorenz_target = np.array([0.0, 0.004, 0.025,0.117])
+#KY_target = 6.60
+                
+# From Danish Data
+lorenz_target = np.array([0.0031, 0.0176866, 0.0584487,0.1828])
+KY_target = 2.87939
 
 if Params.do_pref_shocks:
     agent_params = copy(Params.init_infinite)
@@ -239,53 +245,23 @@ EstimationEconomy.ignore_periods = Params.ignore_periods_PY
 param_range = [0.95,0.995]
 spread_range = [0.006,0.008]
 
-## Run the param-dist estimation
-#paramDistObjective = lambda spread : findLorenzDistanceAtTargetKY(
-#                                                Economy = EstimationEconomy,
-#                                                param_name = Params.param_name,
-#                                                param_count = Params.pref_type_count,
-#                                                center_range = param_range,
-#                                                spread = spread,
-#                                                dist_type = Params.dist_type)
+# Run the param-dist estimation
+paramDistObjective = lambda spread : findLorenzDistanceAtTargetKY(
+                                                Economy = EstimationEconomy,
+                                                param_name = Params.param_name,
+                                                param_count = Params.pref_type_count,
+                                                center_range = param_range,
+                                                spread = spread,
+                                                dist_type = Params.dist_type)
 #t_start = clock()
 #spread_estimate = golden(paramDistObjective,brack=spread_range,tol=1e-4)
 #center_estimate = EstimationEconomy.center_save
 #t_end = clock()
 #print('Estimate is center=' + str(center_estimate) + ', spread=' + str(spread_estimate) + ', took ' + str((t_end-t_start)/60.0) + ' minutes.')
 
+spread_estimate = 9.537961248790000068e-01
+center_estimate = 4.559753666590000282e-02
 
-def Objective(center_spread, Economy, param_name, param_count, dist_type):
-    Economy(LorenzBool = True) # Make sure we actually calculate simulated Lorenz points
-    Economy.distributeParams(param_name,param_count,center_spread[0],center_spread[1],dist_type) # Distribute parameters
-    Economy.solveAgents()
-    Economy.makeHistory()
-    dist = Economy.calcLorenzDistance()
-    KYratioDiff = Economy.calcKYratioDifference()
-    Economy(LorenzBool = False)
-    print ('center = ' + str(center_spread[0]) +' spread = ' + str(center_spread[1]) )
-    print ('KtoYDiff = ' + str(KYratioDiff) +' Lorenz diff = ' + str(dist))
-    to_minimize = 100*KYratioDiff**2 + dist
-    return to_minimize
-
-bounds = bounds=[(0.95,0.99),(0.006,0.04)]
-options = dict()
-options['maxiter']=10
-options['disp']=True
-    
-t_start = clock()
-solution = sc.optimize.minimize(Objective, [0.975,0.02], (EstimationEconomy, Params.param_name, Params.pref_type_count, Params.dist_type),bounds=bounds,options=options)
-center_estimate = solution.x[0]
-spread_estimate = solution.x[1]
-t_end = clock()
-print('Estimate is center=' + str(center_estimate) + ', spread=' + str(spread_estimate) + ', took ' + str((t_end-t_start)/60.0) + ' minutes.')
-
-
-# Display statistics about the estimated model
-#center_estimate = 0.986609223266
-#spread_estimate = 0.00853886395698
-
-#center_estimate=0.974458239575
-#spread_estimate=0.0213638661052
 
 EstimationEconomy.LorenzBool = True
 EstimationEconomy.ManyStatsBool = True
@@ -325,7 +301,49 @@ if Params.do_pref_shocks:
 else:
     np.savetxt('./Results/cstw_denmark.txt',estimation_output)
     np.savetxt('./Results/cstw_denmark_centerspread.txt',[center_estimate,spread_estimate])
+    
+LorenzSim = np.hstack((np.array(0.0),np.mean(np.array(EstimationEconomy.LorenzLong_hist)[EstimationEconomy.ignore_periods:,:],axis=0),np.array(1.0)))
+LorenzAxis = np.arange(101,dtype=float)
+#plt.plot(LorenzAxis,EstimationEconomy.LorenzData,'-k',linewidth=1.5)
+plt.plot(np.array(np.append(np.append([0],EstimationEconomy.LorenzPercentiles),[1]))*100,np.append(np.append([0],EstimationEconomy.LorenzData),[1]),'-k',linewidth=1.5)
+plt.plot(LorenzAxis,LorenzSim,'--k',linewidth=1.5)
+plt.xlabel('Percentile',fontsize=12)
+plt.ylabel('Cumulative liquid wealth share',fontsize=12)
+plt.ylim([-0.02,1.0])
+plt.savefig('./Figures/Lorenz.png')
+plt.show()
+        
 
+#Print calibration table
+paper_output = "\\begin{minipage}{\\textwidth}\n"
+paper_output += "  \\begin{table}\n"
+paper_output += "    \\caption{Calibration}\label{table:calibration}\n"
+
+paper_output += "\\begin{tabular}{cd{5}l}  \n"
+paper_output += "\\\\ \\toprule  \n"
+# Idiosyncratic shock parameters
+paper_output += "\multicolumn{3}{c}{ \\textbf{Calibrated Parameters} }  \n"
+paper_output += "\\\\ $\sigma_{\\theta}^{2}$    & " + "{:.3f}".format(Params.init_infinite['TranShkStd'][0]**2) +"     & Variance Tran Shocks (=$4 \\times$ {:.3f}".format(0.25*Params.init_infinite['TranShkStd'][0]**2) +" Annual) \n"
+paper_output += "\\\\ $\sigma_{\psi}^{2}$      &" + "{:.3f}".format(Params.init_infinite['PermShkStd'][0]**2) +"      & Variance Perm Shocks (=$0.25 \\times$ {:.3f}".format(4.0*Params.init_infinite['PermShkStd'][0]**2) +" Annual) \n"
+paper_output += "\\\\ $\wp$                    & " + "{:.3f}".format(Params.init_infinite['UnempPrb']) +"  & Probability of Unemployment Spell \n"
+paper_output += "\\\\ $\\theta^u$                    & " + "{:.3f}".format(Params.init_infinite['IncUnemp']) +"  & Income in Unemployment Spell \n"
+paper_output += "\\\\ $\PDies$             & " + "{:.3f}".format(1.0-Params.init_infinite['LivPrb'][0]) +"  & Probability of Mortality \n"
+paper_output += "\\\\ $\\rho$ & "+ "{:.0f}".format(Params.init_infinite['CRRA']) +". & Coefficient of Relative Risk Aversion \n"
+
+paper_output += "\\\\ $R$ & " + "{:.3f}".format(Params.init_infinite['Rfree']) + "& Quarterly Interest Rate \n"
+
+paper_output += "\\\\ \\midrule  \n"
+paper_output += "\multicolumn{3}{c}{ \\textbf{Estimated Parameters} }  \n"
+paper_output += "\\\\ $\\beta^c$ &  " + "{:.3f}".format(center_estimate) +" & Mean discount factor \n"
+paper_output += "\\\\ $\\nabla$ &  " + "{:.3f}".format(spread_estimate) +" & Discount factor spread\n"
+
+paper_output += "\\\\ \\bottomrule  \n"
+paper_output += "\end{tabular}\n"
+paper_output += "\end{table}\n"
+paper_output += "\end{minipage}\n"
+with open('./Tables/CalibrationTable.tex','w') as f:
+    f.write(paper_output)
+    f.close()
 
 
 
