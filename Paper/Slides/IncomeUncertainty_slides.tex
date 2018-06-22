@@ -38,7 +38,6 @@
 
 
 \frame{\titlepage}
-
 \section{Motivation}
 \setbeamercovered{invisible}
 \frame
@@ -47,8 +46,14 @@
 	What will this paper do?\\
 	\begin{itemize}	
 	\item[1] Create a new method to estimate heterogeneity in consumption responses to permanent and transitory shocks to income
-	\item[2] Show how well a standard consumption saving model, calibrated to Danish data, fits
-	\item[3] Application: Redistribution Channel of Monetary Policy (\cite{auclert_monetary_2015})
+	\begin{itemize}
+		\item Clear negative relation between MPC and liquid wealth
+	\end{itemize}
+	\item[2] Application: Redistribution Channel of Monetary Policy (\cite{auclert_monetary_2017})
+	\begin{itemize}
+		\item We find a transitory 1\% interest rate rise decreases consumption by 0.24\% through the interest rate exposure channel
+		\item This channel is likely far larger than the intertemporal substitution channel (1-4x as large)
+	\end{itemize}
 	\end{itemize}	
 }
 \frame{
@@ -69,13 +74,8 @@
 			\item Empirical methods (until now!) have been flawed
 		\end{itemize}
 	\end{itemize}
-	\pause
-	Our contribution
-	\begin{itemize}
-		\item Develop a robust method based on 3
-		\item Apply it to Danish registry data
-\end{itemize}
-The Danish data allows us to build a detailed picture of the distribution over different household characteristics
+	\bigskip
+	We develop a robust method based on 3
 }
 \frame
 {
@@ -86,20 +86,51 @@ The Danish data allows us to build a detailed picture of the distribution over d
 \tiny{$^{\star}$ Elasticity. Methods: 1) Natural Experiment 2) Survey question 3) Covariance restrictions} \\
 \scriptsize Rough consensus on (3 month) transitory MPC $\sim 30\%$
 }
+
 \frame
 {
 	\frametitle{Evidence on Distribution of Consumption Response}
-	Auclert (2018) uses the 3 different methods to identify the distribution of MPC by unhedged interest rate exposure
+	Most studies do not have enough power to say anything about how their MPC estimates vary in the population\\
+	\bigskip
+	Exceptions:
+	\begin{itemize}
+		\item \cite{jappelli_fiscal_2014} Italian Survey Data
+		\item \cite{fagereng_mpc_2016} Norway Lottery Data
+		\item \cite{gelman_what_2016} Financial App Data
+		\item \cite{fuster_what_2018} NY Fed Survey
+	\end{itemize}
+	\bigskip
+	\textbf{Liquid assets} and \textbf{income} are key predictors of transitory MPC
+}
+
+\frame
+{
+	\frametitle{Application: \cite{auclert_monetary_2017}}
+	\cite{auclert_monetary_2017} identifies three ways in which \textbf{heterogeneity} affect monetary policy\\
+	Each is potentially measurable in panel data\\
+	But...\\
+	\pause
 	\begin{figure}
 		\includegraphics[scale=0.6]{../Figures/MPCDistributionAuclert}
 	\end{figure}
-	Recent evidence from Norwegian registry data using lottery winnings provides evidence of variation across liquid wealth
+	He doesn't have the right data or methods to be able to do this
 }
 \frame{
 	\frametitle{Results Preview}
+	\begin{columns}
+	\column{0.5\linewidth}
+	\centering
 	\begin{figure}
-	\includegraphics[scale=0.5]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
+	\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
 	\end{figure}
+	\pause
+	\column{0.5\linewidth}
+	\textbf{Monetary Policy Application}\\
+	\bigskip
+	A 1\% increase in R decreases consumption by 0.24\% due to heterogeneity in interest rate exposure\\
+	\bigskip
+	This channel is 1 to 4x larger than intertemporal substitution
+	\end{columns}
 }
 \section{Empirical Strategy}
 \setbeamercovered{invisible}
@@ -271,7 +302,7 @@ The Danish data allows us to build a detailed picture of the distribution over d
 	Consumption flow is given by:
 	\begin{align*}
 	c_t  &= \phi p_t  + \int_{t-2}^{t} g(t-s)dq_s  \\
-	\implies \mathrm{Cov}(\Delta^N \bar{c_T},\Delta^n \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
+	\implies \mathrm{Cov}(\Delta^N \bar{c_T},\Delta^N \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
 	\end{align*}
 	where  $\psi = \frac{\mathrm{Cov}(\tilde{c},\tilde{q})}{\mathrm{Var}(\tilde{q})}$, the regression coefficient of `transitory' consumption on transitory income \\
 	\pause
@@ -286,8 +317,8 @@ The Danish data allows us to build a detailed picture of the distribution over d
 	\frametitle{Full Identification}
 We use GMM on the equations:
 \begin{align*}
-\mathrm{Var}(\Delta^n \bar{y_T} ) &=  (N-\frac{1}{3}) \sigma^2_p + 2  \sigma^2_{\tilde{q}} \\
-\mathrm{Cov}(\Delta^N \bar{c_T},\Delta^n \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
+\mathrm{Var}(\Delta^N \bar{y_T} ) &=  (N-\frac{1}{3}) \sigma^2_p + 2  \sigma^2_{\tilde{q}} \\
+\mathrm{Cov}(\Delta^N \bar{c_T},\Delta^N \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
 \end{align*}
 with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 \begin{itemize}
@@ -296,6 +327,25 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\item $\phi$: MPX out of permanent income shocks
 	\item $\psi$: MPX out of transitory income shocks
 \end{itemize}
+}
+\frame
+{
+	\frametitle{Threats to Identification}
+	\begin{minipage}{\textwidth}
+		\begin{table}
+			\label{table:sourcesofbias}
+			\begin{tabular}{lcc}  
+				\\ & \multicolumn{2}{c}{\textbf{Direction of Bias} }  
+				\\ & Perm MPX & Tran MPX
+				\\ \hline
+				\\ Endogenous Income Shocks & Neutral & +ve
+				\\ Persistent Consumption Response & +ve & -ve
+				\\ Income Measurement Error &  Neutral & +ve
+				\\ Permanent Shocks are AR(1) & Neutral & +ve
+				\\ Non-linear MPX	& ? & ?
+			\end{tabular}
+		\end{table}
+	\end{minipage}
 }
 \section{Data}
 \frame
@@ -320,7 +370,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\frametitle{Imputing Expenditure}
 	We use the identity
 		\begin{align*}
-			C_t \equiv Y_t - S_t = Y_t - \Delta NW
+			C_t \equiv Y_t - S_t = Y_t - P_t - \Delta NW
 		\end{align*}
 	\begin{itemize}
 		\item Works well for households with simple financial lives
@@ -330,7 +380,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 			\item Exclude housing wealth and years with housing transactions
 			\item Capital gains for stocks based on a diversified index
 		\end{itemize}
-		\item Noisy, but perhaps better than surveys (Browning and Leth-Petersen, 2003; Eika et al., 2017; Fagereng and Halvorsen, 2017; Koijen et al., 2015; Kolsrod et al., 2017; Kreiner et al., 2015)
+		\item Noisy, but perhaps better than surveys (Kuchler et al. 2018)
 		\item Huge sample size advantage: sample covers 23.3 million observations over 2004-2015 (approx 1.9 million per year)
 	\end{itemize}
 }
@@ -372,6 +422,114 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 }
 \frame
 {
+	\frametitle{Model vs Data}
+	How does a standard model compare with the data?
+	\begin{columns}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/CSTW_perm_denmark.png}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/CSTW_tran_denmark.png}
+	\end{columns} 
+}
+\section{Application}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	We calculate the sufficient statistics from \cite{auclert_monetary_2017}\\
+	\bigskip
+	Here we will focus on the \textit{Interest Rate Exposure} channel:\\
+	\bigskip
+	If\\
+	\begin{itemize}
+		\item[1] Households that \textit{owe} a lot of floating rate debt have \textit{high} MPCs\\
+		\item[2] Households that \textit{own} a lot of floating rate debt have \textit{low} MPCs
+	\end{itemize}
+	Then lowering interest rates will on average \textit{increase} consumption through redistribution \\
+	\pause
+	\bigskip
+	Do we know if 1 and 2 hold? How can we measure the size of this effect?
+}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	Define \textit{Unhedged Interest Rate Exposure} for household $i$ as the total savings the household will invest at this year's interest rate:
+	\begin{align*}
+	URE_i = Y_i - C_i + A_i - L_i
+	\end{align*}
+	Where
+	\begin{itemize}
+		\item $Y_i = $ Total after tax income 
+		\item $C_i = $ Total Expenditure, including interest payments
+		\item $A_i = $ Maturing assets
+		\item $L_i = $ Maturing liabilities
+	\end{itemize}
+	Following a change in the interest rate $dR$, the size of the Interest Rate Exposure channel on household $i$'s expenditure is:
+	\begin{align}
+		dc_i = MPC_i URE_i  \frac{dR}{R}
+	\end{align}
+}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	In aggregate, the size of this channel is given by:
+	\begin{align*}
+	\frac{dC}{C} &= \mathbb{E}_I \Big(MPC_i \frac{URE_i}{\mathbb{E}_I (c_i)}   \Big) \frac{dR}{R} 
+	\end{align*}
+	Define sufficient statistic:
+	\begin{align*}
+	\mathcal{E}_R  = \mathbb{E}_I \Big(MPC_i \frac{URE_i}{\mathbb{E}_I (c_i)}   \Big) 
+	\end{align*}
+	\bigskip
+	$\implies$ Need to know the distribution of $MPC_i$ with $URE_i$\\
+	\bigskip
+	We can do that!
+}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	\begin{figure}
+	\includegraphics[scale=0.5]{../Figures/MPXByURE_level_lincome_head.png}
+	\end{figure}
+}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	\textit{Total} URE sums to zero - this is not true for our household sample 
+	\begin{itemize} 
+		\item -626bn Kr
+	\end{itemize}
+	\bigskip
+	\tiny
+	\begin{tabular}{lccc}
+		\centering
+		Group & Total URE (bn Kr) & MPC & $\mathcal{E}_R$ component\\
+		\hline
+		Our sample (head age 35-55) & 	-626 & See Distribution & -0.28\\
+		Head $<$ 30	& 					-71 & 	0.5	& -0.04\\
+		Head $>$ 55 	& 				-10 & 0.2	&  0.00\\
+		Pension Funds 	& 				143 & 0.1	& 0.02\\
+		Government & 					-120 & 0	& 0.00 \\
+		Non-financial Corporate & 		-66 & 0.1	& -0.01\\
+		Financial Sector & 				 706 & 0.1	& 0.07\\
+		Rest of World & 				 45 & 0	& 0.00\\
+		\hline
+		\textbf{Total} & \textbf{0} & & \textbf{-0.24}
+	\end{tabular}
+}
+\frame{
+	\frametitle{Monetary Policy: Measuring Redistribution}
+	The Five Transmission Channels:
+	\begin{align*}
+	\frac{dC}{C} &= \Big(\mathcal{M} + \gamma \mathcal{E}_{Y}\Big)\frac{dY}{Y}-\mathcal{E}_P\frac{dP}{P}  +\Big(\mathcal{E}_R - \sigma S \Big) \frac{dR}{R} 
+	\end{align*}
+	We calculate
+	\begin{itemize}
+		\item $\mathcal{E}_R \approx -0.24$
+		\item $S \approx 0.6$, 1-consumption-weighted MPC
+		\item $\sigma$ in the range of 0.1 to 0.5
+	\end{itemize}
+	$\implies$ the intertemporal substitution channel, $\sigma S \approx 0.06 - 0.3$, is potentially much smaller than the interest rate exposure channel
+}
+\section{Durables}
+\frame
+{
 	\frametitle{Durables}
 	Our expenditure measure include ALL expenditure
 	\begin{itemize}
@@ -379,7 +537,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 		\item Cars
 		\item Home improvements (roof repair, extensions)
 	\end{itemize}
-	Durables make up about 10\% of total expenditure\\
+	Durables make up 10.05\% of total expenditure in Denmark\\
 	\pause
 	\bigskip
 	But theory suggests durable expenditures should not be proportional to permanent income changes 
@@ -414,7 +572,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 		\item $\mathbb{E}(\hat{\psi})=\psi \color{red} + \frac{\sigma^2_p}{2\sigma^2_q}\phi_d$ Transitory MPX is upward biased
 	\end{itemize}
 	\begin{figure}
-	\includegraphics[scale=0.3]{../Figures/DurableBias.png}
+		\includegraphics[scale=0.3]{../Figures/DurableBias.png}
 	\end{figure}
 }
 \frame
@@ -436,72 +594,31 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 {
 	\frametitle{Durables}
 	\begin{center}
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_all.png}};
-	\pause
-	\node (img2)
-	{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
-	\node (img3) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nocar.png}};
-	\pause
-	\node (img4)
-	{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
-	\node (img5) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nodurableproxy.png}};
-	\end{tikzpicture}
-\end{center}
+		\begin{tikzpicture}
+		\node (img1) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_all.png}};
+		\pause
+		\node (img2)
+		{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
+		\node (img3) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nocar.png}};
+		\pause
+		\node (img4)
+		{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
+		\node (img5) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nodurableproxy.png}};
+		\end{tikzpicture}
+	\end{center}
 }
-\section{Application}
+\section{Conclusion}
 \frame{
-	\frametitle{Monetary Policy: Measuring Redistribution}
-	We calculate the sufficient statistics from \cite{auclert_monetary_2015}\\
-	\bigskip
-	Here we will focus on the \textit{Interest Rate Exposure} channel:\\
-	\bigskip
-	If\\
+	\frametitle{Conclusion}
 	\begin{itemize}
-		\item[1] Households that \textit{owe} a lot of floating rate debt have \textit{high} MPCs\\
-		\item[2] Households that \textit{own} a lot of floating rate debt have \textit{low} MPCs
+		\item We have designed a new method to estimate consumption responses to income shocks
+		\item It appears to work well, both in theory and practice
+		\item We can use it to show that heterogeneity plays a key role in monetary policy transmission
 	\end{itemize}
-	Then lowering interest rates will on average \textit{increase} consumption through redistribution \\
-	\pause
 	\bigskip
-	Do we know if 1 and 2 hold? How can we measure the size of this effect?
+	Thank you!
 }
-\frame{
-	\frametitle{Monetary Policy: Measuring Redistribution}
-	Define \textit{Unhedged Interest Rate Exposure} for household $i$ as the total savings the household will invest at this year's interest rate:
-	\begin{align*}
-	URE_i = Y_i - C_i + A_i - L_i
-	\end{align*}
-	Where
-	\begin{itemize}
-		\item $Y_i = $ Total after tax income 
-		\item $C_i = $ Total Expenditure, including interest payments
-		\item $A_i = $ Maturing assets
-		\item $L_i = $ Maturing liabilities
-	\end{itemize}
-	Following a change in the interest rate $dR$, the size of the Interest Rate Exposure channell on household $i$'s expenditure is:
-	\begin{align}
-		dc_i = MPC_i URE_i  \frac{dR}{R}
-	\end{align}
-}
-\frame{
-	\frametitle{Monetary Policy: Measuring Redistribution}
-	In aggregate, the size of this channel is given by:
-	\begin{align*}
-	\frac{dC}{C} = \mathbb{E}_I \Big(MPC_i \frac{URE_i}{\mathbb{E}_I (c_i)}   \Big) \frac{dR}{R}
-	\end{align*}
-	\bigskip
-	$\implies$ Need to know the distribution of $MPC_i$ with $URE_i$\\
-	\bigskip
-	We can do that!
-}
-
-\frame{
-	\frametitle{Monetary Policy: Measuring Redistribution}
-	\begin{figure}
-	\includegraphics[scale=0.5]{../Figures/MPXByURE_level_lincome_head.png}
-	\end{figure}
-}
+\begin{comment}
 \section{Model}
 \frame
 {
@@ -577,25 +694,6 @@ subject to the constraints:
 \section{Threats to Identification}
 \frame
 {
-	\frametitle{Threats to Identification}
-  \begin{minipage}{\textwidth}
-  \begin{table}
-	\label{table:sourcesofbias}
-	\begin{tabular}{lcc}  
-		\\ & \multicolumn{2}{c}{\textbf{Direction of Bias} }  
-		\\ & Perm MPX & Tran MPX
-		\\ \hline
-		\\ Endogenous Income Shocks & Neutral & +ve
-		\\ Persistent Consumption Response & +ve & -ve
-		\\ Income Measurement Error &  Neutral & +ve
-		\\ Permanent Shocks are AR(1) & Neutral & +ve
-		\\ Non-linear MPX	& ? & ?
-	\end{tabular}
-	\end{table}
-	\end{minipage}
-}
-\frame
-{
 	\frametitle{Endogenous Income Shocks}
 	\begin{itemize}
 		\item Household's consumption preference highly variable
@@ -665,6 +763,7 @@ subject to the constraints:
 	\input ../Tables/experimental/psi_AR1.tex
 }
 
+
 %%%%%%%%%%%%%%%  bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tiny
@@ -680,6 +779,12 @@ subject to the constraints:
 \end{frame}
 
 \normalsize
+\end{comment}
+\bibliographystyle{econtex}
+\newsavebox\mytempbib
+\savebox\mytempbib{\parbox{\textwidth}{\bibliography{../AllPapers}}}
+
+
 \end{document}
 
 
