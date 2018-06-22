@@ -70,10 +70,12 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
     param_cols=2
     this_colors=c(colors[2])
     this_legend =c( expression(paste(sigma[q]^2," Transitory Var")))
+    xlabel_pos = 0
   } else {
     param_cols=1:2
     this_colors=c(colors[1],colors[2])
     this_legend=c(expression(paste(sigma[p]^2," Permanent Var")), expression(paste(sigma[q]^2," Transitory Var")))
+    xlabel_pos = 1
   }
   par(mar=c(8,7,4,5)+0.1)
   plotTop = max(params[,param_cols])*1.2
@@ -84,7 +86,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=paste("Permanent and Transitory Variance by ",category_for_title),
                         ylab = "Shock Variance", border="black", axes=TRUE)
-  text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
+  text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
   segments(barCenters, t(params[,param_cols]-se[,param_cols]*1.96),
            barCenters,
            t(params[,param_cols]+se[,param_cols]*1.96), lwd=1.5)
@@ -115,7 +117,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=paste(title_string, " by ",category_for_title),
                         ylab = axis_string, border="black", axes=TRUE)
-  text(x=barCenters[1,]+1, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
+  text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
   segments(barCenters, t(params[,param_cols]-se[,param_cols]*1.96),
            barCenters,
            t(params[,param_cols]+se[,param_cols]*1.96), lwd=1.5)
@@ -343,8 +345,8 @@ arrows(2, 0.2, 9, 0.2)
 arrows(9, 0.2, 2, 0.2)
 text(3.5, 0.3, labels = "Relatively more \n transitory variance")
 text(7.5, 0.3, labels = "Relatively more \n permanent variance")
+dev.off()
 png(paste(figures_dir, "basic_regression_liquid_wealth",tag,".png",sep=""))
-dev.new()
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
 lines(FromPython[1:dim(reg_coefs)[1]],lty='solid',col='red',type='o')
@@ -674,8 +676,8 @@ cstw_results <- read.csv(paste(PythonResults_folder,'cstw_denmark.txt',sep=''), 
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
 quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params_nodurableproxy[,4],cstw_results[,4]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se_nodurableproxy[,4],0,0,0,0,0),nrow=5,ncol=2)
+params = matrix(c(wealth_quantile_params[,4],cstw_results[,4]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
 plotTop = max(wealth_quantile_params[,3:4])*1.2
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
@@ -692,7 +694,7 @@ arrows(barCenters, t(params-se*1.96),
        barCenters,
        t(params+se*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=c(expression(paste("Data, non-durable proxy")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
+legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
 dev.copy(png, paste(figures_dir, "CSTW_tran_denmark.png",sep=""))
 dev.off()
 
@@ -700,8 +702,8 @@ dev.off()
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
 quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params_nodurableproxy[,3],cstw_results[,3]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se_nodurableproxy[,3],0,0,0,0,0),nrow=5,ncol=2)
+params = matrix(c(wealth_quantile_params[,3],cstw_results[,3]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
 plotTop = max(wealth_quantile_params[,3:4])*1.2
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
@@ -718,7 +720,7 @@ arrows(barCenters, t(params-se*1.96),
        barCenters,
        t(params+se*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
-legend(2, -0.04, legend=c(expression(paste("Data, non-durable proxy")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
+legend(2, -0.04, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
 dev.copy(png, paste(figures_dir, "CSTW_perm_denmark.png",sep=""))
 dev.off()
 
@@ -744,6 +746,7 @@ dev.off()
 ###########################################################
 # Do Adrien Auclert Stuff
 durable_tag ="_head_nodurableproxy"
+durable_tag ="_level_lincome_head"
 
 ###############################################################################
 # load URE quintile data and create graph
@@ -763,11 +766,21 @@ for (j in 1:(num_quantiles-2)){
   URE_quantile_set = c(URE_quantile_set,paste(format(round(moments_by_URE_quantile$quantiles[[j]],round_digits),big.mark=",", trim=TRUE),' to ',format(round(moments_by_URE_quantile$quantiles[[j+1]],round_digits),big.mark=",", trim=TRUE),sep=''))
 }
 URE_quantile_set = round(moments_by_URE_quantile$quantile_means,round_digits)
-plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = FALSE)
+plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE)
 
 #Now calculate the sufficient statistic
 elas_URE_NR = mean(URE_quantile_params[,4]*moments_by_URE_quantile$quantile_means)
 elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(moments_by_URE_quantile$quantile_means)
+
+#The net URE needs to add to zero
+URE_unexplained = -mean(moments_by_URE_quantile$quantile_means)
+MPC_unexplained = seq(0,1,length.out = 11)
+elas_URE_unexplained = elas_URE_NR + MPC_unexplained*URE_unexplained
+
+# library(tikzDevice)
+# tikz(paste(moments_dir,'URE',durable_tag,'.tex',sep=''), width=5.5,height=4)
+# plot(MPC_unexplained,elas_URE_unexplained,type="l",main=paste("$\\mathcal{E}_R with Different Assumptions on the MPC of Unexplained URE$"))
+# dev.off()
 
 ###############################################################################
 ###############################################################################
