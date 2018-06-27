@@ -109,7 +109,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
   }
   barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=this_colors)
   par(mar=c(8,7,4,5)+0.1)
-  plotTop = max(params[,param_cols])*1.2
+  plotTop = max(max(params[,param_cols]),1.0)
   barCenters <- barplot(height=t(params[,param_cols]),
                         names.arg=labels,
                         cex.names=0.75,
@@ -147,7 +147,7 @@ wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quanti
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Liquid Wealth Quantile","LiquidWealth")
 ###############################################################################
 
@@ -163,11 +163,11 @@ wealth_quantile_params = output$category_params
 wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
-wealth_quantile_set = c(paste('$...-',format(round(moments_by_net_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(paste('< ',format(round(moments_by_net_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_net_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_net_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_net_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Net Wealth Quantile","NetWealth")
 ###############################################################################
 
@@ -502,19 +502,19 @@ dev.off()
 # legend(0.25, 0.05, legend=c(expression(paste("var(",Delta^n,"y) Empirical"),paste("var(",Delta^n,"y) matched to n=3,4,5"), paste("cov(",Delta^n,"y,",Delta^n,"c) Empirical"),paste("cov(",Delta^n,"y,",Delta^n,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"))
 # dev.off()
 ###############################################################################
-
-###############################################################################
-# load net weath quintile data and create graph
-load(paste(moments_dir,'moments_by_home_owner',tag,'.RData',sep=''))
-output =estimation_by_category(moments_by_home_owner, c("X0","X1"))
-home_owner_output=output
-home_owner_params = output$category_params
-home_owner_se = output$category_se
-home_owner_obs = output$category_obs
-home_owner_total_var = output$category_total_var
-home_owner_set = c("Renter","Owner")
-plot_estimataion_output(home_owner_params,home_owner_se,home_owner_set ,"Homeownership","")
-###############################################################################
+# 
+# ###############################################################################
+# # load net weath quintile data and create graph
+# load(paste(moments_dir,'moments_by_home_owner',tag,'.RData',sep=''))
+# output =estimation_by_category(moments_by_home_owner, c("X0","X1"))
+# home_owner_output=output
+# home_owner_params = output$category_params
+# home_owner_se = output$category_se
+# home_owner_obs = output$category_obs
+# home_owner_total_var = output$category_total_var
+# home_owner_set = c("Renter","Owner")
+# plot_estimataion_output(home_owner_params,home_owner_se,home_owner_set ,"Homeownership","")
+# ###############################################################################
 
 ###############################################################################
 # load liquid weath quintile data by non-durable proxyand create graph
@@ -555,7 +555,7 @@ wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_li
 
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]),1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       names.arg=wealth_quantile_set,
                       cex.names=0.75,
@@ -598,7 +598,7 @@ dev.off()
 
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       names.arg=wealth_quantile_set,
                       cex.names=0.75,
@@ -630,7 +630,7 @@ dev.off()
 
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       names.arg=wealth_quantile_set,
                       cex.names=0.75,
@@ -654,7 +654,7 @@ dev.off()
 #create black white graph, for use in slides
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       names.arg=wealth_quantile_set,
                       cex.names=0.75,
@@ -678,7 +678,7 @@ par(mar=c(8,7,4,5)+0.1)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,4],cstw_results[,4]),nrow=5,ncol=2)
 se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
                       cex.names=0.75,
@@ -704,7 +704,7 @@ par(mar=c(8,7,4,5)+0.1)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,3],cstw_results[,3]),nrow=5,ncol=2)
 se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
                       cex.names=0.75,
@@ -730,7 +730,7 @@ dev.new()
 par(mar=c(8,7,4,5)+0.1)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(cstw_results[,4],cstw_results[,5]),nrow=5,ncol=2)
-plotTop = max(wealth_quantile_params[,3:4])*1.2
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
                       cex.names=0.75,
@@ -745,8 +745,8 @@ dev.off()
 
 ###########################################################
 # Do Adrien Auclert Stuff
-durable_tag ="_head_nodurableproxy"
-durable_tag ="_level_lincome_head"
+#durable_tag ="_head_nodurableproxy"
+durable_tag =tag
 mean_household_consumption = 328385
 
 ###############################################################################
