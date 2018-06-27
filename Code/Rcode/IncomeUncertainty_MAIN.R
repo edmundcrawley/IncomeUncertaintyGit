@@ -747,6 +747,7 @@ dev.off()
 # Do Adrien Auclert Stuff
 durable_tag ="_head_nodurableproxy"
 durable_tag ="_level_lincome_head"
+mean_household_consumption = 328385
 
 ###############################################################################
 # load URE quintile data and create graph
@@ -761,26 +762,12 @@ URE_quantile_params = output$category_params
 URE_quantile_se = output$category_se
 URE_quantile_obs = output$category_obs
 URE_quantile_total_var = output$category_total_var
-URE_quantile_set = c(paste('<',format(round(moments_by_URE_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-for (j in 1:(num_quantiles-2)){
-  URE_quantile_set = c(URE_quantile_set,paste(format(round(moments_by_URE_quantile$quantiles[[j]],round_digits),big.mark=",", trim=TRUE),' to ',format(round(moments_by_URE_quantile$quantiles[[j+1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-}
-URE_quantile_set = round(moments_by_URE_quantile$quantile_means,round_digits)
+URE_quantile_set = t(round(moments_by_URE_quantile$quantile_means/mean_household_consumption,round_digits))
 plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE)
 
 #Now calculate the sufficient statistic
-elas_URE_NR = mean(URE_quantile_params[,4]*moments_by_URE_quantile$quantile_means)
-elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(moments_by_URE_quantile$quantile_means)
-
-#The net URE needs to add to zero
-URE_unexplained = -mean(moments_by_URE_quantile$quantile_means)
-MPC_unexplained = seq(0,1,length.out = 11)
-elas_URE_unexplained = elas_URE_NR + MPC_unexplained*URE_unexplained
-
-# library(tikzDevice)
-# tikz(paste(moments_dir,'URE',durable_tag,'.tex',sep=''), width=5.5,height=4)
-# plot(MPC_unexplained,elas_URE_unexplained,type="l",main=paste("$\\mathcal{E}_R with Different Assumptions on the MPC of Unexplained URE$"))
-# dev.off()
+elas_URE_NR = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
+elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
 
 ###############################################################################
 ###############################################################################
@@ -796,16 +783,12 @@ NNP_quantile_params = output$category_params
 NNP_quantile_se = output$category_se
 NNP_quantile_obs = output$category_obs
 NNP_quantile_total_var = output$category_total_var
-NNP_quantile_set = c(paste('<',format(round(moments_by_NNP_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-for (j in 1:(num_quantiles-2)){
-  NNP_quantile_set = c(NNP_quantile_set,paste(format(round(moments_by_NNP_quantile$quantiles[[j]],round_digits),big.mark=",", trim=TRUE),' to ',format(round(moments_by_NNP_quantile$quantiles[[j+1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-}
-NNP_quantile_set = round(moments_by_NNP_quantile$quantile_means,round_digits)
+NNP_quantile_set = t(round(moments_by_NNP_quantile$quantile_means /mean_household_consumption,round_digits))
 plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","NNP",transitory_only = TRUE)
 
 #Now calculate the sufficient statistic
-elas_NNP_NR = mean(NNP_quantile_params[,4]*moments_by_NNP_quantile$quantile_means)
-elas_NNP = elas_NNP_NR - mean(NNP_quantile_params[,4])*mean(moments_by_NNP_quantile$quantile_means)
+elas_NNP_NR = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
+elas_NNP = elas_NNP_NR - mean(NNP_quantile_params[,4])*mean(t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
 ###############################################################################
 # load Income quintile data and create graph
 load(paste(moments_dir,'moments_by_Income_quantile',durable_tag,'.RData',sep=''))
@@ -819,14 +802,34 @@ Income_quantile_params = output$category_params
 Income_quantile_se = output$category_se
 Income_quantile_obs = output$category_obs
 Income_quantile_total_var = output$category_total_var
-Income_quantile_set = c(paste('<',format(round(moments_by_Income_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-for (j in 1:(num_quantiles-2)){
-  Income_quantile_set = c(Income_quantile_set,paste(format(round(moments_by_Income_quantile$quantiles[[j]],round_digits),big.mark=",", trim=TRUE),' to ',format(round(moments_by_Income_quantile$quantiles[[j+1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-}
-Income_quantile_set = round(moments_by_Income_quantile$quantile_means,round_digits)
+Income_quantile_set = round(t(moments_by_Income_quantile$quantile_means /mean_household_consumption),round_digits)
 plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","Income",transitory_only = TRUE)
 
 #Now calculate the sufficient statistic
-elas_Income_NR = mean(Income_quantile_params[,4]*moments_by_Income_quantile$quantile_means)
-elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(moments_by_Income_quantile$quantile_means)
+elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
+elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
+###############################################################################
+
+###############################################################################
+# load MeanCons quintile data and create graph
+load(paste(moments_dir,'moments_by_MeanCons_quantile',durable_tag,'.RData',sep=''))
+
+num_quantiles = 10
+round_digits = 2
+MeanCons_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_by_MeanCons_quantile, make.names(MeanCons_quantile_set))
+MeanCons_quantile_output=output
+MeanCons_quantile_params = output$category_params
+MeanCons_quantile_se = output$category_se
+MeanCons_quantile_obs = output$category_obs
+MeanCons_quantile_total_var = output$category_total_var
+MeanCons_quantile_set = t(round(moments_by_MeanCons_quantile$quantile_means/mean_household_consumption,round_digits))
+plot_estimataion_output(MeanCons_quantile_params,MeanCons_quantile_se,MeanCons_quantile_set ,"Consumption Quantile","MeanCons",transitory_only = TRUE)
+
+#Now calculate the sufficient statistic
+elas_MeanCons_NR = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
+elas_MeanCons = elas_MeanCons_NR - mean(MeanCons_quantile_params[,4])*mean(t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
+
+cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means) /mean(t(moments_by_MeanCons_quantile$quantile_means)))
+
 ###############################################################################
