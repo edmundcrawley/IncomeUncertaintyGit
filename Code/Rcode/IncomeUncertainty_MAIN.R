@@ -833,3 +833,10 @@ elas_MeanCons = elas_MeanCons_NR - mean(MeanCons_quantile_params[,4])*mean(t(mom
 cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means) /mean(t(moments_by_MeanCons_quantile$quantile_means)))
 
 ###############################################################################
+
+###############################################################################
+# Do robustness graphs and spouse etc
+
+
+
+
