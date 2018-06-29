@@ -839,12 +839,12 @@ cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quan
 
 
 # Function to plot shock variances and consumption elasticities
-robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, title_string, filename, param_col=4, legend_xpos = NULL) {
+robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, title_string, filename, param_col=4, legend_xpos = NULL, x_label="Quantile") {
   
   this_colors = c('#fb8072','#bebada','#ffffb3','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#8dd3c7')
   this_colors = this_colors[1:length(tag_list)]
   num_quantiles = length(quantile_labels)
-  xlabel_pos = (num_quantiles-1)/2
+  xlabel_pos = (length(tag_list)-1)/2
   params = matrix(0.0,num_quantiles,length(tag_list))
   se = matrix(0.0,num_quantiles,length(tag_list))
   for (i in 1:length(tag_list)) {
@@ -863,8 +863,11 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
                         beside=TRUE,col=this_colors,
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=title_string,
-                        ylab = axis_string, border="black", axes=TRUE)
-  text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=quantile_labels,xpd=TRUE)
+                        ylab = axis_string, 
+                        xlab = x_label,
+                        border="black", 
+                        axes=TRUE)
+  text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=0, adj=1, labels=quantile_labels,xpd=TRUE)
   segments(barCenters, t(params-se*1.96),
            barCenters,
            t(params+se*1.96), lwd=1.5)
@@ -886,46 +889,63 @@ tag_list_legend = c("Baseline","Total Labor Income","No Stocks","Include Neg Con
 #First do liquid wealth
 num_quantiles = 5
 #transitory
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quantile", "Robust_tranMPX_liquidwealth", param_col=4)
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "Robust_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
 #permanent
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quantile", "Robust_permMPX_liquidwealth", param_col=3)
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "Robust_permMPX_liquidwealth", param_col=3, x_label="Quintile")
 
 #Net wealth
 num_quantiles = 5
 #transitory
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Net Wealth Quantile", "Robust_tranMPX_netwealth", param_col=4)
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Net Wealth Quintile", "Robust_tranMPX_netwealth", param_col=4, x_label="Quintile")
 #permanent
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Net Wealth Quantile", "Robust_permMPX_netwealth", param_col=3)
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Net Wealth Quintile", "Robust_permMPX_netwealth", param_col=3, x_label="Quintile")
 
 
 #URE
-num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By URE Decile", "Robust_tranMPX_URE", param_col=4,legend_xpos = 2)
+robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By URE Decile", "Robust_tranMPX_URE", param_col=4,legend_xpos = 2, x_label="Decile")
 #permanent
-robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By URE Decile", "Robust_permMPX_URE", param_col=3,legend_xpos = 2)
+robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By URE Decile", "Robust_permMPX_URE", param_col=3,legend_xpos = 2, x_label="Decile")
 
 #NNP
-num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By NNP Decile", "Robust_tranMPX_NNP", param_col=4,legend_xpos = 2)
+robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By NNP Decile", "Robust_tranMPX_NNP", param_col=4,legend_xpos = 2, x_label="Decile")
 #permanent
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By NNP Decile", "Robust_permMPX_NNP", param_col=3,legend_xpos = 2)
+robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By NNP Decile", "Robust_permMPX_NNP", param_col=3,legend_xpos = 2, x_label="Decile")
 
 #Income
 num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By Income Decile", "Robust_tranMPX_Income", param_col=4)
+robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By Income Decile", "Robust_tranMPX_Income", param_col=4, x_label="Decile")
 #permanent
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By Income Decile", "Robust_permMPX_Income", param_col=3,legend_xpos = 6)
+robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By Income Decile", "Robust_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
 
 
 #MeanCons
 num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By MeanCons Decile", "Robust_tranMPX_MeanCons", param_col=4)
+robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX By Consumption Decile", "Robust_tranMPX_MeanCons", param_col=4, x_label="Decile")
 #permanent
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By MeanCons Decile", "Robust_permMPX_MeanCons", param_col=3,legend_xpos = 6)
+robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX By Consumption Decile", "Robust_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
+
+# Compare head with spouse
+tag_list = c("_level_lincome","_level_lincome_head","_level_lincome_spouse")
+tag_list_legend = c("Total","Head","Spouse" )
+
+#First do liquid wealth
+num_quantiles = 5
+#transitory
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "Spouse_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
+#permanent
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "Spouse_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+
+#Net wealth
+num_quantiles = 5
+#transitory
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Net Wealth Quintile", "Spouse_tranMPX_netwealth", param_col=4, x_label="Quintile")
+#permanent
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Net Wealth Quintile", "Spouse_permMPX_netwealth", param_col=3, x_label="Quintile")
+
 
 
 ###############################################################################
