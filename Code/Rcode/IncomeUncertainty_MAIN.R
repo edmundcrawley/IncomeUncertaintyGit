@@ -230,21 +230,21 @@ dev.off()
 ###############################################################################
 
 ###############################################################################
-# # Moments by different growth period
-# # saved data is divided into two files to reduce file size, put them together first
-# moments_loop=list()
-# load(paste(moments_dir,'moments_loop_4to7',tag,'.RData',sep=''))
-# load(paste(moments_dir,'moments_loop_8to10',tag,'.RData',sep=''))
-# for (i in 4:7){
-#   this_moment = paste('moments_',i,sep='')
-#   moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
-# }
-# for (i in 8:10){
-#   this_moment = paste('moments_',i,sep='')
-#   moments_loop[[this_moment]] = moments_loop_8to10[[this_moment]]
-# }
+# Moments by different growth period
+# saved data is divided into two files to reduce file size, put them together first
+moments_loop=list()
+load(paste(moments_dir,'moments_loop_4to7',tag,'.RData',sep=''))
+load(paste(moments_dir,'moments_loop_8to10',tag,'.RData',sep=''))
+for (i in 4:7){
+  this_moment = paste('moments_',i,sep='')
+  moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
+}
+for (i in 8:10){
+  this_moment = paste('moments_',i,sep='')
+  moments_loop[[this_moment]] = moments_loop_8to10[[this_moment]]
+}
 #instead just load 10 diff moment
-load(paste(moments_dir,'moments_loop_10',tag,'.RData',sep=''))
+# load(paste(moments_dir,'moments_loop_10',tag,'.RData',sep=''))
 
 ###############################################################################
 # Plot regression coefficient of expenditure growth vs income growth for different growth periods
@@ -311,26 +311,26 @@ for (this_moment in c("X1","X5")) {
 ###############################################################################
 # Pull in consumption saving numbers from Python output
 FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
-solow_spending = 0.81
+solow_spending = 0.75
 # Now draw graph
 png(paste(figures_dir, "basic_regression_complete",tag,".png",sep=""))
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
-legend(6, 0.65, legend=c("Complete Markets","","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+legend(6, 0.53, legend=c("Complete Markets","","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
 dev.off()
 png(paste(figures_dir, "basic_regression_solow",tag,".png",sep=""))
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
-legend(6, 0.65, legend=c("Complete Markets","Solow","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+legend(6, 0.53, legend=c("Complete Markets","Solow","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
 dev.off()
 png(paste(figures_dir, "basic_regression_BS",tag,".png",sep=""))
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
 lines(FromPython[1:dim(reg_coefs)[1]],lty='solid',col='red',type='o')
-legend(6, 0.65, legend=c("Complete Markets","Solow","Buffer-Stock",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.2, 9, 0.2)
-arrows(9, 0.2, 2, 0.2)
-text(3.5, 0.3, labels = "Relatively more \n transitory variance")
-text(7.5, 0.3, labels = "Relatively more \n permanent variance")
+legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(2, 0.12, 9, 0.12)
+arrows(9, 0.12, 2, 0.12)
+text(3.5, 0.22, labels = "Relatively more \n transitory variance")
+text(7.5, 0.22, labels = "Relatively more \n permanent variance")
 dev.off()
 png(paste(figures_dir, "basic_regression",tag,".png",sep=""))
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
@@ -340,11 +340,11 @@ points(reg_coefs)
 lines(reg_coefs)
 lines(reg_coefs+1.96*std_errors,lty='dashed')
 lines(reg_coefs-1.96*std_errors,lty='dashed')
-legend(6, 0.65, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.2, 9, 0.2)
-arrows(9, 0.2, 2, 0.2)
-text(3.5, 0.3, labels = "Relatively more \n transitory variance")
-text(7.5, 0.3, labels = "Relatively more \n permanent variance")
+legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(2, 0.12, 9, 0.12)
+arrows(9, 0.12, 2, 0.12)
+text(3.5, 0.22, labels = "Relatively more \n transitory variance")
+text(7.5, 0.22, labels = "Relatively more \n permanent variance")
 dev.off()
 png(paste(figures_dir, "basic_regression_liquid_wealth",tag,".png",sep=""))
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
@@ -363,144 +363,144 @@ points(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5+1.96*std_errors_liquid_wealth$X5,lty='dashed')
 lines(reg_coefs_liquid_wealth$X5-1.96*std_errors_liquid_wealth$X5,lty='dashed')
-legend(6, 0.65, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.2, 9, 0.2)
-arrows(9, 0.2, 2, 0.2)
-text(3.5, 0.3, labels = "Relatively more \n transitory variance")
-text(7.5, 0.3, labels = "Relatively more \n permanent variance")
-text(3.0, 0.93, labels = "Least Liquid")
-text(3.75, 0.47, labels = "Most liquid")
+legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(2, 0.12, 9, 0.12)
+arrows(9, 0.12, 2, 0.12)
+text(3.5, 0.22, labels = "Relatively more \n transitory variance")
+text(7.5, 0.22, labels = "Relatively more \n permanent variance")
+text(3.0, 0.92, labels = "Least Liquid")
+text(3.75, 0.44, labels = "Most liquid")
 dev.off()
 
+##############################################################################
+# Plot how estimates vary using different growth periods
+params_loop = list()
+for (max_diff in 4:10){
+  this_moments = paste('moments_',max_diff,sep='')
+  moments_all = moments_loop[[this_moments]]
+
+  var_tran_array = array(0.0, dim=c(max_diff,max_diff))
+  var_perm_array = array(0.0, dim=c(max_diff,max_diff))
+  ins_tran_array = array(0.0, dim=c(max_diff,max_diff))
+  ins_perm_array = array(0.0, dim=c(max_diff,max_diff))
+
+  var_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
+  var_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
+  ins_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
+  ins_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
+
+  for (n1 in 1:(max_diff-1)){
+    for (n2 in (n1+1):max_diff){
+      diff_to_use = c(n1,n2)
+      cols_per_diff = max_diff-diff_to_use+1
+      moments_used =c()
+      j=1
+      k=1
+      for (i in 1:max_diff){
+        if (i==diff_to_use[j]){
+          moments_used = c(moments_used, k:(k+max_diff-i))
+          j = j+1
+          if (j>2){
+            break
+          }
+        }
+        k=k+max_diff-i+1
+      }
+      moments_used_all=c()
+      for (i in 0:(2*(T-max_diff+1)-1)){
+        moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
+      }
+      c_vector_sub = moments_all$c_vector[moments_used_all]
+      omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
+      CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff)
+      var_perm_array[n1,n2] = CS_output_sub$var_perm
+      var_tran_array[n1,n2] = CS_output_sub$var_tran
+      ins_perm_array[n1,n2] = CS_output_sub$ins_perm
+      ins_tran_array[n1,n2] = CS_output_sub$ins_tran
+
+      var_perm_array_se[n1,n2] = CS_output_sub$var_perm_se
+      var_tran_array_se[n1,n2] = CS_output_sub$var_tran_se
+      ins_perm_array_se[n1,n2] = CS_output_sub$ins_perm_se
+      ins_tran_array_se[n1,n2] = CS_output_sub$ins_tran_se
+    }
+  }
+  params_loop[[paste('var_perm_array_',max_diff,sep='')]] =  var_perm_array
+  params_loop[[paste('var_tran_array_',max_diff,sep='')]] =  var_tran_array
+  params_loop[[paste('ins_perm_array_',max_diff,sep='')]] =  ins_perm_array
+  params_loop[[paste('ins_tran_array_',max_diff,sep='')]] =  ins_tran_array
+
+  params_loop[[paste('var_perm_array_se_',max_diff,sep='')]] =  var_perm_array_se
+  params_loop[[paste('var_tran_array_se_',max_diff,sep='')]] =  var_tran_array_se
+  params_loop[[paste('ins_perm_array_se_',max_diff,sep='')]] =  ins_perm_array_se
+  params_loop[[paste('ins_tran_array_se_',max_diff,sep='')]] =  ins_tran_array_se
+
+  write.table(var_perm_array, file=paste(tables_dir,'var_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(var_tran_array, file=paste(tables_dir,'var_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_perm_array, file=paste(tables_dir,'ins_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+  write.table(ins_tran_array, file=paste(tables_dir,'ins_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
+}
+
+to_plot = 'ins_tran_array_'
+n2_minum_n1 = 2
+max_diff = 8
+plot(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]), ylim=c(0.5,0.75))
+for (i in 4:max_diff){
+  points(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
+  lines(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
+}
+lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
+lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
 ###############################################################################
-# # Plot how estimates vary using different growth periods
-# params_loop = list()
-# for (max_diff in 4:10){
-#   this_moments = paste('moments_',max_diff,sep='')
-#   moments_all = moments_loop[[this_moments]]
-#   
-#   var_tran_array = array(0.0, dim=c(max_diff,max_diff))
-#   var_perm_array = array(0.0, dim=c(max_diff,max_diff))
-#   ins_tran_array = array(0.0, dim=c(max_diff,max_diff))
-#   ins_perm_array = array(0.0, dim=c(max_diff,max_diff))
-#   
-#   var_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
-#   var_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
-#   ins_tran_array_se = array(0.0, dim=c(max_diff,max_diff))
-#   ins_perm_array_se = array(0.0, dim=c(max_diff,max_diff))
-#   
-#   for (n1 in 1:(max_diff-1)){
-#     for (n2 in (n1+1):max_diff){
-#       diff_to_use = c(n1,n2)
-#       cols_per_diff = max_diff-diff_to_use+1
-#       moments_used =c()
-#       j=1
-#       k=1
-#       for (i in 1:max_diff){
-#         if (i==diff_to_use[j]){
-#           moments_used = c(moments_used, k:(k+max_diff-i))
-#           j = j+1
-#           if (j>2){
-#             break
-#           }
-#         }
-#         k=k+max_diff-i+1
-#       }
-#       moments_used_all=c()
-#       for (i in 0:(2*(T-max_diff+1)-1)){
-#         moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
-#       }
-#       c_vector_sub = moments_all$c_vector[moments_used_all]
-#       omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
-#       CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff) 
-#       var_perm_array[n1,n2] = CS_output_sub$var_perm
-#       var_tran_array[n1,n2] = CS_output_sub$var_tran
-#       ins_perm_array[n1,n2] = CS_output_sub$ins_perm
-#       ins_tran_array[n1,n2] = CS_output_sub$ins_tran
-#       
-#       var_perm_array_se[n1,n2] = CS_output_sub$var_perm_se
-#       var_tran_array_se[n1,n2] = CS_output_sub$var_tran_se
-#       ins_perm_array_se[n1,n2] = CS_output_sub$ins_perm_se
-#       ins_tran_array_se[n1,n2] = CS_output_sub$ins_tran_se
-#     }
-#   }
-#   params_loop[[paste('var_perm_array_',max_diff,sep='')]] =  var_perm_array
-#   params_loop[[paste('var_tran_array_',max_diff,sep='')]] =  var_tran_array
-#   params_loop[[paste('ins_perm_array_',max_diff,sep='')]] =  ins_perm_array
-#   params_loop[[paste('ins_tran_array_',max_diff,sep='')]] =  ins_tran_array
-#   
-#   params_loop[[paste('var_perm_array_se_',max_diff,sep='')]] =  var_perm_array_se
-#   params_loop[[paste('var_tran_array_se_',max_diff,sep='')]] =  var_tran_array_se
-#   params_loop[[paste('ins_perm_array_se_',max_diff,sep='')]] =  ins_perm_array_se
-#   params_loop[[paste('ins_tran_array_se_',max_diff,sep='')]] =  ins_tran_array_se
-#   
-#   write.table(var_perm_array, file=paste(tables_dir,'var_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-#   write.table(var_tran_array, file=paste(tables_dir,'var_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-#   write.table(ins_perm_array, file=paste(tables_dir,'ins_perm_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-#   write.table(ins_tran_array, file=paste(tables_dir,'ins_tran_array_',max_diff,tag,'.txt',sep=''), row.names=FALSE, col.names=FALSE)
-# }
-# 
-# to_plot = 'ins_tran_array_'
-# n2_minum_n1 = 2
-# max_diff = 8
-# plot(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]))
-# for (i in 4:max_diff){
-#   points(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
-#   lines(diag(params_loop[[paste(to_plot,i,sep='')]][,-(1:n2_minum_n1)]))
-# }
-# lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
-# lines(diag(params_loop[[paste(to_plot,7,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',7,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
-# lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]+1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
-# lines(diag(params_loop[[paste(to_plot,max_diff,sep='')]][,-(1:n2_minum_n1)]-1.96*params_loop[[paste(to_plot,'se_',max_diff,sep='')]][,-(1:n2_minum_n1)]),lty='dashed')
-###############################################################################
-# # Plot both variance and covariance at different growth periods
-# max_diff=10
-# y2_diff = array(0.0, dim=c(max_diff,1))
-# cy_diff = array(0.0, dim=c(max_diff,1))
-# regcoef_diff = array(0.0, dim=c(max_diff,1))
-# 
-# this_col=1
-# for (i in 1:max_diff){
-#   y2_diff[i] = mean(moments_all$moment_y2[,(this_col):(this_col+max_diff-i)])
-#   cy_diff[i] = mean(moments_all$moment_cy[,(this_col):(this_col+max_diff-i)])
-#   regcoef_diff[i] = mean(moments_all$reg_coef[,(this_col):(this_col+max_diff-i)])
-#   this_col = this_col+max_diff-i+1
-# }
-# n1=3
-# n2=5
-# diff_to_use = c(n1,n2)
-# cols_per_diff = max_diff-diff_to_use+1
-# moments_used =c()
-# j=1
-# k=1
-# for (i in 1:max_diff){
-#   if (i==diff_to_use[j]){
-#     moments_used = c(moments_used, k:(k+max_diff-i))
-#     j = j+1
-#     if (j>2){
-#       break
-#     }
-#   }
-#   k=k+max_diff-i+1
-# }
-# moments_used_all=c()
-# for (i in 0:(2*(T-max_diff+1)-1)){
-#   moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
-# }
-# c_vector_sub = moments_all$c_vector[moments_used_all]
-# omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
-# CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff) 
-# 
-# png(paste(figures_dir, "IncreasingDiff",tag,".png",sep=""))
-# plot(1:max_diff,y2_diff,ylim=c(0,1.2*max(y2_diff)),xlim=c(0,max_diff),
-#      main="Covariance with Increasing Difference Operator",xlab="n",ylab="variance/covariance")
-# lines(1:max_diff,y2_diff)
-# points(1:max_diff,cy_diff)
-# lines(1:max_diff,cy_diff,lty="dashed")
-# lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$var_perm + 2*CS_output_sub$var_tran, col="red")
-# lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$ins_perm*CS_output_sub$var_perm + 2*CS_output_sub$ins_tran*CS_output_sub$var_tran, col="green")
-# legend(0.25, 0.05, legend=c(expression(paste("var(",Delta^n,"y) Empirical"),paste("var(",Delta^n,"y) matched to n=3,4,5"), paste("cov(",Delta^n,"y,",Delta^n,"c) Empirical"),paste("cov(",Delta^n,"y,",Delta^n,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"))
-# dev.off()
+# Plot both variance and covariance at different growth periods
+max_diff=10
+y2_diff = array(0.0, dim=c(max_diff,1))
+cy_diff = array(0.0, dim=c(max_diff,1))
+regcoef_diff = array(0.0, dim=c(max_diff,1))
+
+this_col=1
+for (i in 1:max_diff){
+  y2_diff[i] = mean(moments_all$moment_y2[,(this_col):(this_col+max_diff-i)])
+  cy_diff[i] = mean(moments_all$moment_cy[,(this_col):(this_col+max_diff-i)])
+  regcoef_diff[i] = mean(moments_all$reg_coef[,(this_col):(this_col+max_diff-i)])
+  this_col = this_col+max_diff-i+1
+}
+n1=3
+n2=5
+diff_to_use = c(n1,n2)
+cols_per_diff = max_diff-diff_to_use+1
+moments_used =c()
+j=1
+k=1
+for (i in 1:max_diff){
+  if (i==diff_to_use[j]){
+    moments_used = c(moments_used, k:(k+max_diff-i))
+    j = j+1
+    if (j>2){
+      break
+    }
+  }
+  k=k+max_diff-i+1
+}
+moments_used_all=c()
+for (i in 0:(2*(T-max_diff+1)-1)){
+  moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
+}
+c_vector_sub = moments_all$c_vector[moments_used_all]
+omega_sub    = moments_all$omega[moments_used_all,][,moments_used_all]
+CS_output_sub = CS_parameter_estimation(c_vector_sub, omega_sub, T-(max_diff-diff_to_use[-1]),diff_to_use,cols_per_diff)
+
+png(paste(figures_dir, "IncreasingDiff",tag,".png",sep=""))
+plot(1:max_diff,y2_diff,ylim=c(0,1.2*max(y2_diff)),xlim=c(0,max_diff),
+     main="Covariance with Increasing Difference Operator",xlab="n",ylab="variance/covariance")
+lines(1:max_diff,y2_diff)
+points(1:max_diff,cy_diff)
+lines(1:max_diff,cy_diff,lty="dashed")
+lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$var_perm + 2*CS_output_sub$var_tran, col="red")
+lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$ins_perm*CS_output_sub$var_perm + 2*CS_output_sub$ins_tran*CS_output_sub$var_tran, col="green")
+legend(0.25, 0.05, legend=c(expression(paste("var(",Delta^n,"y) Empirical"),paste("var(",Delta^n,"y) matched to n=3,4,5"), paste("cov(",Delta^n,"y,",Delta^n,"c) Empirical"),paste("cov(",Delta^n,"y,",Delta^n,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"))
+dev.off()
 ###############################################################################
 # 
 # ###############################################################################
@@ -651,7 +651,7 @@ legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(p
 dev.copy(png, paste(figures_dir, "MPXByDurables_all.png",sep=""))
 dev.off()
 
-#create black white graph, for use in slides
+#create blanck white graph, for use in slides
 dev.new()
 par(mar=c(8,7,4,5)+0.1)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
@@ -965,36 +965,62 @@ robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_lis
 #Income
 num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Income Decile", "total_tranMPX_Income", param_col=4, x_label="Decile")
+robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Income Decile", "total_tranMPX_Income", param_col=4 ,legend_xpos = 2, x_label="Decile")
 #permanent
 robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By Income Decile", "total_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
-
 
 #MeanCons
 num_quantiles = 10
 #transitory
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Consumption Decile", "total_tranMPX_MeanCons", param_col=4, x_label="Decile")
+robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Consumption Decile", "total_tranMPX_MeanCons", param_col=4 ,legend_xpos = 2, x_label="Decile")
 #permanent
 robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By Consumption Decile", "total_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
 
 
-# Compare head with spouse
+# Compare levels with log
 tag_list = c("_level_lincome_head","")
 tag_list_legend = c("Baseline","Log Total (elasticity)")
 
 #First do liquid wealth
 num_quantiles = 5
 #transitory
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "Spouse_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "Logs_tranMPX_liquidwealth", param_col=4,legend_xpos = 6, x_label="Quintile")
 #permanent
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "Spouse_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "Logs_permMPX_liquidwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
 
 #Net wealth
 num_quantiles = 5
 #transitory
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Net Wealth Quintile", "Spouse_tranMPX_netwealth", param_col=4, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Net Wealth Quintile", "Logs_tranMPX_netwealth", param_col=4,legend_xpos = 6, x_label="Quintile")
 #permanent
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Net Wealth Quintile", "Spouse_permMPX_netwealth", param_col=3, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Net Wealth Quintile", "Logs_permMPX_netwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
+#URE
+#transitory
+robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By URE Decile", "Logs_tranMPX_URE", param_col=4,legend_xpos = 6, x_label="Decile")
+#permanent
+robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By URE Decile", "Logs_permMPX_URE", param_col=3,legend_xpos = 6, x_label="Decile")
+
+#NNP
+#transitory
+robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By NNP Decile", "Logs_tranMPX_NNP", param_col=4,legend_xpos = 6, x_label="Decile")
+#permanent
+robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By NNP Decile", "Logs_permMPX_NNP", param_col=3,legend_xpos = 6, x_label="Decile")
+
+#Income
+num_quantiles = 10
+#transitory
+robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Income Decile", "Logs_tranMPX_Income", param_col=4,legend_xpos = 6, x_label="Decile")
+#permanent
+robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By Income Decile", "Logs_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
+
+#MeanCons
+num_quantiles = 10
+#transitory
+robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Transitory MPX By Consumption Decile", "Logs_tranMPX_MeanCons", param_col=4,legend_xpos = 6, x_label="Decile")
+#permanent
+robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Permanent MPX By Consumption Decile", "Logs_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
+
+
 
 
 tag_list = c("_level_lincome_head","_level_lincome_head_quantilesbyperminc")
@@ -1003,9 +1029,9 @@ tag_list_legend = c("Baseline", "LiqWealth/PermInc" )
 #First do liquid wealth
 num_quantiles = 5
 #transitory
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "DivPerm_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "DivPerm_tranMPX_liquidwealth", param_col=4,legend_xpos = 6, x_label="Quintile")
 #permanent
-robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "DivPerm_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "DivPerm_permMPX_liquidwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
 
 
 ###############################################################################
