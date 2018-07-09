@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Sufficient Statistics Definitions}
+\label{table:auclertSS}
+\begin{tabular}{ccl}
+\textbf{Statistic} & \textbf{Definition} & \textbf{Description} \\
+\hline
+$\mathcal{M}$ & $\mathbb{E}_I\Big[MPC_i \frac{Y_i}{\mathbb{E}_I(c_i)}\Big]$ & Income-weighted MPC \\
+$\mathcal{E}_Y$ & $\mathrm{Cov}_I\Big[MPC_i, \frac{Y_i}{\mathbb{E}_I(c_i)}\Big]$ & Redistribution elasticity for Y \\
+$\mathcal{E}_P$ & $\mathbb{E}_I\Big[MPC_i \frac{NNP_i}{\mathbb{E}_I(c_i)}\Big]$ & Redistribution elasticity for P \\
+$\mathcal{E}_R$ & $\mathbb{E}_I\Big[MPC_i \frac{URE_i}{\mathbb{E}_I(c_i)}\Big]$ & Redistribution elasticity for R \\
+$\mathcal{S}$ & $\mathbb{E}_I\Big[(1-MPC_i) \frac{c_i}{\mathbb{E}_I(c_i)}\Big]$ & Hicksian scaling factor \\
+\hline
+\end{tabular}
+\end{table}
+\efloatseparator
+ 
