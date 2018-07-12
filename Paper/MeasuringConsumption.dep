@@ -144,16 +144,16 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/basic_regression.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/timeagg_rw.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitory.png}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.png}{0000/00/00 v0.0}
   *{file}   {omscmr.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/VarianceByAge.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByAge.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/VarianceByLiquidWealth.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByLiquidWealth.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/IncreasingDiff.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByAge_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/IncreasingDiff_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}

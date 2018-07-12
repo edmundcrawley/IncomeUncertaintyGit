@@ -125,20 +125,25 @@ Expectations in 2016-2017. \cite{jappelli_fiscal_2014} find an aggregate MPC of 
 The third method is to impose covariance restrictions on panel data of income and consumption and use these to identify the consumption response to income shocks of differing persistence. The most well known of these is the paper by \cite{blundell_consumption_2008} which uses imputed non-durable consumption data based on food expenditure reported in PSID data. They estimate a consumption elasticity (closely related to an MPC if households consume most of their income) and find very little consumption response to transitory shocks, but as discussed previously this estimate is strongly downward biased.
 
 This paper also adds to the limited literature on consumption responses to permanent shocks to income. Natural experiments for permanent shocks are very hard to come by. \cite{gelman_response_2016} use shocks to gasoline prices as a proxy for a permanent shock to income and find an MPC close to 1 across the population. BPP find a consumption elasticity to permanent shocks to income around 0.65 (the permanent shock elasticity is less affected by the time aggregation problem). For a more complete overview of the literature on consumption responses to income changes, see \cite{jappelli_consumption_2010}.
-	
-\section{Preliminary Evidence on the Nature of Expenditure Responses to Income Changes}
-In section \ref{empirical_strategy} we use a model to estimate the expenditure elasticities to transitory and permanent shocks and find surprisingly little difference between the two. While the model allows us to precisely estimate these quantities, in some ways it obscures from the key features of the data that are driving the result. In this section we present a some very simple regression of expenditure growth on income growth and compare them with what we would expect in some very well understood baseline models.
 
-We will look at the estimate of $\beta^n$ in the model
+\section{Empirical Strategy}
+
+\subsection{Methodology Intuition}
+Our empirical strategy will be to impose some covariance restrictions on our data and apply GMM in order to estimate parameters of interest. While this strategy allows us to precisely estimate these quantities, in some ways it obscures from the key features of the data that are driving the result. In this section we present some very simple regressions of expenditure growth on income growth and compare them with what we would expect in some very well understood baseline models.
+
+We will look at the estimate of $\beta^N$ in the model
 \begin{align*}
-    \Delta^n c_{it} = \alpha^n + \beta \Delta^n y_{it} + \varepsilon_{it}
+    \Delta^N c_{it} = \alpha^N + \beta \Delta^N y_{it} + \varepsilon_{it}
 \end{align*}
-where $n$, the number of years over which growth is measured, varies from 1 to 10. Figure \ref{fig:GrowthReg} shows the resulting estimates for all Danish households whose head is between the age of 35 and 60 in 2013 (the sample covers 2003-2015). The striking feature, which drives our main results in section \ref{results}, is that $\beta^n$ is more or less constant across different values of $n$. To build intuition on why this result is so striking, we have also included the expected values of $\beta^n$ from simulating well understood models. The blue line shows the complete markets case where all idiosyncratic shocks can be, and are, insured against. The green line shows behavior from the Solow model in which households save a constant proportion of their income each period. The coefficients are equal to 1 even when saving is positive because we are looking at elasticities. Finally, the red line shows the expected result from a standard buffer stock savings model as described in section ***********. In this model, the variance of income growth over one year is dominated by the transitory shocks for which the consumption response is relatively small. Over a 10 year period the variance of income growth is dominated by permanent shocks to income, for which consumption moves close to one-for-one. As a result, this model gives rise to an upward sloping curve for $\beta^n$ asymptoting towards 1.
+where $N$, the number of years over which growth is measured, varies from 1 to 10. Our identification comes from the fact that transitory income shocks make up a relatively large proportion of the variance of income growth over a short period, and that permanent income shocks dominate the variance of income growth over a long period. Figure \ref{fig:GrowthReg} shows what we would expect to see under three well known models, as well as what we actually observe the data. In a complete markets model in which all idiosyncratic shocks to income are insured against there is no relation between income growth and consumption growth, as represented by the blue horizontal line at zero. In the Solow growth model, and also some old Keynesian models, households' expenditure is a constant proportion of income that period, regardless of transitory shocks to income. The green horizontal line around 0.75 shows what we would see in a model of this type where households spend 75\% of their income each period. The red line shows the results for a typical buffer-stock saving model. In this model the regression of consumption growth on income growth over one year yields a relatively small number as households are able to self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes towards 1.0 as N gets large.
+
+
+ Figure \ref{fig:GrowthReg} shows the resulting estimates for all Danish households whose head is between the age of 30 and 55 in 2008 (the sample covers 2003-2015). The striking feature, which drives our main results in section \ref{results}, is that $\beta^N$ is more or less constant across different values of $n$. To build intuition on why this result is so striking, we have also included the expected values of $\beta^n$ from simulating well understood models. The blue line shows the complete markets case where all idiosyncratic shocks can be, and are, insured against. The green line shows behavior from the Solow model in which households save a constant proportion of their income each period. The coefficients are equal to 1 even when saving is positive because we are looking at elasticities. Finally, the red line shows the expected result from a standard buffer stock savings model as described in section ***********. In this model, the variance of income growth over one year is dominated by the transitory shocks for which the consumption response is relatively small. Over a 10 year period the variance of income growth is dominated by permanent shocks to income, for which consumption moves close to one-for-one. As a result, this model gives rise to an upward sloping curve for $\beta^n$ asymptoting towards 1.
 
 In the following section we will make specific assumptions about the income and consumption processes that allow us to identify the consumption elasticity to permanent and transitory shocks. We will also test the model for a variety of ways in which it may be misspecified. In all cases the conclusion that there is little difference between the permanent and transitory elasticities is robust. Intuitively, this fact can be traced back to the lack of an upward slope in the graph of $\beta^n$ above and this helps to guide thinking on alternative possible models.
 	\begin{figure} 
 	\begin{centering}
-	\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression.png}
+	\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_liquid_wealth_level_lincome_head.png}
 	\caption{Regression coefficients of consumption growth on income growth}
 	\label{fig:GrowthReg}
 	\end{centering}
@@ -357,7 +362,7 @@ Our results show:
 \subsection{Income Variance} \label{inc_variance}
 \begin{figure} 
 \begin{centering}
-	\includegraphics[scale=0.6]{\econtexRoot/Figures/VarianceByAge.png} 
+	\includegraphics[scale=0.6]{\econtexRoot/Figures/VarianceByAge_level_lincome_head.png} 
 	\caption{Permanent and Transitory Shock Variance by Age}
 	\label{fig:VarianceByAge}
 \end{centering}
@@ -373,7 +378,7 @@ The level of both permanent and transitory shock variance for households aged 35
 \subsection{Consumption Response}
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{\econtexRoot/Figures/MPXByAge.png} 
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/MPXByAge_level_lincome_head.png} 
 		\caption{MPX by Age}
 		\label{fig:MPXByAge}
 	\end{centering}
@@ -381,9 +386,9 @@ The level of both permanent and transitory shock variance for households aged 35
 Figure \ref{fig:MPXByAge} shows the model's estimates for $\psi$, informally labeled as the MPX (Marginal Propensity to eXpend). MPX out of permanent shocks remains relatively steady above 0.8 up to the head of household's early 50's (representing the 10 year's from the head's early 40's to early 50's) at which point it starts to fall. This is consistent with a lifecycle model in which a `permanent' shock to income represents a much smaller share of the household's lifetime budget constraint as retirement approaches. The MPX out of transitory shocks is notable for being high relative to other estimates in the literature, averaging around 0.7. It similarly declines towards retirement, but the decline starts earlier than the permanent MPX and is less steep. The pattern of this data is consistent with the majority of households acting as buffer stock savers in their early careers and then building up wealth as they approach retirement, giving them more room to smooth consumption. However, the magnitudes of the transitory MPX are larger than standard parameterizations of such models would imply.
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/VarianceByLiquidWealth.png}
+	\includegraphics[scale=0.45]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.png}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByLiquidWealth.png}
+	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByLiquidWealth_level_lincome_head.png}
 	\caption{Variance and MPX by Liquid Wealth Quintile}
 	\label{fig:MPXByLiquidWealth}
 \end{figure}
@@ -398,7 +403,7 @@ A key part of our identification method is the assumption that the impulse respo
 The dashed black line and solid green line repeat this experiment with the covariance of income and consumption over increasing years of growth. This time the solid green line is equation \ref{covariance} with parameters identified by 3, 4 and 5 years of growth. As with income, the model says that this covariance should grow linearly for $n \geq 3$. The assumption that the transitory consumption response goes to zero within 2 years is less common than the equivalent assumption on income and is key to our identification. The data again show that for $n < 3$ the covariance is below the green line, but that for growth over 6 and 7 years the model does a good job.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{\econtexRoot/Figures/IncreasingDiff.png}
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/IncreasingDiff_level_lincome_head.png}
 		\caption{Variance and Covariance Over n Years of Growth}
 		\label{fig:IncreasingDiff}
 	\end{centering}
