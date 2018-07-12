@@ -32,6 +32,11 @@
 \textsc{Auclert, Adrien}  (2017): ``Monetary {Policy} and the {Redistribution}
   {Channel},'' Working {Paper} 23451, National Bureau of Economic Research.
 
+\harvarditem[Baker]{Baker}{2015}{baker_debt_2015}
+\textsc{Baker, Scott~R.}  (2015): ``Debt and the {Consumption} {Response} to
+  {Household} {Income} {Shocks},'' {SSRN} {Scholarly} {Paper} ID 2541142,
+  Social Science Research Network, Rochester, NY.
+
 \harvarditem[Blundell, Pistaferri, and Preston]{Blundell, Pistaferri, and
   Preston}{2008}{blundell_consumption_2008}
 \textsc{Blundell, Richard, Luigi Pistaferri,  {and} Ian Preston}  (2008):
@@ -114,6 +119,10 @@
   {News} and {Loans},'' Working {Paper} 24386, National Bureau of Economic
   Research.
 
+\harvarditem[Ganong and Noel]{Ganong and Noel}{2017}{ganong_consumer_2017}
+\textsc{Ganong, Peter,  {and} Pascal Noel}  (2017): ``Consumer {Spending}
+  {During} {Unemployment}: {Positive} and {Normative} {Implications},'' .
+
 \harvarditem[Gelman]{Gelman}{2016}{gelman_what_2016}
 \textsc{Gelman, Michael}  (2016): ``What Drives Heterogeneity in the Marginal
   Propensity to Consume? Temporary Shocks vs Persistent Characteristics,'' .
@@ -125,6 +134,13 @@
   Matthew~D. Shapiro, Dan Silverman,  {and} Steven Tadelis}  (2016): ``The
   {Response} of {Consumer} {Spending} to {Changes} in {Gasoline} {Prices},''
   Working {Paper} 22969, National Bureau of Economic Research.
+
+\harvarditem[Gelman, Kariv, Shapiro, Silverman, and Tadelis]{Gelman, Kariv,
+  Shapiro, Silverman, and Tadelis}{2014}{gelman_harnessing_2014}
+\textsc{Gelman, Michael, Shachar Kariv, Matthew~D. Shapiro, Dan Silverman,
+  {and} Steven Tadelis}  (2014): ``Harnessing naturally occurring data to
+  measure the response of spending to income,'' \emph{Science}, 345(6193),
+  212--215.
 
 \harvarditem[Hall]{Hall}{1978}{hall_stochastic_1978}
 \textsc{Hall, Robert~E.}  (1978): ``Stochastic {Implications} of the
@@ -182,9 +198,11 @@
   {Consumption} {Insurance} beyond {Self}-{Insurance}?,'' \emph{American
   Economic Journal: Macroeconomics}, 2(4), 53--87.
 
-\harvarditem[Kaplan and Violante]{Kaplan and Violante}{2014}{kaplan_model_2014}
-\textsc{\BySame{}}  (2014): ``A {Model} of the {Consumption} {Response} to
-  {Fiscal} {Stimulus} {Payments},'' \emph{Econometrica}, 82(4), 1199--1239.
+\harvarditem[Kaplan and Violante]{Kaplan and
+  Violante}{2018}{kaplan_microeconomic_2018}
+\textsc{Kaplan, Greg,  {and} Giovanni~L Violante}  (2018): ``Microeconomic
+  {Heterogeneity} and {Macroeconomic} {Shocks},'' Working {Paper} 24734,
+  National Bureau of Economic Research.
 
 \harvarditem[Krueger, Mitman, and Perri]{Krueger, Mitman, and
   Perri}{2016}{krueger_macroeconomics_2016}
@@ -192,10 +210,21 @@
   ``Macroeconomics and {Household} {Heterogeneity},'' Working {Paper} 22319,
   National Bureau of Economic Research.
 
+\harvarditem[Krusell and Smith]{Krusell and Smith}{1998}{krusell_income_1998}
+\textsc{Krusell, Per,  {and} Jr. Smith, Anthony A.}  (1998): ``Income and
+  {Wealth} {Heterogeneity} in the {Macroeconomy},'' \emph{Journal of Political
+  Economy}, 106(5), 867--896.
+
 \harvarditem[Lusardi]{Lusardi}{1996}{lusardi}
 \textsc{Lusardi, Annamaria}  (1996): ``Permanent Income, Current Income, and
   Consumption: Evidence from Two Panel Data Sets,'' \emph{Journal of Business
   and Economic Statistics}, 14(1), 81--90.
+
+\harvarditem[Manovskii and Hryshko]{Manovskii and
+  Hryshko}{2017}{manovskii_how_2017}
+\textsc{Manovskii, Iourii,  {and} Dmytro Hryshko}  (2017): ``How {Much}
+  {Consumption} {Insurance} in the {U}.{S}.?,'' Discussion Paper 1584, Society
+  for Economic Dynamics.
 
 \harvarditem[Meghir and Pistaferri]{Meghir and
   Pistaferri}{2004}{meghir_income_2004}
@@ -253,6 +282,18 @@
 \harvarditem[Thaler]{Thaler}{1985}{thaler_mental_1985}
 \textsc{Thaler, Richard}  (1985): ``Mental {Accounting} and {Consumer}
   {Choice},'' \emph{Marketing Science}, 4(3), 199--214.
+
+\harvarditem[Vardardottir and Pagel]{Vardardottir and
+  Pagel}{2016}{vardardottir_liquid_2016}
+\textsc{Vardardottir, Arna,  {and} Michaela Pagel}  (2016): ``The {Liquid}
+  {Hand}-to-{Mouth}: {Evidence} from a {Personal} {Finance} {Management}
+  {Software},'' 2016 {Meeting} {Paper} 789, Society for Economic Dynamics.
+
+\harvarditem[Violante, Kaplan, and Weidner]{Violante, Kaplan, and
+  Weidner}{2014}{violante_wealthy_2014}
+\textsc{Violante, Gianluca, Greg Kaplan,  {and} Justin Weidner}  (2014): ``The
+  {Wealthy} {Hand}-to-{Mouth},'' 2014 {Meeting} {Paper} 192, Society for
+  Economic Dynamics.
 
 \harvarditem[Working]{Working}{1960}{working_note_1960}
 \textsc{Working, Holbrook}  (1960): ``Note on the {Correlation} of {First}
