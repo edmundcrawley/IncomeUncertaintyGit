@@ -147,7 +147,7 @@ where $N$, the number of years over which growth is measured, varies from 1 to 1
 The gray line shows the results of these regressions using all households in the Danish sample. It is striking that the data appears to be closest to the Solow model, with only a small decrease in the regression coefficient over short periods. However, aggregating all households in this way hides a large degree of heterogeneity, particularly across households with different levels of liquid wealth. The two black lines shows the regression coefficients where the sample is restricted to households in the lowest and highest quintiles of liquid wealth (averaged over the observed period) respectively. For households in the lowest quintile there is no evidence of consumption smoothing. As the regression coefficient is relatively stable for this group over N, the result that the marginal propensity to consume out of both transitory and permanent shocks are similar and very high is robust to a large degree of model misspecification in the next section. Households in the top quintile of liquid wealth show a clear upward slope in figure \ref{fig:GrowthReg}, indicating a substantial degree of consumption smoothing. The fact that the regression coefficient for this group appears to asymptote well below 1 also suggests, in contrast to standard buffer-stock models, that the MPC out of permanent shocks for liquid households is significantly lower than 1.
 
 \subsection{Aside: Why Not BPP? A Brief Introduction to the Time Aggregation Problem}
-As explained above, our identification is going to come from the shape of income and consumption covariance over increasing periods of time. An obvious question is why we have chosen not to use the well known methodology of \cite{blundell_consumption_2008} who achieve identification of transitory shocks from the fact that a transitory shock in period $t$ will mean-revert in period $t+1$.\footnote{\cite{kaplan_how_2010} show in discrete time simulations that the methodology works reasonably well for standard calibrations of buffer-stock models and end up concluding ``The BPP insurance coefficients should become central in quantitative macroeconomics". However, some recent papers such as \cite{commault_how_2017} and \cite{manovskii_how_**********} have pointed to other potential problems of the methodology.} Unfortunately the method is not robust to the time aggregation problem of \cite{working_note_1960}. While macro-economists have long been aware of the importance of time aggregation in time series regressions (see \cite{campbell_consumption_1989} for a well known example), the problem appears to have escaped the attention of the household finance and labor economics literature. We will therefore briefly describe the problem here. For a more detailed account with particular attention to BPP, see \cite{crawley_time_2018}.
+As explained above, our identification is going to come from the shape of income and consumption covariance over increasing periods of time. An obvious question is why we have chosen not to use the well known methodology of \cite{blundell_consumption_2008} who achieve identification of transitory shocks from the fact that a transitory shock in period $t$ will mean-revert in period $t+1$.\footnote{\cite{kaplan_how_2010} show in discrete time simulations that the methodology works reasonably well for standard calibrations of buffer-stock models and end up concluding ``The BPP insurance coefficients should become central in quantitative macroeconomics". However, some recent papers such as \cite{commault_how_2017} and \cite{hryshko_income_2018} have pointed to other potential problems of the methodology.} Unfortunately the method is not robust to the time aggregation problem of \cite{working_note_1960}. While macro-economists have long been aware of the importance of time aggregation in time series regressions (see \cite{campbell_consumption_1989} for a well known example), the problem appears to have escaped the attention of the household finance and labor economics literature. We will therefore briefly describe the problem here. For a more detailed account with particular attention to BPP, see \cite{crawley_time_2018}.
 
 Figure \ref{fig:TimeAgg} shows how the problem arises. The solid `Income flow' line shows the true income flow of a household who receives zero income throughout year 1, zero income for the first half of year two, and then a constant income flow of 1.0 per year during the second half of the second year and in the third year. The dashed line shows the observed \textit{total} income of the household in years 1, 2 and 3: zero in year 1, 0.5 in year 2 and 1.0 in year 3. The important thing to note is that despite there only being one `shock' to the income flow over the three year period, the na\"ive observer would assume there had been two shocks, one between years 1 and 2 and another between years 2 and 3. This effect is of particular importance to econometric techniques that make use of the auto-covariance structure of data processes. For example the first difference of a random walk in discrete time has no autocorrelation, but the first difference of a time-aggregated random walk in continuous time has an autocorrelation equal to 1/4. BPP uses time aggregated income data and achieves identification of transitory variance precisely though the auto-covariance structure. This is why, as explained in the introduction, the problem is particularly pervasive for this methodology.
 	\begin{figure} 
@@ -158,139 +158,62 @@ Figure \ref{fig:TimeAgg} shows how the problem arises. The solid `Income flow' l
 	\end{centering}
 \end{figure}
 
+While it would be possible to stick very closely to the original BPP model and adjust the covariance restrictions to take account of the time aggregation problem,\footnote{\cite{crawley_time_2018} takes this more straightforward approach using the same PSID data as used in BPP.} we have found that in practice the underlying assumptions made by BPP (in particular that consumption follows a random walk) do not fit with the data.\footnote{\cite{kaplan_how_2010} show that without time aggregation, the BPP method correctly identifies the transitory consumption response in the period of the income shock regardless of the consumption dynamics going forward. This fact is again not robust to the time aggregation problem. With time aggregation taken into account the estimates are highly sensitive to assumptions about short term consumption dynamics.} Therefore we have chosen to attain identification in a manner similar to \cite{carroll_nature_1997} which allows us to be agnostic about the exact short term dynamics of income and consumption.
 
-
-	
 \subsection{Covariance Restrictions} 
-Our methodology builds heavily on both \cite{blundell_consumption_2008} (BPP) and \cite{carroll_nature_1997}. The BPP framework has become a workhorse in the heterogeneous agent literature. \cite{kaplan_how_2010} show that the method gives reasonably accurate estimates in simulated data for a variety of realistically calibrated heterogeneous agent models and end up concluding ``The BPP insurance coefficients should become central in quantitative macroeconomics''. It has been somewhat of a mystery how the estimated BPP consumption response to transitory shocks (around 5\%) can be reconciled with much higher estimates from the natural experiment literature. \cite{commault_how_2017} is one attempt to explain this difference by allowing consumption growth to depend on the history of income shocks. We show that the time aggregtion problem, ignored in BPP and the simulation exercises of \cite{kaplan_how_2010}, significantly effects the identification and can explain the entire dissonance.
 
-Once we correct for the time aggregation problem, it is apparent that the identification of transitory and permanent shock variance is very sensitive to the exact assumptions made about the short term dynamics of income. There is no clear way to adapt the MA process for transitory shocks assumed in BPP to our time aggregated framework. Instead we turn to the large literature on estimating transitory and permanent shock variances and in particular make use of \cite{carroll_nature_1997}. We follow their method of estimating permanent and transitory income shock variance using income growth over 3 to 5 years and extend it to consumption.
-\subsection{The Time Aggregation Problem}
-\cite{working_note_1960} was the first to note that if the observation period is longer than the underlying process and we observed the sum (or mean) of a random walk over the observation period, then the resulting observed process in not a random walk and has a positive autocorrelation. Intuition on this can be gained from figure \ref{fig:TimeAgg}. Here the underlying process (thin black line) is a random walk in continuous time while the observed process (think red line) is the mean of the underlying process over each time period. If a shock to the underlying process happens half way through a time period the expected value of the process will jump by the full amount of the shock, but the mean value observed in the current period will only jump by half the value of the shock. Therefore an increase in the time aggregated process in the current period is predictive of another increase in the next period. Consider the time period from 4 to 5 in figure \ref{fig:TimeAgg}. In this period the underlying process increases substantially from around -5 to 5. However, we only observe the time aggregate process increase by about half this amount, with the rest of the increase occuring in the following period despite the fact that the underlying process does not increase in the following period. If the underlying process is a random walk in continuous time (possibly with jumps), the first autocorrelation is 1/6 and the autocorrelation beyond one period is 0.
+\subsubsection{Income Dynamics: \cite{carroll_nature_1997}}
+Our identification of permanent and transitory income variance will follow the methodology of \cite{carroll_nature_1997} closely. Our method will correctly account for time aggregation, but due to identification coming from income growth over 3, 4 and 5 years, rather than the covariance of income growth at time $t+1$ with time $t$ as in BPP, time aggregation only introduces a small bias in the estimates of \cite{carroll_nature_1997}. We will first describe the method without time aggregation and then show how the estimates need to be adjusted.
 
-The time aggregation problem has mostly been absorbed by macroeconomists, for example \cite{campbell_consumption_1989} use two lags of the growth predicting instruments to overcome the problem. The household finance literature appears to have mostly ignored the problem, including all studies that use microdata to identify transitory and permanent shock variances. For some applications, including BPP, this oversight fundamentally changes the econometric results. In sections \ref{BPP_noagg} to \ref{BPP_cont} we describe the core BPP identification and then show how time aggregation affects the results with time aggregated over two periods and then in continuous time.
-
-\subsubsection{BPP Identification without Time Aggregation} \label{BPP_noagg}
-Below we summarize the BPP assumptions and derive the key moments used for identification. For a more detail please refer to their original paper. The core of the model is the assumptions on the income and consumption processes. They assume that (unexplained) income growth for household $i$ follows the process:
-\begin{align*}
-\Delta y_{i,t} = \zeta_{i,t} + \Delta \varepsilon_{i,t}
-\end{align*}
-where time is discrete and $\zeta_{i,t}$ and $\varepsilon_{i,t}$ are each i.i.d. and independent of each other.\footnote{BPP allow the transitory component to follow an MA(q) process. As our purpose here is simply to demonstrate the importance of time aggregation in this application, we consider the simplest version. The core idea is unchanged by the inclusion of MA(q).} The (unexplained) change in log consumption is assumed to be:
-\begin{align*}
-\Delta c_{i,t} = \phi_{i,t}\zeta_{i,t} + \psi_{i,t} \varepsilon_{i,t}
-\end{align*}
-That is consumption follows a random walk as proposed in \cite{hall_stochastic_1978}. $\phi_{i,t}$ can be thought of as being closely related to the MPC out of permanent shocks and $\psi_{i,t}$ closely related to the MPC out of transitory shocks.\footnote{Strictly these coefficients are elasticities. They are closely related to their respective MPCs because for many households, total consumption is close to total income, so a one percentage point increase in consumption corresponds to one percentage point of income.}
-
-Identification of $\psi$ is achieved by noting that predictability in income growth comes only from the transitory component of income (which is mean reverting) while the permanent component of income contains no information about future income growth. Therefore income growth in the next period acts as a valid instrument for $\varepsilon_{i,t}$.
+\cite{carroll_nature_1997} assume that income is composed of a permanent component that follows a random walk and a transitory MA(2) component. That is:
+	\begin{align*}
+	y_t &= p_t + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \theta_2 \varepsilon_{t-2} \\
+	p_t &= p_{t-1} +\zeta_t\\
+	\end{align*}
+where $\zeta_t$ and $\varepsilon_t$ are mean zero random variables, independent of each other and of themselves over time. Each has constant variance, $\sigma_{\zeta}$ and $\sigma_{\varepsilon}$ respectively. For $N \geq 3$ we have:
 \begin{align}
-\psi &= \frac{\mathrm{Cov}(\Delta c_t,\varepsilon_t)}{\mathrm{Cov}(\Delta y_t,\varepsilon_t)} \nonumber \\
-&= \frac{-\mathrm{Cov}(\Delta c_t,\Delta y_{t+1})}{-\mathrm{Cov}(\Delta y_t,\Delta y_{t+1})} \label{tran_ins}
+\Delta^N y_t &= \zeta_t + \zeta_{t-1} + ... + \zeta_{t-N+1} \nonumber \\
+& \qquad \qquad + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \theta_2 \varepsilon_{t-2} - (\varepsilon_{t-N} + \theta_1 \varepsilon_{t-1-N} + \theta_2 \varepsilon_{t-2-N}) \nonumber \\ 
+\Rightarrow \mathrm{Var}(\Delta^N y_t) &= N \sigma_{\zeta} + 2\underbrace{(1+\theta_1^2 + \theta_2^2)\sigma_{\varepsilon}}_\text{``Total'' transitory variance} \qquad \text{ for $N \geq 3$} \label{CS_identification}
 \end{align}
-An estimate of the right hand side of equation \ref{tran_ins} can be calculated from the sample and is used to identify $\psi$.
+Equation \ref{CS_identification} shows that the variance of income growth grows linearly with the number of years of growth beyond 3. The transitory component adds variance at the beginning and end of the growth period, but any transitory shock to income that occurs in the middle of the period does not affect income growth as it will have died out by the end. \cite{carroll_nature_1997} use this to identify the variance of permanent shocks ($\mathrm{Var}(\zeta)$) and the ``total'' transitory variance ($(1+\theta_1^2 + \theta_2^2)\mathrm{Var}(\varepsilon)$). While similar to BPP it is important to note that BPP attempts to identify the variance of initial impact of the transitory shock, $\mathrm{Var}(\varepsilon)$, rather than the ``total'' transitory variance. While the notion of ``total'' transitory variance will carry over naturally into the time aggregated case, the variance of the initial impact does not have a natural interpretation.
 
-\subsubsection{BPP Identification with Two-period Time Aggregation} \label{BPP_two_period}
-Here we show the identification problem that arises when the underlying process is made up of two sub-periods (we will assume of 6 months each), but we observe the sum of income and consumption of the whole year. As before the underlying processes for income and consumption growth are:
-\begin{align*}
-\Delta y_t & = \zeta_t + \Delta \varepsilon_t \\
-\Delta c_t & = \phi \zeta_t + \psi \varepsilon_t  \\
-\end{align*}
-where now $t$ denotes 6-month periods. Summing up (assuming $y_0=c_0=0$) gives:
-\begin{align*}
-y_t & = \sum_{i=1}^t \zeta_i + \varepsilon_t  \\
-c_t & = \phi \sum_{i=1}^t \zeta_i + \psi \sum_{i=1}^t \varepsilon_i  \\
-\end{align*}
-We observe $y^{obs}_T$ and $c^{obs}_T$ for $T \in \{2,4,6...\}$ (annually) where:\footnote{Here we are being a little fast and loose by summing the log process rather than actual income process. We will continue to do this throughout the paper. In appendix \ref{sec:Identification} we show do this properly, making the assumption that the variance of permanent income over a one year period is small.}
-\begin{align*}
-y^{obs}_T & = y_T + y_{T-1}  \\
-c^{obs}_T & = c_T + c_{T-1}  \\
-\end{align*}
-Our observed (annual) changes in income and consumption are therefore:
-\begin{align*}
-\Delta^2 y^{obs}_T & \equiv y^{obs}_T-y^{obs}_{T-2} =  y_T + y_{T-1} - y_{T-2} - y_{T-3} \\
-\Delta^2 c^{obs}_T & \equiv c^{obs}_T-c^{obs}_{T-2} =  c_T + c_{T-1} - c_{T-2} - c_{T-3}  \\
-\end{align*}
-which implies:
-\begin{align*}
-\Delta^2 y^{obs}_T & = \zeta_T + 2\zeta_{T-1} +\zeta_{T-2} + \varepsilon_T + \varepsilon_{T-1} - \varepsilon_{T-2} - \varepsilon_{T-3} \\
-\Delta^2 c^{obs}_T & =  \phi(\zeta_T + 2\zeta_{T-1} +\zeta_{T-2}) + \psi(\varepsilon_T + 2\varepsilon_{T-1} + \varepsilon_{T-2} ) \\
-\end{align*}
-Following the BPP method we would now use these observed growth numbers in the identification equation \ref{tran_ins}. This results in the value:
-\begin{align}
-\frac{-\mathrm{Cov}(\Delta^2 c^{obs}_T,\Delta^2 y^{obs}_{T+2})}{-\mathrm{Cov}(\Delta^2 y^{obs}_T,\Delta^2 y^{obs}_{T+2})} &= \frac{\phi \mathrm{Var}(\zeta_T) -\psi(\mathrm{Var}(\varepsilon_T) + 2\mathrm{Var}(\varepsilon_{T-1}) )}{ \mathrm{Var}(\zeta_T) - \mathrm{Var}(\varepsilon_T) -\mathrm{Var}(\varepsilon_{T-1}) } \nonumber\\
-& = \frac{\phi \mathrm{Var}(\zeta_T) -3\psi \mathrm{Var}(\varepsilon_T)  }{ \mathrm{Var}(\zeta_T) - 2\mathrm{Var}(\varepsilon_T)  }	\label{psihat}
-\end{align}
-which bears little relation to the desired value of $\psi$. For example, if the underlying consumption process followed the permanent income hypothesis with $\phi=1$ and $\psi=0$, and transitory shock variance was the same size as permanent shock variance, the expected value of the estimate for $\psi$ would be $-1$!
+The administrative data we use in this paper is at an annual frequency and measures the sum of income over the observed year. If shocks to income occurred only on 1st January every year then we could use equation \ref{CS_identification} to identify permanent and transitory variance. It is important to distinguish between a model in which shocks happen about once a year (for example) but can occur at any point in the year, versus a model in which shocks to income happen on a timetable. The former can be modeled in continuous time with jumps occurring as a Poisson process approximately once a year. The later is best modeled as a discrete time model. In this paper we will take the former approach. While some types of jobs may have a regular schedule on which pay appraisals take place, many of the larger permanent shocks to income occur when a worker changes job which can occur at any point in the year. We (along with the literature) lack a clear understanding of what makes up the bulk of the transitory shocks to income and the Danish data is a potentially rich source for further research in this area.\footnote{While we use annual income data in this paper in order to match with our expenditure data, monthly labor income data is collected, along with employer-employee matching.} Furthermore, even if each individual household experienced shocks on a pre-set timetable, if the timetable itself varies across the year for different households, our approach would yield unbiased results. While there is a big change in going from an underlying annual process to a quarterly process, the further change from quarterly to continuous time is much smaller.\footnote{See \cite{crawley_time_2018}}. As the exposition is much simpler in continuous time, we will therefore chose to present our own method in continuous time.
 
-\subsubsection{BPP Identification with Time Aggregation in Continuous Time} \label{BPP_cont}
-By now it should be clear that time aggregation is a serious problem for the BPP method. A natural question arises as to what frequency of underlying process to use to best approximate households' actual income processes. It is important to distinguish between a model in which shocks happen about once a year (for example) but can occur at any point in the year, versus a model in which shocks to income happen on a timetable, say on 31st December each year. The former can be modeled in continuous time with jumps occurring as a Poisson process approximately once a year. The later is best modeled as a discrete time model as the original BPP paper. In this paper we will take the former approach. While some types of jobs may have a regular schedule on which pay appraisals take place, our evidence suggests that most of the variance in both transitory and permanent income is relatively evenly spaced throughout the year.\footnote{We will soon have access to monthly pay data which will allow for a more rigorous analysis of this assumption.} Many of the larger permanent shocks to income occur when a worker changes job which can occur at any point in the year. We (along with the literature) lack a clear understanding of what makes up the bulk of the transitory shocks to income, but regularly scheduled bonuses are not large enough to account for much of this variance. Furthermore, even if each individual household experienced shocks on a pre-set timetable, if the timetable itself varies across the year for different households, our approach would yield unbiased results. While there is a big change in going from an underlying annual process to a quarterly process, the further change from quarterly to continuous time is much smaller. As the exposition is much simpler in continuous time, we will therefore chose to present our own method in continuous time.
-
-To write the equivalent model including purely transitory and permanent shocks in continuous time we will define two underlying martingale processes (possibly with jumps), $P_t$ and $Q_t$ where $P_t$ is the \textit{flow} of permanent income at time $t$ and $Q_t$ is the \textit{sum} of transitory shocks up to time $t$. We assume that for all  $s_1>s_2>s_3>s_4>0$:
+To write the equivalent model in continuous time we define two underlying martingale processes (possibly with jumps), $P_t$ and $Q_t$ where $P_t$ will represent the \textit{flow} of permanent income at time $t$ and the change in $Q_t$ provides the transitory \textit{impulses} that generate the transitory income. We assume that for all  $s_1>s_2>s_3>s_4>0$:
 \begin{align*}
 \mathrm{Var}(P_{s_1}-P_{s_2})=(s_1-s_2)\sigma_P^2 \\
 \mathrm{Cov}(P_{s_1}-P_{s_2},P_{s_3}-P_{s_4}) = 0 \\
 P_s = 0 \qquad \text{if } s<0
 \end{align*}
-and similarly for $Q_t$. Instantaneous income in a period $dt$ is given by:
-\begin{align}
-dy_t = \Big( \int_{0}^{t}dP_s \Big) dt  +dQ_t \label{income_process}
-\end{align}
-so that $P_t$ and $Q_t$ are exactly analogous to the permanent and transitory shocks in the discrete time model (with $q=0$ in the MA($q$) transitory component). Keeping with the assumption that consumption is a random walk with response parameters $\phi$ and $\psi$, instantaneous consumption is given by:
-\begin{align}
-dc_t = \phi \Big( \int_{0}^{t} dP_s  \Big) dt +\psi\Big( \int_{0}^{t}dQ_s\Big) dt  \label{consumption_process}
-\end{align}
-Equations \ref{income_process} and \ref{consumption_process} give the instantaneous income and consumption process in continuous time. We do not observe instantaneous quantities but instead the time aggregated quantities:
-\begin{align}
-\bar{y}_T = \int_{T-1}^{T} dy_t \label{income_TA}\\
-\bar{c}_T = \int_{T-1}^{T} dc_t \label{cons_TA}
-\end{align}
-for $T \in \{1,2,3...\}$. Taking the first difference gives:
-\begin{align}
-\Delta \bar{y}_T &= \int_{T-1}^{T} dy_t  - \int_{T-2}^{T-1} dy_t  \nonumber \\ 
-&= \int_{T-1}^{T} \int_{0}^{t}dP_s dt -\int_{T-2}^{T-1} \int_{0}^{t}dP_s dt +  \int_{T-1}^{T} dQ_t -\int_{T-2}^{T-1} dQ_t \nonumber \\
-&= \int_{T-1}^{T} \int_{t-1}^{t}dP_s dt +  \int_{T-1}^{T} dQ_t -\int_{T-2}^{T-1} dQ_t \nonumber \\
-&= \Big(\int_{T-2}^{T-1} (s-(T-2))dP_s  + \int_{T-1}^{T} (T-s)dP_s \Big) \nonumber \\
-& \qquad + \Big(\int_{T-1}^{T} dQ_t -\int_{T-2}^{T-1} dQ_t \Big) \label{deltay}
-\end{align}
-and a similar equations for $\Delta \bar{c}_T$. Putting these observable income and consumption changes into the identification equation \ref{tran_ins} gives:
-	\begin{align}
-	\frac{-\mathrm{Cov}(\Delta \bar{c_t}, \Delta \bar{y}_{t+1})}{-\mathrm{Cov}( \Delta \bar{y}_t, \Delta \bar{y}_{t+1})}
-	&= \frac{ \frac{1}{6}\phi \sigma^2_P - \frac{1}{2}\psi \sigma^2_Q}{ \frac{1}{6} \sigma^2_P -  \sigma^2_Q} \label{psi_cont}
-	\end{align}
-As in the two sub-period example, it is clear that this equation does not identify $\psi$. It is a little easier to get intuition on exactly why here. First, the $\frac{1}{6} \sigma^2_P$ comes directly from the fact that a random walk in continuous time has a first autocorrelation of 1/6. Second the 1/2 in the numerator attached to the transitory variance comes from the fact that while all the income from a transitory shock arrives in the observed period, on average this will happen half way through a period so only 1/2 the annual consumption response will occur in that period.
+and similarly for $Q_t$. That is these martingales have independent increments. As a useful benchmark, two Brownian motions satisfy these criteria.
 
-\subsection{Our Empirical Strategy: Identification from Growth over 3, 4 and 5 years}
-We could press ahead and use the same model, corrected for time aggregation, to identify the parameters of interest. However, we believe this would result in serious misspecification problems. In particular the assumption that consumption is a random walk becomes much important once time aggregation is corrected. \cite{kaplan_how_2010} show that in a model with no time aggregation, the BPP method identifies the contemporaneous spending response to a transitory shock regardless of consumption dynamics going forward. With time aggregation this is no longer the case and the spending response of an impatient consumer who spends a significant proportion of a transitory income shock in the first 3 months will be poorly identified. Most empirical evidence suggests that many households respond to a transitory income shock with a large initial spending boost, but that after a few years there is no measurable sustained increase in consumption. In contrast to BPP, we will make the assumption that the consumption response to transitory shocks is short-lived. This will allow us to identify how transitory income and transitory consumption co-move while maintaining flexibility on the exact shape of these impulse responses in the short run.
-
-Our method will look like a combination of \cite{carroll_nature_1997}, who use income growth over 3, 4 and 5 years to identify the size of permanent and transitory shock  variances, and BPP in that we will extend this identification to consumption.
-
-\subsubsection{\cite{carroll_nature_1997} Income Variance Identification}
-First we will examine the empirical strategy of \cite{carroll_nature_1997} and correct it to take account of time aggregation. \cite{carroll_nature_1997} make exactly the same assumptions about the income process as BPP. In the case where the transitory shock is allowed to be an MA(2) process this is:
-	\begin{align*}
-	y_t &= p_t + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \theta_2 \varepsilon_{t-2} \\
-	p_t &= p_{t-1} +\zeta_t\\
-	\end{align*}
-from which we can calcuate the variance of growth over $n \geq 3$ years :
-	\begin{align}
-	\mathrm{Var}(\Delta^n y_t) &= n \mathrm{Var}(\zeta) + 2\underbrace{(1+\theta_1^2 + \theta_2^2)\mathrm{Var}(\varepsilon)}_\text{``Total'' transitory variance} \qquad \text{ for $n \geq 3$} \label{CS_identification}
-	\end{align}
-Equation \ref{CS_identification} shows that the variance of income growth grows linearly with the number of years of growth beyond 3. The transitory component adds variance at the beginning and end of the growth period, but any transitory shock to income that occurs in the middle of the period does not affect income growth as it will have died out by the end. \cite{carroll_nature_1997} use this to identify the variance of permanent shocks ($\mathrm{Var}(\zeta)$) and the ``total'' transitory variance ($(1+\theta_1^2 + \theta_2^2)\mathrm{Var}(\varepsilon)$). While similar to BPP it is important to note that BPP attempts to identify the variance of initial impact of the transitory shock, $\mathrm{Var}(\varepsilon)$, rather than the ``total'' transitory variance. While the notion of ``total'' transitory variance will carry over naturally into the time aggregated case, the variance of the initial impact does not have a natural interpretation.
-
-The natural generalization of the MA(2) process in the case where the underlying income process has a higher frequency is to allow for an MA process with lags out to two years (so for a quarterly process this would be 8 lags etc). We find again that continuous time provides the most succinct and intuitive formulas. In continuous time we will allow for the impulse response to a transitory income shock to follow any generic path, $f(t)$, as long as it has died by two years after the shock ($f(t)=0 \quad \forall \quad t \geq 0$). An example of such impulse response can be seen in figure \ref{fig:GenericTransitory}, in this case the transitory shock lasts less than 1 year. In this model the flow of income is given by the sum of income arising from permanent income and any transitory shocks to income that have occurred in the previous 2 years:
-	\begin{figure} 
+The natural generalization of the MA(2) transitory income process from \cite{carroll_nature_1997} is to allow for a generically shaped transitory income shock that decays to zero in under 2 years. Figure \ref{fig:GenericTransitory} shows an example of such a transitory income shape $f(t)$, but the model also allows for completely transitory shocks in which case $f(t)$ would be a delta function with all the income from the transitory shocks arriving as a mass at the time of the shock. In this model the \textit{flow} of income arriving at time $t$ is given by the flow of permanent income and the sum of income arising from any transitory shocks to income that have occurred in the previous two years:
+\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.7]{\econtexRoot/Figures/GenericTransitory.png} 
+		\includegraphics[scale=0.7]{\econtexRoot/Figures/GenericTransitory.pdf} 
 		\caption{Generic Transitory Shock Impulse Response}
 		\label{fig:GenericTransitory}
 	\end{centering}
 \end{figure}
 \begin{align*}
-y_t &= \int_{0}^{t} dP_s + \int_{t-2}^{t} f(t-s)dQ_s
+y_t &= P_t + \int_{t-2}^{t} f(t-s)dQ_s
 \end{align*}
-Defining time aggregated income as in equation \ref{income_TA}, the variance of time aggregated income of an $n$ year period is:
-	\begin{align}
-\mathrm{Var}(\Delta^n \bar{y}_T) &= (n-\frac{1}{3})\sigma^2_P +  2 \mathrm{Var}(\tilde{y}) \text{   for }n \geq 3 \label{variance}
+We do not observe $y_t$ directly but instead $\bar{y}_T$, the time aggregated income over each one year period.
+\begin{align}
+\bar{y}_T = \int_{T-1}^{T} y_t dt \text{   for } T \in \{1,2,3...\}\label{income_TA}
 \end{align}
-This is similar to the non time aggregated case (equation \ref{CS_identification}) except the coefficient on permanent variance is $n-\frac{1}{3}$. This error, though having less serious consequences than for BPP, has nevertheless been overlooked by the large literature that studies income dynamics using panel data.\footnote{For examples see \cite{moffitt_trends_2012}, \cite{meghir_income_2004}, \cite{nielsen_impact_2004}, \cite{heathcote_unequal_2010} and more recent quantile regression approaches such as \cite{arellano_earnings_2017}.} As with the MA(2) case the transitory variance identified is the variance of ``total'' transitory income received in the year, $\tilde{y}$, where this is defined as:
+Taking the $N^{th}$ difference for $N \geq 3$ we get:
+\begin{align}
+\Delta^N \bar{y}_T &= \int_{T-1}^{T} y_t dt  - \int_{T-N-1}^{T-N} y_t dt  \nonumber \\ 
+&= \int_{T-1}^{T} (T-s)dP_s  + (P_{T-1} - P_{T-N}) + \int_{T-N-1}^{T-N} (s-(T-2))dP_s \nonumber \\
+& \qquad + \Big(\int_{T-1}^{T} \int_{t-2}^{t} f(t-s)dQ_t -\int_{T-N-1}^{T-N}\int_{t-2}^{t} f(t-s) dQ_t \Big) \label{deltaNy}
+\end{align}
+The variance of time aggregated income of an $N$ year period is therefore:\footnote{See appendix \ref{sec:Identification} for full details of this derivation, including how we can approximate a log income process  with levels.}
+\begin{align}
+\mathrm{Var}(\Delta^N \bar{y}_T) &= (N-\frac{1}{3})\sigma^2_P +  2 \mathrm{Var}(\tilde{y}) \text{   for }n \geq 3 \label{variance}
+\end{align}
+This is similar to the non time aggregated case (equation \ref{CS_identification}) except the coefficient on permanent variance is $N-\frac{1}{3}$. This error, though having less serious consequences than for BPP, has nevertheless been overlooked by the large literature that studies income dynamics using panel data.\footnote{For examples see \cite{moffitt_trends_2012}, \cite{meghir_income_2004}, \cite{nielsen_impact_2004}, \cite{heathcote_unequal_2010} and more recent quantile regression approaches such as \cite{arellano_earnings_2017}.} As with the MA(2) case the transitory variance identified is the variance of ``total'' transitory income received in the year, $\tilde{y}$, where this is defined as:
 \begin{align}
 \tilde{y_T} = \int_{T-1}^{T}\int_{t-2}^{t} f(t-s)dQ_s dt \label{tot_income}
 \end{align}
