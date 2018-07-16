@@ -4,30 +4,25 @@
 \BOOKMARK [2][-]{subsection.2.1}{Methodology Intuition}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.2}{Aside: Why Not BPP? A Brief Introduction to the Time Aggregation Problem}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.3}{Covariance Restrictions}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.4}{The Time Aggregation Problem}{section.2}% 7
-\BOOKMARK [3][-]{subsubsection.2.4.1}{BPP Identification without Time Aggregation}{subsection.2.4}% 8
-\BOOKMARK [3][-]{subsubsection.2.4.2}{BPP Identification with Two-period Time Aggregation}{subsection.2.4}% 9
-\BOOKMARK [3][-]{subsubsection.2.4.3}{BPP Identification with Time Aggregation in Continuous Time}{subsection.2.4}% 10
-\BOOKMARK [2][-]{subsection.2.5}{Our Empirical Strategy: Identification from Growth over 3, 4 and 5 years}{section.2}% 11
-\BOOKMARK [3][-]{subsubsection.2.5.1}{carrollnature1997 Income Variance Identification}{subsection.2.5}% 12
-\BOOKMARK [3][-]{subsubsection.2.5.2}{Extending carrollnature1997 to Consumption}{subsection.2.5}% 13
-\BOOKMARK [1][-]{section.3}{Data}{}% 14
-\BOOKMARK [2][-]{subsection.3.1}{Income}{section.3}% 15
-\BOOKMARK [2][-]{subsection.3.2}{Imputed Expenditure}{section.3}% 16
-\BOOKMARK [2][-]{subsection.3.3}{Sample Selection}{section.3}% 17
-\BOOKMARK [1][-]{section.4}{Results}{}% 18
-\BOOKMARK [2][-]{subsection.4.1}{Income Variance}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.2}{Consumption Response}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.3}{Robustness to Misspecification}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.4}{Why is the MPX out of Transitory Shocks so High?}{section.4}% 22
-\BOOKMARK [1][-]{section.5}{Application: Monetary Policy and the Redistribution Channel}{}% 23
-\BOOKMARK [2][-]{subsection.5.1}{Theoretical Setup}{section.5}% 24
-\BOOKMARK [2][-]{subsection.5.2}{Distribution of MPC across NNP, URE and Income}{section.5}% 25
-\BOOKMARK [2][-]{subsection.5.3}{Out of Sample and Indirect Exposure}{section.5}% 26
-\BOOKMARK [1][-]{section.6}{Models and Simulation}{}% 27
-\BOOKMARK [2][-]{subsection.6.1}{The Standard Incomplete Markets Model}{section.6}% 28
-\BOOKMARK [2][-]{subsection.6.2}{Preference Shock Model with Elastic Labor Supply}{section.6}% 29
-\BOOKMARK [2][-]{subsection.6.3}{Robustness to Auto Regressive Permanent Income}{section.6}% 30
-\BOOKMARK [2][-]{subsection.6.4}{Durables}{section.6}% 31
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 32
-\BOOKMARK [1][-]{appendix.A}{Identification with Time Aggregation}{}% 33
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Income Dynamics: carrollnature1997}{subsection.2.3}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Extending carrollnature1997 to Consumption}{subsection.2.3}% 8
+\BOOKMARK [1][-]{section.3}{Data}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Income}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Imputed Expenditure}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Sample Selection}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Results}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Income Variance}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Consumption Response}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Robustness to Misspecification}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Why is the MPX out of Transitory Shocks so High?}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Application: Monetary Policy and the Redistribution Channel}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Theoretical Setup}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Distribution of MPC across NNP, URE and Income}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.3}{Out of Sample and Indirect Exposure}{section.5}% 21
+\BOOKMARK [1][-]{section.6}{Models and Simulation}{}% 22
+\BOOKMARK [2][-]{subsection.6.1}{The Standard Incomplete Markets Model}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.2}{Preference Shock Model with Elastic Labor Supply}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.3}{Robustness to Auto Regressive Permanent Income}{section.6}% 25
+\BOOKMARK [2][-]{subsection.6.4}{Durables}{section.6}% 26
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 27
+\BOOKMARK [1][-]{appendix.A}{Identification with Time Aggregation}{}% 28
