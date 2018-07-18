@@ -857,6 +857,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   dev.new()
   par(mar=c(8,7,4,5)+0.1)
   plotTop = max(max(params),1.0)
+  #plotTop = max(params)
   barCenters <- barplot(height=t(params),
                         names.arg=quantile_labels,
                         cex.names=0.75,
@@ -892,6 +893,11 @@ num_quantiles = 5
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX By Liquid Wealth Quintile", "Robust_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
 #permanent
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX By Liquid Wealth Quintile", "Robust_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+
+#transitory var
+robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent Variance By Liquid Wealth Quintile", "Robust_permVar_liquidwealth", param_col=1, x_label="Quintile")
+
+
 
 #Net wealth
 num_quantiles = 5

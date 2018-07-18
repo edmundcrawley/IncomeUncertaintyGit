@@ -149,14 +149,18 @@
   *{file}   {./Figures/GenericTransitory.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/consumption_measures.png}{0000/00/00 v0.0}
-  *{file}   {omscmr.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/VarianceByAge_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/VarianceByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/IncreasingDiff_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByNetWealth_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByNetWealth_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {omscmr.fd}   {2014/09/29 v2.5h}
   *{file}   {./Figures/MPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/IncreasingDiff_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {MeasuringConsumption.bbl}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByAge_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/mortgage_by_type.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
 }
