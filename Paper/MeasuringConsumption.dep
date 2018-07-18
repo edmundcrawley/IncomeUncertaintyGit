@@ -163,4 +163,7 @@
   *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_type.png}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/PermTranMPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/PermTranMPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/PermTranMPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}
 }

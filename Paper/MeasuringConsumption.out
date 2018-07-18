@@ -12,9 +12,9 @@
 \BOOKMARK [2][-]{subsection.3.3}{Sample Selection}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Income and Consumption Characteristics by Household Wealth}{}% 13
 \BOOKMARK [1][-]{section.5}{Application: Monetary Policy and the Redistribution Channel}{}% 14
-\BOOKMARK [2][-]{subsection.5.1}{Theoretical Setup}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.2}{Distribution of MPC across NNP, URE and Income}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.3}{Out of Sample and Indirect Exposure}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.1}{Distribution of MPX across NNP, URE and Income}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Theoretical Setup and Sufficient Statistics}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{Out of Sample MPX}{section.5}% 17
 \BOOKMARK [1][-]{section.6}{Models and Simulation}{}% 18
 \BOOKMARK [2][-]{subsection.6.1}{The Standard Incomplete Markets Model}{section.6}% 19
 \BOOKMARK [2][-]{subsection.6.2}{Preference Shock Model with Elastic Labor Supply}{section.6}% 20
@@ -26,3 +26,4 @@
 \BOOKMARK [1][-]{appendix.A}{Identification with Time Aggregation}{}% 26
 \BOOKMARK [1][-]{appendix.B}{Sample Selection}{}% 27
 \BOOKMARK [1][-]{appendix.C}{Danish Mortgage Market}{}% 28
+\BOOKMARK [1][-]{appendix.D}{Distribution of Permanent and Transitory MPX by URE, NNP and Income}{}% 29
