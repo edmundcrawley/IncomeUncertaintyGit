@@ -130,6 +130,7 @@
   *{package}{caption}     {2016/02/21 v3.3-144}
   *{package}{caption3}    {2016/05/22 v1.7-166}
   *{package}{titlesec}    {2016/03/21 v2.10.2}
+  *{package}{placeins}    {2005/04/18 v2.2}
   *{package}{rotating}    {2016/05/22 v2.16c}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
@@ -157,7 +158,21 @@
   *{file}   {./Figures/MPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/IncreasingDiff_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Lorenz.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_tran_denmark.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_tran_denmark_pref.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_perm_denmark.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_perm_denmark_pref.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPC_accuracy.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/DurableBias.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByDurables_nodurableproxy.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Robust_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Robust_tranMPX_URE.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Logs_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Logs_tranMPX_URE.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/total_tranMPX_URE.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/DivPerm_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/Spouse_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
   *{file}   {MeasuringConsumption.bbl}{0000/00/00 v0.0}
   *{file}   {./Figures/VarianceByAge_level_lincome_head.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
