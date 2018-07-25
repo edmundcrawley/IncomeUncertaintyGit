@@ -66,7 +66,7 @@ output = "\\begin{minipage}{" + str(0.9) + "\\textwidth}\n"
 output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccccc}  \n"
 output += " & MPX & NNP & URE &  $\mathcal{E}_P$ component & $\mathcal{E}_R$ component \n"
 output += "\\\\ \\midrule"
-output += "\\\\ Estimation Sample & " +  "See Distribution"         + " & " + mystr1(URENNP_data[0,1]) + " & "+ mystr1(URENNP_data[0,2]) + " & "+ mystr2(URENNP_data[0,3]) + " & "+ mystr2(URENNP_data[0,4])  + " \n"
+output += "\\\\ \\textbf{Estimation Sample} & " +  "\\textbf{See Distribution}"         + " & \\textbf{" + mystr1(URENNP_data[0,1]) + "} & \\textbf{"+ mystr1(URENNP_data[0,2]) + "} & \\textbf{"+ mystr2(URENNP_data[0,3]) + "} & \\textbf{"+ mystr2(URENNP_data[0,4])  + "} \n"
 output += "\\\\ Young             & "    + mystr3(URENNP_data[1,0]) + " & " + mystr1(URENNP_data[1,1]) + " & "+ mystr1(URENNP_data[1,2]) + " & "+ mystr2(URENNP_data[1,3]) + " & "+ mystr2(URENNP_data[1,4])  + " \n"
 output += "\\\\ Old               & "    + mystr3(URENNP_data[2,0]) + " & " + mystr1(URENNP_data[2,1]) + " & "+ mystr1(URENNP_data[2,2]) + " & "+ mystr2(URENNP_data[2,3]) + " & "+ mystr2(URENNP_data[2,4])  + " \n"
 output += "\\\\ Pension Funds     & "    + mystr3(URENNP_data[3,0]) + " & " + mystr1(URENNP_data[3,1]) + " & "+ mystr1(URENNP_data[3,2]) + " & "+ mystr2(URENNP_data[3,3]) + " & "+ mystr2(URENNP_data[3,4])  + " \n"
@@ -81,6 +81,23 @@ output += "\end{tabular}}\n"
 output += "\\\\ \\textbf{Notes}: NNP and URE numbers are in billions of 2015 Kr. \n"
 output += "\end{minipage}\n"
 with open('./Tables/URE_NNP_table.tex','w') as f:
+    f.write(output)
+    f.close()
+
+# And a table for all sufficient stats    
+filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
+URENNP_data = np.genfromtxt(filename, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{ccccc}  \n"
+output += "$\mathcal{M}$ & $\mathcal{E}_Y$ & $\mathcal{E}_P$  & $\mathcal{E}_R$ & $\mathcal{S}$ \n"
+output += "\\\\ \\midrule"
+output += "\\\\ " + mystr2(URENNP_data[0,5]) + " & " + mystr2(URENNP_data[1,5]) + " & "+ mystr2(URENNP_data[2,5]) + " & "+ mystr2(URENNP_data[3,5]) + " & "+ mystr2(URENNP_data[4,5]) + " \n"
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+with open('./Tables/sufficient_stats.tex','w') as f:
     f.write(output)
     f.close()
 

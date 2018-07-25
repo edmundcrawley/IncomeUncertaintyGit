@@ -667,6 +667,26 @@ dev.copy(png, paste(figures_dir, "MPXByDurables_blank.png",sep=""))
 dev.off()
 ###############################################################################
 
+#reload liquid wealth data
+###############################################################################
+# load liquid weath quintile data and create graph
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
+num_quantiles = 5
+round_digits = -3
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output=output
+wealth_quantile_params = output$category_params
+wealth_quantile_se = output$category_se
+wealth_quantile_obs = output$category_obs
+wealth_quantile_total_var = output$category_total_var
+wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+
+
 ################################################################################
 # Get CSTW estimated data from Python
 cstw_results <- read.csv(paste(PythonResults_folder,'cstw_denmark.txt',sep=''), sep=" ",header=FALSE)
@@ -769,6 +789,8 @@ plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"U
 elas_URE_NR = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
 elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
 
+mean_URE_MPX = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means))
+
 ###############################################################################
 ###############################################################################
 # load NNP quintile data and create graph
@@ -789,6 +811,8 @@ plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"N
 #Now calculate the sufficient statistic
 elas_NNP_NR = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
 elas_NNP = elas_NNP_NR - mean(NNP_quantile_params[,4])*mean(t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
+
+mean_NNP_MPX = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means))
 ###############################################################################
 # load Income quintile data and create graph
 load(paste(moments_dir,'moments_by_Income_quantile',durable_tag,'.RData',sep=''))
@@ -808,6 +832,8 @@ plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantil
 #Now calculate the sufficient statistic
 elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
 elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
+
+mean_Income_MPX = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means))
 ###############################################################################
 
 ###############################################################################
@@ -829,6 +855,8 @@ plot_estimataion_output(MeanCons_quantile_params,MeanCons_quantile_se,MeanCons_q
 #Now calculate the sufficient statistic
 elas_MeanCons_NR = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
 elas_MeanCons = elas_MeanCons_NR - mean(MeanCons_quantile_params[,4])*mean(t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
+
+mean_cons_MPX = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means))
 
 cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means) /mean(t(moments_by_MeanCons_quantile$quantile_means)))
 
