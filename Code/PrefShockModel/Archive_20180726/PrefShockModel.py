@@ -3,13 +3,17 @@
 Builds a consumption-savings model with both preference shocks and 
 wage shocks. 
 """
+import sys 
+sys.path.insert(0,'C:\Users\edmun\OneDrive\Documents\Research\HARK')
+sys.path.insert(0,'C:\Users\edmun\OneDrive\Documents\Research\HARK\ConsumptionSaving')
+
 import numpy as np
-from HARK.interpolation import LinearInterp, LinearInterpOnInterp1D, BilinearInterpOnInterp1D, LowerEnvelope
-from HARK.utilities import combineIndepDstns,approxMeanOneLognormal, addDiscreteOutcomeConstantMean
-from HARK.ConsumptionSaving.ConsIndShockModel import ConsPerfForesightSolver, ConsumerSolution, IndShockConsumerType, \
+from HARKinterpolation import LinearInterp, LinearInterpOnInterp1D, BilinearInterpOnInterp1D, LowerEnvelope
+from HARKutilities import combineIndepDstns,approxMeanOneLognormal, addDiscreteOutcomeConstantMean
+from ConsIndShockModel import ConsPerfForesightSolver, ConsumerSolution, IndShockConsumerType, \
                         PerfForesightConsumerType, utilityP_inv, utilityP_invP, utility_invP, \
                         MargValueFunc
-from HARK.simulation import drawDiscrete, drawBernoulli, drawLognormal, drawUniform
+from HARKsimulation import drawDiscrete, drawBernoulli, drawLognormal, drawUniform
 from copy import copy, deepcopy
 import matplotlib.pyplot as plt
 
