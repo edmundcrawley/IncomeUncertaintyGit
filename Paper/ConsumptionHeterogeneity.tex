@@ -447,7 +447,7 @@ The bottom panel of figure \ref{fig:CSTW} shows another failure of both these tw
 \subsection{Performance of the Empirical Method}
 Using the model we are able to calculate precisely the partial derivative of expenditure with respect to transitory income. To be comparable to the time period of our empirical MPX we take the mean MPX over 1,2,3 and 4 quarters:\footnote{Remember our empirical method measures the covariance of income with expenditure in the same calendar year. If the shock happens in the first quarter, then we will count expenditure over the next four quarters. If the shocks happens in the final quarter, then only one quarter of expenditure will be captured.}
 \begin{align*}
-\text{MPX}_{\text{model}} = \frac{1}{4}\sum_{i=0}^{3}(1-\text{MPX}_q)^i \text{MPX}_q
+\text{MPX}_{\text{model}} = 1 - \frac{1}{4}\sum_{i=1}^{4}(1-\text{MPX}_q)^i 
 \end{align*}
 where $\text{MPX}_q$ is the partial derivative in the quarterly model.
 \begin{figure} 
