@@ -8,10 +8,15 @@ import os
 
 small_sample_test = False
 
-spec_name = "Benchmark_"
 percentiles_to_match = [0.2, 0.4, 0.6, 0.8]     # Which points of the Lorenz curve to match in beta-dist (must be in (0,1))
 # Following data comes from Danish administrative records and can be found in the file Lorenz_data_Denmark.txt
 lorenz_target        = [0.0045, 0.0247, 0.0793, 0.2366]
+
+#DROP THE EIGHTIETH PERCENTILE
+percentiles_to_match = [0.2, 0.4, 0.6]     # Which points of the Lorenz curve to match in beta-dist (must be in (0,1))
+# Following data comes from Danish administrative records and can be found in the file Lorenz_data_Denmark.txt
+lorenz_target        = [0.0045, 0.0247, 0.0793]
+
 lorenz_all_data      = np.genfromtxt('Lorenz_data_Denmark.txt', delimiter=',')[2:]  # contains data for each percentile of the curve
 KY_target            = 201475.92/321188.22*4.0  # Mean liquid wealth/Mean Income, adjusted for quarterly data
 

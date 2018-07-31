@@ -4,17 +4,15 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 """
 from time import clock
 import numpy as np
-import scipy as sc
-from PrefShockModel import PrefLaborConsumerType, PrefLaborMarket,  \
-                            getKYratioDifference, findLorenzDistanceAtTargetKY
-from PrefShockModel_tools import SelectMicroSample, CS_estimation
+from PrefShockModel import PrefLaborConsumerType, PrefLaborMarket, findLorenzDistanceAtTargetKY
+from PrefShockModel_tools import SelectMicroSample, CS_estimation, BasicRegressionTables
 import PrefShockModel_params as Params
 from scipy.optimize import golden
 from copy import copy, deepcopy
 import matplotlib.pyplot as plt
 mystr = lambda number : "{:.4f}".format(number)
 
-estimate_benchmark = False
+estimate_benchmark = True
 estimate_pref_shock = False
 
 ###############################################################################
@@ -63,7 +61,7 @@ BenchmarkEconomy.center_estimate = benchmark_center_estimate
 BenchmarkEconomy.spread_estimate = benchmark_spread_estimate
 BenchmarkEconomy.solve()
 BenchmarkEconomy.calcLorenzDistance()
-BenchmarkEconomy.showManyStats(Params.spec_name)
+BenchmarkEconomy.showManyStats("Benchmark")
 
 # Get sample data time aggregated over 4 quarters
 benchmark_Cons_sample, benchmark_Inc_sample, benchmark_B_sample, benchmark_MPC_sample = SelectMicroSample(BenchmarkEconomy)
@@ -93,6 +91,7 @@ for i in range(num_quantiles):
 np.savetxt('./Results/benchmark_liquidwealth.txt',benchmark_estimation_output)
 np.savetxt('./Results/benchmark_centerspread.txt',[benchmark_center_estimate,benchmark_spread_estimate])
 
+#Draw Lorenz curve
 benchmark_LorenzSim = np.hstack((np.array(0.0),np.mean(np.array(BenchmarkEconomy.LorenzLong_hist)[BenchmarkEconomy.ignore_periods:,:],axis=0),np.array(1.0)))
 LorenzAxis = np.arange(101,dtype=float)
 plt.plot(LorenzAxis,np.append(0.0,BenchmarkEconomy.LorenzAllData)/100.0,'-k',linewidth=1.5)
@@ -105,6 +104,12 @@ plt.legend(['Data','Simulation', 'Target'])
 plt.title('Lorenz Curve in the Benchmark Model')
 plt.savefig('./Figures/benchmark_Lorenz.png')
 plt.show()
+
+#Get BasicRegression results
+benchmark_br_all = BasicRegressionTables(benchmark_Cons_sample_nrm, benchmark_Inc_sample_nrm,max_diff=10,filename='benchmark_br_all')
+benchmark_br_quintiles = np.zeros((10,num_quantiles))
+for i in range(num_quantiles):
+    benchmark_br_quintiles[:,i] = BasicRegressionTables(benchmark_Cons_sample_nrm[:,benchmark_which_quantile==i], benchmark_Inc_sample_nrm[:,benchmark_which_quantile==i],max_diff=10,filename='benchmark_br_'+str(i+1)+'_quintile')
 
 ###############################################################################
 # Next calibrate a model with preference shocks but no labor elasticity
@@ -157,7 +162,7 @@ PrefShockEconomy.center_estimate = prefshock_center_estimate
 PrefShockEconomy.spread_estimate = prefshock_spread_estimate
 PrefShockEconomy.solve()
 PrefShockEconomy.calcLorenzDistance()
-PrefShockEconomy.showManyStats(Params.spec_name)
+PrefShockEconomy.showManyStats("PrefShock")
 
 # Get sample data time aggregated over 4 quarters
 prefshock_Cons_sample, prefshock_Inc_sample, prefshock_B_sample, prefshock_MPC_sample = SelectMicroSample(PrefShockEconomy)
@@ -187,6 +192,7 @@ for i in range(num_quantiles):
 np.savetxt('./Results/prefshock_liquidwealth.txt',prefshock_estimation_output)
 np.savetxt('./Results/prefshock_centerspread.txt',[prefshock_center_estimate,prefshock_spread_estimate])
 
+#Draw Lorenz curve
 prefshock_LorenzSim = np.hstack((np.array(0.0),np.mean(np.array(PrefShockEconomy.LorenzLong_hist)[PrefShockEconomy.ignore_periods:,:],axis=0),np.array(1.0)))
 LorenzAxis = np.arange(101,dtype=float)
 plt.plot(LorenzAxis,np.append(0.0,PrefShockEconomy.LorenzAllData)/100.0,'-k',linewidth=1.5)
@@ -199,3 +205,10 @@ plt.legend(['Data','Simulation', 'Target'])
 plt.title('Lorenz Curve in the Preference Shock Model')
 plt.savefig('./Figures/prefshock_Lorenz.png')
 plt.show()
+
+#Get BasicRegression results
+prefshock_br_all = BasicRegressionTables(prefshock_Cons_sample_nrm, prefshock_Inc_sample_nrm,max_diff=10,filename='benchmark_br_all')
+prefshock_br_quintiles = np.zeros((10,num_quantiles))
+for i in range(num_quantiles):
+    prefshock_br_quintiles[:,i] = BasicRegressionTables(prefshock_Cons_sample_nrm[:,prefshock_which_quantile==i], prefshock_Inc_sample_nrm[:,prefshock_which_quantile==i],max_diff=10,filename='prefshock_br_'+str(i+1)+'_quintile')
+

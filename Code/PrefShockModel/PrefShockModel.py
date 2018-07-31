@@ -870,7 +870,7 @@ class PrefLaborMarket(Market):
         
         # Save results to disk
         if spec_name is not None:
-            with open('./Results/' + spec_name + 'Results.txt','w') as f:
+            with open('./Results/' + spec_name + '_ManyStats.txt','w') as f:
                 f.write(results_string)
                 f.close()
                 

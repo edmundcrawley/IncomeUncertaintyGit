@@ -127,7 +127,26 @@ def CS_estimation(Cons_sample, Inc_sample, n1=3, n2=5):
     
     return impliedPermVar,impliedTranVar,phi,psi
 
-
+def BasicRegressionTables(Cons_sample, Inc_sample,max_diff=10,filename=False):
+    result = np.zeros(max_diff)
+    for i in range(max_diff):
+        diff_C = Cons_sample[i+1:]-Cons_sample[:-(i+1)]
+        diff_Y = Inc_sample[i+1:]-Inc_sample[:-(i+1)]
+        model = sm.OLS(diff_C.flatten(),diff_Y.flatten())
+        solve_model = model.fit()
+        result[i] = solve_model.params[0]
+    if filename!=False:
+        output = ""
+        for i in range(max_diff):
+            output += str(result[i])
+            if i<max_diff-1:
+                output += ","
+            else:
+                output += "\n"
+        with open('./Results/' + filename + '.txt','w') as f:
+            f.write(output)
+            f.close()
+    return result
 
 
 #
