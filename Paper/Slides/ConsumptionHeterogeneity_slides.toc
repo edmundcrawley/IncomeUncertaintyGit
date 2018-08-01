@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Motivation}{2}{0}{1}
+\beamer@sectionintoc {2}{Empirical Strategy}{10}{0}{2}
+\beamer@sectionintoc {3}{Data}{31}{0}{3}
+\beamer@sectionintoc {4}{Results}{33}{0}{4}
+\beamer@sectionintoc {5}{Application}{37}{0}{5}
+\beamer@sectionintoc {6}{Durables}{44}{0}{6}
+\beamer@sectionintoc {7}{Conclusion}{53}{0}{7}

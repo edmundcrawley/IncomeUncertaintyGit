@@ -14,6 +14,7 @@ mystr = lambda number : "{:.4f}".format(number)
 
 estimate_benchmark = True
 estimate_pref_shock = False
+drop_80th_percentile = True
 
 ###############################################################################
 # First calibrate a model with no preference shocks nor labor elasticity
@@ -52,6 +53,10 @@ if estimate_benchmark:
 else:
     benchmark_spread_estimate = 0.00546993654236
     benchmark_center_estimate = 0.985946108692
+    if drop_80th_percentile:
+        benchmark_spread_estimate = 0.00719314936721
+        benchmark_center_estimate = 0.984848310842
+    
 # Set economy with estimated (or not) discount factors
 BenchmarkEconomy.LorenzBool = True
 BenchmarkEconomy.ManyStatsBool = True
@@ -149,10 +154,11 @@ if estimate_pref_shock:
     t_end = clock()
     print('PrefShock Estimate is center=' + str(prefshock_center_estimate) + ', spread=' + str(prefshock_spread_estimate) + ', took ' + str((t_end-t_start)/60.0) + ' minutes.')
 else:
-#    prefshock_spread_estimate = 0.04
-#    prefshock_center_estimate = 0.96
     prefshock_spread_estimate = 0.0253938031979
     prefshock_center_estimate = 0.969997962799
+#    if drop_80th_percentile:
+#        benchmark_spread_estimate =
+#        benchmark_center_estimate =
 # Set economy with estimated (or not) discount factors
 PrefShockEconomy.LorenzBool = True
 PrefShockEconomy.ManyStatsBool = True
