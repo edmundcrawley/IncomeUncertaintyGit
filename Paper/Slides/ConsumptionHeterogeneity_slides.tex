@@ -51,8 +51,8 @@
 	\end{itemize}
 	\item[2] Application: Redistribution Channel of Monetary Policy (\cite{auclert_monetary_2017})
 	\begin{itemize}
-		\item We find a transitory 1\% interest rate rise decreases consumption by 0.24\% through the interest rate exposure channel
-		\item This channel is likely far larger than the intertemporal substitution channel (1-4x as large)
+		\item We find a transitory 1\% interest rate rise decreases consumption by 0.33\% through the interest rate exposure channel
+		\item This channel is likely far larger than the intertemporal substitution channel (1-6x as large)
 	\end{itemize}
 	\end{itemize}	
 }
@@ -83,8 +83,9 @@
 	\resizebox{\textwidth}{!}{
 	\centering
 		\input ../Tables/MPCLiterature.tex }
-\tiny{$^{\star}$ Elasticity. Methods: 1) Natural Experiment 2) Survey question 3) Covariance restrictions} \\
-\scriptsize Rough consensus on (3 month) transitory MPC $\sim 30\%$
+	\tiny{$^{\star}$ Elasticity \\
+		 Methods 1) Natural Experiment 2) Survey question 3) Covariance restrictions} \\
+    Table mostly lifted from \cite{carroll_distribution_2017}
 }
 
 \frame
@@ -121,15 +122,15 @@
 	\column{0.5\linewidth}
 	\centering
 	\begin{figure}
-	\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
+	\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.pdf}
 	\end{figure}
 	\pause
 	\column{0.5\linewidth}
 	\textbf{Monetary Policy Application}\\
 	\bigskip
-	A 1\% increase in R decreases consumption by 0.24\% due to heterogeneity in interest rate exposure\\
+	A 1\% increase in R decreases consumption by 0.33\% due to heterogeneity in interest rate exposure\\
 	\bigskip
-	This channel is 1 to 4x larger than intertemporal substitution
+	This channel is 1 to 6x larger than intertemporal substitution
 	\end{columns}
 }
 \section{Empirical Strategy}
@@ -142,15 +143,15 @@
 	\column{0.6\linewidth}
 	\centering
 	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=6.5cm]{../Figures/basic_regression_complete_level_lincome_head.png}};
+	\node (img1) {\includegraphics[height=6.5cm]{../Figures/basic_regression_complete_level_lincome_head.pdf}};
 	\pause
-	\node (img2) {\includegraphics[height=6.5cm]{../Figures/basic_regression_solow_level_lincome_head.png}};
+	\node (img2) {\includegraphics[height=6.5cm]{../Figures/basic_regression_solow_level_lincome_head.pdf}};
 	\pause
-	\node (img3) {\includegraphics[height=6.5cm]{../Figures/basic_regression_BS_level_lincome_head.png}};
+	\node (img3) {\includegraphics[height=6.5cm]{../Figures/basic_regression_BS_level_lincome_head.pdf}};
 	\pause
-	\node (img4) {\includegraphics[height=6.5cm]{../Figures/basic_regression_level_lincome_head.png}};
+	\node (img4) {\includegraphics[height=6.5cm]{../Figures/basic_regression_level_lincome_head.pdf}};
 	\pause
-	\node (img5) {\includegraphics[height=6.5cm]{../Figures/basic_regression_liquid_wealth_level_lincome_head.png}};
+	\node (img5) {\includegraphics[height=6.5cm]{../Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}};
 	\end{tikzpicture}
 	\column{0.4\linewidth}
 	\begin{align*}
@@ -168,9 +169,9 @@
 	\centering
 	\onslide<1->{
 	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=5cm]{../Figures/TimeAggExample1.png}};
+	\node (img1) {\includegraphics[height=5cm]{../Figures/TimeAggExample1.pdf}};
 	\onslide<2->{
-	\node (img2) {\includegraphics[height=5cm]{../Figures/TimeAggExample2.png}};
+	\node (img2) {\includegraphics[height=5cm]{../Figures/TimeAggExample2.pdf}};
 	}
 	\end{tikzpicture}
 	}
@@ -280,10 +281,11 @@
 \frame
 {
 	\frametitle{Identification of the Consumption Response}
+	\label{cons_identification}
 	Assumptions on Consumption\\
 	\begin{itemize}
 		\item Permanent: Consumption permanently moves by fraction $\phi$ of the income shock
-		\item Transitory: Allow for generic impulse response $g(t)$ where $g(t) = 0$ for $t>2$
+		\item Transitory: Allow for generic impulse response $g(t)$ where $g(t) = 0$ for $t>2$ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \hyperlink{cons_decay}{\beamerbutton{Evidence}}
 	\end{itemize}
 	\vspace*{-0.2in}
 	\begin{center}
@@ -338,11 +340,12 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 				\\ & \multicolumn{2}{c}{\textbf{Direction of Bias} }  
 				\\ & Perm MPX & Tran MPX
 				\\ \hline
-				\\ Endogenous Income Shocks & Neutral & +ve
 				\\ Persistent Consumption Response & +ve & -ve
+				\\ Endogenous Income Shocks & Neutral & +ve
 				\\ Income Measurement Error &  Neutral & +ve
 				\\ Permanent Shocks are AR(1) & Neutral & +ve
 				\\ Non-linear MPX	& ? & ?
+				\\ Time-varying risk	& ? & ?
 			\end{tabular}
 		\end{table}
 	\end{minipage}
@@ -350,29 +353,26 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 \section{Data}
 \frame
 {
-	\frametitle{Data}
+	\frametitle{Data: Income}
 	\begin{itemize}
 		\item Starting point: Register based micro data for all Danish households made available by Statistics Denmark
 		\item Really good income data
 		\begin{itemize}
 			\item We use after-tax income for the household head, based on third-party reported tax data
+			\item Restrict sample to heads aged 30-55
 		\end{itemize}
 		\item We divide through by permanent income (mean income over all observed years) and take the residual after controlling for age, education, marital status etc. (along with interactions of these)
-		\item Expenditure data imputed from income and wealth
-		\begin{itemize}
-			\item Deposit and brokerage accounts all third party reported
-			\item Less accurate than income data
-		\end{itemize}
 	\end{itemize}
 }
 \frame
 {
-	\frametitle{Imputing Expenditure}
+	\frametitle{Data: Expenditure}
 	We use the identity
 		\begin{align*}
 			C_t \equiv Y_t - S_t = Y_t - P_t - \Delta NW
 		\end{align*}
 	\begin{itemize}
+		\item Deposit and brokerage accounts all third party reported
 		\item Works well for households with simple financial lives
 		\item Main issue: Capital gains and losses
 		\begin{itemize}
@@ -381,43 +381,32 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 			\item Capital gains for stocks based on a diversified index
 		\end{itemize}
 		\item Noisy, but perhaps better than surveys (Kuchler et al. 2018)
-		\item Huge sample size advantage: sample covers 23.3 million observations over 2004-2015 (approx 1.9 million per year)
+		\item Huge sample size advantage: sample covers 7.6 million observations over 2004-2015
 	\end{itemize}
 }
 \section{Results}
-\frame
-{
-	\frametitle{Shock Variance by Age}
-	\begin{figure}
-		\includegraphics[scale=0.35]{../Figures/VarianceByAge_level_lincome_head.png}
-	\end{figure}
-	\vspace{-0.25in}
-	The assumption of constant variance works reasonably well from mid-30's to retirement
-}
-\frame
-{
-	\frametitle{MPX by Age}
-	\begin{columns}
-		\column{0.5\linewidth}
-		\centering
-		\includegraphics[scale=0.35]{../Figures/MPXByAge_level_lincome_head.png}
-		\column{0.5\linewidth}
-		\begin{itemize}
-			\item $\phi \approx 0.8$, declines towards retirement
-			\item $\psi \approx 0.5$, constant
-		\end{itemize}
-	\end{columns} 	
-}
 \frame
 {
 	\frametitle{MPX by Liquid Wealth}
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/VarianceByLiquidWealth_level_lincome_head.png}
+		\includegraphics[scale=0.35]{../Figures/VarianceByLiquidWealth_level_lincome_head.pdf}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.png}
+		\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.pdf}
+	\end{columns} 	
+}
+\frame
+{
+	\frametitle{MPX by Net Wealth}
+	\begin{columns}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/VarianceByNetWealth_level_lincome_head.pdf}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/MPXByNetWealth_level_lincome_head.pdf}
 	\end{columns} 	
 }
 \frame
@@ -427,10 +416,10 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/CSTW_perm_denmark.png}
+		\includegraphics[scale=0.35]{../Figures/CSTW_perm_denmark.pdf}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/CSTW_tran_denmark.png}
+		\includegraphics[scale=0.35]{../Figures/CSTW_tran_denmark.pdf}
 	\end{columns} 
 }
 \section{Application}
@@ -486,7 +475,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 \frame{
 	\frametitle{Monetary Policy: Measuring Redistribution}
 	\begin{figure}
-	\includegraphics[scale=0.5]{../Figures/MPXByURE_level_lincome_head.png}
+	\includegraphics[scale=0.5]{../Figures/MPXByURE_level_lincome_head.pdf}
 	\end{figure}
 }
 \frame{
@@ -497,7 +486,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\end{itemize}
 	\bigskip
 	\tiny
-	\input ../Tables/UREtable.tex
+	\input ../Tables/URE_table.tex
 }
 \frame{
 	\frametitle{Monetary Policy: Measuring Redistribution}
@@ -507,60 +496,14 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\end{align*}
 	We calculate
 	\begin{itemize}
-		\item $\mathcal{E}_R \approx -0.24$
-		\item $S \approx 0.6$, 1-consumption-weighted MPC
-		\item $\sigma$ in the range of 0.1 to 0.5
+		\item $\mathcal{E}_R \approx -0.33$
+		\item $\mathcal{E}_P \approx -0.66$
+		\item $S \approx 0.56$, 1-consumption-weighted MPC
+		\item $\sigma$ in the range of 0.1 to 0.5 (maybe)
 	\end{itemize}
-	$\implies$ the intertemporal substitution channel, $\sigma S \approx 0.06 - 0.3$, is potentially much smaller than the interest rate exposure channel
+	$\implies$ the intertemporal substitution channel, $\sigma S \approx 0.05 - 0.28$, is potentially much smaller than the interest rate exposure channel
 }
-\section{Durables}
-\frame
-{
-	\frametitle{Durables}
-	Our expenditure measure include ALL expenditure
-	\begin{itemize}
-		\item Household goods (electronics, kitchen equipment, etc)
-		\item Cars
-		\item Home improvements (roof repair, extensions)
-	\end{itemize}
-	Durables make up 10.05\% of total expenditure in Denmark\\
-	\pause
-	\bigskip
-	But theory suggests durable expenditures should not be proportional to permanent income changes 
-	\begin{itemize}
-		\item This may bias our results
-	\end{itemize}
-}
-\frame
-{
-	\frametitle{Durables}
-	Suppose households \textit{instantaneously} upgrade their durable goods and then pay a constant flow of depreciation:
-	\begin{align*}
-	dc_t = \phi p_t dt + \color{red} \phi_{d} dp_t \color{black} + \psi dq_t
-	\end{align*}
-	\begin{itemize}
-		\item $\phi$ can be interpreted as the MP\color{red}C \color{black}to permanent shocks, where consumption includes non-durables and the service \textit{flow} from durable goods
-		\item $\phi_{d}$ is the proportion of the (annual) permanent shock that is spent instantaneously on durables
-		\item $\psi$ is the MPX out of transitory income, exactly as before
-	\end{itemize}
-	\pause
-	Then our estimates of $\phi$ and $\psi$ are unbiased. We have no way of estimating $\phi_d$
-}
-\frame
-{
-	\frametitle{Durables}
-	If households act with some delay things are different. Suppose they wait 1 year
-	\begin{align*}
-	dc_t = \phi p_t dt + \color{red} \phi_{d} dp_{t-1} \color{black} + \psi dq_t
-	\end{align*}
-	\begin{itemize}
-		\item $\mathbb{E}(\hat{\phi})=\phi$ Permanent MPC is unbiased
-		\item $\mathbb{E}(\hat{\psi})=\psi \color{red} + \frac{\sigma^2_p}{2\sigma^2_q}\phi_d$ Transitory MPX is upward biased
-	\end{itemize}
-	\begin{figure}
-		\includegraphics[scale=0.3]{../Figures/DurableBias.png}
-	\end{figure}
-}
+\section{MPC vs MPX}
 \frame
 {
 	\frametitle{Durables}
@@ -581,15 +524,15 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\frametitle{Durables}
 	\begin{center}
 		\begin{tikzpicture}
-		\node (img1) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_all.png}};
+		\node (img1) {\includegraphics[scale=0.4]{../Figures/MPXByDurables_all.pdf}};
 		\pause
 		\node (img2)
-		{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
-		\node (img3) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nocar.png}};
+		{\includegraphics[scale=0.4]{../Figures/MPXByDurables_blank.pdf}};
+		\node (img3) {\includegraphics[scale=0.4]{../Figures/MPXByDurables_nocar.pdf}};
 		\pause
 		\node (img4)
-		{\includegraphics[scale=0.5]{../Figures/MPXByDurables_blank.png}};
-		\node (img5) {\includegraphics[scale=0.5]{../Figures/MPXByDurables_nodurableproxy.png}};
+		{\includegraphics[scale=0.4]{../Figures/MPXByDurables_blank.pdf}};
+		\node (img5) {\includegraphics[scale=0.4]{../Figures/MPXByDurables_nodurableproxy.pdf}};
 		\end{tikzpicture}
 	\end{center}
 }
@@ -603,6 +546,25 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\end{itemize}
 	\bigskip
 	Thank you!
+}
+\appendix
+\section{Appendix}
+\frame{
+	\frametitle{Evidence of Consumption Decay Within 2 Years}
+	\label{cons_decay}
+	\begin{columns}
+	\column{0.35\linewidth}
+	\begin{figure}
+	From \cite{fagereng_mpc_2016}
+	\includegraphics[scale=0.3]{../Figures/norway_cons_decay.jpg}
+	\end{figure}
+	\column{0.5\linewidth}
+	\begin{figure}
+	From \cite{gelman_what_2016}
+	\includegraphics[scale=0.1]{../Figures/gelman_cons_decay.png}
+	\end{figure}
+	\end{columns}
+	\hyperlink{cons_identification}{\beamerbutton{Back}}
 }
 \begin{comment}
 \section{Model}

@@ -12,7 +12,7 @@ from copy import copy, deepcopy
 import matplotlib.pyplot as plt
 mystr = lambda number : "{:.4f}".format(number)
 
-estimate_benchmark = True
+estimate_benchmark = False
 estimate_pref_shock = False
 drop_80th_percentile = True
 
@@ -156,9 +156,9 @@ if estimate_pref_shock:
 else:
     prefshock_spread_estimate = 0.0253938031979
     prefshock_center_estimate = 0.969997962799
-#    if drop_80th_percentile:
-#        benchmark_spread_estimate =
-#        benchmark_center_estimate =
+    if drop_80th_percentile:
+        prefshock_spread_estimate = 0.0428668950053
+        prefshock_center_estimate = 0.9562561463872374
 # Set economy with estimated (or not) discount factors
 PrefShockEconomy.LorenzBool = True
 PrefShockEconomy.ManyStatsBool = True
@@ -213,7 +213,7 @@ plt.savefig('./Figures/prefshock_Lorenz.png')
 plt.show()
 
 #Get BasicRegression results
-prefshock_br_all = BasicRegressionTables(prefshock_Cons_sample_nrm, prefshock_Inc_sample_nrm,max_diff=10,filename='benchmark_br_all')
+prefshock_br_all = BasicRegressionTables(prefshock_Cons_sample_nrm, prefshock_Inc_sample_nrm,max_diff=10,filename='prefshock_br_all')
 prefshock_br_quintiles = np.zeros((10,num_quantiles))
 for i in range(num_quantiles):
     prefshock_br_quintiles[:,i] = BasicRegressionTables(prefshock_Cons_sample_nrm[:,prefshock_which_quantile==i], prefshock_Inc_sample_nrm[:,prefshock_which_quantile==i],max_diff=10,filename='prefshock_br_'+str(i+1)+'_quintile')
