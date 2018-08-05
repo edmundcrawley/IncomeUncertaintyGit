@@ -61,8 +61,8 @@ with open('./Tables/summary_statistics.tex','w') as f:
 filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
+#Do large table for paper
 output = "\\begin{minipage}{" + str(0.9) + "\\textwidth}\n"
-   
 output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccccc}  \n"
 output += " & MPX & NNP & URE &  $\mathcal{E}_P$ component & $\mathcal{E}_R$ component \n"
 output += "\\\\ \\midrule"
@@ -81,6 +81,29 @@ output += "\end{tabular}}\n"
 output += "\\\\ \\textbf{Notes}: NNP and URE numbers are in billions of 2015 Kr. \n"
 output += "\end{minipage}\n"
 with open('./Tables/URE_NNP_table.tex','w') as f:
+    f.write(output)
+    f.close()
+    
+#And smaller table for presentation
+output = "\\begin{minipage}{" + str(0.9) + "\\textwidth}\n"
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccc}  \n"
+output += " & MPX  & URE &  $\mathcal{E}_R$ component \n"
+output += "\\\\ \\midrule"
+output += "\\\\ \\textbf{Estimation Sample} & " +  "\\textbf{See Distribution}  & \\textbf{"+ mystr1(URENNP_data[0,2]) + "} &  \\textbf{"+ mystr2(URENNP_data[0,4])  + "} \n"
+output += "\\\\ Young             &  " + mystr3(URENNP_data[1,0]) + " &  "+ mystr1(URENNP_data[1,2]) + " & "+ mystr2(URENNP_data[1,4])  + " \n"
+output += "\\\\ Old               &  " + mystr3(URENNP_data[2,0]) + " &  "+ mystr1(URENNP_data[2,2]) + " & "+ mystr2(URENNP_data[2,4])  + " \n"
+output += "\\\\ Pension Funds     &  " + mystr3(URENNP_data[3,0]) + " &  "+ mystr1(URENNP_data[3,2]) + " & "+ mystr2(URENNP_data[3,4])  + " \n"
+output += "\\\\ Government        &  " + mystr3(URENNP_data[4,0]) + " &  "+ mystr1(URENNP_data[4,2]) + " & "+ mystr2(URENNP_data[4,4])  + " \n"
+output += "\\\\ Non-financial Corp. &  " + mystr3(URENNP_data[5,0]) + " & "+ mystr1(URENNP_data[5,2]) + " & "+ mystr2(URENNP_data[5,4])  + " \n"
+output += "\\\\ Financial Sector  &  " + mystr3(URENNP_data[6,0]) + " &  "+ mystr1(URENNP_data[6,2]) + " & "+ mystr2(URENNP_data[6,4])  + " \n"
+output += "\\\\ Rest of World     &  " + mystr3(URENNP_data[7,0]) + "  & "+ mystr1(URENNP_data[7,2]) + " & "+ mystr2(URENNP_data[7,4])  + " \n"
+output += "\\\\ \\midrule"
+output += "\\\\ \\textbf{Total} & "                                 + " &  \\textbf{"+ mystr1(URENNP_data[8,2]) + "} & \\textbf{"+ mystr2(URENNP_data[8,4])  + "} \n"
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\\\\ \\textbf{Notes}: URE numbers are in billions of 2015 Kr. \n"
+output += "\end{minipage}\n"
+with open('./Tables/URE_table.tex','w') as f:
     f.write(output)
     f.close()
 

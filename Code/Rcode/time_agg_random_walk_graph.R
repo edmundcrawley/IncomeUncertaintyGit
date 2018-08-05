@@ -1,7 +1,7 @@
 # Draw a time aggregated random walk (4 subperiods)
 
 figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
-
+par(cex.axis=1.2,cex.lab=1.5)
 # 
 # N_sub =50
 # N_period =7
@@ -43,20 +43,22 @@ y=c((-20:0)*0.0,y)
 c=c((-20:0)*0.0,c)
 cBPP=c((-20:0)*0.0,cBPP)
 
+par(mar=c(5,5,3,3))
 plot(x,y, xlim= c(0,5),ylim=c(0,1.2),col="red",type="l",lwd=4,xlab="Time",ylab="Income",main="Generic Transitory Impulse Response, f(t)")
 dev.print(pdf,  paste(figures_dir,'GenericTransitory.pdf',sep=""))
 
-
+par(mar=c(5,5,3,3))
 plot(x,y, xlim= c(0,5),ylim=c(0,1.2),col="red",type="l",lwd=4,xlab="Time",ylab="Income/Consumption",main="Generic Transitory Impulse Responses, f(t) and g(t)")
 lines(x,c, xlim= c(0,5),ylim=c(0,1.2),col="black",type="l",lwd=4,xlab="Time",ylab="Income/Consumption",main="Generic Transitory Impulse Response, f(t)")
-legend(2.0,1.0, legend=c("Income f(t)", "Consumption g(t)",""),col=c("red","black","green"),lty=1,lwd=4)
+legend(2.0,1.0, legend=c("Income f(t)", "Consumption g(t)",""),col=c("red","black","green"),lty=1,lwd=4,bty="n")
 
 dev.print(pdf,  paste(figures_dir,'GenericTransitoryConsumption.pdf',sep=""))
 
+par(mar=c(5,5,3,3))
 plot(x,y, xlim= c(0,5),ylim=c(0,1.2),col="red",type="l",lwd=4,xlab="Time",ylab="Income/Consumption",main="Generic Transitory Impulse Responses, f(t) and g(t)")
 lines(x,c, xlim= c(0,5),ylim=c(0,1.2),col="black",type="l",lwd=4,xlab="Time",ylab="Income/Consumption",main="Generic Transitory Impulse Response, f(t)")
 lines(x,cBPP, xlim= c(0,5),ylim=c(0,1.2),col="green",type="l",lwd=4,xlab="Time",ylab="Income/Consumption",main="Generic Transitory Impulse Response, f(t)")
-legend(2.0,1.0, legend=c("Income f(t)", "Consumption g(t)","BPP Random Walk"),col=c("red","black","green"),lty=1,lwd=4)
+legend(2.0,1.0, legend=c("Income f(t)", "Consumption g(t)","BPP Random Walk"),col=c("red","black","green"),lty=1,lwd=4,bty="n")
 dev.print(pdf,  paste(figures_dir,'GenericTransitoryConsumptionWithBPP.pdf',sep=""))
 
 
@@ -68,12 +70,15 @@ y = (2*x-x^2)
 x = c(x,x+1)
 y = c(y, y*0+1)
 y2 = c(y*0+1)
-dev.new()
+#dev.new()
+par(mar=c(5,5,3,3))
 plot(x*12,y,type="l",xlab="Delay, Months",ylab="Bias",xaxt="n",yaxt="n",main=expression(paste("Bias in ",psi," vs Durable Delay")))
 lines(x*12,y2,lty="dashed")
 axis(side = 1, at = c(0,6,12,18,24))
 axis(side = 2, at = c(0,1), labels = c("0",expression(paste(frac(sigma[p]^2,2*sigma[q]^2),phi[d]))), las=1)
-dev.copy(png, paste(figures_dir,'DurableBias.png',sep=""))
-dev.off()
+#dev.copy(png, paste(figures_dir,'DurableBias.png',sep=""))
+#dev.off()
+dev.print(pdf,  paste(figures_dir,'DurableBias.pdf',sep=""))
+
 
 

@@ -107,30 +107,24 @@
 \frame
 {
 	\frametitle{Application: \cite{auclert_monetary_2017}}
-	\cite{auclert_monetary_2017} identifies three ways in which \textbf{heterogeneity} affect monetary policy\\
+	\cite{auclert_monetary_2017} identifies three ways in which \textbf{heterogeneity} affects monetary policy\\
 	Each is potentially measurable in panel data\\
-	But...\\
+	But...
 	\pause
-	\begin{figure}
-		\includegraphics[scale=0.6]{../Figures/MPCDistributionAuclert}
-	\end{figure}
-	He doesn't have the right data or methods to be able to do this
-}
-\frame{
-	\frametitle{Results Preview}
 	\begin{columns}
 	\column{0.5\linewidth}
 	\centering
 	\begin{figure}
-	\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.pdf}
+	\includegraphics[trim=0 0 0 0,clip,scale=0.5]{../Figures/MPCDistributionAuclert_URE.jpg}
 	\end{figure}
+	He doesn't have the right data or methods to be able to do this
 	\pause
 	\column{0.5\linewidth}
-	\textbf{Monetary Policy Application}\\
-	\bigskip
-	A 1\% increase in R decreases consumption by 0.33\% due to heterogeneity in interest rate exposure\\
-	\bigskip
-	This channel is 1 to 6x larger than intertemporal substitution
+	\centering
+	\begin{figure}
+	\includegraphics[trim= 0 3.2cm 0 1.8cm, clip, scale=0.25]{../Figures/MPXByURE_level_lincome_head.pdf}
+	\end{figure}
+	We can do a lot better!
 	\end{columns}
 }
 \section{Empirical Strategy}
@@ -155,7 +149,7 @@
 	\end{tikzpicture}
 	\column{0.4\linewidth}
 	\begin{align*}
-	\Delta^N c = \beta^N \Delta^N y +\varepsilon
+	\Delta^N c_i = \beta^N \Delta^N y_i +\varepsilon_i
 	\end{align*}
 	\end{columns}
 
@@ -181,7 +175,6 @@
 	\begin{itemize}
 	\item MPC out of Permanent Shocks = 1\\
 	\item MPC out of Transitory Shocks = 0\\
-	\item Variances approx. equal
 	\end{itemize}
 	BPP method estimates MPC out of transitory shocks to be -0.6
 	\end{columns}
@@ -290,9 +283,9 @@
 	\vspace*{-0.2in}
 	\begin{center}
 	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumption.pdf}};
+	\node (img1) {\includegraphics[height=3.5cm]{../Figures/GenericTransitoryConsumption.pdf}};
 	\pause
-	\node (img2) at (img1) {\includegraphics[height=4cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}};
+	\node (img2) at (img1) {\includegraphics[height=3.5cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}};
 	\end{tikzpicture}
 	\end{center}
 	\vspace*{-0.2in}
@@ -376,7 +369,7 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 		\item Works well for households with simple financial lives
 		\item Main issue: Capital gains and losses
 		\begin{itemize}
-			\item Exclude households where methodology will not work well (eg Business owners)
+			\item Exclude households where methodology will not work well (eg business owners)
 			\item Exclude housing wealth and years with housing transactions
 			\item Capital gains for stocks based on a diversified index
 		\end{itemize}
@@ -384,10 +377,11 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 		\item Huge sample size advantage: sample covers 7.6 million observations over 2004-2015
 	\end{itemize}
 }
-\section{Results}
+\section{MPX by Wealth}
 \frame
 {
 	\frametitle{MPX by Liquid Wealth}
+	\label{MPXbyLiquidWealth}
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
@@ -395,31 +389,30 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 		\column{0.5\linewidth}
 		\centering
 		\includegraphics[scale=0.35]{../Figures/MPXByLiquidWealth_level_lincome_head.pdf}
-	\end{columns} 	
-}
-\frame
-{
-	\frametitle{MPX by Net Wealth}
-	\begin{columns}
-		\column{0.5\linewidth}
-		\centering
-		\includegraphics[scale=0.35]{../Figures/VarianceByNetWealth_level_lincome_head.pdf}
-		\column{0.5\linewidth}
-		\centering
-		\includegraphics[scale=0.35]{../Figures/MPXByNetWealth_level_lincome_head.pdf}
-	\end{columns} 	
+	\end{columns} 
+	\hyperlink{MPXbyNetWealth}{\beamerbutton{MPX by Net Wealth}}	
 }
 \frame
 {
 	\frametitle{Model vs Data}
-	How does a standard model compare with the data?
+	How does a standard model compare with the data?\\
 	\begin{columns}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/CSTW_perm_denmark.pdf}
+		\begin{tikzpicture}
+		\node (img1) {\includegraphics[scale=0.35]{../Figures/benchmark_perm_denmark.pdf}};
+		\onslide<2->{
+			\node (img2) {\includegraphics[scale=0.35]{../Figures/prefshock_perm_denmark.pdf}};
+		}
+		\end{tikzpicture}
 		\column{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.35]{../Figures/CSTW_tran_denmark.pdf}
+		\begin{tikzpicture}
+		\node (img3) {\includegraphics[scale=0.35]{../Figures/benchmark_tran_denmark.pdf}};
+		\onslide<2->{
+			\node (img4) {\includegraphics[scale=0.35]{../Figures/prefshock_tran_denmark.pdf}};
+		}
+		\end{tikzpicture}
 	\end{columns} 
 }
 \section{Application}
@@ -491,17 +484,23 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 \frame{
 	\frametitle{Monetary Policy: Measuring Redistribution}
 	The Five Transmission Channels:
-	\begin{align*}
-	\frac{dC}{C} &= \Big(\mathcal{M} + \gamma \mathcal{E}_{Y}\Big)\frac{dY}{Y}-\mathcal{E}_P\frac{dP}{P}  +\Big(\mathcal{E}_R - \sigma S \Big) \frac{dR}{R} 
+	\begin{align*} 
+	\frac{dC}{C} &= \overbrace{\mathcal{M}\frac{dY}{Y}}^{\text{Aggregate Income Channel}\qquad} \overbrace{ + \gamma \mathcal{E}_Y \frac{dY}{Y}}^{\text{Earnings Heterogeity Channel}\qquad} \overbrace{ - \mathcal{E}_P\frac{dP}{P}}^{\text{Fisher Channel}}  \nonumber \\
+	& \qquad \underbrace{ + \mathcal{E}_R \frac{dR}{R}}_{\text{Interest Rate Exposure Channel}\qquad}  \underbrace{ - \sigma \mathcal{S}\frac{dR}{R}}_{\text{Intertemporal Substitution Channel}} \label{auclert_channels}
 	\end{align*}
-	We calculate
-	\begin{itemize}
-		\item $\mathcal{E}_R \approx -0.33$
-		\item $\mathcal{E}_P \approx -0.66$
-		\item $S \approx 0.56$, 1-consumption-weighted MPC
-		\item $\sigma$ in the range of 0.1 to 0.5 (maybe)
-	\end{itemize}
-	$\implies$ the intertemporal substitution channel, $\sigma S \approx 0.05 - 0.28$, is potentially much smaller than the interest rate exposure channel
+	\pause
+	\begin{columns}
+	\column{0.5\linewidth}
+	\centering
+		\input ../Tables/sufficient_stats2.tex
+	\column{0.5\linewidth}
+	\pause
+	Compare $\mathcal{E}_R$ to $\sigma S$: \\
+	\bigskip
+	$\sigma$ in the range of 0.1 to 0.5 (maybe) \\
+	\bigskip
+	 $\sigma S \approx 0.06 - 0.28$ \\
+	\end{columns}
 }
 \section{MPC vs MPX}
 \frame
@@ -565,6 +564,20 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 	\end{figure}
 	\end{columns}
 	\hyperlink{cons_identification}{\beamerbutton{Back}}
+}
+\frame
+{
+	\frametitle{MPX by Net Wealth}
+	\label{MPXbyNetWealth}
+	\begin{columns}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/VarianceByNetWealth_level_lincome_head.pdf}
+		\column{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.35]{../Figures/MPXByNetWealth_level_lincome_head.pdf}
+	\end{columns} 	
+	\hyperlink{MPXbyLiquidWealth}{\beamerbutton{Back}}
 }
 \begin{comment}
 \section{Model}

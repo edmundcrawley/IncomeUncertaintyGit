@@ -55,7 +55,10 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 
 \hfill{\tiny \jobname}
 
-\title{Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
+\title{DRAFT - NOT FOR FURTHER CIRCULATION\\ 
+	\bigskip
+	\bigskip
+	Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
 
 \ifthenelse{\boolean{ifWeb}}{
 \author{
@@ -81,7 +84,7 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 \begin{abstract}
   \opt{JournalFormatting}{\doublespacing}
 %  \begin{verbatimwrite}{./.abstract.metadata} 
-    This paper uses a novel econometric method to estimate households' consumption responses to permanent and transitory shocks to income. Our method builds upon \cite{blundell_consumption_2008}, using techniques from \cite{crawley_time_2018} to correct for the time aggregation problem. Applying our method to a confidential panel dataset covering the entire Danish population, we find heterogeneity in consumption behavior across dimensions of particular importance for monetary policy. Households who stand to lose from an interest rate hike have significantly larger consumption responses than those who stand to gain. Overall we estimate this interest rate exposure channel to be of an order of magnitude larger than the intertemporal substitution channel that dominates in representative agent New Keynesian models.
+    This paper uses a novel econometric method to estimate households' consumption responses to permanent and transitory shocks to income. Our method builds upon \cite{blundell_consumption_2008}, using techniques from \cite{crawley_time_2018} to correct for the time aggregation problem. Applying our method to a confidential panel dataset covering the entire Danish population, we find heterogeneity in consumption behavior across dimensions of particular importance for monetary policy. Households who stand to lose from an interest rate hike have significantly larger consumption responses than those who stand to gain. Overall we estimate this interest rate exposure channel to be between one and six times larger than the intertemporal substitution channel that dominates in representative agent New Keynesian models.
 %  \end{verbatimwrite}{./.abstract.metadata} 
 %  \input{./.abstract.metadata}
 \end{abstract}
@@ -140,7 +143,7 @@ We will look at the estimate of $\beta^N$ in the model
 where $N$, the number of years over which growth is measured, varies from 1 to 10. Our identification comes from the fact that transitory income shocks make up a relatively large proportion of the variance of income growth over a short period, and that permanent income shocks dominate the variance of income growth over a long period. Figure \ref{fig:GrowthReg} shows what we would expect to see under three well known models, as well as what we actually observe the data. In a complete markets model in which all idiosyncratic shocks to income are insured against there is no relation between income growth and consumption growth, as represented by the blue horizontal line at zero. In the Solow growth model, and also some old Keynesian models, households' expenditure is a constant proportion of income that period, regardless of transitory shocks to income. The green horizontal line around 0.75 shows what we would see in a model of this type where households spend 75\% of their income each period. The red line shows the results for a typical buffer-stock saving model. In this model the regression of consumption growth on income growth over one year yields a relatively small number as households are able to self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes towards 1.0 as N gets large.
 	\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_liquid_wealth_level_lincome_head.png}
+		\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}
 		\caption{Regression coefficients of consumption growth on income growth}
 		\label{fig:GrowthReg}
 	\end{centering}
@@ -154,7 +157,7 @@ As explained above, our identification is going to come from the shape of income
 Figure \ref{fig:TimeAgg} shows how the problem arises. The solid `Income flow' line shows the true income flow of a household who receives zero income throughout year 1, zero income for the first half of year two, and then a constant income flow of 1.0 per year during the second half of the second year and in the third year. The dashed line shows the observed \textit{total} income of the household in years 1, 2 and 3: zero in year 1, 0.5 in year 2 and 1.0 in year 3. The important thing to note is that despite there only being one `shock' to the income flow over the three year period, the na\"ive observer would assume there had been two shocks, one between years 1 and 2 and another between years 2 and 3. This effect is of particular importance to econometric techniques that make use of the auto-covariance structure of data processes. For example the first difference of a random walk in discrete time has no autocorrelation, but the first difference of a time-aggregated random walk in continuous time has an autocorrelation equal to 1/4. BPP uses time aggregated income data and achieves identification of transitory variance precisely though the auto-covariance structure. This is why the problem is particularly pervasive for this methodology: in a simulated dataset where households follow the permanent income hypothesis, that is they respond one-for-one to shocks to permanent income but not at all to transitory income shocks, the estimate for the consumption response to transitory income shocks using the BPP methodology is \textit{negative} 0.6.\footnote{This is for a simulation in which permanent and transitory shock variances are equal and shocks are uniformly distributed over the year.} 
 	\begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.5]{\econtexRoot/Figures/TimeAggExample2.png} 
+		\includegraphics[scale=0.5]{\econtexRoot/Figures/TimeAggExample2.pdf} 
 		\caption{The Time Aggregation Problem}
 		\label{fig:TimeAgg}
 	\end{centering}
@@ -293,9 +296,9 @@ As our methodology requires income uncertainty to be relatively constant through
 Using our entire estimation sample we find a mean MPX out of transitory shocks of 0.50 and a mean MPX out of permanent shocks of 0.72. However, these averaged results hide a significant amount of heterogeneity. From the standpoint of consumption theory it is the ability of households to self-insure with their own wealth that most determines how much they smooth their consumption over shocks. We divide our estimation sample into quintiles according to both liquid wealth (which we define as bank deposits\footnote{The results are little changed using any other definition of liquid wealth as long as housing and debts are excluded. See section \ref{robustness}.}) and net wealth. In each case wealth is measured as the mean household wealth holdings over the entire sample period.
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.png}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.pdf}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByLiquidWealth_level_lincome_head.png}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByLiquidWealth_level_lincome_head.pdf}
 	\caption{Variance and MPX by Liquid Wealth Quintile}
 	\label{fig:MPXByLiquidWealth}
 \end{figure}
@@ -307,9 +310,9 @@ Note that the estimates of income variance we obtain are highly sensitive to our
 The right hand panel of figure \ref{fig:MPXByLiquidWealth} shows our estimates for the MPX out of permanent and transitory shocks by liquid wealth quintile. The lowest wealth quintile, who hold less than \$2,000 in bank deposits on average over the sample period, look somewhat like hand-to-mouth consumers. They respond almost equally to permanent and transitory shocks, spending over 80\% of income shocks in the year that it arrives. However, the fact that both permanent and transitory MPX's are very similar and significantly less than 1 suggests these households may be more accurately modeled as saving in an illiquid asset such as housing or a pension following a rule of thumb (say 20\% of income) and then living hand to mouth on the remainder. As the quintile of liquid wealth increases, the MPX out of both transitory and permanent income decreases. In the top quintile, formed of households that maintained a mean bank balance above \$30,000, the MPX out of permanent shocks is 0.57 and out of transitory shocks 0.23. From the point of view of theory the responsiveness of spending our of permanent shocks in this quintile is low, while that of transitory shocks is high. A more thorough discussion of how these results compare to a standard model calibrated to Danish characteristics will wait until section \ref{model}.
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.png}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
 	\centering
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.png}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.pdf}
 	\caption{Variance and MPX by Net Wealth Quintile}
 	\label{fig:MPXByNetWealth}
 \end{figure}
@@ -331,9 +334,9 @@ The redistribution effects of monetary policy depend crucially on two household 
 Figure \ref{fig:MPCAuclert} shows how the MPX varies across household values for URE, NNP and Income. In each case the value on the x-axis has been divided by the mean level of expenditure. As mortgages in Denmark are a mixture of fixed and variable rates (see appendix \ref{mortgage_market} for details on the Danish mortgage market), we can think of a typical household with negative URE or NNP as having a large mortgage, while those with positive URE or NNP are wealthy households with lots of liquid wealth. A clear pattern emerges that is not evident in previous attempts to measure the distribution of MPX across these dimensions. First, and most importantly for the theory, the average MPX for those with negative URE and NNP positions is significantly greater than those with positive URE or NNP. This confirms the intuition that households who owe a lot of floating rate debt have higher MPXs than those who own this debt, and leads to an interest rate exposure channel in which lowering interest rates increases expenditure. Second, the highest MPXs don't belong to houses with large debts but instead are a characteristic of households with close to zero position in URE and NNP. These households can be characterized as being poor hand-to-mouth as they have few if any assets and their consumption behavior is not affected by changes interest rates directly.\footnote{Neither the interest rate exposure channel nor the intertemporal substitution channel will have much impact on their consumption. Monetary policy will impact their expenditure strongly through income effects.} Note the mean levels of both URE and NNP are negative for the households in our estimation sample, so even a constant (positive) MPX would result in interest rate hikes reducing their expenditure if not balanced by indirectly held exposures.\footnote{In contrast, Auclert finds a mean positive URE across households. We believe the difference is partly due to the prevalence of fixed rate mortgages in the US, but also due to underreporting of expenditures, especially in the PSID data.} While the distribution of MPX by income will not be central to our analysis, figure \ref{fig:MPCAuclert} shows a clear downward trend. If the income of lower income households decreases more than that of high income households during a monetary policy contraction, then expenditure will go down by more than the mean income weighted MPX that would be the result of a representative agent model. For comparison the distribution of  MPX out of permanent income shocks across these dimensions can be found in appendix \ref{PermMPXbyURENNP}.
 \begin{figure} 
 \begin{centering}
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByURE_level_lincome_head.png}
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.png}
-	\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.png}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByURE_level_lincome_head.pdf}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
 	\caption{MPX Distribution by URE, NNP and Income}
 	\label{fig:MPCAuclert}
 \end{centering}
@@ -433,10 +436,10 @@ where $\mathcal{X}_i$ is i.i.d. and calibrated such that the average MPX for the
 The top panel of figure \ref{fig:CSTW} shows how the transitory MPX of the two models compares with the data. While the fact that the MPX decreases with liquid wealth quintile is robust in both models and in the data, there are two features worth noting. First, large preference shocks are required to push the transitory MPX close to the levels we see in the data (in our example preference shocks have an annual standard deviation of 0.3 *****NEED TO CHECK THIS****). Second, neither of the two models is able to explain the high MPX out of transitory shocks that we observe for the top quintile of liquid assets. These households, who hold a mean balance above \$30,000, appear very responsive to transitory shocks despite their large buffer stock they could potentially use to smooth income shocks.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/CSTW_tran_denmark.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/CSTW_tran_denmark_pref.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/CSTW_perm_denmark.png}
-\includegraphics[scale=0.45]{\econtexRoot/Figures/CSTW_perm_denmark_pref.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark_pref.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark.pdf}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark_pref.pdf}
 		\caption{Baseline model (LHS) and Preference Shock Model (RHS) with the Data}
 		\label{fig:CSTW}
 	\end{centering}
@@ -452,7 +455,7 @@ Using the model we are able to calculate precisely the partial derivative of exp
 where $\text{MPX}_q$ is the partial derivative in the quarterly model.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/MPC_accuracy.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPC_accuracy.pdf}
 		\caption{Empirical Method on Simulated Data versus Partial Derivative}
 		\label{fig:MPC_accuracy}
 	\end{centering}
@@ -493,7 +496,7 @@ So the durable component of the covariance cancels out and our identification me
 However, if there is some delay between the household receiving the permanent income shock and purchasing the durable goods, then this introduces an upward bias into the estimate of transitory MPX. The size of the bias grows with the number of months delay between the permanent income shock and the durable goods purchase, plateauing after twelve months at a level of $\frac{\sigma^2_p}{2\sigma^2_q}\phi_d$. Figure \ref{fig:durable_bias} shows how this bias increases with the delay.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/DurableBias.png}
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/DurableBias.pdf}
 		\caption{Bias in Transitory MPX with Delay in Durable Goods Purchase}
 		\label{fig:durable_bias}
 	\end{centering}
@@ -507,7 +510,7 @@ C_T^{\text{nondurable}} = C_T - \frac{1}{0.421}\Delta \text{CarValue}
 The second, non-durable proxy consumption panel, can be modeled as the true non-durable consumption panel with classical measurement error added. This classical measurement error does not bias our estimates, so we can use this non-durable proxy panel to estimate an unbiased MPC out of transitory shocks, where the MPC does not include durable expenditures.
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/MPXByDurables_nodurableproxy.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByDurables_nodurableproxy.pdf}
 		\caption{MPX Removing Cars and Using the Non-durable Proxy Panel}
 		\label{fig:MPXByDurables}
 	\end{centering}
@@ -580,8 +583,8 @@ INCOME MEASUREMENT ERROR A POTENTIALLY LARGE PROBLEM, but we think it is well me
 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/Robust_tranMPX_liquidwealth.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/Robust_tranMPX_URE.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_liquidwealth.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_URE.pdf}
 		\caption{Robustness of Liquid Wealth and URE Distributions}
 		\label{fig:Robust_liquidURE}
 	\end{centering}
@@ -589,8 +592,8 @@ INCOME MEASUREMENT ERROR A POTENTIALLY LARGE PROBLEM, but we think it is well me
 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/Logs_tranMPX_liquidwealth.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/Logs_tranMPX_URE.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Logs_tranMPX_liquidwealth.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Logs_tranMPX_URE.pdf}
 		\caption{Results Using Log Income and Expenditure}
 		\label{fig:Robust_Logs}
 	\end{centering}
@@ -598,7 +601,7 @@ INCOME MEASUREMENT ERROR A POTENTIALLY LARGE PROBLEM, but we think it is well me
 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/total_tranMPX_URE.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/total_tranMPX_URE.pdf}
 		\caption{Results Using Total Labor Income and Head Labor Income}
 		\label{fig:Robust_TotalvsHead}
 	\end{centering}
@@ -606,7 +609,7 @@ INCOME MEASUREMENT ERROR A POTENTIALLY LARGE PROBLEM, but we think it is well me
 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/DivPerm_tranMPX_liquidwealth.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/DivPerm_tranMPX_liquidwealth.pdf}
 		\caption{Results Using Quintiles of Liquid Wealth over Permanent Income vs Liquid Wealth}
 		\label{fig:Robust_DivPerm}
 	\end{centering}
@@ -614,7 +617,7 @@ INCOME MEASUREMENT ERROR A POTENTIALLY LARGE PROBLEM, but we think it is well me
 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.png}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
 		\caption{Results Using Total, Head and Spouse Labor Income}
 		\label{fig:Robust_Spouse}
 	\end{centering}
@@ -655,14 +658,14 @@ The dotted black line shows the variance of $\Delta y$ assuming no persistence i
 The level of both permanent and transitory shock variance for households aged 30 to 55 is approximately 0.0035, reflecting a standard deviation of 6\%. Estimates using US data are significantly higher, especially for the transitory shock variance (for example \cite{carroll_nature_1997} estimate 0.02 for permanent and 0.04 for transitory). This difference may be due to lower income inequality in Denmark, more progressive taxation and more generous unemployment insurance. The lower transitory variance will also be due to significantly reduced measurement error relative to the survey based US data. 
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{\econtexRoot/Figures/VarianceByAge_level_lincome_head.png} 
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/VarianceByAge_level_lincome_head.pdf} 
 		\caption{Permanent and Transitory Shock Variance by Age}
 		\label{fig:VarianceByAge}
 	\end{centering}
 \end{figure}
 \begin{figure} 
 	\begin{centering}
-		\includegraphics[scale=0.6]{\econtexRoot/Figures/MPXByAge_level_lincome_head.png} 
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/MPXByAge_level_lincome_head.pdf} 
 		\caption{MPX by Age}
 		\label{fig:MPXByAge}
 	\end{centering}
@@ -684,16 +687,7 @@ The level of both permanent and transitory shock variance for households aged 30
 	\end{centering}
 \end{figure}
 
-\section{Distribution of Permanent and Transitory MPX by URE, NNP and Income} \label{PermMPXbyURENNP}
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/PermTranMPXByURE_level_lincome_head.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/PermTranMPXByNNP_level_lincome_head.png}
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/PermTranMPXByIncome_level_lincome_head.png}
-		\caption{MPX Distribution by URE, NNP and Income}
-		\label{fig:MPCAuclertPermTran}
-	\end{centering}
-\end{figure}
+
 
 
 

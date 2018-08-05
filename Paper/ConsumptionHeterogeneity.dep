@@ -145,40 +145,37 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/TimeAggExample2.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/TimeAggExample2.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitory.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/consumption_measures.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/VarianceByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByLiquidWealth_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/VarianceByNetWealth_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByNetWealth_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByLiquidWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByLiquidWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByNetWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByNetWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {omscmr.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/MPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByURE_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByNNP_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByIncome_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Lorenz.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_tran_denmark.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_tran_denmark_pref.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_perm_denmark.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_perm_denmark_pref.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPC_accuracy.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/DurableBias.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByDurables_nodurableproxy.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/Robust_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/Robust_tranMPX_URE.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/Logs_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/Logs_tranMPX_URE.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/total_tranMPX_URE.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/DivPerm_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/Spouse_tranMPX_liquidwealth.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_tran_denmark.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_tran_denmark_pref.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_perm_denmark.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/CSTW_perm_denmark_pref.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPC_accuracy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/DurableBias.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByDurables_nodurableproxy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Robust_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Robust_tranMPX_URE.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Logs_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Logs_tranMPX_URE.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/total_tranMPX_URE.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/DivPerm_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Spouse_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.bbl}{0000/00/00 v0.0}
-  *{file}   {./Figures/VarianceByAge_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPXByAge_level_lincome_head.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/VarianceByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_type.png}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/PermTranMPXByURE_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/PermTranMPXByNNP_level_lincome_head.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/PermTranMPXByIncome_level_lincome_head.png}{0000/00/00 v0.0}
 }
