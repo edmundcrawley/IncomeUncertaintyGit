@@ -727,14 +727,14 @@ wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_
 
 ################################################################################
 # Get CSTW estimated data from Python
-cstw_results <- read.csv(paste(PythonResults_folder,'benchmark_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
-#cstw_results <- read.csv(paste(PythonResults_folder,'prefshock_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
+benchmark_results <- read.csv(paste(PythonResults_folder,'benchmark_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
+prefshock_results <- read.csv(paste(PythonResults_folder,'prefshock_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
 
 #plot transitory model results
 dev.new()
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,4],cstw_results[,4]),nrow=5,ncol=2)
+params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
 se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
 barCenters <- barplot(height=t(params),
@@ -753,16 +753,55 @@ arrows(barCenters, t(params-se*1.96),
        t(params+se*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "CSTW_tran_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "CSTW_tran_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "CSTW_tran_denmark.svg",sep=""))
+#dev.copy(png, paste(figures_dir, "benchmark_tran_denmark.png",sep=""))
+dev.copy(pdf, paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
+#dev.copy(svg, paste(figures_dir, "benchmark_tran_denmark.svg",sep=""))
 dev.off()
+
+#plot transitory model results with preference shock model
+dev.new()
+par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
+quantile_names = c("1","2","3","4","5")
+params = matrix(c(wealth_quantile_params[,4],prefshock_results[,4]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[2],"grey85"),
+                      las=2,ylim=c(0,plotTop), xaxt="n", 
+                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border=NA, axes=TRUE)
+params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[2],colors[3]),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE, add=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
+segments(barCenters, t(params-se*1.96),
+         barCenters,
+         t(params+se*1.96), lwd=1.5)
+arrows(barCenters, t(params-se*1.96),
+       barCenters,
+       t(params+se*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model")),"Model with Preference Shocks"), fill=c(colors[2],colors[3],"grey85"),bty="n")
+#dev.copy(png, paste(figures_dir, "prefshock_tran_denmark.png",sep=""))
+dev.copy(pdf, paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
+#dev.copy(svg, paste(figures_dir, "prefshock_tran_denmark.svg",sep=""))
+dev.off()
+
 
 #plot permanent model results
 dev.new()
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,3],cstw_results[,3]),nrow=5,ncol=2)
+params = matrix(c(wealth_quantile_params[,3],benchmark_results[,3]),nrow=5,ncol=2)
 se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
 barCenters <- barplot(height=t(params),
@@ -781,9 +820,47 @@ arrows(barCenters, t(params-se*1.96),
        t(params+se*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "CSTW_perm_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "CSTW_perm_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "CSTW_perm_denmark.svg",sep=""))
+#dev.copy(png, paste(figures_dir, "benchmark_perm_denmark.png",sep=""))
+dev.copy(pdf, paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
+#dev.copy(svg, paste(figures_dir, "benchmark_perm_denmark.svg",sep=""))
+dev.off()
+
+#plot permanent model results
+dev.new()
+par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
+quantile_names = c("1","2","3","4","5")
+params = matrix(c(wealth_quantile_params[,3],prefshock_results[,3]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[3],"grey85"),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border=NA, axes=TRUE)
+params = matrix(c(wealth_quantile_params[,3],benchmark_results[,3]),nrow=5,ncol=2)
+se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
+plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
+barCenters <- barplot(height=t(params),
+                      names.arg=quantile_names,
+                      cex.names=0.75,
+                      beside=TRUE,col=c(colors[1],colors[3]),
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
+                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE, add=TRUE)
+text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
+segments(barCenters, t(params-se*1.96),
+         barCenters,
+         t(params+se*1.96), lwd=1.5)
+arrows(barCenters, t(params-se*1.96),
+       barCenters,
+       t(params+se*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
+#dev.copy(png, paste(figures_dir, "prefshock_perm_denmark.png",sep=""))
+dev.copy(pdf, paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
+#dev.copy(svg, paste(figures_dir, "prefshock_perm_denmark.svg",sep=""))
 dev.off()
 
 
@@ -791,7 +868,7 @@ dev.off()
 dev.new()
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
-params = matrix(c(cstw_results[,4],cstw_results[,5]),nrow=5,ncol=2)
+params = matrix(c(prefshock_results[,4],prefshock_results[,5]),nrow=5,ncol=2)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
