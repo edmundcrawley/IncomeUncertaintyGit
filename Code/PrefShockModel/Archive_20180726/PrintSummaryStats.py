@@ -123,4 +123,25 @@ output += "\end{minipage}\n"
 with open('./Tables/sufficient_stats.tex','w') as f:
     f.write(output)
     f.close()
+    
+
+# And a table for all sufficient stats    
+filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
+URENNP_data = np.genfromtxt(filename, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lc}  \n"
+output += "\\\\ \\toprule"
+output += "$\mathcal{M}$ & "+ mystr2(URENNP_data[0,5])+ " \n"
+output += "\\\\  $\mathcal{E}_Y$ & "+ mystr2(URENNP_data[1,5])+ " \n"
+output += "\\\\  $\mathcal{E}_P$  & "+ mystr2(URENNP_data[2,5])+ " \n"
+output += "\\\\  $\mathcal{E}_R$ & "+ mystr2(URENNP_data[3,5])+ " \n"
+output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ " \n"
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+with open('./Tables/sufficient_stats2.tex','w') as f:
+    f.write(output)
+    f.close()
 
