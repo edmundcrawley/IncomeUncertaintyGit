@@ -53,11 +53,11 @@ def SelectMicroSample(Economy,years_in_sample=12,periods_per_year=4,logs=False):
         array = array[ignore_periods:,:]
 
     sample_length = years_in_sample*periods_per_year
-    C_all = np.concatenate([cLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
-    Y_all = np.concatenate([yLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
-    B_all = np.concatenate([bLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
-    MPC_all = np.concatenate([MPCAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
-    not_newborns_all = np.concatenate([not_newborns[sample_length*i:sample_length*(i+1),:] for i in range(not_newborns.shape[0]/sample_length)],axis=1)
+    C_all = np.concatenate([cLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(int(not_newborns.shape[0]/sample_length))],axis=1)
+    Y_all = np.concatenate([yLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(int(not_newborns.shape[0]/sample_length))],axis=1)
+    B_all = np.concatenate([bLvlAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(int(not_newborns.shape[0]/sample_length))],axis=1)
+    MPC_all = np.concatenate([MPCAll_hist[sample_length*i:sample_length*(i+1),:] for i in range(int(not_newborns.shape[0]/sample_length))],axis=1)
+    not_newborns_all = np.concatenate([not_newborns[sample_length*i:sample_length*(i+1),:] for i in range(int(not_newborns.shape[0]/sample_length))],axis=1)
      
     #delete observations containing a newborn
     not_newborns_all = not_newborns_all.all(axis=0)
@@ -67,10 +67,10 @@ def SelectMicroSample(Economy,years_in_sample=12,periods_per_year=4,logs=False):
     MPC_all = MPC_all[:,not_newborns_all]
     
     #sum up over periods_per_year
-    Cons_sample = np.stack([np.sum(C_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
-    Inc_sample = np.stack([np.sum(Y_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
-    B_sample = np.stack([np.mean(B_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
-    MPC_sample = np.stack([np.mean(MPC_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])  
+    Cons_sample = np.vstack([np.sum(C_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
+    Inc_sample = np.vstack([np.sum(Y_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
+    B_sample = np.vstack([np.mean(B_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])
+    MPC_sample = np.vstack([np.mean(MPC_all[periods_per_year*i:periods_per_year*(i+1),:],axis=0)for i in range(years_in_sample)])  
 
     if logs:
         Cons_sample = np.log(Cons_sample)
@@ -185,3 +185,35 @@ def BasicRegressionTables(Cons_sample, Inc_sample,max_diff=10,filename=False):
 #    f.close()
 #
 
+#### Save arrays to LaTex tables
+def PrintLaborTables(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,filename,width=0.45,name=""):
+    output = "\\begin{minipage}{" + str(width) + "\\textwidth}\n"
+   
+    output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lc|*{" + str(num_labelas_vals) + "}{c}}  \n"
+    output += "& " + name 
+    for i in range(int(num_labelas_vals/2)):
+        output +=  "& "
+    output += " Frisch Elasticity \n"
+    output += "\\\\ &  "
+    for i in range(num_labelas_vals):
+        output += " & " + "{:.2f}".format(labor_elas[i]) 
+    output += "\\\\ \\toprule  \n"
+    for row in range(num_pref_vals):
+        if row==num_pref_vals/2-1:
+            output += " Preference shock & " + "{:.2f}".format(pref_vals[row]*0.5) + " & "
+        else:
+            output += " & " + "{:.2f}".format(pref_vals[row]*0.5) + " & "
+        for column in range(num_labelas_vals):
+            if ~np.isnan(estimate_array[row,column]):
+                output += "{:.2f}".format(estimate_array[row,column])
+            if column!=num_labelas_vals-1:
+                output += " & "
+            else:
+                output += " \n "
+                output += "\\\\ "
+    output += "\\\\ \\bottomrule  \n"
+    output += "\end{tabular}}\n"
+    output += "\end{minipage}\n"
+    with open('./Tables/' + filename + '.tex','w') as f:
+        f.write(output)
+        f.close()

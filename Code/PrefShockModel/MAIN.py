@@ -5,12 +5,13 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 from time import clock
 import numpy as np
 from PrefShockModel import PrefLaborConsumerType, PrefLaborMarket, findLorenzDistanceAtTargetKY
-from PrefShockModel_tools import SelectMicroSample, CS_estimation, BasicRegressionTables
+from PrefShockModel_tools import SelectMicroSample, CS_estimation, BasicRegressionTables, PrintLaborTables
 import PrefShockModel_params as Params
-from scipy.optimize import golden
+from scipy.optimize import golden, minimize
 from copy import copy, deepcopy
 import matplotlib.pyplot as plt
 mystr = lambda number : "{:.4f}".format(number)
+mystr2 = lambda number : "{:.0f}".format(number)
 
 estimate_benchmark = False
 estimate_pref_shock = False
@@ -218,3 +219,116 @@ prefshock_br_quintiles = np.zeros((10,num_quantiles))
 for i in range(num_quantiles):
     prefshock_br_quintiles[:,i] = BasicRegressionTables(prefshock_Cons_sample_nrm[:,prefshock_which_quantile==i], prefshock_Inc_sample_nrm[:,prefshock_which_quantile==i],max_diff=10,filename='prefshock_br_'+str(i+1)+'_quintile')
 
+###############################################################################
+# Next calibrate a model with preference shocks AND labor elasticity
+# This model will have only one type of agent and will be calibrated to
+# match either high or low wealth households
+###############################################################################
+#These are the inputs
+#b_to_yagg_target = 0.5
+b_to_yagg_target = 0.03
+income_var_target = 0.01
+sim_periods = 1200
+ignore_periods = 200
+AgentCount = 1000
+
+bounds=[(0.9,0.99),(0.002,0.2)]
+run_optimization = True
+
+num_pref_vals = 2
+max_pref_val = 0.8
+pref_vals = np.linspace(0.0001,max_pref_val,num_pref_vals)
+num_labelas_vals = 2
+max_labor_elas = 0.5
+labor_elas = np.linspace(0.0001,max_labor_elas,num_labelas_vals)
+
+#Set up the economy
+agent_params = copy(Params.init_infinite)
+LaborType = PrefLaborConsumerType(**agent_params)
+LaborType.PrefShkCount =3
+LaborType.AgentCount = AgentCount
+LaborType.T_sim = sim_periods
+LaborType.track_vars = ['bNrmNow','cNrmNow','MPCnow','lNow','TranShkNow','PrefShkNow','pLvlNow','cLvlNow','lIncomeLvl','t_age']
+
+# Make an economy for the consumers to live in
+LaborTypeEconomy = PrefLaborMarket(**Params.init_market)
+LaborTypeEconomy.agents = [LaborType]
+LaborTypeEconomy.act_T = sim_periods
+LaborTypeEconomy.ignore_periods = ignore_periods
+
+#options for root finding
+options = dict()
+options['maxiter']=10
+options['disp']=True
+
+# Objective function to match income variance and assets to income ratio
+def ObjectiveFunc(params_to_solve, Economy, b_to_yagg_target, income_var_target):
+    this_beta = params_to_solve[0]
+    this_tran_std = params_to_solve[1]
+    Economy.agents[0].DiscFac = this_beta
+    Economy.agents[0].TranShkStd = [this_tran_std]
+    Economy.agents[0].update()
+    Economy.solveAgents()
+    Economy.makeHistory()
+    Cons_sample, Inc_sample, B_sample, MPC_sample = SelectMicroSample(Economy)
+    # Normalize by 'permanent' income
+    Inc_sample_nrm = Inc_sample/np.mean(Inc_sample,0)
+    income_var = np.var(Inc_sample_nrm[1:,]-Inc_sample_nrm[:-1,])
+    b_to_yagg = np.median(B_sample/Inc_sample)
+    return (b_to_yagg-b_to_yagg_target)**2 + ((income_var-income_var_target)*b_to_yagg_target/income_var_target)**2
+
+dc_agg_std = np.zeros((num_pref_vals,num_labelas_vals))
+dy_agg_std = np.zeros((num_pref_vals,num_labelas_vals))
+sigma_p_array = np.zeros((num_pref_vals,num_labelas_vals))
+sigma_q_array = np.zeros((num_pref_vals,num_labelas_vals))
+phi_array = np.zeros((num_pref_vals,num_labelas_vals))
+psi_array = np.zeros((num_pref_vals,num_labelas_vals))
+b_to_yagg_array = np.zeros((num_pref_vals,num_labelas_vals))
+MPC_array = np.zeros((num_pref_vals,num_labelas_vals))
+DiscFac_array = np.zeros((num_pref_vals,num_labelas_vals))
+TranShkStd_array = np.zeros((num_pref_vals,num_labelas_vals))
+
+for i in range(len(pref_vals)):
+    LaborTypeEconomy.agents[0].PrefShkStd = [pref_vals[i]]
+    for j in range(len(labor_elas)):
+        LaborTypeEconomy.agents[0].LaborElas = labor_elas[j]
+        if run_optimization:
+            start_time = clock()
+            solution = minimize(ObjectiveFunc, [0.985,0.06], (LaborTypeEconomy,b_to_yagg_target, income_var_target),bounds=bounds,options=options)
+            end_time = clock()
+            print('Finding parameters took ' + mystr((end_time-start_time)/60.0) + ' minutes.')
+            print('Solution is ['+ mystr(solution.x[0]) +',' + mystr(solution.x[1]) + ']')
+            solution
+            LaborTypeEconomy.agents[0].DiscFac = solution.x[0]
+            LaborTypeEconomy.agents[0].TranShkStd = [solution.x[1]]
+        else:
+            #Doesn't do anything
+            print('Ongoing...')
+        LaborTypeEconomy.agents[0].update()
+        LaborTypeEconomy.solveAgents()
+        LaborTypeEconomy.makeHistory()
+        labor_Cons_sample, labor_Inc_sample, labor_B_sample, labor_MPC_sample = SelectMicroSample(LaborTypeEconomy)
+        # Normalize by 'permanent' income
+        labor_Inc_sample_nrm = labor_Inc_sample/np.mean(labor_Inc_sample,0)
+        labor_Cons_sample_nrm = labor_Cons_sample/np.mean(labor_Inc_sample,0)
+        dc_agg_std[i,j] = np.std(labor_Cons_sample_nrm[1:,]-labor_Cons_sample_nrm[:-1,])
+        dy_agg_std[i,j] = np.std(labor_Inc_sample_nrm[1:,]-labor_Inc_sample_nrm[:-1,])
+        b_to_yagg_array[i,j] = np.mean(labor_B_sample)/np.mean(labor_Inc_sample)
+        sigma_p_array[i,j],sigma_q_array[i,j],phi_array[i,j],psi_array[i,j] = CS_estimation(labor_Cons_sample_nrm, labor_Inc_sample_nrm)
+        MPC_array[i,j] = np.mean(labor_MPC_sample)
+        DiscFac_array[i,j] = LaborTypeEconomy.agents[0].DiscFac
+        TranShkStd_array[i,j] = LaborTypeEconomy.agents[0].TranShkStd[0]
+        
+PrintLaborTables(phi_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'phi_laborsupply'+mystr2(b_to_yagg_target*100),name="$\\phi$")
+PrintLaborTables(psi_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'psi_laborsupply'+mystr2(b_to_yagg_target*100),name="$\\psi$")
+PrintLaborTables(DiscFac_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'beta_laborsupply'+mystr2(b_to_yagg_target*100),name="$\\beta$")
+# divide TranShkStd_array by 2 to get annualized std
+PrintLaborTables(TranShkStd_array/2.0,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'TranShk_laborsupply'+mystr2(b_to_yagg_target*100),name="$\\sigma_q$")
+#Also annualize the MPC
+PrintLaborTables(MPC_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'mpc_laborsupply'+mystr2(b_to_yagg_target*100),name="MPC")
+PrintLaborTables(DiscFac_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'beta_laborsupply'+mystr2(b_to_yagg_target*100),name="$\\beta$")
+PrintLaborTables(dc_agg_std,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,'c_std_laborsupply'+mystr2(b_to_yagg_target*100),name="Std($\Delta \log c$)")
+    
+    
+    
+    

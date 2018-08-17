@@ -391,7 +391,6 @@ def solvePrefLaborShock(solution_next,IncomeAndPrefDstn,LivPrb,DiscFac,CRRA,
     solver = PrefLaborShockSolver(solution_next,IncomeAndPrefDstn,LivPrb,DiscFac,CRRA,
                                          LaborElas,Rfree,PermGroFac,aXtraGrid,WageShkVals,PrefShkVals)        
     solver.prepareToSolve()       # Do some preparatory work
-    print("test")
     solution_now = solver.solve() # Solve the period
     return solution_now   
                                   
