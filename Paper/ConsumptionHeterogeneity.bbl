@@ -9,11 +9,11 @@
 \fi
 \begin{thebibliography}{}
 
-\harvarditem[Abildgren, Kuchler, Solange, and Sorensen]{Abildgren, Kuchler,
-  Solange, and Sorensen}{2018}{abildgren_consistency_2018}
-\textsc{Abildgren, Kim, Andreas Kuchler, America Solange,  {and} Henrik
-  Sorensen}  (2018): ``Consistency between household-level consumption data
-  from registers and surveys,'' .
+\harvarditem[Abildgren, Kuchler, Rasmussen, and Sorensen]{Abildgren, Kuchler,
+  Rasmussen, and Sorensen}{2018}{abildgren_consistency_2018}
+\textsc{Abildgren, Kim, Andreas Kuchler, America Solange~Lohmann Rasmussen,
+  {and} Henrik Sorensen}  (2018): ``Consistency between household-level
+  consumption data from registers and surveys,'' .
 
 \harvarditem[Agarwal and Qian]{Agarwal and
   Qian}{2014}{agarwal_consumption_2014}
@@ -170,8 +170,13 @@
   measure the response of spending to income,'' \emph{Science}, 345(6193),
   212--215.
 
+\harvarditem[Guvenen]{Guvenen}{2007}{guvenen_learning_2007}
+\textsc{Guvenen, Fatih}  (2007): ``Learning {Your} {Earning}: {Are} {Labor}
+  {Income} {Shocks} {Really} {Very} {Persistent}?,'' \emph{American Economic
+  Review}, 97(3), 687--712.
+
 \harvarditem[Guvenen]{Guvenen}{2009}{guvenen_empirical_2009}
-\textsc{Guvenen, Fatih}  (2009): ``An empirical investigation of labor income
+\textsc{\BySame{}}  (2009): ``An empirical investigation of labor income
   processes,'' \emph{Review of Economic Dynamics}, 12(1), 58--79.
 
 \harvarditem[Hausman]{Hausman}{2012}{hausmanVeteransBonus}
