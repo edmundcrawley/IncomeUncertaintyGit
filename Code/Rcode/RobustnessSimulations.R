@@ -9,6 +9,7 @@
 ServerRcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/"
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
 tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
+figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
 library(zoo)
 source(paste(ServerRcode_folder,"BPPLikeCarrollSamwick.r",sep=""))
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
@@ -177,5 +178,6 @@ plot(true_MPC_estimates_ar1,psi_estimates_ar1,col=colors[1],xlab="True MPC",ylab
 lines(c(0,1),c(0,1),lwd=4)
 lines(true_MPC_estimates_fagereng,psi_estimates_fagereng,col=colors[2],lwd=4)
 legend(0.1,0.9,legend=c("Exponential Decay","Fagereng et al. Decay"), col=colors,bty="n",lwd=4)
+dev.copy(pdf, paste(figures_dir, "DecayBias.pdf",sep=""))
 dev.off()
 
