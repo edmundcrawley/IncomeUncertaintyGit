@@ -175,8 +175,8 @@ if __name__ == '__main__':
     BasicRegressionTables(EstimationEconomy3,filename="basic_regressions")
     
     #Write table containing actual empirical data for different values of n1 and n2
-    empirical_table_psi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_tran_array_10.txt")
-    empirical_table_phi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_perm_array_10.txt")
+    empirical_table_psi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_tran_array_6_level_lincome_head.txt")
+    empirical_table_phi = np.loadtxt("C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/ins_tran_array_6_level_lincome_head.txt")
     empirical_table_psi[empirical_table_psi==0] = np.nan
     empirical_table_phi[empirical_table_phi==0] = np.nan
     EstimateTable(empirical_table_psi, 'Psi_array_empirical',True,width=0.45)

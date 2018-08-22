@@ -452,22 +452,6 @@ Second, neither of the two models is able to explain the high MPX out of transit
 
 The bottom panel of figure \ref{fig:CSTW} shows another failure of both these two simple models: neither is able to capture the fact that the consumption response to permanent shocks is substantially below 1, even for middle and low quintiles of liquid wealth. A more sophisticated model which contains both an illiquid asset and a lifecycle component may do better along this front.
 
-\subsection{Performance of the Empirical Method}
-Using a model we are able to calculate precisely the partial derivative of expenditure with respect to transitory income. To be comparable to the time period of our empirical MPX we take the mean MPX over 1,2,3 and 4 quarters:\footnote{Remember our empirical method measures the covariance of income with expenditure in the same calendar year. If the shock happens in the first quarter, then we will count expenditure over the next four quarters. If the shocks happens in the final quarter, then only one quarter of expenditure will be captured.}
-\begin{align*}
-\text{MPX}_{\text{model}} = 1 - \frac{1}{4}\sum_{i=1}^{4}(1-\text{MPX}_q)^i 
-\end{align*}
-where $\text{MPX}_q$ is the partial derivative in the quarterly model.
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPC_accuracy.pdf}
-		\caption{Empirical Method on Simulated Data versus Partial Derivative}
-		\label{fig:MPC_accuracy}
-	\end{centering}
-\end{figure}
-
-Figure \ref{fig:MPC_accuracy} shows how the empirical method performs on data simulated from the preference shock model. The method works well when the MPX is high, but overestimates the MPX when it is low. This is a direct result of the assumption that the consumption response to a transitory shocks decays within a two year period. This is a close approximation to the truth when the MPX is high, but the consumption response, which decays approximately as an AR(1) in this model, can last longer when the MPX is low. While this is a problem for our method at the high end of the wealth distribution in these models, \cite{fagereng_mpc_2016} shows strong evidence that the consumption response for the wealthy decays a lot faster than an AR(1) process would suggest. Their impulse response graphs, identified  using lottery winnings, show that despite high initial consumption responses of the wealthy, after two years their spending has returned close to where it would have been had they not won a lottery prize. Such behavior among the wealthy would suggest our empirical method works better for these groups in the data than it does in this simulated setting.
-
 \section{Threats to Identification}
 
 \subsection{Durables} \label{durables}
@@ -529,7 +513,20 @@ While there is some evidence that our results may be biased up for those in the 
 The empirical results of this paper estimate MPX to be at the high end of the literature. The results also conflict with standard consumption theory, particularly at the higher end of the liquid wealth distribution. It is possible that these high transitory MPX estimates are being driven by reverse causality: in years when households wish to spend more, they increase their labor supply. In this case our assumption that labor income is exogenous would be false. To get a sense of the quantitative magnitude of the bias such reverse causality could induce, in appendix \ref{labor_elasticity_model} we calibrate a model with both preference shocks and labor supply elasticity. We find the effect is quantitatively small, with both the true MPX and the estimates using our method being close to zero for a simulation of households with liquid wealth in the top quintile. However, for extreme values of preference shocks and labor elasticity, we can generate estimates of the transitory MPX to be as high as 0.25, when the true MPX is 0.08.\footnote{Estimates of the Frisch elasticity in micro-data studies range from 0 to 0.5, while macroeconomic studies generally find a much larger elasticity of between 2 and 4 (see \cite{peterman_reconciling_2016}). We not consider estimates of the Frisch elasticity in the macroeconomic range as it seems likely to us that these estimates are high due to labor market frictions over the business cycle, rather than genuine labor supply choices of households. The extreme values referred to in the text are a Frisch elasticity of 0.5 and an annual preference shock standard deviation of 0.4.}
 
 \subsection{Persistent Consumption Response} \label{Consumption_persistence}
-SHOW THAT ESTIMATES ARE RELATIVELY STABLE TO CHOICES OF N= 2,3,4,5,6
+Our estimation procedure makes the assumption that the consumption response to a transitory income shock decays to zero in a period of two years or less. A slower decay will lead to a downward bias in our estimates of the transitory MPX. Figure \ref{fig:DecayBias} shows the results of our estimation procedure on simulated data under two different assumptions about the transitory consumption response.
+
+The exponential decay line assumes that the consumption flow following a transitory shock decays exponentially.\footnote{Standard buffer stock models give rise to a consumption response that decays very close to exponentially. In appendix \ref{consumption_persistence_appendix} we show how our empirical method does with data simulated from the model in section \ref{model}.} We vary the decay rate to match a range of year 1 MPCs and assume that the entire transitory income is eventually consumed. For high MPCs, and especially those over 0.5, there is very little bias. However, for MPCs significantly below 0.5 our method results in downward biased estimates. This bias arises because low MPCs, combined with exponential consumption decay, result in a relatively stable consumption flow over the first few years that has not declined close to zero after two years.
+
+Empirical evidence suggests that in fact the consumption response to a transitory shock decays quickly in the first few months and then more slowly after that.\footnote{Both \cite{fagereng_mpc_2016} and \cite{gelman_what_2016} provide evidence for this.} The `Fagereng et al.' line in figure \ref{fig:DecayBias} shows the MPC estimate in simulated data in which the consumption response decays according the the estimates made in \cite{fagereng_mpc_2016}. In this case the fast decay in the first few months results in a smaller bias than the exponential case for low MPCs, while the fact that the decay is slower following these first months results in a larger bias for high MPCs.\footnote{Details of these simulations can be found in appendix \ref{consumption_persistence_appendix}.} Overall it seems likely that our assumption about the persistence of the consumption response leads to a slight downward bias across the range of MPCs.
+
+Appendix \ref{consumption_persistence_appendix} shows that our MPX estimates are not very sensitive to the choice of $N$ (years of growth in our identification equations) between 3 and 6 which lends further support to the fact that assuming a two year limit does not bias our results too much.\footnote{Using $N$ equal to 4 and 5 instead of 3,4 and 5 allows us to extend the consumption response out to three years, at the expense of losing data and becoming more sensitive to misspecification of the income process.}
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/DecayBias.pdf}
+		\caption{Bias from Persistent Consumption}
+		\label{fig:DecayBias}
+	\end{centering}
+\end{figure}
 
 \subsection{Measurement Error}
 Our identification comes from estimating $\mathrm{Var}(\Delta^N \bar{y})$ and $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ using our observed data. For unbiased estimates of $\mathrm{Var}(\Delta^N \bar{y})$ we require no measurement error in our observed changes in labor income. For unbiased estimation of $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ we only require (further to no measurement error in income growth) that the measurement error in expenditure growth is uncorrelated with labor income growth. As our expenditure is imputed from income and changes in assets, this is potentially more of a concern than would be the case in survey data in which questions about consumption are not directly linked to those on income. Below we examine potential sources of error in labor income and imputed consumption.
@@ -548,8 +545,8 @@ Expenditure is calculated as the residual of total household income (including i
 \subsection{RIP or HIP Income Process?}
 Our method makes strong assumptions on the income process, namely that there is no persistent idiosyncratic component to income growth and that the process contains a random walk. \cite{guvenen_empirical_2009} shows that is empirically difficult to distinguish between a ``Restricted Income Profiles'' (RIP) like this and a ``Heterogenous Income Profile'' (HIP) income process, in which i) shocks to income are much less persistent (eg AR(1) with $\rho\approx 0.8$), and ii) households have a persistent idiosyncratic growth component. The reason the RIP and HIP processes are difficult to tell apart is that the two features (i) and (ii) act in opposite directions on the cross-section variance of income growth. The less persistent income shocks lead the cross-sectional income growth variance not to grow as fast as the HIP model, while the persistent idiosyncratic growth component lead the same variance to grow at a faster rate. The result is that the increase in variance of income growth over three to four years is approximately the same as the increase from four to five years.\footnote{See appendix ************ that shows how the variance of income growth over N years grows with N.} To the extent that the consumption response to these semi-permanent shocks is similar to the the response to the idiosyncratic persistent growth component,\footnote{See \cite{guvenen_learning_2007} for an example of why this might be the case: if households do not know their own idiosyncratic growth ex-ante, a Bayesian learning process will be very slow, so households (at least initially) will react in similar ways to changes in income due to this persistent growth component as a true income shock.} our methodology will continue to provide reasonable estimates of the `permanent' MPX and the more familiar transitory MPX. Appendix ************* has more detail on this point.
 
-\subsection{Time Varying Risk}
-We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. In appendix *********** we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. We also show that our MPX estiamtes are unbiased if transitory variance is increasing linearly over time, and show the degree to which transitory variance changed over the sample period will only introduce a small bias to our MPX estimates.
+\subsection{Time Varying Risk} \label{time_varying_risk}
+We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. In appendix \ref{time_varying_risk_appendix} we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. In order to test how much this time varying risk might bias our results, we simulated data with $\phi=1$ and $\psi=0.5$, with permanent variance equal to estimates from the data and transitory variance varying in order to match the time varying income risk pattern observed in the data. When we ran this simulation we found estimates of $\phi$ and $\psi$ within 1\% of their true values.
 
 \section{Robustness} \label{robustness}
 
@@ -659,6 +656,54 @@ The level of both permanent and transitory shock variance for households aged 30
 	\end{centering}
 \end{figure}
 
+\section{Persistent Consumption Response} \label{consumption_persistence_appendix}
+
+\subsection{Details on section \ref{Consumption_persistence} simulations}
+For the simulations in section \ref{Consumption_persistence} we divided each year into 20 sub-intervals. Both permanent and transitory shocks occur each period, and the transitory shocks have no persistence. At an annual frequency the variance of permanent and transitory shocks are equal. Households spend their permanent income each period, along with their consumption response to the history of transitory shocks. For the exponential decay model this is:
+\begin{align*}
+c_t = p_t + (1-\rho)\sum_{n=0}^{\infty}\rho^n \varepsilon_{t-n}
+\end{align*}
+In \cite{fagereng_mpc_2016} the T year MPC is estimated as a function:
+\begin{align*}
+\text{MPC}_T = \theta_1 T^{\theta_2}
+\end{align*}
+Where $\theta_1$ controls the size of the response and $\theta_2$ the speed of decay. We vary $\theta_1$ and choose $\theta_2= 0.2142$ according to their estimate. In this model consumption in period $t$ (measured in sub-intervals) is:
+\begin{align*}
+c_t = p_t + \theta_1\sum_{n=0}^{\infty}\Big( (\frac{n+1}{20})^{\theta_2} -(\frac{n}{20})^{\theta_2} \Big)\varepsilon_{t-n}
+\end{align*}
+We then time-aggregate both income and consumption over each 20 sub-interval period, choose a sample of 13 years, and run our estimation procedure with $N=3,4,5$. The transitory MPC estimates are shown in figure \ref{fig:DecayBias}, the permanent estimates are shown here in figure \ref{fig:DecayBias_phi}. The bias in permanent estimates is small across the range of transitory MPCs.
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/DecayBias_phi.pdf}
+		\caption{Bias from Persistent Consumption}
+		\label{fig:DecayBias_phi}
+	\end{centering}
+\end{figure}
+
+\subsection{Persistent Consumption in the Preference Shock Model}
+Using a model we are able to calculate precisely the partial derivative of expenditure with respect to transitory income. To be comparable to the time period of our empirical MPX we take the mean MPX over 1,2,3 and 4 quarters:\footnote{Remember our empirical method measures the covariance of income with expenditure in the same calendar year. If the shock happens in the first quarter, then we will count expenditure over the next four quarters. If the shocks happens in the final quarter, then only one quarter of expenditure will be captured.}
+\begin{align*}
+\text{MPX}_{\text{model}} = 1 - \frac{1}{4}\sum_{i=1}^{4}(1-\text{MPX}_q)^i 
+\end{align*}
+where $\text{MPX}_q$ is the partial derivative in the quarterly model.
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPC_accuracy.pdf}
+		\caption{Empirical Method on Simulated Data versus Partial Derivative}
+		\label{fig:MPC_accuracy}
+	\end{centering}
+\end{figure}
+
+Figure \ref{fig:MPC_accuracy} shows how the empirical method performs on data simulated from the preference shock model of section \ref{model}. The method works well when the MPX is high, but overestimates the MPX when it is low. This is a direct result of the assumption that the consumption response to a transitory shocks decays within a two year period. The consumption response in the model is very close to the exponential decay model simulated above, so it is not surprising that the bias is large for low values of the MPX. As above, empirical evidence suggests that, even for households with low MPX, the initial decay of the consumption response occurs much faster than exponential decay would suggest.
+
+\subsection{Estimates using different values of $N$}
+\begin{center}
+	\captionof{table}{$\psi$ Estimates using different $N$}
+	\label{table:psi_estimates}
+	\input ./Tables/Psi_array_empirical.tex
+\end{center}
+Table \ref{table:psi_estimates} shows the estimates of the transitory MPX that we recover from our estimation sample when we just use $N=n_1,n_2$ in our identification equations \ref{variance} and \ref{covariance}. Remember in our main results we used GMM with $N=3,4,5$ and we high circled $N=3,5$ to highlight where we get identification from in the paper. The purpose of this exercise is to show that the estimation results are not very sensitive to the values of $N$ chosen. This also provides more evidence that the assumption we made that the transitory consumption response lasts less than two years is not biasing our results significantly. In fact the results are not changed dramatically even when $N=1,2$, which suggests the majority of the transitory consumption response is very short lived.
+
 \section{Labor Elasticity Model} \label{labor_elasticity_model}
 Here we detail the model and simulation results summarized in section \ref{labor_elasticity}. The model extends the standard incomplete markets model from section \ref{model}, incorporating both preference shocks, so that households have some years when their utility of consumption is greater than others, and labor elasticity, so that households can adjust their income based on the marginal utility of consumption. The household's problem is to maximize expected lifetime utility:
 \begin{align*}
@@ -708,6 +753,15 @@ The right hand panel of table \ref{table:psi_mpc_laborsupply} shows the effect o
 
 This exercise suggests the bias due to reverse causality is likely to be small, but further investigation may be worthwhile.
 
+\section{Time Varying Risk} \label{time_varying_risk_appendix}
+Figure \ref{fig:income_growth_std} shows how the standard deviation of income growth has changed over the sample period. From trough to peak there is a change of approximately 10\%
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/IncomeGrowthStd.pdf}
+		\caption{Standard Deviation of Income Growth}
+		\label{fig:income_growth_std}
+	\end{centering}
+\end{figure}
 
 
 

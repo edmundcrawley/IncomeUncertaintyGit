@@ -173,11 +173,80 @@ true_MPC_estimates_fagereng = read.csv(paste(tables_dir,"true_MPC_estimates_fage
 
 
 dev.new()
+par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
 plot(true_MPC_estimates_ar1,psi_estimates_ar1,col=colors[1],xlab="True MPC",ylab="Estimated MPC",type="l",lwd=4, 
      main = "Bias Due to Persistent Consumption")
 lines(c(0,1),c(0,1),lwd=4)
 lines(true_MPC_estimates_fagereng,psi_estimates_fagereng,col=colors[2],lwd=4)
-legend(0.1,0.9,legend=c("Exponential Decay","Fagereng et al. Decay"), col=colors,bty="n",lwd=4)
+legend(0.1,0.9,legend=c("45 degree line","Exponential Decay","Fagereng et al. Decay"), col=c("black",colors),bty="n",lwd=4)
 dev.copy(pdf, paste(figures_dir, "DecayBias.pdf",sep=""))
 dev.off()
+
+dev.new()
+par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
+plot(true_MPC_estimates_ar1,phi_estimates_ar1,col=colors[1],xlab="True Transitory MPC",ylab="Estimated Permanent MPC",type="l",lwd=4, 
+     main = "Bias Due to Persistent Consumption",ylim=c(0,1.1))
+lines(c(0,1),c(1,1),lwd=4)
+lines(true_MPC_estimates_fagereng,phi_estimates_fagereng,col=colors[2],lwd=4)
+legend(0.1,0.9,legend=c("True Permanent MPC","Exponential Decay","Fagereng et al. Decay"), col=c("black",colors),bty="n",lwd=4)
+dev.copy(pdf, paste(figures_dir, "DecayBias_phi.pdf",sep=""))
+dev.off()
+
+################################################################################################################
+# Next up - time varying risk
+################################################################################################################
+
+
+psi_estimates = matrix(0,n_rhos)
+phi_estimates = matrix(0,n_rhos)
+psi_se_estimates = matrix(0,n_rhos)
+phi_se_estimates = matrix(0,n_rhos)
+
+for (k in 1:num_sims){
+  tran_var = mattrix(0,num_subperiods*years,num_agents)
+  perm_shocks = t(replicate(num_subperiods*(years), rnorm(num_agents)) )/num_subperiods**1.5
+  tran_shocks = t(replicate(num_subperiods*(years), rnorm(num_agents)) )/num_subperiods**0.5
+  
+  tran_y = matrix(0,num_subperiods*(years),num_agents)
+  perm_y = matrix(0,num_subperiods*(years),num_agents)
+  tran_c = matrix(0,num_subperiods*(years),num_agents)
+  perm_c = matrix(0,num_subperiods*(years),num_agents)
+  for (i in (num_subperiods*(ignore_periods)-1):(num_subperiods*(years+ignore_periods)-1)){
+    tran_y[i+1,] = tran_shocks[i+1,]
+    perm_y[i+1,] = perm_y[i,] + perm_shocks[i+1,]
+    perm_c[i+1,] = perm_c[i,] + phi*perm_shocks[i+1,]
+    for (lag in (0:(num_subperiods*ignore_periods-1))){
+      tran_c[i+1,] = tran_c[i+1,] + theta1*tran_shocks[i+1-lag,]*(((lag+1.0)/num_subperiods)**(theta2) - (lag/num_subperiods)**(theta2) )
+    }
+  }
+  y = tran_y + perm_y
+  c = tran_c + perm_c
+  y_annual = matrix(0,years,num_agents)
+  c_annual = matrix(0,years,num_agents)
+  for (year in (1:years)){
+    y_annual[year,] = colSums(y[(num_subperiods*(year+ignore_periods-1)):(num_subperiods*(year+ignore_periods)),])
+    c_annual[year,] = colSums(c[(num_subperiods*(year+ignore_periods-1)):(num_subperiods*(year+ignore_periods)),])
+  }
+  delta_y = (y_annual[2:nrow(y_annual),]-y_annual[1:(nrow(y_annual)-1),])
+  delta_c = (c_annual[2:nrow(c_annual),]-c_annual[1:(nrow(c_annual)-1),])
+  all_data = matrix(0,nrow(delta_y)*ncol(delta_y), 6)
+  for (i in (1:ncol(delta_y))){
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),1] = i   # id column
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),2] = 1:nrow(delta_y)   # year column
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),3] = delta_y[,i]   # id column
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),4] = 1   # id column
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),5] = delta_c[,i]   # id column
+    all_data[((i-1)*nrow(delta_y)+1):(i*nrow(delta_y)),6] = 1   # id column
+  }
+  moments_all <- create_moments_CS(all_data)
+  c_vector = moments_all$c_vector
+  omega = moments_all$omega
+  T = moments_all$T
+  CS_output = CS_parameter_estimation(c_vector, omega,T) 
+  psi_estimates[j] = psi_estimates[j]+CS_output$ins_tran/num_sims
+  phi_estimates[j] = phi_estimates[j]+CS_output$ins_perm/num_sims
+  psi_se_estimates[j] = psi_se_estimates[j]+CS_output$ins_tran_se/num_sims
+  phi_se_estimates[j] = phi_se_estimates[j]+CS_output$ins_perm_se/num_sims
+}
+
 

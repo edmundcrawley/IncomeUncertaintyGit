@@ -163,9 +163,9 @@
   *{file}   {./Figures/CSTW_tran_denmark_pref.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/CSTW_perm_denmark.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/CSTW_perm_denmark_pref.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPC_accuracy.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/DurableBias.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByDurables_nodurableproxy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/DecayBias.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Robust_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Robust_tranMPX_URE.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Logs_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
@@ -178,4 +178,7 @@
   *{file}   {./Figures/MPXByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_type.png}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
+  *{file}   {./Figures/DecayBias_phi.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPC_accuracy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/IncomeGrowthStd.pdf}{0000/00/00 v0.0}
 }
