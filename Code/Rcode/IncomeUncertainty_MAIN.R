@@ -905,6 +905,8 @@ URE_quantile_obs = output$category_obs
 URE_quantile_total_var = output$category_total_var
 URE_quantile_set = t(round(moments_by_URE_quantile$quantile_means/mean_household_consumption,round_digits))
 plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE)
+plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","permURE",transitory_only = FALSE)
+
 
 #Now calculate the sufficient statistic
 elas_URE_NR = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
@@ -928,6 +930,7 @@ NNP_quantile_obs = output$category_obs
 NNP_quantile_total_var = output$category_total_var
 NNP_quantile_set = t(round(moments_by_NNP_quantile$quantile_means /mean_household_consumption,round_digits))
 plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","NNP",transitory_only = TRUE)
+plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","permNNP",transitory_only = FALSE)
 
 #Now calculate the sufficient statistic
 elas_NNP_NR = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
@@ -949,6 +952,7 @@ Income_quantile_obs = output$category_obs
 Income_quantile_total_var = output$category_total_var
 Income_quantile_set = round(t(moments_by_Income_quantile$quantile_means /mean_household_consumption),round_digits)
 plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","Income",transitory_only = TRUE)
+plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","permIncome",transitory_only = FALSE)
 
 #Now calculate the sufficient statistic
 elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means /mean_household_consumption))

@@ -450,7 +450,7 @@ Second, neither of the two models is able to explain the high MPX out of transit
 	\end{centering}
 \end{figure}
 
-The bottom panel of figure \ref{fig:CSTW} shows another failure of both these two simple models: neither is able to capture the fact that the consumption response to permanent shocks is substantially below 1, even for middle and low quintiles of liquid wealth. A more sophisticated model which contains both an illiquid asset and a lifecycle component may do better along this front.
+The bottom panel of figure \ref{fig:CSTW} shows another failure of both these two simple models: neither is able to capture the fact that the consumption response to permanent shocks is substantially below 1, even for middle and low quintiles of liquid wealth. \cite{straub_consumption_2018} shows that a lifecycle model with non-homothetic preferences may do better along this front.
 
 \section{Threats to Identification}
 
@@ -542,8 +542,8 @@ Expenditure is calculated as the residual of total household income (including i
 	\item \textbf{Off Balance Sheet Assets:} A larger concern is that some forms of saving may be hidden off balance sheet. All Danish banks and brokers are required to report their clients' holdings, so off balance sheet assets are likely to be either off-shore, or non-financial assets. This would be a large concern if we were focused on the expenditure of the super wealthy 0.1\%, but is less so when dividing the population into quintiles or deciles as we have done. Our imputation method would interpret this saving as expenditure, so our estimate of the MPX would increase one-to-one for each percentage point of saving out of income shocks performed off balance sheet.
 \end{itemize}
 
-\subsection{RIP or HIP Income Process?}
-Our method makes strong assumptions on the income process, namely that there is no persistent idiosyncratic component to income growth and that the process contains a random walk. \cite{guvenen_empirical_2009} shows that is empirically difficult to distinguish between a ``Restricted Income Profiles'' (RIP) like this and a ``Heterogenous Income Profile'' (HIP) income process, in which i) shocks to income are much less persistent (eg AR(1) with $\rho\approx 0.8$), and ii) households have a persistent idiosyncratic growth component. The reason the RIP and HIP processes are difficult to tell apart is that the two features (i) and (ii) act in opposite directions on the cross-section variance of income growth. The less persistent income shocks lead the cross-sectional income growth variance not to grow as fast as the HIP model, while the persistent idiosyncratic growth component lead the same variance to grow at a faster rate. The result is that the increase in variance of income growth over three to four years is approximately the same as the increase from four to five years.\footnote{See appendix ************ that shows how the variance of income growth over N years grows with N.} To the extent that the consumption response to these semi-permanent shocks is similar to the the response to the idiosyncratic persistent growth component,\footnote{See \cite{guvenen_learning_2007} for an example of why this might be the case: if households do not know their own idiosyncratic growth ex-ante, a Bayesian learning process will be very slow, so households (at least initially) will react in similar ways to changes in income due to this persistent growth component as a true income shock.} our methodology will continue to provide reasonable estimates of the `permanent' MPX and the more familiar transitory MPX. Appendix ************* has more detail on this point.
+\subsection{RIP or HIP Income Process?} \label{rip_hip}
+Our method makes strong assumptions on the income process, namely that there is no persistent idiosyncratic component to income growth and that the process contains a random walk. \cite{guvenen_empirical_2009} shows that it is empirically difficult to distinguish between a ``Restricted Income Profiles'' (RIP) like this and a ``Heterogenous Income Profile'' (HIP) income process, in which i) shocks to income are much less persistent (eg AR(1) with $\rho\approx 0.8$), and ii) households have a persistent idiosyncratic growth component. The reason the RIP and HIP processes are difficult to tell apart is that the two features (i) and (ii) act in opposite directions on the cross-section variance of income growth. The less persistent income shocks lead the cross-sectional income growth variance not to grow as fast as the HIP model, while the persistent idiosyncratic growth component leads the same variance to grow at a faster rate. The result is that the increase in variance of income growth over three to four years is approximately the same as the increase from four to five years.\footnote{See appendix \ref{rip_hip_appendix} that shows how the variance of income growth over N years grows with N.} To the extent that the consumption response to these semi-permanent shocks is similar to the the response to the idiosyncratic persistent growth component,\footnote{See \cite{guvenen_learning_2007} for an example of why this might be the case: if households do not know their own idiosyncratic growth ex-ante, a Bayesian learning process will be very slow, so households (at least initially) will react in similar ways to changes in income due to this persistent growth component as a true income shock.} our methodology will continue to provide reasonable estimates of the `permanent' MPX and the more familiar transitory MPX. Appendix \ref{rip_hip_appendix} has more detail on this point.
 
 \subsection{Time Varying Risk} \label{time_varying_risk}
 We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. In appendix \ref{time_varying_risk_appendix} we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. In order to test how much this time varying risk might bias our results, we simulated data with $\phi=1$ and $\psi=0.5$, with permanent variance equal to estimates from the data and transitory variance varying in order to match the time varying income risk pattern observed in the data. When we ran this simulation we found estimates of $\phi$ and $\psi$ within 1\% of their true values.
@@ -753,8 +753,36 @@ The right hand panel of table \ref{table:psi_mpc_laborsupply} shows the effect o
 
 This exercise suggests the bias due to reverse causality is likely to be small, but further investigation may be worthwhile.
 
+\section{RIP or HIP Income Process?} \label{rip_hip_appendix}
+There has been a long-standing and unresolved quest in the literature to find a parsimonious representation of the labor income process. Two competing candidates are the Restricted Income Profile (RIP) and Heterogeneous Income Profile (HIP) processes. Both can be described by the equations:
+\begin{align*}
+	y_h^i = \beta^i h + z^i_h + \varepsilon^h_i\\
+	z^i_h = \rho z^i_{h-1]} + \eta^h_i
+\end{align*}
+where $i$ indexes the worker and $h$ the years of experience. $\varepsilon^h_i$ represents a transitory shock to income, while $\eta^h_i$ is persistent. $\beta^i$ represents an idiosyncratic persistent growth factor.
+
+In the RIP model, $\beta^i=0$ and $\rho$ is usually estimated to be very close to 1 (in this paper we assumed $\rho=1$). In the HIP model $\beta^i$ has a cross sectional variance $\sigma_{\beta}^2>0$ and $\rho$ is normally estimated to be significantly lower than 1, around 0.8. The reason these are difficult to tell apart is because the theory gives not strong indication in which model the cross-sectional variance of income growth over $N$ years should grow faster. In the RIP model with $\rho=1$, the cross-sectional variance of income growth increases linearly with $N$. In the RIP model with $\rho\approx 0.8$ the growth in the  cross-sectional variance of income growth will decrease due to the low $\rho$, but increase due to the idiosyncratic $\beta^i$.
+
+Figure \ref{fig:increasing_diff} shows the empirical values for income growth variance and the covariance of income and expenditure growth over $N$ years. We have also plotted the fitted values for these statistics that are implied by our model when fitted to $N=3,4,5$ as we do in the paper. We see the empirical variance and covariance decline slightly below the model fitted line as $N$ becomes large. This fits with the finding that $\rho$ in the RIP model is usually slightly below 1.0, around 0.98 or 0.99. We also note that around the region where we achieve our identification ($N=3,4,5$), there is very little curvature in the empirical statistics and the increase in both variance and covariance is close to linear.
+
+While this linearity around $N=3,4,5$ cannot help us distinguish between the RIP and HIP process, it does imply that our empirical methodology may be somewhat robust to misspecification along this dimension. If we assume that the expenditure response to a change in $z^i_h$ and to the increase from the persistent idiosyncratic growth are equal to $\phi$, and the response to a transitory shock is $\psi$, that is:
+\begin{align*}
+	\Delta^N c^i_h \approx \phi \Delta^N (\beta^i h + z^i_h) + \psi \Delta^N \varepsilon^h_i
+\end{align*}
+Then the fact that $\mathrm{Var}\big( \Delta^N (\beta^i h + z^i_h) \big)$ grows approximately linearly with $N$ means that our empirical method will correctly identify $\phi$ and $\psi$.
+
+A full investigation of the implications of different income processes is beyond the scope of this paper but would be a very useful exercise for future research.
+	
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/IncreasingDiff_level_lincome_head.pdf}
+		\caption{Variance and Covariance with Years of Growth}
+		\label{fig:increasing_diff}
+	\end{centering}
+\end{figure}
+
 \section{Time Varying Risk} \label{time_varying_risk_appendix}
-Figure \ref{fig:income_growth_std} shows how the standard deviation of income growth has changed over the sample period. From trough to peak there is a change of approximately 10\%
+Figure \ref{fig:income_growth_std} shows how the standard deviation of income growth has changed over the sample period. From trough to peak the standard deviation increases approximately 10\%. In the simulation referred to in section \ref{time_varying_risk} we assume both transitory income and the transitory consumption response have no persistence. We divide each year into 20 subperiods, choose the variance of permanent shocks to be 0.003 and allow time varying transitory shocks to match the pattern in figure \ref{fig:income_growth_std}. We choose values of $\phi=1$ and $\psi=0.5$ and apply our estimation procedure (that assumes constant variance) to the simulated data. We recover estimated values of $\phi$ and $\psi$ to be 1.006 and 0.499 respectively.
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.4]{\econtexRoot/Figures/IncomeGrowthStd.pdf}
@@ -763,6 +791,17 @@ Figure \ref{fig:income_growth_std} shows how the standard deviation of income gr
 	\end{centering}
 \end{figure}
 
+\section{Distribution of Permanent MPX by NNP, URE and Income} \label{PermMPXbyURENNP}
+Figure \ref{fig:MPCAuclert_perm} shows the distribution of both transitory and permanent MPX by NNP, URE and Income decile. The transitory numbers are a repeat of figure \ref{fig:MPCAuclert}.
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermURE_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermNNP_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermIncome_level_lincome_head.pdf}
+		\caption{MPX Distribution by URE, NNP and Income}
+		\label{fig:MPCAuclert_perm}
+	\end{centering}
+\end{figure}
 
 
 

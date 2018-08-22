@@ -21,7 +21,7 @@ num_subperiods = 20
 years=13
 ignore_periods = num_subperiods*5
 num_agents = 1000
-num_sims = 50
+num_sims = 200
 n_rhos = 40
 
 phi = 1.0
@@ -196,36 +196,47 @@ dev.off()
 # Next up - time varying risk
 ################################################################################################################
 
+psi=0.5
+# file loaded contains standard deviation of income growth
+income_growth_year = read.csv(paste(tables_dir,"income_std.txt",sep=""), header = TRUE)[,1]
+income_growth_std = read.csv(paste(tables_dir,"income_std.txt",sep=""), header = TRUE)[,3]
+income_growth_var = income_growth_std**2
+# recover tran_var then normalize (use 0.003 for perm var)
+tran_var_estimate = (income_growth_var - 2.0/3.0*0.003)/2.0
+tran_var_normalized = tran_var_estimate/mean(tran_var_estimate)
+# add in a dummy for the first year
+tran_var_normalized = c(tran_var_normalized[1], tran_var_normalized)
 
-psi_estimates = matrix(0,n_rhos)
-phi_estimates = matrix(0,n_rhos)
-psi_se_estimates = matrix(0,n_rhos)
-phi_se_estimates = matrix(0,n_rhos)
+psi_estimates = 0
+phi_estimates = 0
+psi_se_estimates = 0
+phi_se_estimates = 0
 
 for (k in 1:num_sims){
-  tran_var = mattrix(0,num_subperiods*years,num_agents)
+  tran_var = matrix(0,num_subperiods*years,num_agents)
+  for (i in (1:(num_subperiods*years))){
+    tran_var[i,] = tran_var_normalized[floor((i-1)/num_subperiods)+1]/(num_subperiods**0.5)
+  }
   perm_shocks = t(replicate(num_subperiods*(years), rnorm(num_agents)) )/num_subperiods**1.5
-  tran_shocks = t(replicate(num_subperiods*(years), rnorm(num_agents)) )/num_subperiods**0.5
+  tran_shocks = t(replicate(num_subperiods*(years), rnorm(num_agents)) )*tran_var
   
   tran_y = matrix(0,num_subperiods*(years),num_agents)
   perm_y = matrix(0,num_subperiods*(years),num_agents)
   tran_c = matrix(0,num_subperiods*(years),num_agents)
   perm_c = matrix(0,num_subperiods*(years),num_agents)
-  for (i in (num_subperiods*(ignore_periods)-1):(num_subperiods*(years+ignore_periods)-1)){
+  for (i in (1:(num_subperiods*years-1))){
     tran_y[i+1,] = tran_shocks[i+1,]
     perm_y[i+1,] = perm_y[i,] + perm_shocks[i+1,]
     perm_c[i+1,] = perm_c[i,] + phi*perm_shocks[i+1,]
-    for (lag in (0:(num_subperiods*ignore_periods-1))){
-      tran_c[i+1,] = tran_c[i+1,] + theta1*tran_shocks[i+1-lag,]*(((lag+1.0)/num_subperiods)**(theta2) - (lag/num_subperiods)**(theta2) )
-    }
+    tran_c[i+1,] = psi*tran_shocks[i+1,]
   }
   y = tran_y + perm_y
   c = tran_c + perm_c
   y_annual = matrix(0,years,num_agents)
   c_annual = matrix(0,years,num_agents)
   for (year in (1:years)){
-    y_annual[year,] = colSums(y[(num_subperiods*(year+ignore_periods-1)):(num_subperiods*(year+ignore_periods)),])
-    c_annual[year,] = colSums(c[(num_subperiods*(year+ignore_periods-1)):(num_subperiods*(year+ignore_periods)),])
+    y_annual[year,] = colSums(y[(num_subperiods*(year-1)):(num_subperiods*(year)),])
+    c_annual[year,] = colSums(c[(num_subperiods*(year-1)):(num_subperiods*(year)),])
   }
   delta_y = (y_annual[2:nrow(y_annual),]-y_annual[1:(nrow(y_annual)-1),])
   delta_c = (c_annual[2:nrow(c_annual),]-c_annual[1:(nrow(c_annual)-1),])
@@ -243,10 +254,16 @@ for (k in 1:num_sims){
   omega = moments_all$omega
   T = moments_all$T
   CS_output = CS_parameter_estimation(c_vector, omega,T) 
-  psi_estimates[j] = psi_estimates[j]+CS_output$ins_tran/num_sims
-  phi_estimates[j] = phi_estimates[j]+CS_output$ins_perm/num_sims
-  psi_se_estimates[j] = psi_se_estimates[j]+CS_output$ins_tran_se/num_sims
-  phi_se_estimates[j] = phi_se_estimates[j]+CS_output$ins_perm_se/num_sims
+  psi_estimates = psi_estimates+CS_output$ins_tran/num_sims
+  phi_estimates = phi_estimates+CS_output$ins_perm/num_sims
+  psi_se_estimates = psi_se_estimates+CS_output$ins_tran_se/num_sims
+  phi_se_estimates = phi_se_estimates+CS_output$ins_perm_se/num_sims
 }
-
-
+# plot income growth std
+dev.new()
+par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
+plot(income_growth_year,income_growth_std,col=colors[1],ylim=c(0.0,0.1),xlab="Year",ylab="Income Growth Std.",
+     main="Income Growth Standard Deviation by Year")
+lines(income_growth_year,income_growth_std,col=colors[1])
+dev.copy(pdf, paste(figures_dir, "IncomeGrowthStd.pdf",sep=""))
+dev.off()

@@ -180,5 +180,9 @@
   *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
   *{file}   {./Figures/DecayBias_phi.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPC_accuracy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/IncreasingDiff_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/IncomeGrowthStd.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXBypermURE_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXBypermNNP_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/MPXBypermIncome_level_lincome_head.pdf}{0000/00/00 v0.0}
 }
