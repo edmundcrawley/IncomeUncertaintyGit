@@ -959,6 +959,7 @@ elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$qu
 elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
 
 mean_Income_MPX = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means))
+cov_Income_MPX = mean_Income_MPX-mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means))
 ###############################################################################
 
 ###############################################################################

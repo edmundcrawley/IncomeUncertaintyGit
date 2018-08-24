@@ -1,4 +1,4 @@
-
+require(shape)
 # Function to plot MPX along with home ownership and liquid wealth
 plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealth, category_for_title, category_for_save) {
 
@@ -9,37 +9,40 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
   xlabel_pos = 2
   
   # Loop through plots for presentation
-  for (i in 1:6){
+  for (i in 1:7){
     if (i==1 | i==2){
       this_legend=c(expression(paste(psi," Transitory MPX")))
-      colors = c("#fc8d59","#91bfdb","#ffffbf")
+      colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-2),matrix(0,nrow(params_input),2))
       se = se_input
-      category_for_save = paste(category_for_save_input,"1")
+      category_for_save = paste(category_for_save_input,"1",sep="")
       right_axis=FALSE
       if (i==2){
-        category_for_save = paste(category_for_save_input,"1a")
+        category_for_save = paste(category_for_save_input,"1a",sep="")
       }
     }
     if (i==3 | i==4){
       this_legend=c(expression(paste(psi," Transitory MPX")),"Home Ownership")
-      colors = c("#fc8d59","#91bfdb","#ffffbf")
+      colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-1),matrix(0,nrow(params_input),1))
       se = se_input
-      category_for_save = paste(category_for_save_input,"2")
+      category_for_save = paste(category_for_save_input,"2",sep="")
       if (i==4){
-        category_for_save = paste(category_for_save_input,"2a")
+        category_for_save = paste(category_for_save_input,"2a",sep="")
       }
       right_axis=FALSE
     }
-    if (i==5 | i==6){
+    if (i==5 | i==6 | i==7){
       this_legend=c(expression(paste(psi," Transitory MPX")),"Home Ownership","Liquid Assets (Right Axis)")
-      colors = c("#fc8d59","#91bfdb","#ffffbf")
+      colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input
       se = se_input
-      category_for_save = paste(category_for_save_input,"3")
+      category_for_save = paste(category_for_save_input,"3",sep="")
       if (i==6){
-        category_for_save = paste(category_for_save_input,"3a")
+        category_for_save = paste(category_for_save_input,"3a",sep="")
+      }
+      if (i==7){
+        category_for_save = paste(category_for_save_input,"Paper",sep="")
       }
       right_axis=TRUE
     }
@@ -73,78 +76,68 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       #label Medium MPC
       xpos=10
       ypos=0.4
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[1], radx = 6.5, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"Medium MPX",col="black")
+      text(xpos,ypos,"Medium MPX",col="black")
       #label Renters
       xpos=31.5
       ypos=0.57
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[1], radx = 6.5, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"High MPX",col="black")
+      text(xpos,ypos,"High MPX",col="black")
       #label Wealth Homeowners
       xpos=48
       ypos=0.1
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[1], radx = 4, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"Low MPX",col="black")
+      text(xpos,ypos,"Low MPX",col="black")
     }
     if (i==4){
       #label Mortgaged Homeowners
       xpos=10
       ypos=0.7
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[2], radx = 6.5, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"Homeowners",col="black")
+      text(xpos,ypos,"Homeowners",col="black")
       #label Renters
       xpos=35
       ypos=0.1
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[2], radx = 6.5, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"Renters",col="black")
+      text(xpos,ypos,"Renters",col="black")
       #label Wealth Homeowners
       xpos=46
       ypos=0.5
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[2], radx = 6.5, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
-      text(xpos,ypos+0.007,"Homeowners",col="black")
+      text(xpos,ypos,"Homeowners",col="black")
     }
     if (i==6){
       #label wealthy Hand-to-Mouth
-      xpos=12
-      ypos=0.2
-      height = 0.05
-      width = 12
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
+      xpos=13
+      ypos=0.235
       roundrect(mid = c(xpos,ypos), col = colors[3], radx = 12, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
       text(xpos,ypos,"Wealthy Hand-to-Mouth",col="black")
       #label Poor Hand-to-Mouth
       xpos=35
-      ypos=0.1
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
+      ypos=0.135
       roundrect(mid = c(xpos,ypos), col = colors[3], radx = 10, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
       text(xpos,ypos,"Poor Hand-to-Mouth",col="black")
       #label Wealthy
       xpos=50
       ypos=0.85
-      height = 0.05
-      width = 10
-      #rect(xpos-width/2,ypos-height/2,xpos+width/2,ypos+height/2 ,col= colors[2],border=NA)
       roundrect(mid = c(xpos,ypos), col = colors[3], radx = 4, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
+      text(xpos,ypos,"Wealthy",col="black")
+    }
+    if (i==7){
+      #label Medium MPC
+      xpos=13
+      ypos=0.4
+      roundrect(mid = c(xpos,ypos), col = colors[1], radx = 12, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
+      text(xpos,ypos,"Wealthy Hand-to-Mouth",col="black")
+      #label Renters
+      xpos=33
+      ypos=0.57
+      roundrect(mid = c(xpos,ypos), col = colors[1], radx = 10, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
+      text(xpos,ypos,"Poor Hand-to-Mouth",col="black")
+      #label Wealth Homeowners
+      xpos=48
+      ypos=0.1
+      roundrect(mid = c(xpos,ypos), col = colors[1], radx = 4, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
       text(xpos,ypos,"Wealthy",col="black")
     }
     dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
