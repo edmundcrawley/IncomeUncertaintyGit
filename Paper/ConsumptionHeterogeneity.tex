@@ -272,7 +272,7 @@ Our expenditure data comes from imputing expenditure from income and wealth. Alo
 \end{align*}
 where $\bar{C_t}$, $\bar{Y_t}$ and $\bar{S_t}$  are the sum of expenditure, income and savings over the year $t$ respectively. $P_t$ is contributions to privately administered pension schemes, for which we have very accurate data due to tax deductibility, $\Delta NW_t$ is the change in (non-pension, non-housing) net worth measured at the end of years $t$ and $t-1$. Banks and brokers are required to report the value of their clients' accounts on 31\textsuperscript{st} December each year, and the the tax reporting year runs from 1\textsuperscript{st} January to 31\textsuperscript{st} December, so the data for income and wealth reported in the tax returns matches with that required to use this identity to impute consumption. 
 
-The method works well for households with simple financial lives. One of the biggest problems with the method is its inability to handle capital gains well. The income used in the imputation includes all labor income and capital income, however it excludes capital gains. The value of assets will vary both due to savings from reported income but also due to capital gains and losses. We handle this in a number of ways. First, we completely exclude housing wealth from our measures of net worth and saving, treating housing as an off balance sheet asset. The problem with treating housing in this way is that we must exclude households in years in which they are involved in a housing transaction. For the self employed, it is also difficult to distinguish between expenditure and investment in their business, so we exclude all households who receive more than a trivial amount of their income from business ventures. Finally, households that hold significant equity investments are likely to see sizable capital gains and losses. We make a naive adjustment by making the assumption that they hold a diversified index of stocks. While this will likely lead to significant measurement error for these individuals, the concern is mitigated first by the fact that stock holding is much more unusual in Denmark than in the US for example. Only around 10\% of households hold any stocks, and for many of those stocks make up only a small proportion of their total wealth. Furthermore, as we will explain in section \ref{robustness}, measurement error in consumption is not a concern unless it is correlated with changes in income. This seems unlikely to be the case, except for households that hold significant equity in the firms in which they work. Another concern with the imputation method is transfers of wealth, say between family members or friends. Indeed imputed expenditure is negative for approximately 3\% of households and this may explain a proportion of that. We throw out both income and expenditure data for households in years in which their expenditure is negative. In section \ref{robustness} we test the robustness of our results to sample selection bias problems that these issues may give rise to.
+The method works well for households with simple financial lives. One of the biggest problems with the method is its inability to handle capital gains well. The income used in the imputation includes all labor income and capital income, however it excludes capital gains. The value of assets will vary both due to savings from reported income but also due to capital gains and losses. We handle this in a number of ways. First, we completely exclude housing wealth from our measures of net worth and saving, treating housing as an off balance sheet asset. The problem with treating housing in this way is that we must exclude households in years in which they are involved in a housing transaction. For the self employed, it is also difficult to distinguish between expenditure and investment in their business, so we exclude all households who receive more than a trivial amount of their income from business ventures. Finally, households that hold significant equity investments are likely to see sizable capital gains and losses. We make a naive adjustment by making the assumption that they hold a diversified index of stocks. While this will likely lead to significant measurement error for these individuals, the concern is mitigated first by the fact that stock holding is much more unusual in Denmark than in the US for example. Only around 10\% of households hold any stocks, and for many of those stocks make up only a small proportion of their total wealth. Furthermore, as we will explain in section \ref{Measurement_error}, measurement error in consumption is not a concern unless it is correlated with changes in income. This seems unlikely to be the case, except for households that hold significant equity in the firms in which they work. Another concern with the imputation method is transfers of wealth, say between family members or friends. Indeed imputed expenditure is negative for approximately 3\% of households and this may explain a proportion of that. We throw out both income and expenditure data for households in years in which their expenditure is negative. In section \ref{robustness} we test the robustness of our results to sample selection bias problems that these issues may give rise to.
 
 As with income, we work with the residual of expenditure after normalizing by mean household income and controlling for the same observable features as income. We follow exactly the same steps as described in section \ref{income}.
 
@@ -329,7 +329,7 @@ These results are broadly in line with the literature. The population mean of 0.
 The redistribution effects of monetary policy depend crucially on two household characteristics, their Net Nominal Position and Unhedged Interest Rate Exposure.
 \begin{itemize}
 	\item \textbf{Net Nominal Position (NNP)} is the net value of a household's nominal assets and liabilities. It's relevance for analyzing the redistributive effects of monetary policy comes from the fact that an unexpected rise in the price level will decrease the wealth of households with positive nominal assets, redistributing it to those with negative NNP (who now have less real debt). In administrative data we are able to observe directly held nominal positions at the household level, including bank deposits and loans, bond holdings and mortgages. In aggregate the directly held aggregate NNP position of the household sector is negative, which from the national accounts we will see is balanced by the financial sector as well as foreigners.
-	\item \textbf{Unhedged Interest Rate Exposure (URE)} measures the total amount that a household plans to save at the going interest rate that period. It is the difference between all maturing assets (including income) and liabilities (including planned consumption). For example, a household with a large variable rate mortgage will likely have very negative URE. For them the entire value of their mortgage will be adjusted to the new rate. When the interest rate rises for one period they will see their disposable income (after mortgage payments) go down, and hence if they have a high MPX their spending will also decrease. To calculate URE we assume all bank deposits and bank debt have a variable rate that changes instantaneously. For mortgage debt we directly observe the amount resetting over the following year. In Denmark reset of mortgages takes place on the first day in a quarter,\footnote{See appendix \ref{mortgage_market} for more details on the Danish mortgage market.} so we assume that the new rate will only apply for half the year. For all other assets and liabilities we assume a maturity of five years. As with NNP we find households on aggregate have a negative URE position in our data and this is counterbalanced by the interest rate position of the financial sector. See appendix ******** for more detail on how we calculate NNP and URE positions.
+	\item \textbf{Unhedged Interest Rate Exposure (URE)} measures the total amount that a household plans to save at the going interest rate that period. It is the difference between all maturing assets (including income) and liabilities (including planned consumption). For example, a household with a large variable rate mortgage will likely have very negative URE. For them the entire value of their mortgage will be adjusted to the new rate. When the interest rate rises for one period they will see their disposable income (after mortgage payments) go down, and hence if they have a high MPX their spending will also decrease. To calculate URE we assume all bank deposits and bank debt have a variable rate that changes instantaneously. For mortgage debt we directly observe the amount resetting over the following year. In Denmark reset of mortgages takes place on the first day in a quarter,\footnote{See appendix \ref{mortgage_market} for more details on the Danish mortgage market.} so we assume that the new rate will only apply for half the year. For all other assets and liabilities we assume a maturity of five years. As with NNP we find households on aggregate have a negative URE position in our data and this is counterbalanced by the interest rate position of the financial sector. See appendix \ref{URE_NNP_appendix} for more detail on how we calculate NNP and URE positions.
 \end{itemize}
 
 Figure \ref{fig:MPCAuclert} shows how the MPX varies across household values for URE, NNP and income. In each case the value on the x-axis has been divided by the mean level of expenditure of the entire sample. The top chart shows the estimated MPX for each decile or unhedged interest rate exposure. The deciles on the left contain households most negatively exposed to a rise in interest rates, those in the middle deciles have little exposure, while the two top deciles on the right have the most to gain from an interest rate rise. We have included in this chart data on both rates of homeownership and median liquid assets for each decile. A clear pattern emerges in which we can roughly categorize the deciles into three groups following \cite{violante_wealthy_2014}:
@@ -539,7 +539,7 @@ Appendix \ref{consumption_persistence_appendix} shows that our MPX estimates are
 	\end{centering}
 \end{figure}
 
-\subsection{Measurement Error}
+\subsection{Measurement Error} \label{Measurement_error}
 Our identification comes from estimating $\mathrm{Var}(\Delta^N \bar{y})$ and $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ using our observed data. For unbiased estimates of $\mathrm{Var}(\Delta^N \bar{y})$ we require no measurement error in our observed changes in labor income. For unbiased estimation of $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ we only require (further to no measurement error in income growth) that the measurement error in expenditure growth is uncorrelated with labor income growth. As our expenditure is imputed from income and changes in assets, this is potentially more of a concern than would be the case in survey data in which questions about consumption are not directly linked to those on income. Below we examine potential sources of error in labor income and imputed consumption.
 
 \subsubsection{Labor Income}
@@ -548,7 +548,7 @@ For most workers labor income is well measured. Third party reporting, along wit
 \subsubsection{Imputed Expenditure}
 Expenditure is calculated as the residual of total household income (including interest and dividends) after pension contributions and the change in net wealth have been deducted. For households with simple financial lives (which we believe fits most of the Danish population), this should work well. There are a few scenarios which merit further investigation.
 \begin{itemize}
-	\item \textbf{Stock Market Capital Gains:} Only ********\% of Danish households directly own stocks or mutual funds.\footnote{In our calculation we directly observe flows in and out of pension accounts, so these can be treated as off balance sheet in which capital gains do not affect our expenditure caluclation.} In section \ref{robustness} we show the qualitative patterns we observe are unchanged even when we completely remove these households from the sample. For households that do own stocks, we assume the return they receive is equal to a diversified portfolio of Danish stocks. Given that different households will have their own idiosyncratic portfolios, this methodology will results in significant measurement error. \cite{baker_measurement_2018} show not only that the size of this measurement error is correlated with income and wealth, but also with the business cycle. Furthermore, \cite{fagereng_persistence_2016} show that some groups of investors consistently outperform the market, which would lead us to consistently underestimate their expenditure. Our concern, however, is that the \textit{change} in measurement error of expenditure be correlated with the \textit{change} in labor income. Consistently underestimating expenditure by the same amount is therefore not a problem for us. Furthermore, as we have removed all aggregate effects from the labor income residuals that we use in estimation, any measurement error correlated with the business cycle will be uncorrelated with our measure of changes in labor income. We see two potential ways in which mis-measuring stock returns may bias our results. First, if households are significantly invested in the stock of the firm they work for ********EVIDENCE???*******. Second, to the extent that households invest their labor income gains halfway through the year, we will underestimate expenditure for those whose income increases, and overestimate it for those whose income decreases. This would load us to underestimate the MPX. The size of this bias is limited by the size of excess expected returns, so our MPX estimate will be biased by no more than a few percentage points.
+	\item \textbf{Stock Market Capital Gains:} Only 10\% of Danish households directly own stocks or mutual funds.\footnote{In our calculation we directly observe flows in and out of pension accounts, so these can be treated as off balance sheet in which capital gains do not affect our expenditure caluclation.} In section \ref{robustness} we show the qualitative patterns we observe are unchanged even when we completely remove these households from the sample. For households that do own stocks, we assume the return they receive is equal to a diversified portfolio of Danish stocks. Given that different households will have their own idiosyncratic portfolios, this methodology will results in significant measurement error. \cite{baker_measurement_2018} show not only that the size of this measurement error is correlated with income and wealth, but also with the business cycle. Furthermore, \cite{fagereng_persistence_2016} show that some groups of investors consistently outperform the market, which would lead us to consistently underestimate their expenditure. Our concern, however, is that the \textit{change} in measurement error of expenditure be correlated with the \textit{change} in labor income. Consistently underestimating expenditure by the same amount is therefore not a problem for us. Furthermore, as we have removed all aggregate effects from the labor income residuals that we use in estimation, any measurement error correlated with the business cycle will be uncorrelated with our measure of changes in labor income. We see two potential ways in which mis-measuring stock returns may bias our results. First, if households are significantly invested in the stock of the firm they work for ********EVIDENCE???*******. Second, to the extent that households invest their labor income gains halfway through the year, we will underestimate expenditure for those whose income increases, and overestimate it for those whose income decreases. This would load us to underestimate the MPX. The size of this bias is limited by the size of excess expected returns, so our MPX estimate will be biased by no more than a few percentage points.
 	\item \textbf{Family and Friends Transfers:} If a household receives a transfer of money from their parents, for example, imputed expenditure will be lower than true expenditure by this amount. Large transfers typically occur upon death of a parent, which is likely uncorrelated with the household head's labor income, or when purchasing a house, years during which we have already excluded in our sample. However, to the extent that friends and family actively insure each other's labor income, our MPX estimates will be upward biased. *************DO WE HAVE A REFERENCE HERE? I THINK I SAW SOMETHING SOMEWHERE...********
 	\item \textbf{Off Balance Sheet Assets:} A larger concern is that some forms of saving may be hidden off balance sheet. All Danish banks and brokers are required to report their clients' holdings, so off balance sheet assets are likely to be either off-shore, or non-financial assets. This would be a large concern if we were focused on the expenditure of the super wealthy 0.1\%, but is less so when dividing the population into quintiles or deciles as we have done. Our imputation method would interpret this saving as expenditure, so our estimate of the MPX would increase one-to-one for each percentage point of saving out of income shocks performed off balance sheet.
 \end{itemize}
@@ -560,15 +560,20 @@ Our method makes strong assumptions on the income process, namely that there is 
 We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. In appendix \ref{time_varying_risk_appendix} we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. In order to test how much this time varying risk might bias our results, we simulated data with $\phi=1$ and $\psi=0.5$, with permanent variance equal to estimates from the data and transitory variance varying in order to match the time varying income risk pattern observed in the data. When we ran this simulation we found estimates of $\phi$ and $\psi$ within 1\% of their true values.
 
 \section{Robustness} \label{robustness}
+As would already be clear by now, we have made a number of choices regarding both data and variable definitions as well as more methodological issues. In a series of graphs this section presents a number of robustness checks aimed at assessing the extent to which our results are sensitive to the specific choices. 
 
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_liquidwealth.pdf}
+We begin with a number of robustness checks regarding our imputed expenditure measure, which may suffer from measurement error. In figure \ref{fig:Robust_liquidURE}, we compare our baseline estimates of the MPX to estimates based on different sample selection procedures. First, we exclude all households that own stocks corresponding to more than 10,000 USD (10\% of households in our sample). Second, we do not remove households which have negative imputed expenditure. We remove those households in our baseline sample since negative expenditure is clearly not a good estimate of actual expenditure. However, for example in the event that negative expenditure arises because of classical measurement error, removal of negative estimates may be asymmetric and introduce an upward bias in average imputed expenditure. Third, to check that large outliers do not drive our results, we remove observations in the top and bottom 2.5\% in terms of level and change of income and expenditure. In the baseline calculations, we use only a 1\% cutoff. Our results are qualitatively unchanged when using these alternative approaches to take account of measurement error. In terms of magnitudes of the estimated MPX's, the largest difference to the baseline results seems to be found when we include negative expenditure estimates. As expected, this makes the largest difference among the wealthier households. The specification of outliers also matters somewhat for the point estimates of MPX in certain groups of households, but differences are not large. 
+
+\begin{figure}
+    \begin{centering}
+ 		\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_liquidwealth.pdf}
 		\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_URE.pdf}
 		\caption{Robustness of Liquid Wealth and URE Distributions}
 		\label{fig:Robust_liquidURE}
 	\end{centering}
 \end{figure}
+
+LOG results
 
 \begin{figure} 
 	\begin{centering}
@@ -579,6 +584,8 @@ We have assumed that idiosyncratic risk remains constant over time. Given that o
 	\end{centering}
 \end{figure}
 
+As discussed in section \ref{income} we use labor income of the head of the household as our prime measure of income in line with previous literature. Various mechanisms, e.g. intra-household income insurance, may give rise to differences between results based on income of the head of household and total household income. However, figure \ref{fig:Robust_TotalvsHead} demonstrates that there is virtually no difference in our results between using total household income and only the household head's income. MPX's from transitory shocks to the income of the spouse are lower than MPX from shocks to total income, in particular for the less wealthy households, as demonstrated in figure \ref{fig:Robust_Spouse}. This indicates...
+
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.4]{\econtexRoot/Figures/total_tranMPX_URE.pdf}
@@ -586,6 +593,17 @@ We have assumed that idiosyncratic risk remains constant over time. Given that o
 		\label{fig:Robust_TotalvsHead}
 	\end{centering}
 \end{figure}
+
+
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
+		\caption{Results Using Total, Head and Spouse Labor Income}
+		\label{fig:Robust_Spouse}
+	\end{centering}
+\end{figure}
+
+Finally, figure \ref{fig:MPXByLiquidWealth} shows the distribution of MPX by quintile of liquid wealth. It might be argued that the relevant level of liquid wealth is relative to income rather than in absolute terms. Figure \ref{fig:Robust_DivPerm} demonstrates that results based on quintiles of liquid wealth divided by permanent income are similar.
 
 \begin{figure} 
 	\begin{centering}
@@ -595,13 +613,6 @@ We have assumed that idiosyncratic risk remains constant over time. Given that o
 	\end{centering}
 \end{figure}
 
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
-		\caption{Results Using Total, Head and Spouse Labor Income}
-		\label{fig:Robust_Spouse}
-	\end{centering}
-\end{figure}
 
 \FloatBarrier
 
@@ -651,21 +662,54 @@ The level of both permanent and transitory shock variance for households aged 30
 	\end{centering}
 \end{figure}
 
-\section{Danish Mortgage Market} \label{mortgage_market}
+\section{The Danish Mortgage Market} \label{mortgage_market}
+Mortgage loans in Denmark are issued by specialized mortgage banks, which fully finance loans by issuing bonds. Interest rates are directly determined by sales prices at the bond market. That is, borrowers only pay the bond market interest rate plus a supplementary fee for the mortgage bank. 
+Most loans are issued as 20 or 30-year loans, and households can only obtain loans from mortgage banks of up to 80 per cent of the value at loan origination of properties used as permanent residences. The remaining (more insecure) part of the funding may be provided by commercial banks. The close link between loans and bonds, as well as fixed loan-to-value ratios, fast foreclosure procedures, full recourse, etc., mean that mortgage banks do not assume significant market risks. The status of Danish covered mortgage bonds as a safe asset class (AAA-rated by e.g. S\&P) imply that borrowers have access to very cheap real estate funding.
+
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.6]{\econtexRoot/Figures/mortgage_by_type.png} 
-		\caption{Mortgage Debt by Type}
+		\caption{Mortgage Debt by Type (all households)
+		{\\ \emph{\footnotesize
+	{Source: Danmarks Nationalbank}}
+	}}
 		\label{fig:mortgage_by_type}
 	\end{centering}
 \end{figure}
+
+The Danish mortgage system has been functioning for two centuries, but significant liberalization has taken place over the past 20 years. Variable interest loans were (re-)introduced in 1996 while interest only loans were introduced in 2003. These new loan characteristics are by now very popular, cf. figure \ref{fig:mortgage_by_type}. In contrast to the US, where most mortgage debt is fixed rate, 40\% of mortgage debt in Denmark is variable rate, with interest fixation periods mostly between 6 months and 5 years. Fixed rate loans come with an option for early redemption. This implies that in practice, refinancing of fixed rate mortgages often take place, both when interest rates decrease and increase. The latter may be attractive because borrowers have the option to repay their loan by purchasing the corresponding amount of bonds. When interest rates increase, the bond value decreases, so the option to repay the loan by purchasing the corresponding amount of bonds in essence act as an equity insurance.  
+
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.6]{\econtexRoot/Figures/mortgage_by_maturity.png} 
-		\caption{Mortgage Debt by Maturity}
+		\caption{Mortgage Debt by Maturity (all households excluding self-employed)
+		{\\ \emph{\footnotesize
+	{Source: Danmarks Nationalbank}}
+	}}
 		\label{fig:mortgage_by_maturity}
 	\end{centering}
 \end{figure}
+
+Around one fourth of the total loan balance is due to have interest rates reset over a 12 month period (see figure \ref{fig:mortgage_by_maturity}). This figure only comprises loans that automatically will have a new interest rate, and not active decisions to refinance or extract equity. 
+COMPARE MORE TO US
+
+\section{Details on the calculation of NNP and URE}
+\label{URE_NNP_appendix}
+The Net Nominal Position (NNP) and Unhedged Interest Rate Exposure (URE) for the various sectors in the Danish economy is calculated from our household level dataset as well as the financial accounts from the national accounts statistics. All calculations are based on average values over the years 2009-2015, deflated by the consumer price index. 
+
+\subsection{NNP and URE for households}
+The NNP for households is calculated as financial assets minus liabilities. As financial assets, we include bank deposits as well as the market value of securities (excluding shares). Liabilities include all debt to financial institutions (including credit card debt) as well as publicly administered student debt, tax debt and other debt to government bodies. These data are reported to the tax authorities by financial institutions on behalf of the households. 
+
+URE is calculated as annual savings (i.e. after-tax income minus consumption) plus maturing assets minus maturing liabilities. As maturing assets, we include all bank deposits, thereby assuming that they are floating rate. We assume a maturity of 5 years for securities held by households, and therefore include 20\% of the value of securities. Regarding liabilites, we assume that all bank debt is floating rate. According to the interest rate statistics collected by Danmarks Nationalbank since 2013, on average 95\% of bank debt from households is floating rate. Most of this is tied either to a market reference rate or to the Danmarks Nationalbank rate on certificates of deposit, with immediate adjustment. For mortgage debt, we have detailed information allowing us to calculate the stock of debt which is due to have interest rates reset over the coming 12 months. Voluntary refinancing of mortage loans, with or without extraction of additional equity, takes place to a large extent in Denmark. Our measure of maturing liabilities only includes the loans which contractually are due to have their interest rates reset, and we do not attempt to estimate the amount of additional refinancing. For remaining liabilities, which constitute very small amounts, we have no information regarding maturity, so we assume 5 years. 
+
+\subsection{Other sectors}
+NNP for the other sectors in the economy is obtained from the financial accounts statistics compiled by Danmarks Nationalbank. To most closely resemble the definition used in the household level data, we define NNP as net assets (i.e. assets minus liabilities) in the following categories: "Currency and deposits", "Securities other than shares", "Loans", and "Trade credits and other accounts receivable/payable". 
+
+NNP for the whole economy should in principle sum to 0. However, the household level micro data on bank deposits that we have access to is exclusive of certain types of savings (specialized childrens savings accounts as well as some forms of pension savings accounts administered by banks) which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid, and therefore less important for our purposes. 
+In addition, there are some other differences between national accounts and micro data definitions which may give rise to differences between the measures. For example, holdings of bank notes and coins are not observed in the micro data but allocated based on certain assumptions in the financial accounts. In total, these issues imply that household assets are underestimated in the micro data compared to the national accounts statistics. We are therefore left with a residual in our NNP calculation of 223 billion DKK (see table \ref{table:aggElas}).
+
+URE is also obtained from the financial accounts. We do not in the national accounts observe the maturity of different asset and liability classes. We assume a maturity of 5 years for all sectors apart from households. However, for the financial sector, we instead calibrate the maturity to reach a total URE of 0 in the economy. This results in a maturity of 3.87 years for the financial sector. JUSTIFICATION??
+
 
 \section{Persistent Consumption Response} \label{consumption_persistence_appendix}
 
