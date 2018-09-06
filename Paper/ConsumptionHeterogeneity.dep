@@ -171,7 +171,6 @@
   *{file}   {./Figures/Logs_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Logs_tranMPX_URE.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/total_tranMPX_URE.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/Spouse_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/DivPerm_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.bbl}{0000/00/00 v0.0}
   *{file}   {./Figures/VarianceByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
@@ -185,4 +184,5 @@
   *{file}   {./Figures/MPXBypermURE_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXBypermNNP_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXBypermIncome_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/Spouse_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
 }
