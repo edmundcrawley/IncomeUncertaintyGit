@@ -621,16 +621,22 @@ In this paper we have developed a novel method for calculating consumption respo
 
 \pagebreak
 \appendix
+\renewcommand\thefigure{\thesection.\arabic{figure}}  
+\renewcommand\thetable{\thesection.\arabic{table}}  
 
 \section*{Appendix}
 
 \section{Identification with Time Aggregation}\label{sec:Identification}
 
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 \input\econtexRoot/Appendices/Identification3.tex
 
 %\input\econtexRoot/Appendices/Identification2.tex
 
 \section{Sample Selection} \label{sample_selection}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 We choose to look at households whose head is between the ages of 30 and 55 in 2008. This is driven by the desire to remove households for who the assumption that most of the income growth is unexpected is not likely to be fulfilled. For the old and the young it is likely that individual households will have a lot of information about their income path that is not available to the econometrician (for example the year in which they plan to retire, or the fact that they are on a specific career track with set expectations of promotion and pay raises). We also want to remove households whose income volatility is increasing or decreasing sharply. Figures \ref{fig:VarianceByAge} and \ref{fig:MPXByAge} show how our estimates of both income variance and MPX vary with age. The dots represent the point estimate for each age while the lines are the centered moving averages over the five nearest age groups. The solid black line shows the total variance of income growth over 1 year. It should not be surprising that income growth for households with heads in their 20's is highly volatile. This volatility plateaus around the age of 35 and stays at a constant level until the point of retirement at which point it temporarily grows before falling to an even lower level. We can see that while both transitory and permanent shocks to income are high early in life, permanent income shocks are particularly large while individuals find their place in the workforce. From the age of 30 to 55 both transitory and permanent shocks are approximately the same size and remarkably stable. At retirement shocks to permanent income rise, not surprisingly as retirement itself will be seen in the model as a shock, even as transitory income variance declines.
 
 As the model assumes the variance to permanent and transitory shocks is constant in the observed period, interpretation of the numbers outside of the 30-55 age group needs to be treated with care. However, the figure clearly shows that within this age group the assumption of constant variance appears to be a reasonable one.
@@ -654,6 +660,8 @@ The level of both permanent and transitory shock variance for households aged 30
 \end{figure}
 
 \section{The Danish Mortgage Market} \label{mortgage_market}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 Mortgage loans in Denmark are issued by specialized mortgage banks, which fully finance loans by issuing bonds. Interest rates are directly determined by sales prices at the bond market. That is, borrowers only pay the bond market interest rate plus a supplementary fee for the mortgage bank. 
 Most loans are issued as 20 or 30-year loans, and households can only obtain loans from mortgage banks of up to 80 per cent of the value at loan origination of properties used as permanent residences. The remaining (more insecure) part of the funding may be provided by commercial banks. The close link between loans and bonds, as well as fixed loan-to-value ratios, fast foreclosure procedures, full recourse, etc., mean that mortgage banks do not assume significant market risks. The status of Danish covered mortgage bonds as a safe asset class (AAA-rated by e.g. S\&P) imply that borrowers have access to very cheap real estate funding.
 
@@ -668,7 +676,7 @@ Most loans are issued as 20 or 30-year loans, and households can only obtain loa
 	\end{centering}
 \end{figure}
 
-The Danish mortgage system has been functioning for two centuries, but significant liberalization has taken place over the past 20 years. Variable interest loans were (re-)introduced in 1996 while interest only loans were introduced in 2003. These new loan characteristics are by now very popular, cf. figure \ref{fig:mortgage_by_type}. In contrast to the US, where most mortgage debt is fixed rate, 40\% of mortgage debt in Denmark is variable rate, with interest fixation periods mostly between 6 months and 5 years. Fixed rate loans come with an option for early redemption. This implies that in practice, refinancing of fixed rate mortgages often take place, both when interest rates decrease and increase. The latter may be attractive because borrowers have the option to repay their loan by purchasing the corresponding amount of bonds. When interest rates increase, the bond value decreases, so the option to repay the loan by purchasing the corresponding amount of bonds in essence act as an equity insurance.  
+The Danish mortgage system has been functioning for two centuries, but significant liberalization has taken place over the past 20 years. Variable interest loans were (re-)introduced in 1996 while interest only loans were introduced in 2003. These new loan characteristics are by now very popular, see figure \ref{fig:mortgage_by_type}. In contrast to the US, where most mortgage debt is fixed rate, 40\% of mortgage debt in Denmark is variable rate, with interest fixation periods mostly between 6 months and 5 years. Fixed rate loans come with an option for early redemption. This implies that in practice, refinancing of fixed rate mortgages often take place, both when interest rates decrease and increase. The latter may be attractive because borrowers have the option to repay their loan by purchasing the corresponding amount of bonds. When interest rates increase, the bond value decreases, so the option to repay the loan by purchasing the corresponding amount of bonds in essence act as an equity insurance.  
 
 \begin{figure} 
 	\begin{centering}
@@ -685,24 +693,26 @@ Around one fourth of the total loan balance is due to have interest rates reset 
 COMPARE MORE TO US
 
 \section{Details on the calculation of NNP and URE}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 \label{URE_NNP_appendix}
 The Net Nominal Position (NNP) and Unhedged Interest Rate Exposure (URE) for the various sectors in the Danish economy is calculated from our household level dataset as well as the financial accounts from the national accounts statistics. All calculations are based on average values over the years 2009-2015, deflated by the consumer price index. 
 
 \subsection{NNP and URE for households}
 The NNP for households is calculated as financial assets minus liabilities. As financial assets, we include bank deposits as well as the market value of securities (excluding shares). Liabilities include all debt to financial institutions (including credit card debt) as well as publicly administered student debt, tax debt and other debt to government bodies. These data are reported to the tax authorities by financial institutions on behalf of the households. 
 
-URE is calculated as annual savings (i.e. after-tax income minus consumption) plus maturing assets minus maturing liabilities. As maturing assets, we include all bank deposits, thereby assuming that they are floating rate. We assume a maturity of 5 years for securities held by households, and therefore include 20\% of the value of securities. Regarding liabilites, we assume that all bank debt is floating rate. According to the interest rate statistics collected by Danmarks Nationalbank since 2013, on average 95\% of bank debt from households is floating rate. Most of this is tied either to a market reference rate or to the Danmarks Nationalbank rate on certificates of deposit, with immediate adjustment. For mortgage debt, we have detailed information allowing us to calculate the stock of debt which is due to have interest rates reset over the coming 12 months. Voluntary refinancing of mortage loans, with or without extraction of additional equity, takes place to a large extent in Denmark. Our measure of maturing liabilities only includes the loans which contractually are due to have their interest rates reset, and we do not attempt to estimate the amount of additional refinancing. For remaining liabilities, which constitute very small amounts, we have no information regarding maturity, so we assume 5 years. 
+URE is calculated as annual savings (i.e. after-tax income minus expenditure) plus maturing assets minus maturing liabilities. As maturing assets, we include all bank deposits, thereby assuming that they are floating rate. We assume a maturity of 5 years for securities held by households, and therefore include 20\% of the value of securities. Regarding liabilites, we assume that all bank debt is floating rate. According to the interest rate statistics collected by Danmarks Nationalbank since 2013, on average 95\% of bank debt from households is floating rate. Most of this is tied either to a market reference rate or to the Danmarks Nationalbank rate on certificates of deposit, with immediate adjustment. For mortgage debt, we have detailed information allowing us to calculate the stock of debt which is due to have interest rates reset over the coming 12 months. Voluntary refinancing of mortage loans, with or without extraction of additional equity, takes place to a large extent in Denmark. Our measure of maturing liabilities only includes the loans which contractually are due to have their interest rates reset, and we do not attempt to estimate the amount of additional refinancing. For remaining liabilities, which constitute very small amounts, we have no information regarding maturity, so we assume 5 years. 
 
 \subsection{Other sectors}
 NNP for the other sectors in the economy is obtained from the financial accounts statistics compiled by Danmarks Nationalbank. To most closely resemble the definition used in the household level data, we define NNP as net assets (i.e. assets minus liabilities) in the following categories: "Currency and deposits", "Securities other than shares", "Loans", and "Trade credits and other accounts receivable/payable". 
 
-NNP for the whole economy should in principle sum to 0. However, the household level micro data on bank deposits that we have access to is exclusive of certain types of savings (specialized childrens savings accounts as well as some forms of pension savings accounts administered by banks) which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid. We therefore group those deposits (223 billion DKK) together with the assets of pension funds (see table \ref{table:aggElas}).\footnote{In practice, this amount is calculated as a residual, which may also reflect other minor differences between the household level data and the national accounts statistics. For example, holdings of banknotes and coins are not observed in the micro data but allocated based on certain assumptions in the financial accounts. For our exercise, the impact of such other differences is likely to be very small.}
+NNP for the whole economy should in principle sum to 0. However, the household level micro data on bank deposits that we have access to is exclusive of certain types of savings (specialized childrens savings accounts as well as some forms of pension savings accounts administered by banks) which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid. We therefore group those deposits (33 billion USD) together with the assets of pension funds (see table \ref{table:aggElas}).\footnote{In practice, this amount is calculated as a residual, which may also reflect other minor differences between the household level data and the national accounts statistics. For example, holdings of banknotes and coins are not observed in the micro data but allocated based on certain assumptions in the financial accounts. For our exercise, the impact of such other differences is likely to be very small.}
 
-URE is also obtained from the financial accounts. We do not in the national accounts observe the maturity of different asset and liability classes. We assume a maturity of 5 years for all sectors apart from households. However, for the financial sector, we instead calibrate the maturity to reach a total URE of 0 in the economy. This results in a maturity of 3.87 years for the financial sector. JUSTIFICATION??
-
+URE is also obtained from the financial accounts. We do not in the national accounts observe the maturity of different asset and liability classes. Instead we choose a maturity (of 4.41 years) to ensure that in aggregate URE sums to zero across all sectors.
 
 \section{Persistent Consumption Response} \label{consumption_persistence_appendix}
-
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 \subsection{Details on section \ref{Consumption_persistence} simulations}
 For the simulations in section \ref{Consumption_persistence} we divided each year into 20 sub-intervals. Both permanent and transitory shocks occur each period, and the transitory shocks have no persistence. At an annual frequency the variance of permanent and transitory shocks are equal. Households spend their permanent income each period, along with their consumption response to the history of transitory shocks. For the exponential decay model this is:
 \begin{align*}
@@ -750,6 +760,8 @@ Figure \ref{fig:MPC_accuracy} shows how the empirical method performs on data si
 Table \ref{table:psi_estimates} shows the estimates of the transitory MPX that we recover from our estimation sample when we just use $N=n_1,n_2$ in our identification equations \ref{variance} and \ref{covariance}. Remember in our main results we used GMM with $N=3,4,5$ and we high circled $N=3,5$ to highlight where we get identification from in the paper. The purpose of this exercise is to show that the estimation results are not very sensitive to the values of $N$ chosen. This also provides more evidence that the assumption we made that the transitory consumption response lasts less than two years is not biasing our results significantly. In fact the results are not changed dramatically even when $N=1,2$, which suggests the majority of the transitory consumption response is very short lived.
 
 \section{Labor Elasticity Model} \label{labor_elasticity_model}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 Here we detail the model and simulation results summarized in section \ref{labor_elasticity}. The model extends the standard incomplete markets model from section \ref{model}, incorporating both preference shocks, so that households have some years when their utility of consumption is greater than others, and labor elasticity, so that households can adjust their income based on the marginal utility of consumption. The household's problem is to maximize expected lifetime utility:
 \begin{align*}
 \mathbb{E}_t \sum_{n=t}^{\infty} \beta^n \Bigg(\mathcal{X}_n \frac{ \cLevBF_n^{1-\rho}}{1-\rho}-\frac{\lLevBF_n^{1+\frac{1}{\xi}}}{1+\frac{1}{\xi}} \Bigg)
@@ -799,6 +811,8 @@ The right hand panel of table \ref{table:psi_mpc_laborsupply} shows the effect o
 This exercise suggests the bias due to reverse causality is likely to be small, but further investigation may be worthwhile.
 
 \section{RIP or HIP Income Process?} \label{rip_hip_appendix}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 There has been a long-standing and unresolved quest in the literature to find a parsimonious representation of the labor income process. Two competing candidates are the Restricted Income Profile (RIP) and Heterogeneous Income Profile (HIP) processes. Both can be described by the equations:
 \begin{align*}
 	y_h^i = \beta^i h + z^i_h + \varepsilon^h_i\\
@@ -827,6 +841,8 @@ A full investigation of the implications of different income processes is beyond
 \end{figure}
 
 \section{Time Varying Risk} \label{time_varying_risk_appendix}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 Figure \ref{fig:income_growth_std} shows how the standard deviation of income growth has changed over the sample period. From trough to peak the standard deviation increases approximately 10\%. In the simulation referred to in section \ref{time_varying_risk} we assume both transitory income and the transitory consumption response have no persistence. We divide each year into 20 subperiods, choose the variance of permanent shocks to be 0.003 and allow time varying transitory shocks to match the pattern in figure \ref{fig:income_growth_std}. We choose values of $\phi=1$ and $\psi=0.5$ and apply our estimation procedure (that assumes constant variance) to the simulated data. We recover estimated values of $\phi$ and $\psi$ to be 1.006 and 0.499 respectively.
 \begin{figure} 
 	\begin{centering}
@@ -837,6 +853,8 @@ Figure \ref{fig:income_growth_std} shows how the standard deviation of income gr
 \end{figure}
 
 \section{Distribution of Permanent MPX by NNP, URE and Income} \label{PermMPXbyURENNP}
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 Figure \ref{fig:MPCAuclert_perm} shows the distribution of both transitory and permanent MPX by NNP, URE and Income decile. The transitory numbers are a repeat of figure \ref{fig:MPCAuclert}.
 \begin{figure} 
 	\begin{centering}
@@ -849,7 +867,8 @@ Figure \ref{fig:MPCAuclert_perm} shows the distribution of both transitory and p
 \end{figure}
 
 \section{Intra-household income insurance} \label{Insurance}
-
+\setcounter{figure}{0}   
+\setcounter{table}{0} 
 As discussed in section \ref{income} we use labor income of the head of the household as our prime measure of income in line with previous literature. Figure \ref{fig:Robust_TotalvsHead} demonstrates that results based on total household income and income of the head of household are similar. However, MPX's from transitory shocks to the income of the spouse are lower than MPX's from shocks to total income, in particular for the less wealthy households, as demonstrated in figure \ref{fig:Robust_Spouse}. This indicates heterogeneity in the role that intra-household income insurance plays across different groups of households. We leave this interesting topic for future research. 
 
 
