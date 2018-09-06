@@ -584,22 +584,13 @@ LOG results
 	\end{centering}
 \end{figure}
 
-As discussed in section \ref{income} we use labor income of the head of the household as our prime measure of income in line with previous literature. Various mechanisms, e.g. intra-household income insurance, may give rise to differences between results based on income of the head of household and total household income. However, figure \ref{fig:Robust_TotalvsHead} demonstrates that there is virtually no difference in our results between using total household income and only the household head's income. MPX's from transitory shocks to the income of the spouse are lower than MPX from shocks to total income, in particular for the less wealthy households, as demonstrated in figure \ref{fig:Robust_Spouse}. This indicates...
+As discussed in section \ref{income} we use labor income of the head of the household as our prime measure of income in line with previous literature. Various mechanisms, e.g. intra-household income insurance, may give rise to differences between results based on income of the head of household and total household income. However, figure \ref{fig:Robust_TotalvsHead} demonstrates that there is virtually no difference in our results between using total household income and only the household head's income. Appendix \ref{Insurance} briefly discusses the potential role that intra-household insurance may play, which we leave as an area for future research. 
 
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.4]{\econtexRoot/Figures/total_tranMPX_URE.pdf}
 		\caption{Results Using Total Labor Income and Head Labor Income}
 		\label{fig:Robust_TotalvsHead}
-	\end{centering}
-\end{figure}
-
-
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
-		\caption{Results Using Total, Head and Spouse Labor Income}
-		\label{fig:Robust_Spouse}
 	\end{centering}
 \end{figure}
 
@@ -705,8 +696,7 @@ URE is calculated as annual savings (i.e. after-tax income minus consumption) pl
 \subsection{Other sectors}
 NNP for the other sectors in the economy is obtained from the financial accounts statistics compiled by Danmarks Nationalbank. To most closely resemble the definition used in the household level data, we define NNP as net assets (i.e. assets minus liabilities) in the following categories: "Currency and deposits", "Securities other than shares", "Loans", and "Trade credits and other accounts receivable/payable". 
 
-NNP for the whole economy should in principle sum to 0. However, the household level micro data on bank deposits that we have access to is exclusive of certain types of savings (specialized childrens savings accounts as well as some forms of pension savings accounts administered by banks) which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid, and therefore less important for our purposes. 
-In addition, there are some other differences between national accounts and micro data definitions which may give rise to differences between the measures. For example, holdings of bank notes and coins are not observed in the micro data but allocated based on certain assumptions in the financial accounts. In total, these issues imply that household assets are underestimated in the micro data compared to the national accounts statistics. We are therefore left with a residual in our NNP calculation of 223 billion DKK (see table \ref{table:aggElas}).
+NNP for the whole economy should in principle sum to 0. However, the household level micro data on bank deposits that we have access to is exclusive of certain types of savings (specialized childrens savings accounts as well as some forms of pension savings accounts administered by banks) which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid. We therefore group those deposits (223 billion DKK) together with the assets of pension funds (see table \ref{table:aggElas}).\footnote{In practice, this amount is calculated as a residual, which may also reflect other minor differences between the household level data and the national accounts statistics. For example, holdings of banknotes and coins are not observed in the micro data but allocated based on certain assumptions in the financial accounts. For our exercise, the impact of such other differences is likely to be very small.}
 
 URE is also obtained from the financial accounts. We do not in the national accounts observe the maturity of different asset and liability classes. We assume a maturity of 5 years for all sectors apart from households. However, for the financial sector, we instead calibrate the maturity to reach a total URE of 0 in the economy. This results in a maturity of 3.87 years for the financial sector. JUSTIFICATION??
 
@@ -858,8 +848,18 @@ Figure \ref{fig:MPCAuclert_perm} shows the distribution of both transitory and p
 	\end{centering}
 \end{figure}
 
+\section{Intra-household income insurance} \label{Insurance}
+
+As discussed in section \ref{income} we use labor income of the head of the household as our prime measure of income in line with previous literature. Figure \ref{fig:Robust_TotalvsHead} demonstrates that results based on total household income and income of the head of household are similar. However, MPX's from transitory shocks to the income of the spouse are lower than MPX's from shocks to total income, in particular for the less wealthy households, as demonstrated in figure \ref{fig:Robust_Spouse}. This indicates heterogeneity in the role that intra-household income insurance plays across different groups of households. We leave this interesting topic for future research. 
 
 
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
+		\caption{Results Using Total, Head and Spouse Labor Income}
+		\label{fig:Robust_Spouse}
+	\end{centering}
+\end{figure}
 
 %\section{Simulation Results}\label{sec:Simulation}
 %\input\econtexRoot/Appendices/Simulation.tex
