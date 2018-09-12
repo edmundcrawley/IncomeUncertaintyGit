@@ -10,6 +10,7 @@
 \usepackage{econtexShortcuts}
 \usepackage[english]{babel}
 \usepackage{tikz} 
+\usetikzlibrary{tikzmark,fit,shapes.geometric}
 \usepackage{cancel}
 \usepackage{booktabs,natbib}
 \setbeamercovered{invisible}
@@ -28,7 +29,7 @@
 %% preamble
 \title[Consumption Heterogeneity: Micro Drivers and Macro Implications]{Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
 \author{Edmund Crawley \& Andreas Kuchler}
-\date[8/6/2018]{Federal Reserve Board, August 6, 2018}
+\date[9/18/2018]{Johns Hopkins University, September 18, 2018}
 \usetheme{Frankfurt}
 \begin{document}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
@@ -42,20 +43,74 @@
 \setbeamercovered{invisible}
 \frame
 {
-	\frametitle{Overview}
-	What will this paper do?\\
-	\begin{itemize}	
-	\item[1] Create a new method to estimate heterogeneity in consumption responses to permanent and transitory shocks to income
-	\begin{itemize}
-		\item Clear negative relation between MPC and liquid wealth
-	\end{itemize}
-	\item[2] Application: Redistribution Channel of Monetary Policy (\cite{auclert_monetary_2017})
-	\begin{itemize}
-		\item We find a transitory 1\% interest rate rise decreases consumption by 0.33\% through the interest rate exposure channel
-		\item This channel is likely far larger than the intertemporal substitution channel (1-6x as large)
-	\end{itemize}
-	\end{itemize}	
+	\frametitle{Is Heterogeneity Important for Macroeconomics?}
+\textbf{Theory:} Consumption heterogeneity \textit{potentially} very important for macroeconomic dynamics
+\begin{itemize}
+	\item Recent HANK models
+\end{itemize}
+\bigskip
+\textbf{Empirics:} Ability to measure heterogeneity limited by
+\begin{itemize}
+	\item Methods to measure MPCs
+	\item Consumption data
+	\item Household balance sheet data
+\end{itemize}	
 }
+\frame
+{
+	\frametitle{What does this paper do?}
+	Two Empirical Contributions\\
+	\begin{itemize}
+	\item[1] \textbf{Method:} New methodology to measure MPCs out of transitory and permanent income shocks
+	\begin{itemize}
+		\item Builds on \cite{blundell_consumption_2008}
+		\item Correctly accounts for the Time Aggregation Problem
+	\end{itemize}
+	\bigskip
+	\item[2] \textbf{Data:} Panel data covering all Danish households 2004-2015 
+	\begin{itemize}
+		\item Large sample size reveals clear, systemic heterogeneity
+		\item Detailed household balance sheets allow us to infer implications for monetary policy transmission
+	\end{itemize}
+\end{itemize}
+}
+\frame
+{
+	\frametitle{What does this paper find?}
+	\begin{tikzpicture}
+	\node (img1) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE1.png}};
+	\pause
+	\node (img2) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE2.png}};
+	\pause
+	\node (img3) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE3.png}};
+%	\pause
+%	\node (img4) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE5.png}};
+	\pause
+	\node (img5) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE6.png}};
+	\end{tikzpicture}
+}
+\frame{
+	\frametitle{What has the Empirical MPC literature Found?}
+	General consensus: \textbf{MPCs are large} ($\approx 0.5$ including durables)\\
+	\begin{itemize}
+		\item For both expected and unexpected transitory shocks
+	\end{itemize}
+	\bigskip
+	Few studies have enough power to say much about the distribution of MPCs in the population
+	\begin{itemize}
+		\item \cite{jappelli_fiscal_2014} Italian Survey Data
+		\item \cite{fuster_what_2018} NY Fed Survey
+		\item \cite{fagereng_mpc_2016} Norway Lottery Data
+		\item \cite{gelman_what_2016} Financial App Data
+	\end{itemize}
+	\bigskip
+	\textbf{Liquid assets} and \textbf{income} are key predictors of transitory MPC \\
+	\bigskip
+	\pause
+	Our method and data can uncover detailed heterogeneity - Many potential applications
+}
+\section{Empirical Strategy}
+\setbeamercovered{invisible}
 \frame{
 	\frametitle{How Are Consumption Responses Typically Measured?}
 	Three methods:
@@ -79,59 +134,7 @@
 }
 \frame
 {
-	\frametitle{Evidence on Magnitude of Consumption Response}
-	\resizebox{\textwidth}{!}{
-	\centering
-		\input ../Tables/MPCLiterature.tex }
-	\tiny{$^{\star}$ Elasticity \\
-		 Methods 1) Natural Experiment 2) Survey question 3) Covariance restrictions} \\
-    Table mostly lifted from \cite{carroll_distribution_2017}
-}
-
-\frame
-{
-	\frametitle{Evidence on Distribution of Consumption Response}
-	Most studies do not have enough power to say anything about how their MPC estimates vary in the population\\
-	\bigskip
-	Exceptions:
-	\begin{itemize}
-		\item \cite{jappelli_fiscal_2014} Italian Survey Data
-		\item \cite{fagereng_mpc_2016} Norway Lottery Data
-		\item \cite{gelman_what_2016} Financial App Data
-		\item \cite{fuster_what_2018} NY Fed Survey
-	\end{itemize}
-	\bigskip
-	\textbf{Liquid assets} and \textbf{income} are key predictors of transitory MPC
-}
-
-\frame
-{
-	\frametitle{Application: \cite{auclert_monetary_2017}}
-	\cite{auclert_monetary_2017} identifies three ways in which \textbf{heterogeneity} affects monetary policy\\
-	Each is potentially measurable in panel data\\
-	But...
-	\pause
-	\begin{columns}
-	\column{0.5\linewidth}
-	\centering
-	\begin{figure}
-	\includegraphics[trim=0 0 0 0,clip,scale=0.5]{../Figures/MPCDistributionAuclert_URE.jpg}
-	\end{figure}
-	He doesn't have the right data or methods to be able to do this
-	\pause
-	\column{0.5\linewidth}
-	\centering
-	\begin{figure}
-	\includegraphics[trim= 0 3.2cm 0 1.8cm, clip, scale=0.25]{../Figures/MPXByURE_level_lincome_head.pdf}
-	\end{figure}
-	We can do a lot better!
-	\end{columns}
-}
-\section{Empirical Strategy}
-\setbeamercovered{invisible}
-\frame
-{
-	\frametitle{Methodology Intuition}
+	\frametitle{Methodology Intuition and Suggestive Findings}
 	Exploit increasing importance of permanent shocks as the time over which growth is measured increases
 	\begin{columns}
 	\column{0.6\linewidth}
@@ -149,7 +152,7 @@
 	\end{tikzpicture}
 	\column{0.4\linewidth}
 	\begin{align*}
-	\Delta^N c_i = \beta^N \Delta^N y_i +\varepsilon_i
+	\Delta^N c_i = \alpha^N + \beta^N \Delta^N y_i +\varepsilon_i
 	\end{align*}
 	\end{columns}
 
@@ -157,7 +160,29 @@
 \frame
 {
 	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
-	1) Time Aggregation Problem (Crawley 2018)
+	\textbf{Common Assumptions}\\
+	Income $y_t$ is made up of:
+	\begin{itemize}
+		\item Permanent Income (random walk)
+		\item Transitory Income (uncorrelated over time)
+	\end{itemize}
+	\bigskip
+	\textbf{Key to BPP Identification}\\
+	$\Delta y_{t+1}$ is a \textit{valid instrument} for transitory shocks in year $t$
+	\begin{itemize}
+		\item Negatively correlated with transitory shocks in year $t$
+		\item U\tikzmark{start}ncorrelated with permanent shocks in year \tikzmark{end}$t$ \\
+	\end{itemize}
+	\pause
+	\bigskip
+	Fails due to the \textbf{Time Aggregation Problem}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[draw,line width=2pt,red,ellipse,inner ysep=10pt,fit={(pic cs:start) (pic cs:end)}] {};
+	\end{tikzpicture} 
+}
+\frame
+{
+	\frametitle{Time Aggregation Problem (Crawley 2018)}
 	\begin{columns}
 	\column{0.5\linewidth}
 	\centering
@@ -170,23 +195,14 @@
 	\end{tikzpicture}
 	}
 	\column{0.5\linewidth}
-	\onslide<3->{
-	PIH Example:\\
-	\begin{itemize}
-	\item MPC out of Permanent Shocks = 1\\
-	\item MPC out of Transitory Shocks = 0\\
-	\end{itemize}
-	BPP method estimates MPC out of transitory shocks to be -0.6
+	\onslide<3->{Permanent income growth is \textit{positively} autocorrelated\\
+	\bigskip
+	BPP misinterprets \textit{positive} permanent income shocks as \textit{negative} transitory shocks\\
+	\bigskip
+	$\implies$ Thinks negative transitory shocks result in consumption \textit{increasing}
 	\end{columns}
 	}
-}
-\frame
-{
-	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
-	2) BPP assume consumption is a random walk
-	\begin{itemize}
-		\item High transitory MPCs are incompatible with consumption following a random walk
-	\end{itemize}
+	\onslide<4->{If the Permanent Income Hypothesis holds, BPP will estimate the MPC to be -0.6}
 }
 \frame
 {
@@ -467,9 +483,23 @@ with $N=3,4,5$ (total of six equations) to identify the four unknowns:
 }
 \frame{
 	\frametitle{Monetary Policy: Measuring Redistribution}
-	\begin{figure}
-	\includegraphics[scale=0.5]{../Figures/MPXByURE_level_lincome_head.pdf}
-	\end{figure}
+		\begin{center}
+		\begin{tikzpicture}
+		\node (img1) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetails1_level_lincome_head.pdf}};
+		\pause
+		\node (img2)
+		{\includegraphics[scale=0.5]{../Figures/MPXByUREdetails1a_level_lincome_head.pdf}};
+		\pause
+		\node (img3) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetails2_level_lincome_head.pdf}};
+		\pause
+		\node (img4)
+		{\includegraphics[scale=0.5]{../Figures/MPXByUREdetails2a_level_lincome_head.pdf}};
+		\pause
+		\node (img5) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetails3_level_lincome_head.pdf}};
+		\pause
+		\node (img6) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetails3a_level_lincome_head.pdf}};
+		\end{tikzpicture}
+	\end{center}
 }
 \frame{
 	\frametitle{Monetary Policy: Measuring Redistribution}

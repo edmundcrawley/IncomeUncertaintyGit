@@ -687,7 +687,7 @@ dev.copy(pdf, paste(figures_dir, "MPXByDurables_all.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXByDurables_all.svg",sep=""))
 dev.off()
 
-#create blanck white graph, for use in slides
+#create blank white graph, for use in slides
 dev.new()
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
