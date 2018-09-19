@@ -9,14 +9,17 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
   xlabel_pos = 2
   
   # Loop through plots for presentation
-  for (i in 1:7){
-    if (i==1 | i==2){
+  for (i in 0:7){
+    if (i==0 | i==1 | i==2){
       this_legend=c(expression(paste(psi," Transitory MPX")))
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-2),matrix(0,nrow(params_input),2))
       se = se_input
       category_for_save = paste(category_for_save_input,"1",sep="")
       right_axis=FALSE
+      if (i==0){
+        category_for_save = paste(category_for_save_input,"blank",sep="")
+      }
       if (i==2){
         category_for_save = paste(category_for_save_input,"1a",sep="")
       }
@@ -71,6 +74,9 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       myRightAxisAt = myRightAxisTics/max(liquid_wealth)
       myRightAxisLabs = paste('$',formatC(myRightAxisTics,format="d",big.mark=","))
       axis(4, at = myRightAxisAt, labels = myRightAxisLabs,las=1)
+    }
+    if (i==0){
+      rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "white",border=NA)
     }
     if (i==2){
       #label Medium MPC

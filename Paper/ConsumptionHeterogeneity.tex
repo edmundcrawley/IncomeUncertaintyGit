@@ -213,7 +213,7 @@ Taking the $N^{th}$ difference for $N \geq 3$ we get:
 \begin{align}
 \Delta^N \bar{y}_T &= \int_{T-1}^{T} y_t dt  - \int_{T-N-1}^{T-N} y_t dt  \nonumber \\ 
 &= \int_{T-1}^{T} (T-s)dP_s  + (P_{T-1} - P_{T-N}) + \int_{T-N-1}^{T-N} (s-(T-2))dP_s \nonumber \\
-& \qquad + \Big(\int_{T-1}^{T} \int_{t-2}^{t} f(t-s)dQ_t -\int_{T-N-1}^{T-N}\int_{t-2}^{t} f(t-s) dQ_t \Big) \label{deltaNy}
+& \qquad + \Big(\int_{T-1}^{T} \int_{t-2}^{t} f(t-s)dQ_t dt -\int_{T-N-1}^{T-N}\int_{t-2}^{t} f(t-s) dQ_t dt \Big) \label{deltaNy}
 \end{align}
 The variance of time aggregated income of an $N$ year period is therefore:\footnote{See appendix \ref{sec:Identification} for full details of this derivation, including how we can approximate a log income process  with levels.}
 \begin{align}
