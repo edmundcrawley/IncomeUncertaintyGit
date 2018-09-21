@@ -7,7 +7,7 @@
 %\usepackage{dtklogos}
 \usepackage{dsfont}
 \usepackage{amsmath,amssymb}
-\usepackage{econtexShortcuts}
+\usepackage{\econtexShortcuts}
 \usepackage[english]{babel}
 \usepackage{tikz} 
 \usetikzlibrary{tikzmark,fit,shapes.geometric}
@@ -32,7 +32,9 @@
 %% preamble
 \title[Consumption Heterogeneity: Micro Drivers and Macro Implications]{Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
 \author{Edmund Crawley \& Andreas Kuchler}
-\date[9/18/2018]{Johns Hopkins University, September 18, 2018}
+\date[9/28/2018]{Norges Bank, Danmarks Nationalbank and Deutsche Bundesbank conference on Heterogeneous households, firms and financial intermediaries
+
+September 28, 2018}
 \usetheme{Frankfurt}
 \begin{document}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
@@ -884,15 +886,16 @@ subject to the constraints:
 \begin{frame}[t,allowframebreaks]
 	\frametitle{References}
 	
-	\bibliographystyle{econtex}
-	\bibliography{../AllPapers}
+	
+	\bibliographystyle{\econtexBibStyle}
+	\bibliography{Paper/AllPapers}
 \end{frame}
 
 \normalsize
 \end{comment}
-\bibliographystyle{econtex}
+\bibliographystyle{\econtexBibStyle}
 \newsavebox\mytempbib
-\savebox\mytempbib{\parbox{\textwidth}{\bibliography{../AllPapers}}}
+\savebox\mytempbib{\parbox{\textwidth}{\bibliography{Paper/AllPapers}}}
 
 
 \end{document}
