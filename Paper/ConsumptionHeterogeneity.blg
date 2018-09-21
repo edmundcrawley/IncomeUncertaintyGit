@@ -2,8 +2,8 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: ConsumptionHeterogene
 The style file: ./texmf-local/bibtex/bst/econtex.bst
 Database file #1: AllPapers.bib
 Warning--entry type for "straub_consumption_2018" isn't style-file defined
---line 2109 of file AllPapers.bib
-Warning--empty journal in abildgren_consistency_2018
+--line 2110 of file AllPapers.bib
+Warning--empty institution in abildgren_consistency_2018
 Warning--empty journal in commault_how_2017
 Warning--empty journal in gelman_what_2016
 Warning--empty journal in hryshko_income_2018

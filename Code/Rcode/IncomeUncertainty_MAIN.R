@@ -238,7 +238,7 @@ lines(age_set, rollmean(age_params[,4],5,fill=NA), col="red")
 legend(38, 0.24, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), col=c("green","red"),lty=c("solid","solid"),bty="n")
 dev.off()
 ###############################################################################
-
+# 
 ###############################################################################
 # Moments by different growth period
 # saved data is divided into two files to reduce file size, put them together first
@@ -531,9 +531,9 @@ lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$ins_perm*CS_output_sub$var_p
 legend(0, 0.037, legend=c(expression(paste("var(",Delta^N,"y) Empirical"),paste("var(",Delta^N,"y) matched to N=3,4,5"), paste("cov(",Delta^N,"y,",Delta^N,"c) Empirical"),paste("cov(",Delta^N,"y,",Delta^N,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"),bty="n")
 dev.off()
 ###############################################################################
-# 
+#
 # ###############################################################################
-# # load net weath quintile data and create graph
+# # load homeowner data and create graph
 # load(paste(moments_dir,'moments_by_home_owner',tag,'.RData',sep=''))
 # output =estimation_by_category(moments_by_home_owner, c("X0","X1"))
 # home_owner_output=output
@@ -1041,6 +1041,8 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
 }
 
 tag_list = c("_level_lincome_head","_level_lincome_head_nostocks","_level_lincome_head_negcons","_level_lincome_head_ConsOutliers25")
+tag_list = c("_level_lincome_head","_level_lincome_head_nostocks")
+
 tag_list_legend = c("Baseline","No Stocks","Include Neg Cons", "Strict Outliers" )
 
 #First do liquid wealth
