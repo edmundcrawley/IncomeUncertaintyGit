@@ -1043,8 +1043,6 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
 }
 
 tag_list = c("_level_lincome_head","_level_lincome_head_nostocks","_level_lincome_head_negcons","_level_lincome_head_ConsOutliers25")
-tag_list = c("_level_lincome_head","_level_lincome_head_nostocks")
-
 tag_list_legend = c("Baseline","No Stocks","Include Neg Cons", "Strict Outliers" )
 
 #First do liquid wealth

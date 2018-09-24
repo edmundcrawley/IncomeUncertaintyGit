@@ -153,8 +153,8 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
 ###############################################################################
 
 
-home_ownership_URE  = read.csv(paste(tables_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,1]
-liquid_wealth_URE  = read.csv(paste(tables_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,3] #median liquid assets
+home_ownership_URE  = read.csv(paste(moments_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,1]
+liquid_wealth_URE  = read.csv(paste(moments_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,3] #median liquid assets
 liquid_wealth_URE = liquid_wealth_URE/(6.87)  #convert to 2015 USD
 
 plot_Auclert_details(URE_quantile_params,URE_quantile_se,URE_quantile_set,home_ownership_URE,liquid_wealth_URE ,"URE Decile","UREdetails")
