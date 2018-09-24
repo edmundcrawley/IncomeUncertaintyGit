@@ -988,6 +988,14 @@ mean_cons_MPX = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile
 
 cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means) /mean(t(moments_by_MeanCons_quantile$quantile_means)))
 
+# Take these numbers to Excel:
+mean_URE_MPX
+mean_NNP_MPX
+mean_Income_MPX
+mean_cons_MPX
+mean_MPX
+mean_Income
+
 ###############################################################################
 
 ###############################################################################
