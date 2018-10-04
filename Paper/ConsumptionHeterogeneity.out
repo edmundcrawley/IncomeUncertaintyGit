@@ -1,36 +1,36 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Existing Empirical Evidence on Heterogeneity in Consumption Behavior}{}% 2
-\BOOKMARK [1][-]{section.3}{Empirical Strategy}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Methodology Intuition}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Aside: Why Not BPP? A Brief Introduction to the Time Aggregation Problem}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{Covariance Restrictions}{section.3}% 6
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Income Dynamics: carrollnature1997}{subsection.3.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Consumption Dynamics}{subsection.3.3}% 8
-\BOOKMARK [1][-]{section.4}{Data}{}% 9
-\BOOKMARK [2][-]{subsection.4.1}{Income}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.2}{Imputed Expenditure}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.3}{Sample Selection}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Income and Consumption Characteristics by Household Wealth}{}% 13
-\BOOKMARK [1][-]{section.6}{Monetary Policy and the Redistribution Channel}{}% 14
-\BOOKMARK [2][-]{subsection.6.1}{Distribution of MPX across NNP, URE and Income}{section.6}% 15
-\BOOKMARK [2][-]{subsection.6.2}{Theoretical Setup and Sufficient Statistics}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.3}{Out of Sample MPX}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.4}{Results}{section.6}% 18
-\BOOKMARK [1][-]{section.7}{Benchmark Model and Taste Shock Extension}{}% 19
-\BOOKMARK [2][-]{subsection.7.1}{Benchmark Model Calibrated to Danish Data}{section.7}% 20
-\BOOKMARK [2][-]{subsection.7.2}{Model with Preference Shocks}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.3}{MPX by Liquid Wealth}{section.7}% 22
-\BOOKMARK [1][-]{section.8}{Threats to Identification}{}% 23
-\BOOKMARK [2][-]{subsection.8.1}{Durables}{section.8}% 24
-\BOOKMARK [2][-]{subsection.8.2}{Labor Elasticity}{section.8}% 25
-\BOOKMARK [2][-]{subsection.8.3}{Persistent Consumption Response}{section.8}% 26
-\BOOKMARK [2][-]{subsection.8.4}{Measurement Error}{section.8}% 27
-\BOOKMARK [3][-]{subsubsection.8.4.1}{Labor Income}{subsection.8.4}% 28
-\BOOKMARK [3][-]{subsubsection.8.4.2}{Imputed Expenditure}{subsection.8.4}% 29
-\BOOKMARK [2][-]{subsection.8.5}{RIP or HIP Income Process?}{section.8}% 30
-\BOOKMARK [2][-]{subsection.8.6}{Time Varying Risk}{section.8}% 31
-\BOOKMARK [1][-]{section.9}{Robustness}{}% 32
-\BOOKMARK [1][-]{section.10}{Conclusion}{}% 33
+\BOOKMARK [1][-]{section.2}{Background}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Existing Empirical Evidence on Heterogeneity in Consumption Behavior}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Empirical Strategy}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Methodology Intuition}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Aside: Why Not BPP? A Brief Introduction to the Time Aggregation Problem}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.3}{Covariance Restrictions}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Income Dynamics: carrollnature1997}{subsection.3.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Consumption Dynamics}{subsection.3.3}% 9
+\BOOKMARK [1][-]{section.4}{Data}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Income}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Imputed Expenditure}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Sample Selection}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Income and Consumption Characteristics by Household Wealth}{}% 14
+\BOOKMARK [1][-]{section.6}{Monetary Policy and the Redistribution Channel}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Distribution of MPX across NNP, URE and Income}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Theoretical Setup and Sufficient Statistics}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Out of Sample MPX}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.4}{Results}{section.6}% 19
+\BOOKMARK [1][-]{section.7}{Benchmark Model and Taste Shock Extension}{}% 20
+\BOOKMARK [2][-]{subsection.7.1}{Benchmark Model Calibrated to Danish Data}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.2}{Model with Preference Shocks}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.3}{MPX by Liquid Wealth}{section.7}% 23
+\BOOKMARK [1][-]{section.8}{Threats to Identification}{}% 24
+\BOOKMARK [2][-]{subsection.8.1}{Durables}{section.8}% 25
+\BOOKMARK [2][-]{subsection.8.2}{Labor Elasticity}{section.8}% 26
+\BOOKMARK [2][-]{subsection.8.3}{Persistent Consumption Response}{section.8}% 27
+\BOOKMARK [2][-]{subsection.8.4}{Measurement Error}{section.8}% 28
+\BOOKMARK [3][-]{subsubsection.8.4.1}{Labor Income}{subsection.8.4}% 29
+\BOOKMARK [3][-]{subsubsection.8.4.2}{Imputed Expenditure}{subsection.8.4}% 30
+\BOOKMARK [2][-]{subsection.8.5}{RIP or HIP Income Process?}{section.8}% 31
+\BOOKMARK [2][-]{subsection.8.6}{Time Varying Risk}{section.8}% 32
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 33
 \BOOKMARK [1][-]{appendix.A}{Identification with Time Aggregation}{}% 34
 \BOOKMARK [1][-]{appendix.B}{Sample Selection}{}% 35
 \BOOKMARK [1][-]{appendix.C}{The Danish Mortgage Market}{}% 36
@@ -44,5 +44,6 @@
 \BOOKMARK [1][-]{appendix.F}{Labor Elasticity Model}{}% 44
 \BOOKMARK [1][-]{appendix.G}{RIP or HIP Income Process?}{}% 45
 \BOOKMARK [1][-]{appendix.H}{Time Varying Risk}{}% 46
-\BOOKMARK [1][-]{appendix.I}{Distribution of Permanent MPX by NNP, URE and Income}{}% 47
-\BOOKMARK [1][-]{appendix.J}{Intra-household income insurance}{}% 48
+\BOOKMARK [1][-]{appendix.I}{Robustness}{}% 47
+\BOOKMARK [1][-]{appendix.J}{Distribution of Permanent MPX by NNP, URE and Income}{}% 48
+\BOOKMARK [1][-]{appendix.K}{Intra-household income insurance}{}% 49
