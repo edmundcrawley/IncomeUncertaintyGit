@@ -131,6 +131,9 @@
   *{package}{caption3}    {2018/05/27 v1.8a}
   *{package}{titlesec}    {2016/03/21 v2.10.2}
   *{package}{placeins}    {2005/04/18 v2.2}
+  *{package}{pdfpages}    {2017/10/31 v0.5l}
+  *{package}{eso-pic}     {2018/04/12 v2.0h}
+  *{file}   {pppdftex.def}{2017/10/31 v0.5l}
   *{package}{rotating}    {2016/08/11 v2.16d}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
@@ -140,6 +143,8 @@
   *{package}{gettitlestring}{2016/05/16 v1.5}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
+  *{package}{pdflscape}   {2016/05/14 v0.11}
+  *{package}{lscape}      {2000/10/22 v3.01}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
