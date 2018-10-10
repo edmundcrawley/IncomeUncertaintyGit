@@ -2,9 +2,9 @@
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \beamer@sectionintoc {2}{Empirical Strategy}{11}{0}{2}
 \beamer@sectionintoc {3}{Data}{34}{0}{3}
-\beamer@sectionintoc {4}{Liquid Wealth}{38}{0}{4}
-\beamer@sectionintoc {5}{Monetary Policy}{40}{0}{5}
-\beamer@sectionintoc {6}{Model}{53}{0}{6}
-\beamer@sectionintoc {7}{Conclusion}{59}{0}{7}
-\beamer@sectionintoc {8}{MPC vs MPX}{60}{1}{8}
-\beamer@sectionintoc {9}{Appendix}{64}{1}{9}
+\beamer@sectionintoc {4}{Liquid Wealth}{41}{0}{4}
+\beamer@sectionintoc {5}{Monetary Policy}{43}{0}{5}
+\beamer@sectionintoc {6}{Model}{57}{0}{6}
+\beamer@sectionintoc {7}{Conclusion}{63}{0}{7}
+\beamer@sectionintoc {8}{MPC vs MPX}{64}{1}{8}
+\beamer@sectionintoc {9}{Appendix}{68}{1}{9}

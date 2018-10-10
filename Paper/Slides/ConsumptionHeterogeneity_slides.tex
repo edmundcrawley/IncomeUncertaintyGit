@@ -237,66 +237,6 @@
 	\onslide<1->
 	\end{tikzpicture}
 }
-\frame[t]
-{
-	\frametitle{Why Not Blundell, Pistaferri and Preston 2008?}
-	\textbf{Key to BPP Identification}\\
-	\bigskip
-	$\Delta y_{t+1}=\Delta p_{t+1}+\Delta \varepsilon_{t+1}$ is a \textit{valid instrument} for $\varepsilon_{t}$\tikz[baseline]{\node(transitory){}}\\
-	\only<1->{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (transitorya)  at ([shift={(-.2,0.1)}]transitory) {};
-	\node (transitoryb)  at ([shift={(0.6,0.6)}]transitorya) {};
-	\draw[blue,thick,->] (transitorya)  to [in=225,out=45] (transitoryb) node[anchor=south,text = blue] {Transitory shock year $t$};
-	\end{tikzpicture}
-	}
-	\only<2->{
-	\begin{itemize}
-	\item Negatively correlated with transitory shocks in year $t$
-	\begin{center}
-	\includegraphics[width=7cm]{./SlideFigures/IncGrowthTran.png}
-	\end{center}
-	\end{itemize}
-	}
-	\only<3->{
-	\begin{itemize}
-	\item U\tikzmark{start}ncorrelated with permanent shocks in year \tikzmark{end}$t$
-	\begin{center}
-	\includegraphics[width=7cm]{./SlideFigures/IncGrowthPerm.png}
-	\end{center}
-	\end{itemize}
-	}
-	\only<4->{
-	Fails due to the \textbf{Time Aggregation Problem}
-	\begin{tikzpicture}[remember picture,overlay]
-	\node[draw,line width=2pt,red,ellipse,inner ysep=10pt,fit={(pic cs:start) (pic cs:end)}] {};
-	\end{tikzpicture} 
-	}
-}
-\frame
-{
-	\frametitle{Time Aggregation Problem (Crawley 2018)}
-	\begin{columns}
-	\column{0.5\linewidth}
-	\centering
-	\onslide<1->{
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=5cm]{../Figures/TimeAggExample1.pdf}};
-	\onslide<2->{
-	\node (img2) {\includegraphics[height=5cm]{../Figures/TimeAggExample2.pdf}};
-	}
-	\end{tikzpicture}
-	}
-	\column{0.5\linewidth}
-	\onslide<3->{Observed permanent income growth is \textit{positively} autocorrelated\\
-	\bigskip
-	BPP misinterprets \textit{positive} permanent income shocks as \textit{negative} transitory shocks\\
-	\bigskip
-	$\implies$ Thinks negative transitory shocks result in consumption \textit{increasing}
-	\end{columns}
-	}
-	\onslide<4->{If the Permanent Income Hypothesis holds, BPP will estimate the MPC to be -0.6}
-}
 \frame
 {
 	\frametitle{Identification Restrictions: Income Process}
@@ -337,7 +277,7 @@
 		\item Transitory: Persistence $<$ 2 years \qquad \qquad \qquad \qquad \hyperlink{cons_decay}{\beamerbutton{Evidence}}
 	\end{itemize}
 	\begin{figure}
-	\includegraphics[scale=0.35,trim= 0 1.5cm 0 1cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}
+	\includegraphics[scale=0.35,trim= 0 1.5cm 0 1cm]{../Figures/GenericTransitoryConsumption.pdf}
 \end{figure}
 \begin{align*}
 \onslide<2->{\color{blue} \tikz[baseline]{\node(n1){}}\bar{c}_T =} \onslide<2->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} c_t\onslide<2->{\color{blue}dt} &= \onslide<2->{ \color{blue} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}\phi p_t \onslide<2->{\color{blue}dt} \color{black} + \onslide<2->{\color{blue}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}g(t-s)dq_s\onslide<2->{\color{blue}dt}
@@ -378,65 +318,157 @@ with $N=3,4,5$ (and $T=2007,..,2015$) to identify:\\
 \bigskip
 where  $\psi$ is the regression coefficient of `transitory' consumption on transitory income
 }
+\frame[t]
+{
+	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
+	\textbf{Key to BPP Identification}\\
+	\bigskip
+	$\Delta y_{t+1}=\Delta p_{t+1}+\Delta \varepsilon_{t+1}$ is a \textit{valid instrument} for $\varepsilon_{t}$\tikz[baseline]{\node(transitory){}}\\
+	\only<1->{
+		\begin{tikzpicture}[remember picture,overlay]
+		\node (transitorya)  at ([shift={(-.2,0.1)}]transitory) {};
+		\node (transitoryb)  at ([shift={(0.6,0.6)}]transitorya) {};
+		\draw[blue,thick,->] (transitorya)  to [in=225,out=45] (transitoryb) node[anchor=south,text = blue] {Transitory shock year $t$};
+		\end{tikzpicture}
+	}
+	\only<2->{
+		\begin{itemize}
+			\item Negatively correlated with transitory shocks in year $t$
+			\begin{center}
+				\includegraphics[width=7cm]{./SlideFigures/IncGrowthTran.png}
+			\end{center}
+		\end{itemize}
+	}
+	\only<3->{
+		\begin{itemize}
+			\item U\tikzmark{start}ncorrelated with permanent shocks in year \tikzmark{end}$t$
+			\begin{center}
+				\includegraphics[width=7cm]{./SlideFigures/IncGrowthPerm.png}
+			\end{center}
+		\end{itemize}
+	}
+	\only<4->{
+		Fails due to the \textbf{Time Aggregation Problem}
+		\begin{tikzpicture}[remember picture,overlay]
+		\node[draw,line width=2pt,red,ellipse,inner ysep=10pt,fit={(pic cs:start) (pic cs:end)}] {};
+		\end{tikzpicture} 
+	}
+}
+\frame
+{
+	\frametitle{Aside: Time Aggregation Problem in BPP (Crawley 2018)}
+	\begin{columns}
+		\column{0.5\linewidth}
+		\centering
+		\onslide<1->{
+			\begin{tikzpicture}
+			\node (img1) {\includegraphics[height=5cm]{../Figures/TimeAggExample1.pdf}};
+			\onslide<2->{
+				\node (img2) {\includegraphics[height=5cm]{../Figures/TimeAggExample2.pdf}};
+			}
+			\end{tikzpicture}
+		}
+		\column{0.5\linewidth}
+		\onslide<3->{Observed permanent income growth is \textit{positively} autocorrelated\\
+			\bigskip
+			BPP misinterprets \textit{positive} permanent income shocks as \textit{negative} transitory shocks\\
+			\bigskip
+			$\implies$ Thinks negative transitory shocks result in consumption \textit{increasing}
+		\end{columns}
+	}
+	\onslide<4->{If the Permanent Income Hypothesis holds, BPP will estimate the MPC to be -0.6}
+}
+
 \section{Data}
 \frame
 {
 	\frametitle{Data}
 	What we need:
 	\begin{itemize}
-		\item Panel Data on Income and Expenditure
-		\item Household Balance Sheet Data (detail on nominal assets)
+		\item Panel Data on \textbf{Income} and \textbf{Expenditure}
+		\item Household \textbf{Balance Sheets} 
 	\end{itemize}
+	\bigskip
 	\pause
-	Income:
+	What we have: Registry data for all Danish households
 	\begin{itemize}
-		\item Starting point: Register based micro data for all Danish households made available by Statistics Denmark
+		\item \textbf{Income}
 		\begin{itemize}
-			\item We use after-tax income for the household head, based on third-party reported tax data
-			\item Restrict sample to heads aged 30-55
+			\item[] Third party reported
+			\item[] After-tax, restrict to heads aged 30-55
 		\end{itemize}
-		\item We divide through by permanent income (mean income over all observed years) and take the residual after controlling for age, education, marital status etc. (along with interactions of these)
+		\item \textbf{Balance Sheet}
+		\begin{itemize}
+			\item[] Wealth on 31 Dec
+			\item[] Asset category, mortgage tenure
+		\end{itemize}
+	\item \textbf{Expenditure}
+		\begin{itemize}
+		\item[] No \textit{direct} measure of spending
+		\end{itemize}
 	\end{itemize}
 }
-\frame
+\frame[t]
 {
 	\frametitle{Data: Expenditure}
-	We impute expenditure from the budget constraint
+	Intertemporal budget constraint
 		\begin{align*}
-			C_t \equiv Y_t - S_t = Y_t - P_t - \Delta NW
+			\text{Expenditure} \qquad = \qquad \tikz[baseline]{\node(income){}}\text{Income}\qquad  - \qquad \tikz[baseline]{\node(saving){}}\text{Saving}
 		\end{align*}
+		\bigskip
+	\only<2->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (incomea)  at ([shift={(0.6,-0.1)}]income) {};
+	\node (incomeb)  at ([shift={(0,-0.4)}]incomea) {};
+	\node (savinga)  at ([shift={(0.6,-0.1)}]saving) {};
+	\node (savingb)  at ([shift={(0,-0.4)}]savinga) {};
+	%\draw[blue,thick,->] (incomea)  to [in=90,out=-90] (incomeb) node[anchor=north,text = blue] {\begin{tabular}{l} Known  \end{tabular}};
+	\draw[blue,thick,->] (savinga)  to [in=90,out=-90] (savingb) node[anchor=north,text = blue] {\begin{tabular}{r} = Change in Net Worth \  \\ (adj. for capital gains)  \end{tabular}};
+	\end{tikzpicture}
+	}
+	\only<3->{
 	\begin{itemize}
-		\item Deposit and brokerage accounts all third party reported
 		\item Works well for households with simple financial lives
-		\item Main issue: Capital gains and losses
+		\item Problem: Capital gains
 		\begin{itemize}
-			\item Exclude households where methodology will not work well (eg business owners)
-			\item Exclude housing wealth and years with housing transactions
-			\item Capital gains for stocks based on a diversified index
+			\item[] Houses off balance sheet (exclude transaction years)
+			\item[] Exclude business owners
+			\item[] Capital gains based on a diversified index
 		\end{itemize}
 		\item Noisy, but perhaps better than surveys (Kuchler et al. 2018)
 		\item Huge sample size advantage: sample covers 7.6 million observations over 2004-2015
 	\end{itemize}
+	}
 }
-\frame
+\frame[t]
 {
 	\frametitle{Data: When is Measurement Error a Problem?}
-	Our method has the same measurement error issues as the regressions:
+	We have the same issues as the regression:
 	\begin{align*}
-	\Delta^N c_i = \alpha^N + \beta^N \Delta^N y_i +\varepsilon_i
+	\Delta c_i = \alpha + \beta \Delta y_i +\varepsilon_i
 	\end{align*}
-	That is:
+	That is measurement error in:
 	\begin{itemize}
-		\item[1] Measurement error in $\Delta^N y_i$ leads to attenuation bias
-		\item[2] Measurement error in $\Delta^N c_i$ should be uncorrelated with $\Delta^N y_i$
+		\item[] $\Delta y_i$ leads to attenuation bias\tikz[baseline]{\node(income){}}
+		\item[] $\Delta c_i$ should be uncorrelated with $\Delta y_i$\tikz[baseline]{\node(consumption){}}
 	\end{itemize}
 	\bigskip
-	When might 2 fail?
+	\only<2>{
+	When might this fail?
 	\begin{itemize}
-		\item When a proportion of assets are held off balance sheet
-		\item When returns are correlated with \textit{changes} in income (e.g. own stock in the company you work for)
+		\item Off balance sheet saving
+		\item Returns correlated with \textit{changes} in income (e.g. stock compensation)
 		\item When insurance is provided by friends and family
 	\end{itemize}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (incomea)  at ([shift={(0.0,-0.0)}]income) {};
+	\node (incomeb)  at ([shift={(0.6,0.6)}]incomea) {};
+	\node (consumptiona)  at ([shift={(-4,-0.3)}]consumption) {};
+	\node (consumptionb)  at ([shift={(-0.4,-0.4)}]consumptiona) {};
+	\draw[blue,thick,->] (incomea)  to [in=225,out=45] (incomeb) node[anchor=west,text = blue] {\begin{tabular}{l} High quality income data  \end{tabular}};
+	\draw[blue,thick,->] (consumptiona)  to [in=45,out=45] (consumptionb) node[anchor=north,text = blue] {};
+	\end{tikzpicture}
+	}
 }
 \section{Liquid Wealth}
 \frame
@@ -508,14 +540,18 @@ let \p1=(topbrace2), \p2=(m1) in
 }
 \frame{
 	\frametitle{Interest Rate Exposure: Auclert's Experiment}
+	\textbf{Key assumption:} \\Households treat redistribution like an income shock\\
+	\pause
+	\bigskip
+	\textbf{Experiment}
 	\begin{itemize}
-		\item Real interest rate increases 1\% for 1 year
-		\item Hold constant income and inflation
+		\item[] Short term real interest rate $\uparrow$ 1\% for 1 year
+		\item[] Hold constant income and inflation
 	\end{itemize}
 	\bigskip
-	How does the subsequent redistribution impact aggregate consumption?\\
+	How does subsequent \textbf{redistribution} impact \textbf{aggregate consumption}?\\
 	\bigskip
-	Dimension of Redistribution: Unhedged Interest Rate Exposure
+	Dimension of Redistribution: \textbf{Unhedged Interest Rate Exposure}
 }
 \frame{
 	\frametitle{Interest Rate Exposure: Dimension of Redistribution}
@@ -579,10 +615,7 @@ let \p1=(topbrace2), \p2=(m1) in
 }
 \frame{
 	\frametitle{Interest Rate Exposure: Out of Sample}
-	\textit{Total} URE sums to zero - this is not true for our household sample 
-	\begin{itemize} 
-		\item -57bn USD 
-	\end{itemize}
+	\textit{Total} URE sums to zero - this is not true for our household sample \\
 	\bigskip
 	\tiny
 	\input ../Tables/URE_table.tex
@@ -601,9 +634,9 @@ let \p1=(topbrace2), \p2=(m1) in
 	\pause
 	Compare $\mathcal{E}_R$ to $\sigma S$:\\
 	\bigskip
-	$\sigma$ in the range of 0.1 to 0.5 (maybe) \\
+	$\sigma \approx 0.1$ Best, Cloyne, Ilzetzki, and Kleven (2018)\\
 	\bigskip
-	 $\sigma S \approx 0.05 - 0.25$ \\
+	 $\sigma S \approx 0.05$ \\
 	\end{columns}
 
 	\begin{tikzpicture}[remember picture,overlay]
