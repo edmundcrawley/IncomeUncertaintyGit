@@ -1,6 +1,6 @@
 \babel@toc {english}{}
-\beamer@sectionintoc {1}{Motivation}{2}{0}{1}
-\beamer@sectionintoc {2}{Empirical Strategy}{12}{0}{2}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Empirical Strategy}{11}{0}{2}
 \beamer@sectionintoc {3}{Data}{34}{0}{3}
 \beamer@sectionintoc {4}{Liquid Wealth}{38}{0}{4}
 \beamer@sectionintoc {5}{Monetary Policy}{40}{0}{5}
