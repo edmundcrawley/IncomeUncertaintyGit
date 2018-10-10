@@ -27,171 +27,251 @@
 \setcounter{subsection}{1}
 \setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}%remove navigation symbols
+\begin{comment}
+\setbeamertemplate{footline}
+{
+	\hbox{\begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{framenumber}%
+			\usebeamerfont{framenumber}\insertframenumber{} \hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\end{comment}
+
 
 \mode<presentation>{}
 %% preamble
 \title[Consumption Heterogeneity: Micro Drivers and Macro Implications]{Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
 \author{Edmund Crawley \& Andreas Kuchler}
-\date[9/28/2018]{Norges Bank, Danmarks Nationalbank and Deutsche Bundesbank conference on Heterogeneous households, firms and financial intermediaries
-
-September 28, 2018}
+\date[10/10/2018]{SAIS October 10, 2018}
 \usetheme{Frankfurt}
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\setbeamertemplate{footline}
+{%
+	\hbox{\begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{framenumber}%
+		\usebeamerfont{framenumber}\insertframenumber{} \hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+	\pgfuseshading{beamer@barshade}%
+	\ifbeamer@sb@subsection%
+	\vskip-9.75ex%
+	\else%
+	\vskip-7ex%
+	\fi%
+	\begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=3.75ex]{section in head/foot}
+		\insertnavigation{\paperwidth}
+	\end{beamercolorbox}%
+	\ifbeamer@sb@subsection%
+	\begin{beamercolorbox}[ignorebg,ht=2.125ex,dp=1.125ex,%
+		leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+		\usebeamerfont{subsection in head/foot}\insertsubsectionhead \insertframenumber{} \hspace*{2ex}
+	\end{beamercolorbox}%
+	\fi%
+}%
+\setbeamertemplate{headline}{%
+}
+\makeatother
 \begin{document}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 %circled draws a circle around a number
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
-
-\frame{\titlepage}
-\section{Motivation}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+\addtocounter{framenumber}{-1}
+\section{Introduction}
 \setbeamercovered{invisible}
 \frame
 {
-	\frametitle{Is Heterogeneity Important for Macroeconomics?}
-\textbf{Theory:} Consumption heterogeneity is \textit{potentially} very important for macroeconomic dynamics
-\begin{itemize}
-	\item e.g. Recent HANK models\\
-\end{itemize}
-\bigskip
-Macroeconomic events can redistribute wealth between High and Low MPC households, affecting aggregate consumption\\
-\bigskip
-\pause
-\textbf{Empirics:} Testing and quantifying these effects often boils down to measuring the distribution of MPC along some dimension of redistribution\\
-\bigskip
-Ability to do so is limited by:
-\begin{itemize}
-	\item Methods to measure MPCs
-	\item Consumption data
-	\item Household balance sheet data
-\end{itemize}	
+	\frametitle{What Do We Do?}
+	\begin{center}
+	We estimate the \textbf{sensitivity of consumption} \\
+	\bigskip
+	 to permanent and transitory \textbf{shocks to income} \\
+	 \bigskip
+	 for \textbf{different groups} of households
+	 \end{center}
 }
 \frame
 {
-	\frametitle{What does this paper do?}
-	Two Empirical Contributions\\
-	\begin{itemize}
-	\item[1] \textbf{Method:} New methodology to measure MPCs out of transitory and permanent income shocks
-	\begin{itemize}
-		\item Builds on \cite{blundell_consumption_2008}
-		\item Correctly accounts for the Time Aggregation Problem
-	\end{itemize}
+	\frametitle{Hasn't This Been Done Before?}
+	Yes, but...\\
 	\bigskip
-	\item[2] \textbf{Data:} Panel data covering all Danish households 2004-2015 
-	\begin{itemize}
-		\item Large sample size reveals clear, systemic heterogeneity
-		\item Detailed household balance sheets allow us to infer implications for monetary policy transmission
-	\end{itemize}
-	\end{itemize}
-	\pause
+	\hspace{1cm} Our \textbf{method} addresses bias in previous results  \tikz[baseline]{\node(bias){}}\\
 	\bigskip
-	We also test to what extent a buffer-stock model can fit the observed distribution of MPC with liquid wealth
-}
-\frame
-{
-	\frametitle{What does this paper find?}
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE1.png}};
-	\pause
-	\node (img2) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE2.png}};
-	\pause
-	\node (img3) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE3.png}};
-%	\pause
-%	\node (img4) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE5.png}};
-	\pause
-	\node (img5) {\includegraphics[height=6cm,trim= 3cm 1.9cm 0 3.5cm, clip]{./SlideFigures/IRE6.png}};
+	\hspace{1cm} Our \textbf{data} allows sharp focus on household heterogeneity  \tikz[baseline]{\node(data){}}\\ 
+	\only<2->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (bias1a)  at ([shift={(-3.5,0.3)}]bias) {};
+	\node (bias1b)  at ([shift={(0,1)}]bias1a) {};
+	\draw[blue,thick,->] (bias1a)  to [in=270,out=90] (bias1b) node[anchor=south,text = blue] {Time Aggregation Problem};
 	\end{tikzpicture}
+	}
+	\only<2->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (data1a)  at ([shift={(-8.2,-0.0)}]data) {};
+	\node (data1b)  at ([shift={(0.5,-1)}]data1a) {};
+	\draw[blue,thick,->] (data1a)  to [in=180,out=270] (data1b) node[anchor=west,text = blue] {\begin{tabular}{l} Sample size in millions\\ Detailed balance sheet \end{tabular}};
+	\end{tikzpicture}
+	}
 }
-\frame{
-	\frametitle{What has the Empirical MPC literature Found?}
-	General consensus: \textbf{MPCs are large} ($\approx 0.5$ including durables)\\
-	\begin{itemize}
-		\item For both expected and unexpected transitory shocks
-	\end{itemize}
-	\pause
+\frame
+{
+	\frametitle{Why Do We Care? (as macroeconomists)}
+	1) Heterogenous agent models have testable micro behavior \tikz[baseline]{\node(micro){}}\\
 	\bigskip
-	Few studies have enough power to say much about the distribution of MPCs in the population
-	\begin{itemize}
-		\item \cite{jappelli_fiscal_2014} Italian Survey Data
-		\item \cite{fuster_what_2018} NY Fed Survey
-		\item \cite{fagereng_mpc_2016} Norway Lottery Data
-		\item \cite{gelman_what_2016} Financial App Data
-	\end{itemize}
-	\bigskip
-	\textbf{Liquid assets} and \textbf{income} are key predictors of transitory MPC \\
-	\bigskip
-	Our method and data can uncover detailed heterogeneity - Many potential applications
+	2) Quantify Macro Implications \tikz[baseline]{\node(macro){}}
+	\only<2->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (micro1a)  at ([shift={(-2.2,0.3)}]micro) {};
+	\node (micro1b)  at ([shift={(-1,0.8)}]micro1a) {};
+	\draw[blue,thick,->] (micro1a)  to [in=270,out=90] (micro1b) node[anchor=south,text = blue] {\begin{tabular}{l} e.g. Consumption smoothing requires liquid wealth  \end{tabular}};
+	\end{tikzpicture}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (macro1a)  at ([shift={(-2.8,0.0)}]macro) {};
+	\node (macro1b)  at ([shift={(-0.0,-0.8)}]macro1a) {};
+	\draw[blue,thick,->] (macro1a)  to [in=90,out=270] (macro1b) node[anchor=north,text = blue] {\begin{tabular}{l} e.g. Redistribution in Monetary Policy  \end{tabular}};
+	\end{tikzpicture}
+	}
+}
+\frame[t]
+{
+	\frametitle{What do we find? (Redistribution in Monetary Policy)}
+	\only<1>{
+		\includegraphics[width=11cm]{./SlideFigures/IRE_Big1.png}
+	}
+	\only<2>{
+	\includegraphics[width=11cm]{./SlideFigures/IRE_Big2.png}
+	\\[0.7cm]
+	MPX: Marginal Propensity to eXpend (includes durables)
+	}
+	\only<3->{
+	\includegraphics[width=11cm]{./SlideFigures/IRE_Big3.png} \tikz[baseline]{\node(ire){}}
+	}
+	\only<3>{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (ire1a)  at ([shift={(1.3,0.3)}]ire) {};
+	\node (ire1b)  at ([shift={(-0.4,-0.4)}]ire1a) {};
+	\draw[blue,thick,->] (ire1a)  to [in=45,out=225] (ire1b) node[anchor=north,text = blue] {\begin{tabular}{l} Decrease spending \\ a \textit{lot}  \end{tabular}};
+	\node (ire1c)  at ([shift={(9.5,0.3)}]ire) {};
+	\node (ire1d)  at ([shift={(0.4,-0.4)}]ire1c) {};
+	\draw[blue,thick,->] (ire1c)  to [in=135,out=315] (ire1d) node[anchor=north,text = blue] {\begin{tabular}{r} Increase spending \\ a \textit{little}  \end{tabular}};
+	\end{tikzpicture}
+	}
+	\only<4->{
+	\vspace{-.5cm}
+	\begin{align*}
+	\text{1yr rate }&\uparrow \ 1\% \\
+	\tikz[baseline]{\node(aggregate){}} \textit{Aggregate}\text{ Spending }&\downarrow \ 26 \text{ basis points}
+	\end{align*}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (aggregatea)  at ([shift={(1.5,-0.1)}]aggregate) {};
+	\node (aggregateb)  at ([shift={(-0.4,-0.4)}]aggregatea) {};
+	\draw[blue,thick,->] (aggregatea)  to [in=45,out=225] (aggregateb) node[anchor=north,text = blue] {Through this redistribution channel \textit{alone}};
+	\end{tikzpicture}
+	}
 }
 \section{Empirical Strategy}
 \setbeamercovered{invisible}
-\frame{
-	\frametitle{How Are Consumption Responses Typically Measured?}
-	Three methods:
-	\begin{itemize}
-		\item[1] (Natural) Experiments - stimulus checks, lotteries etc
-		\begin{itemize}
-			\item Few true experiments, especially for permanent shocks
-			\item Data limitations
-		\end{itemize}
-		\item[2] Ask people
-		\begin{itemize}
-			\item Unclear how to interpret
-		\end{itemize}
-		\item[3] Make identifying restrictions on income and consumption dynamics
-		\begin{itemize}
-			\item Empirical methods (until now!) have been flawed
-		\end{itemize}
-	\end{itemize}
+\frame[t]{
+	\frametitle{Reduced Form Approach}
+	Identifying Restrictions on\\
 	\bigskip
-	We develop a robust method based on 3
-}
-\frame
-{
-	\frametitle{Methodology Intuition and Suggestive Findings}
-	Exploit increasing importance of permanent shocks as the time over which growth is measured increases
-	\begin{columns}
-	\column{0.6\linewidth}
-	\centering
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=6.5cm]{../Figures/basic_regression_complete_level_lincome_head.pdf}};
-	\pause
-	\node (img2) {\includegraphics[height=6.5cm]{../Figures/basic_regression_solow_level_lincome_head.pdf}};
-	\pause
-	\node (img3) {\includegraphics[height=6.5cm]{../Figures/basic_regression_BS_level_lincome_head.pdf}};
-	\pause
-	\node (img4) {\includegraphics[height=6.5cm]{../Figures/basic_regression_level_lincome_head.pdf}};
-	\pause
-	\node (img5) {\includegraphics[height=6.5cm]{../Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}};
+	\hspace{1cm}\textbf{Income}\tikz[baseline]{\node(income){}}\\
+	\bigskip
+	\hspace{1cm}and\\
+	\bigskip
+	\hspace{1cm}\textbf{Consumption}\tikz[baseline]{\node(consumption){}}\\
+	\bigskip
+	In \textbf{Continuous} Time\tikz[baseline]{\node(continuous){}}\\
+	\vspace{0.8cm}
+	\only<2->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (incomea)  at ([shift={(0,0.1)}]income) {};
+	\node (incomeb)  at ([shift={(2,0)}]incomea) {};
+	\node (consumptiona)  at ([shift={(0,0.1)}]consumption) {};
+	\node (consumptionb)  at ([shift={(1,0)}]consumptiona) {};
+	\draw[blue,thick,->] (incomea)  to [in=180,out=0] (incomeb) node[anchor=west,text = blue] {\begin{tabular}{lcl}  Permanent & (random walk) & shocks\\ Transitory & ($<$2 years) & shocks  \end{tabular}};
+		\end{tikzpicture}
+	}
+	\only<3->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\draw[blue,thick,->] (consumptiona)  to [in=180,out=0] (consumptionb) node[anchor=west,text = blue] {\begin{tabular}{lcl} Permanent & (random walk) & response\\ Transitory & ($<$2 years) & response  \end{tabular}};
 	\end{tikzpicture}
-	\column{0.4\linewidth}
+	}
+	\only<4->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (continuousa)  at ([shift={(0,0.1)}]continuous) {};
+	\node (continuousb)  at ([shift={(1,0)}]continuousa) {};
+	\draw[blue,thick,->] (continuousa)  to [in=180,out=0] (continuousb) node[anchor=west,text = blue] {\begin{tabular}{lcl} Time Aggregation Problem  \end{tabular}};
+	\end{tikzpicture}
+	}
+	\only<5->{
+	\centering
+	\hspace{-1.17cm}But first some intuition: Na\"ively Regress \\
+	\bigskip
+	 Change in Consumption on Change in Income (over N years)
+	}
+}
+\frame[t]
+{
+	\frametitle{Na\"ive Regression: Consumption Growth on Income Growth}
+	\vspace{-0.5cm}
 	\begin{align*}
 	\Delta^N c_i = \alpha^N + \beta^N \Delta^N y_i +\varepsilon_i
 	\end{align*}
-	\end{columns}
-
-}
-\frame
-{
-	\frametitle{Aside: Why Not Blundell, Pistaferri and Preston 2008?}
-	\textbf{Common Assumptions}\\
-	Income $y_t$ is made up of:
-	\begin{itemize}
-		\item Permanent Income (random walk)
-		\item Transitory Income (uncorrelated over time)
-	\end{itemize}
-	\bigskip
-	\textbf{Key to BPP Identification}\\
-	$\Delta y_{t+1}$ is a \textit{valid instrument} for transitory shocks in year $t$
-	\begin{itemize}
-		\item Negatively correlated with transitory shocks in year $t$
-		\item U\tikzmark{start}ncorrelated with permanent shocks in year \tikzmark{end}$t$ \\
-	\end{itemize}
+	\centering
+	\begin{tikzpicture}
+	\node (img1) {\includegraphics[height=7.5cm,trim= 0 0 0 2cm,clip]{../Figures/basic_regression_complete_level_lincome_head.pdf}};
 	\pause
+	\node (img2) {\includegraphics[height=7.5cm,trim= 0 0 0 2cm,clip]{../Figures/basic_regression_solow_level_lincome_head.pdf}};
+	\pause
+	\node (img3) {\includegraphics[height=7.5cm,trim= 0 0 0 2cm,clip]{../Figures/basic_regression_BS_level_lincome_head.pdf}};
+	\pause
+	\node (img4) {\includegraphics[height=7.5cm,trim= 0 0 0 2cm,clip]{../Figures/basic_regression_level_lincome_head.pdf}};
+	\pause
+	\node (img5) {\includegraphics[height=7.5cm,trim= 0 0 0 2cm,clip]{../Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}};
+	\onslide<1->
+	\end{tikzpicture}
+}
+\frame[t]
+{
+	\frametitle{Why Not Blundell, Pistaferri and Preston 2008?}
+	\textbf{Key to BPP Identification}\\
 	\bigskip
+	$\Delta y_{t+1}=\Delta p_{t+1}+\Delta \varepsilon_{t+1}$ is a \textit{valid instrument} for $\varepsilon_{t}$\tikz[baseline]{\node(transitory){}}\\
+	\only<1->{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (transitorya)  at ([shift={(-.2,0.1)}]transitory) {};
+	\node (transitoryb)  at ([shift={(0.6,0.6)}]transitorya) {};
+	\draw[blue,thick,->] (transitorya)  to [in=225,out=45] (transitoryb) node[anchor=south,text = blue] {Transitory shock year $t$};
+	\end{tikzpicture}
+	}
+	\only<2->{
+	\begin{itemize}
+	\item Negatively correlated with transitory shocks in year $t$
+	\begin{center}
+	\includegraphics[width=7cm]{./SlideFigures/IncGrowthTran.png}
+	\end{center}
+	\end{itemize}
+	}
+	\only<3->{
+	\begin{itemize}
+	\item U\tikzmark{start}ncorrelated with permanent shocks in year \tikzmark{end}$t$
+	\begin{center}
+	\includegraphics[width=7cm]{./SlideFigures/IncGrowthPerm.png}
+	\end{center}
+	\end{itemize}
+	}
+	\only<4->{
 	Fails due to the \textbf{Time Aggregation Problem}
 	\begin{tikzpicture}[remember picture,overlay]
 	\node[draw,line width=2pt,red,ellipse,inner ysep=10pt,fit={(pic cs:start) (pic cs:end)}] {};
 	\end{tikzpicture} 
+	}
 }
 \frame
 {
@@ -219,8 +299,7 @@ Ability to do so is limited by:
 }
 \frame
 {
-	\frametitle{Identification Restrictions: Income}
-	Income flow consists of:
+	\frametitle{Identification Restrictions: Income Process}
 	\begin{itemize} 
 		\item Permanent Income (random walk)
 		\item Transitory Income (persistence $<$ 2 years)
@@ -228,8 +307,9 @@ Ability to do so is limited by:
 	\begin{figure}
 		\includegraphics[scale=0.35,trim= 0 2.5cm 0 1cm]{../Figures/GenericTransitory.pdf}
 	\end{figure}
+	\vspace{0.5cm}
 	\begin{align*}
-	\onslide<2->{\color{red} \tikz[baseline]{\node(n1){}}\bar{y}_T =} \onslide<2->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} y_t\onslide<2->{\color{red}dt} &= \onslide<2->{ \color{red} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}p_t \onslide<2->{\color{red}dt} \color{black} + \onslide<2->{\color{red}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}f(t-s)dq_s\onslide<2->{\color{red}dt}
+	\onslide<2->{\color{blue} \tikz[baseline]{\node(n1){}}\bar{y}_T =} \onslide<2->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} y_t\onslide<2->{\color{blue}dt} &= \onslide<2->{ \color{blue} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}p_t \onslide<2->{\color{blue}dt} \color{black} + \onslide<2->{\color{blue}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}f(t-s)dq_s\onslide<2->{\color{blue}dt}
 	\end{align*}
 	\only<1>{
 	\begin{tikzpicture}[remember picture,overlay]
@@ -250,74 +330,34 @@ Ability to do so is limited by:
 }
 \frame
 {
-	\frametitle{Identification Restrictions: Income}
-	
-	\begin{align*}
-	\only<1->{\bar{y}_T  &= \int_{T-1}^{T} p_t dt + \int_{T-1}^{T} \int_{t-2}^{t} f(t-s)dq_s dt \\[7pt]
-		\Delta^N \bar{y}_T &= \bar{y}_T - \bar{y}_{T-N} \\
-		                   &= \int_{T-1}^{T} (p_t-p_{T-1})dt \tikz[baseline]{\node(d1){}} - \int_{T-N-1}^{T-N} (p_t-p_{T-N})dt \tikz[baseline]{\node(d2){}}\\ 
-		& \qquad   + (p_{T-1}-p_{T-N}) \tikz[baseline]{\node(d3){}}\\
-		& + \int_{T-1}^{T} \int_{t-2}^{t} f(t-s)dq_s dt \tikz[baseline]{\node(d4){}} - \int_{T-N-1}^{T-N} \int_{t-2}^{t} f(t-s)dq_s dt \tikz[baseline]{\node(d5){}} }
-	\end{align*}
-	\vspace{1cm}
-		\begin{align*}
-		\only<3->{\implies \mathrm{Var}(\Delta^N \bar{y}_T) &= (N-\frac{1}{3})\sigma^2_p +  2 \sigma^2_{\tilde{q}} \text{   for }N \geq 3 }
-		\end{align*}
-	\only<1->{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (d1a)  at ([shift={(-1.0,-0.1)}]d1) {};
-	\node (d2a)  at ([shift={(-2.0,-0.1)}]d2) {};
-	\node (d3a)  at ([shift={(2.9,0.1)}]d3) {};
-	\node (d4a)  at ([shift={(-2.1,-0.2)}]d4) {};
-	\node (d5a)  at ([shift={(-2.1,-0.2)}]d5) {};
-	\node (d6)  at ([shift={(0.3,-1.0)}]d4) {};
-	\draw[blue,thick,->] (d1a)  to [in=180,out=330] (d3a) node[anchor=north,text = black] {};
-	\draw[blue,thick,->] (d2a)  to [in=180,out=245] (d3a) node[anchor=north,text = black] {};
-	\draw[blue,thick,->] (d3)   to [in=180,out=0  ] (d3a) node[anchor=west,text = blue, text width=3.5cm,font=\small] {Independent increments $\mathrm{Var} = (\frac{1}{3}+\frac{1}{3}+N-1)\sigma^2_p$};
-	\end{tikzpicture}
-	}
-	\only<2->{
-	\begin{tikzpicture}[remember picture,overlay]
-	\draw[blue,thick,->] (d4a)  to [in=150,out=330] (d6) node[anchor=north,text = black] {};
-	\draw[blue,thick,->] (d5a)  to [in=30,out=245] (d6) node[anchor=north,text = blue,font=\small] {Independent if $N\geq 3$};
-	\end{tikzpicture}
-	}	
-}
-\frame
-{
-	\frametitle{Identification Restrictions: Consumption}
+	\frametitle{Identification Restrictions: Consumption Response}
 	\label{cons_identification}
-	Assumptions on Consumption\\
 	\begin{itemize}
-		\item Permanent: Consumption permanently moves by fraction $\phi$ of the income shock
+		\item Permanent: Moves by fraction $\phi$ of shock
 		\item Transitory: Persistence $<$ 2 years \qquad \qquad \qquad \qquad \hyperlink{cons_decay}{\beamerbutton{Evidence}}
 	\end{itemize}
-	\vspace*{-0.2in}
-	\begin{center}
-	\begin{tikzpicture}
-	\node (img1) {\includegraphics[height=3.5cm]{../Figures/GenericTransitoryConsumption.pdf}};
-	\pause
-	\node (img2) at (img1) {\includegraphics[height=3.5cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}};
-	\node (text)  at ([shift={(-1,-2.0)}]img1) {This is a key difference between what we assume and BPP};
+	\begin{figure}
+	\includegraphics[scale=0.35,trim= 0 1.5cm 0 1cm]{../Figures/GenericTransitoryConsumptionWithBPP.pdf}
+\end{figure}
+\begin{align*}
+\onslide<2->{\color{blue} \tikz[baseline]{\node(n1){}}\bar{c}_T =} \onslide<2->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} c_t\onslide<2->{\color{blue}dt} &= \onslide<2->{ \color{blue} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}\phi p_t \onslide<2->{\color{blue}dt} \color{black} + \onslide<2->{\color{blue}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}g(t-s)dq_s\onslide<2->{\color{blue}dt}
+\end{align*}
+\only<1>{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (n4a)  at ([shift={(0.2,-0.05)}]n4) {};
+	\node (n5a)  at ([shift={(0.5,-0.2)}]n5) {};
+	\draw[blue,thick,->] (n4a)  to [in=90,out=245] + (225:1.3cm) node[anchor=north,text = blue] {Permanent consumption flow};
+	\draw[blue,thick,->] (n5a) to [in=90,out=245] + (290:0.8cm) node[anchor=north,text = blue] {Transitory consumption flow};
 	\end{tikzpicture}
-	\end{center}
 }
-\frame
-{
-	\frametitle{Identification Restrictions: Consumption}
-	Consumption flow is given by:
-	\begin{align*}
-	c_t  &= \phi p_t  + \int_{t-2}^{t} g(t-s)dq_s  \\
-	\implies \mathrm{Cov}&(\Delta^N \bar{c_T},\Delta^N \bar{y_T} ) = \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
-	\end{align*}
-	where  $\psi = \frac{\mathrm{Cov}(\tilde{c},\tilde{q})}{\mathrm{Var}(\tilde{q})}$, the regression coefficient of `transitory' consumption on transitory income \\
-	\pause
-	\bigskip
-	\begin{itemize}
-		\item $\phi$: MPX out of permanent income shocks
-		\item $\psi$: MPX out of transitory income shocks
-	\end{itemize}
-	\textbf{M}arginal \textbf{P}ropensity to e\textbf{X}pend (includes durables)
+\only<2>{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node (n1a)  at ([shift={(0.25,0.2)}]n1) {};
+	\node (n2a)  at ([shift={(0.45,-0.45)}]n2) {};
+	\draw[blue,thick,->] (n1a)  to [in=270,out=90] + (90:0.6cm) node[anchor=south,text = blue] {h \ \ \ \ \ \ Observed Consumption};
+	\draw[blue,thick,->] (n2a)  to [in=90,out=270] + (270:0.6cm) node[anchor=north,text = blue] {Time Aggregation};
+	\end{tikzpicture}
+}
 }
 \frame
 {
@@ -327,13 +367,16 @@ We use GMM on the equations:
 \mathrm{Var}(\Delta^N \bar{y_T} ) &=  (N-\frac{1}{3}) \sigma^2_p + 2  \sigma^2_{\tilde{q}} \\
 \mathrm{Cov}(\Delta^N \bar{c_T},\Delta^N \bar{y_T} ) &= \phi (N-\frac{1}{3}) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
 \end{align*}
-with $N=3,4,5$ (and $T=2007,..,2015$) to identify the four unknowns:
+with $N=3,4,5$ (and $T=2007,..,2015$) to identify:\\
+\bigskip
 \begin{itemize}
 	\item $\sigma^2_p$: Permanent shock variance
 	\item $\sigma^2_{\tilde{q}}$: (Time aggregated) transitory shock variance
 	\item $\phi$: MPX out of permanent income shocks
 	\item $\psi$: MPX out of transitory income shocks
 \end{itemize}
+\bigskip
+where  $\psi$ is the regression coefficient of `transitory' consumption on transitory income
 }
 \section{Data}
 \frame
@@ -530,6 +573,7 @@ let \p1=(topbrace2), \p2=(m1) in
 		\pause
 		\node (img10) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetailsblank_level_lincome_head.pdf}};
 		\node (img11) {\includegraphics[scale=0.5]{../Figures/MPXByUREdetails3a_level_lincome_head.pdf}};
+		\onslide<1->
 		\end{tikzpicture}
 	\end{center}
 }
@@ -695,6 +739,7 @@ let \p1=(topbrace2), \p2=(m1) in
 		\node (img4)
 		{\includegraphics[scale=0.4]{../Figures/MPXByDurables_blank.pdf}};
 		\node (img5) {\includegraphics[scale=0.4]{../Figures/MPXByDurables_nodurableproxy.pdf}};
+		\onslide<1->
 		\end{tikzpicture}
 	\end{center}
 }
