@@ -51,6 +51,7 @@ CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5,cols_per_d
     # Define the weight matrix as Equal Weight Minimum Distance
     weight_matrix <- diag(diag(omega)^(-1))
     #weight_matrix <- diag(dim(omega)[1])
+    #weight_matrix <- solve(omega)
 
     ret <- objectiveFun(init_params, c_vector, weight_matrix,T,diff_to_use,cols_per_diff)
 
@@ -78,6 +79,6 @@ CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5,cols_per_d
     ins_perm_se <- standard_errors[3] 
     ins_tran_se <- standard_errors[4] 
 
-    output = list("var_perm"=var_perm, "var_perm_se"=var_perm_se, "var_tran"=var_tran, "var_tran_se"=var_tran_se, "ins_perm"=ins_perm, "ins_perm_se"=ins_perm_se, "ins_tran"=ins_tran, "ins_tran_se"=ins_tran_se, "implied_cov"=(implied_cov_CS(solved_params,T,diff_to_use,cols_per_diff)))
+    output = list("var_perm"=var_perm, "var_perm_se"=var_perm_se, "var_tran"=var_tran, "var_tran_se"=var_tran_se, "ins_perm"=ins_perm, "ins_perm_se"=ins_perm_se, "ins_tran"=ins_tran, "ins_tran_se"=ins_tran_se, "implied_cov"=(implied_cov_CS(solved_params,T,diff_to_use,cols_per_diff)),"solved_objective"=solved_objective)
     return (output)
 }
