@@ -1,5 +1,5 @@
 require(shape)
-# Function to plot MPX along with home ownership and liquid wealth
+# Function to plot MPX along with homeownership and liquid wealth
 plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealth, category_for_title, category_for_save) {
 
   params_input = cbind(params,home_ownership, liquid_wealth/max(liquid_wealth))
@@ -25,7 +25,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       }
     }
     if (i==3 | i==4){
-      this_legend=c(expression(paste(psi," Transitory MPX")),"Home Ownership")
+      this_legend=c(expression(paste(psi," Transitory MPX")),"Homeownership")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-1),matrix(0,nrow(params_input),1))
       se = se_input
@@ -36,7 +36,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       right_axis=FALSE
     }
     if (i==5 | i==6 | i==7){
-      this_legend=c(expression(paste(psi," Transitory MPX")),"Home Ownership","Liquid Assets (Right Axis)")
+      this_legend=c(expression(paste(psi," Transitory MPX")),"Homeownership","Liquid Assets (Right Axis)")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input
       se = se_input
