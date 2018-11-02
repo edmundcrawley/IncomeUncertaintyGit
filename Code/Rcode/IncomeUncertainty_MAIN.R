@@ -1147,7 +1147,7 @@ robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), ta
 
 # Compare levels with log
 tag_list = c("_level_lincome_head","")
-tag_list_legend = c("Baseline","Log Total (elasticity)")
+tag_list_legend = c("Baseline","Log Total (Elasticity)")
 
 #First do liquid wealth
 num_quantiles = 5
@@ -1192,7 +1192,7 @@ robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), ta
 
 
 tag_list = c("_level_lincome_head","_level_lincome_head_quantilesbyperminc")
-tag_list_legend = c("Baseline", "LiqWealth/PermInc" )
+tag_list_legend = c("Baseline", "Liquid Wealth/Permanent Income" )
 
 #First do liquid wealth
 num_quantiles = 5
