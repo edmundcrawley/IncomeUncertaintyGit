@@ -1,7 +1,0 @@
-\begin{table} \small
-\caption{Summary Statistics}
-\label{table:SummaryStatistics}
-\input\econtexRoot/Tables/summary_statistics.tex
-\end{table}
-\efloatseparator
- 
