@@ -1,5 +1,5 @@
 '''
-Loads parameters used in the cstwMPC estimations.
+Loads parameters used in the PrefShockModel estimations.
 '''
 import numpy as np
 import csv

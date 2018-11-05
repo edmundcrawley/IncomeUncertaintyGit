@@ -148,43 +148,6 @@ def BasicRegressionTables(Cons_sample, Inc_sample,max_diff=10,filename=False):
             f.close()
     return result
 
-
-#
-#
-##############################CODE BELOW NEEDS TO BE REDONE
-#
-##Print calibration table
-#paper_output = "\\begin{minipage}{\\textwidth}\n"
-#paper_output += "  \\begin{table}\n"
-#paper_output += "    \\caption{Calibration}\label{table:calibration}\n"
-#
-#paper_output += "\\begin{tabular}{cd{5}l}  \n"
-#paper_output += "\\\\ \\toprule  \n"
-## Idiosyncratic shock parameters
-#paper_output += "\multicolumn{3}{c}{ \\textbf{Calibrated Parameters} }  \n"
-#paper_output += "\\\\ $\sigma_{\\theta}^{2}$    & " + "{:.3f}".format(Params.init_infinite['TranShkStd'][0]**2) +"     & Variance Tran Shocks (=$4 \\times$ {:.3f}".format(0.25*Params.init_infinite['TranShkStd'][0]**2) +" Annual) \n"
-#paper_output += "\\\\ $\sigma_{\psi}^{2}$      &" + "{:.3f}".format(Params.init_infinite['PermShkStd'][0]**2) +"      & Variance Perm Shocks (=$0.25 \\times$ {:.3f}".format(4.0*Params.init_infinite['PermShkStd'][0]**2) +" Annual) \n"
-#paper_output += "\\\\ $\wp$                    & " + "{:.3f}".format(Params.init_infinite['UnempPrb']) +"  & Probability of Unemployment Spell \n"
-#paper_output += "\\\\ $\\theta^u$                    & " + "{:.3f}".format(Params.init_infinite['IncUnemp']) +"  & Income in Unemployment Spell \n"
-#paper_output += "\\\\ $\PDies$             & " + "{:.3f}".format(1.0-Params.init_infinite['LivPrb'][0]) +"  & Probability of Mortality \n"
-#paper_output += "\\\\ $\\rho$ & "+ "{:.0f}".format(Params.init_infinite['CRRA']) +". & Coefficient of Relative Risk Aversion \n"
-#
-#paper_output += "\\\\ $R$ & " + "{:.3f}".format(Params.init_infinite['Rfree']) + "& Quarterly Interest Rate \n"
-#
-#paper_output += "\\\\ \\midrule  \n"
-#paper_output += "\multicolumn{3}{c}{ \\textbf{Estimated Parameters} }  \n"
-#paper_output += "\\\\ $\\beta^c$ &  " + "{:.3f}".format(center_estimate) +" & Mean discount factor \n"
-#paper_output += "\\\\ $\\nabla$ &  " + "{:.3f}".format(spread_estimate) +" & Discount factor spread\n"
-#
-#paper_output += "\\\\ \\bottomrule  \n"
-#paper_output += "\end{tabular}\n"
-#paper_output += "\end{table}\n"
-#paper_output += "\end{minipage}\n"
-#with open('./Tables/CalibrationTable.tex','w') as f:
-#    f.write(paper_output)
-#    f.close()
-#
-
 #### Save arrays to LaTex tables
 def PrintLaborTables(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,filename,width=0.45,name=""):
     output = "\\begin{minipage}{" + str(width) + "\\textwidth}\n"

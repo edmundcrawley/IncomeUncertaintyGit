@@ -46,7 +46,7 @@ output += "\\\\ Age & " +               mystr3(summary_data[7,0]) + " & " + myst
 output += "\\\\ URE & " +               mystr1(summary_data[8,0]) + " & " + mystr1(summary_data[8,2]) + " & "+ mystr1(summary_data[8,1]) + " & "+ mystr1(summary_data[8,3]) + " & "+ mystr1(summary_data[8,5]) + " & "+ mystr1(summary_data[8,4]) + " \n"
 output += "\\\\ NNP & " +               mystr1(summary_data[9,0]) + " & " + mystr1(summary_data[9,2]) + " & "+ mystr1(summary_data[9,1]) + " & "+ mystr1(summary_data[9,3]) + " & "+ mystr1(summary_data[9,5]) + " & "+ mystr1(summary_data[9,4]) + " \n"
 output += "\\\\ \\midrule"
-output += "\\\\ No. household-year obs & & " + mystr1(summary_data[10,0]) + " & "  + " & " + " & "+ mystr1(summary_data[10,3]) + " & " +  " \n"
+output += "\\\\ No. Household-year obs & & " + mystr1(summary_data[10,0]) + " & "  + " & " + " & "+ mystr1(summary_data[10,3]) + " & " +  " \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\tiny \\textbf{Notes}: Values are 2015 USD. Age refers to the age in 2008 of the main income earner in the household. For the purposes of calculation of consumption in the population, top and bottom 1\% in terms of consumption have been excluded. URE and NNP can only be calculated in the period 2009-2015 due to mortgage information being insufficiently detailed in the previous years. \n"
@@ -78,7 +78,7 @@ output += "\\\\ \\midrule"
 output += "\\\\ \\textbf{Total} & "                                 + " & \\textbf{" + mystr1(URENNP_data[8,1]*(0.000001)) + "} & \\textbf{"+ mystr1(URENNP_data[8,2]*(0.000001)) + "} & \\textbf{"+ mystr2(URENNP_data[8,3]) + "} & \\textbf{"+ mystr2(URENNP_data[8,4])  + "} \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
-output += "\\\\ \\tiny \\textbf{Notes}: NNP and URE numbers are in billions of 2015 USD. Pension Funds includes special saving such as childrens savings accounts. See appendix \\ref{URE_NNP_appendix} for detail.\n"
+output += "\\\\ \\tiny \\textbf{Notes}: NNP and URE numbers are in billions of 2015 USD. Pension Funds includes special saving such as children's savings accounts. See appendix \\ref{URE_NNP_appendix} for detail.\n"
 output += "\end{minipage}\n"
 with open('./Tables/URE_NNP_table.tex','w') as f:
     f.write(output)
