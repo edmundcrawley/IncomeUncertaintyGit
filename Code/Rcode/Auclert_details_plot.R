@@ -1,3 +1,11 @@
+#################################################################################
+# 
+# This file produces the plots of MPX by URE in detail, including homeownership etc
+# Requires MAIN.R to have been run first so that path names etc have been loaded
+# 
+###############################################################################
+
+
 require(shape)
 # Function to plot MPX along with homeownership and liquid wealth
 plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealth, category_for_title, category_for_save) {
