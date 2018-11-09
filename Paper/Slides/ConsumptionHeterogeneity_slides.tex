@@ -42,7 +42,7 @@
 %% preamble
 \title[Consumption Heterogeneity: Micro Drivers and Macro Implications]{Consumption Heterogeneity: \\ Micro Drivers and Macro Implications}
 \author{Edmund Crawley \& Andreas Kuchler}
-\date[10/31/2018]{Johns Hopkins Carey Business School, Halloween 2018}
+\date[08/11/2018]{Towson University\\ November 8, 2018}
 \usetheme{Frankfurt}
 
 \setbeamertemplate{navigation symbols}{}
@@ -412,6 +412,7 @@ where  $\psi$ is the regression coefficient of `transitory' consumption on trans
 \frame[t]
 {
 	\frametitle{Data: Expenditure}
+	\label{data_expenditure}
 	Intertemporal budget constraint
 		\begin{align*}
 			\text{Expenditure} \qquad = \qquad \tikz[baseline]{\node(income){}}\text{Income}\qquad  - \qquad \tikz[baseline]{\node(saving){}}\text{Saving}
@@ -439,6 +440,7 @@ where  $\psi$ is the regression coefficient of `transitory' consumption on trans
 		\item Noisy, but perhaps better than surveys (Kuchler et al. 2018)
 		\item Huge sample size advantage: sample covers 7.6 million observations over 2004-2015
 	\end{itemize}
+	\hyperlink{summary_stats}{\beamerbutton{Summary Statistics}}
 	}
 }
 \frame[t]
@@ -574,6 +576,7 @@ let \p1=(topbrace2), \p2=(m1) in
 }
 \frame{
 	\frametitle{Interest Rate Exposure: Aggregation}
+	\label{aggregation}
 	Aggregate to find size of channel:
 	\begin{align*}
 	dc_i &= \quad \ \ MPC_i URE_i  \ \ \ \frac{dR}{R} \\
@@ -693,7 +696,7 @@ let \p1=(topbrace2), \p2=(m1) in
 \end{columns} 	
 }
 \frame{
-	\frametitle{Taste Shock Model}
+	\frametitle{Preference Shock Model}
 	First order problem: Transitory MPCs are too low\\
 	\bigskip
 	Need to lower $\beta$'s without reducing savings\\
@@ -703,14 +706,14 @@ let \p1=(topbrace2), \p2=(m1) in
 		\item In the data, expenditure FAR for volatile than income
 		\item Surprise expenses can be large
 	\end{itemize}
-	Simple extension - add large taste shocks
+	Simple extension - add large preference shocks
 	\begin{align*}
 	\mathbb{E}_t \sum_{i=t}^{\infty} \beta^i \mathcal{X}_i u(\cLevBF_i)
 	\end{align*}
 }
 \frame
 {
-	\frametitle{Taste Shock Model: Results}
+	\frametitle{Preference Shock Model: Results}
 	\begin{columns}
 	\column{0.5\linewidth}
 	\centering
@@ -808,7 +811,19 @@ let \p1=(topbrace2), \p2=(m1) in
 	\textit{Total} URE sums to zero - this is not true for our household sample \\
 	\bigskip
 	\tiny
-	\input ../Tables/URE_table.tex
+	\input ../Tables/URE_table.tex \\
+	\vspace{0.2cm}
+	\hyperlink{aggregation}{\beamerbutton{Back}}
+}
+\frame{
+	\frametitle{Summary Statistics}
+	\label{summary_stats}
+\begin{center} 
+	\label{table:SummaryStatistics}
+	\input\econtexRoot/Tables/summary_statistics.tex 
+\end{center}
+	\vspace{0.2cm}
+\hyperlink{data_expenditure}{\beamerbutton{Back}}
 }
 \begin{comment}
 \section{Model}
