@@ -33,7 +33,7 @@ global dofiles = "E:\ProjektDB\706172\Workdata\706172\Husholdningsprojekt\Precau
 global logfiles = "E:\ProjektDB\706172\Workdata\706172\Husholdningsprojekt\Precautionary saving with time varying risk\edmund\BPP\logfiles"
 
 // log and load family level data
-log using "${logfiles}\${run}3", text replace
+log using "${logfiles}\${run}4", text replace
 if $five_percent_sample == 1 {
 	use  "${savedirectory}\family_firm_5percent_sample.dta"
 }
@@ -114,9 +114,48 @@ replace alder_head_08 = alder_head - 7 if year == 2015
 
 gen est_sample = alder_head_08 >= 30 & alder_head_08 <= 55 
 
-///Calculate percentiles of URE, NNP and Income for age group between 30 and 55
+global calc_deciles==TRUE
+if calc_deciles {
+	///Calculate percentiles of URE, NNP and Income for age group between 30 and 55
+	xtile URE_decile = URE if est_sample, nq(10) 
+	matrix URE_decile_means = J(10,1,.)
+	matrix URE_decile_cutoffs = J(10,1,.)
+	forvalues i= 1(1)10 {
+	sum URE if URE_decile==`i'
+	matrix URE_decile_means[`i',1] = r(mean)
+	matrix URE_decile_cutoffs[`i',1] = r(max)
+	}
+	svmat double URE_decile_means
+	outsheet URE_decile_means1 using "${savedirectory}\\URE_decile_means.txt" if URE_decile_means1<., replace comma nonames
+	svmat double URE_decile_cutoffs
+	outsheet URE_decile_cutoffs1 using "${savedirectory}\\URE_decile_cutoffs.txt" if URE_decile_cutoffs1<., replace comma nonames
 
+	xtile NNP_decile = NNP if est_sample, nq(10) 
+	matrix NNP_decile_means = J(10,1,.)
+	matrix NNP_decile_cutoffs = J(10,1,.)
+	forvalues i= 1(1)10 {
+	sum NNP if NNP_decile==`i'
+	matrix NNP_decile_means[`i',1] = r(mean)
+	matrix NNP_decile_cutoffs[`i',1] = r(max)
+	}
+	svmat double NNP_decile_means
+	outsheet NNP_decile_means1 using "${savedirectory}\\NNP_decile_means.txt" if NNP_decile_means1<., replace comma nonames
+	svmat double NNP_decile_cutoffs
+	outsheet NNP_decile_cutoffs1 using "${savedirectory}\\NNP_decile_cutoffs.txt" if NNP_decile_cutoffs1<., replace comma nonames
 
+	xtile Income_decile = mean_inc_after_tax if est_sample, nq(10) 
+	matrix Income_decile_means = J(10,1,.)
+	matrix Income_decile_cutoffs = J(10,1,.)
+	forvalues i= 1(1)10 {
+	sum mean_inc_after_tax if Income_decile==`i'
+	matrix Income_decile_means[`i',1] = r(mean)
+	matrix Income_decile_cutoffs[`i',1] = r(max)
+	}
+	svmat double Income_decile_means
+	outsheet Income_decile_means1 using "${savedirectory}\\Income_decile_means.txt" if Income_decile_means1<., replace comma nonames
+	svmat double Income_decile_cutoffs
+	outsheet Income_decile_cutoffs1 using "${savedirectory}\\Income_decile_cutoffs.txt" if Income_decile_cutoffs1<., replace comma nonames
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
