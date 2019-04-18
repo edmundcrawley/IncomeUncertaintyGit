@@ -8,14 +8,14 @@
   *{package}{ifthen}      {2014/09/29 v1.1c}
   *{package}{chngpage}    {2009/10/20 v1.2b}
   *{package}{setspace}    {2011/12/19 v6.7a}
-  *{class}  {scrartcl}    {2018/03/30 v3.25}
-  *{package}{scrkbase}    {2018/03/30 v3.25}
-  *{package}{scrbase}     {2018/03/30 v3.25}
+  *{class}  {scrartcl}    {2019/02/01 v3.26b}
+  *{package}{scrkbase}    {2019/02/01 v3.26b}
+  *{package}{scrbase}     {2019/02/01 v3.26b}
   *{package}{keyval}      {2014/10/28 v1.15}
-  *{package}{scrlfile}    {2018/03/30 v3.25}
-  *{package}{tocbasic}    {2018/03/30 v3.25}
-  *{file}   {scrsize12pt.clo}{2018/03/30 v3.25}
-  *{package}{typearea}    {2018/03/30 v3.25}
+  *{package}{scrlfile}    {2019/02/01 v3.26b}
+  *{package}{tocbasic}    {2019/02/01 v3.26b}
+  *{file}   {scrsize12pt.clo}{2019/02/01 v3.26b}
+  *{package}{typearea}    {2019/02/01 v3.26b}
   *{package}{fontenc}     {0000/00/00 v0.0}
   *{file}   {t1enc.def}   {2017/04/05 v2.0i}
   *{package}{babel}       {2018/06/05 v3.22}
@@ -107,28 +107,28 @@
   *{package}{rerunfilecheck}{2016/05/16 v1.8}
   *{package}{./texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{package}{endfloat}    {2018/03/24 v2.6}
-  *{package}{tikz}        {2015/08/07 v3.0.1a}
-  *{package}{pgf}         {2015/08/07 v3.0.1a}
-  *{package}{pgfrcs}      {2015/08/07 v3.0.1a}
+  *{package}{tikz}        {2019/04/04 v3.1.2}
+  *{package}{pgf}         {2019/04/04 v3.1.2}
+  *{package}{pgfrcs}      {2019/04/04 v3.1.2}
   *{package}{everyshi}    {2001/05/15 v3.00}
   *{file}   {pgfrcs.code.tex}{0000/00/00 v0.0}
-  *{package}{pgfcore}     {2010/04/11 v3.0.1a}
-  *{package}{pgfsys}      {2014/07/09 v3.0.1a}
+  *{package}{pgfcore}     {2019/04/04 v3.1.2}
+  *{package}{pgfsys}      {2019/04/04 v3.1.2}
   *{file}   {pgfsys.code.tex}{0000/00/00 v0.0}
-  *{file}   {pgfsyssoftpath.code.tex}{2013/09/09 v1.9)}
-  *{file}   {pgfsysprotocol.code.tex}{2006/10/16 v1.4)}
+  *{file}   {pgfsyssoftpath.code.tex}{2019/04/04 v3.1.2}
+  *{file}   {pgfsysprotocol.code.tex}{2019/04/04 v3.1.2}
   *{file}   {pgfcore.code.tex}{0000/00/00 v0.0}
-  *{package}{pgfcomp-version-0-65}{2007/07/03 v3.0.1a}
-  *{package}{pgfcomp-version-1-18}{2007/07/23 v3.0.1a}
-  *{package}{pgffor}      {2013/12/13 v3.0.1a}
+  *{package}{pgfcomp-version-0-65}{2019/04/04 v3.1.2}
+  *{package}{pgfcomp-version-1-18}{2019/04/04 v3.1.2}
+  *{package}{pgffor}      {2019/04/04 v3.1.2}
   *{package}{pgfkeys}     {0000/00/00 v0.0}
   *{file}   {pgfkeys.code.tex}{0000/00/00 v0.0}
   *{package}{pgfmath}     {0000/00/00 v0.0}
   *{file}   {pgfmath.code.tex}{0000/00/00 v0.0}
   *{file}   {pgffor.code.tex}{0000/00/00 v0.0}
   *{file}   {tikz.code.tex}{0000/00/00 v0.0}
-  *{package}{caption}     {2018/05/01 v3.3-147}
-  *{package}{caption3}    {2018/05/27 v1.8a}
+  *{package}{caption}     {2018/10/06 v3.3-154}
+  *{package}{caption3}    {2018/09/12 v1.8c}
   *{package}{titlesec}    {2016/03/21 v2.10.2}
   *{package}{placeins}    {2005/04/18 v2.2}
   *{package}{pdfpages}    {2017/10/31 v0.5l}
@@ -143,6 +143,8 @@
   *{package}{gettitlestring}{2016/05/16 v1.5}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
+  *{package}{bookmark}    {2016/05/17 v1.26}
+  *{file}   {bkm-pdftex.def}{2016/05/17 v1.26}
   *{package}{pdflscape}   {2016/05/14 v0.11}
   *{package}{lscape}      {2000/10/22 v3.01}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
@@ -150,6 +152,7 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
+  *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/TimeAggExample2.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitory.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.pdf}{0000/00/00 v0.0}

@@ -65,7 +65,8 @@ estimation_by_category<- function(category_moments,category_set) {
 # Function to plot shock variances and consumption elasticities
 plot_estimataion_output<- function(params, se, labels, category_for_title, category_for_save,transitory_only=FALSE) {
   # First plot the variances
-  dev.new()
+  #dev.new()
+  pdf(paste(figures_dir, "VarianceBy",category_for_save,tag,".pdf",sep=""))
   if (transitory_only){
     param_cols=2
     this_colors=c(colors[2])
@@ -96,12 +97,13 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
          angle=90,code=3, length=0.05)
   legend(2, plotTop, legend=this_legend, fill=this_colors,bty="n")
   #dev.copy(png, paste(figures_dir, "VarianceBy",category_for_save,tag,".png",sep=""))
-  dev.copy(pdf, paste(figures_dir, "VarianceBy",category_for_save,tag,".pdf",sep=""))
+  #dev.copy(pdf, paste(figures_dir, "VarianceBy",category_for_save,tag,".pdf",sep=""))
   #dev.copy(svg, paste(figures_dir, "VarianceBy",category_for_save,tag,".svg",sep=""))
   dev.off()
   
   # Now plot the Expenditure Elasticities
-  dev.new()
+  #dev.new()
+  pdf(paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
   if (transitory_only){
     param_cols=4
     this_legend=c(expression(paste(psi," Transitory MPX")))
@@ -110,7 +112,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
     this_legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX")))
   }
   par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-  barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=this_colors)
+  #barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=this_colors)
   plotTop = max(max(params[,param_cols]),1.0)
   barCenters <- barplot(height=t(params[,param_cols]),
                         names.arg=labels,
@@ -129,7 +131,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
          angle=90,code=3, length=0.05)
   legend(2, plotTop, legend=this_legend, fill=this_colors,bty="n")
   #dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,tag,".png",sep=""))
-  dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
+  #dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
   #dev.copy(svg, paste(figures_dir, "MPXBy",category_for_save,tag,".svg",sep=""))
   dev.off()
 }
@@ -582,7 +584,8 @@ wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_li
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
 wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),'+',sep=''))
 
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "MPXByDurables_nodurableproxy.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 #par(mar=c(8,7,4,5)+0.1)
 plotTop = max(max(wealth_quantile_params[,3:4]),1.0)
@@ -623,12 +626,13 @@ text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Ca
 text(x=barCenters[1,4]+1, y =text_y_pos-0.1, adj = c(0,0), labels="Non-durable Proxy",xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
 #dev.copy(png, paste(figures_dir, "MPXByDurables_nodurableproxy.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "MPXByDurables_nodurableproxy.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPXByDurables_nodurableproxy.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXByDurables_nodurableproxy.svg",sep=""))
 dev.off()
 
 
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "MPXByDurables_nocar.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
@@ -658,11 +662,12 @@ text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",
 text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Cars",xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
 #dev.copy(png, paste(figures_dir, "MPXByDurables_nocar.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "MPXByDurables_nocar.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPXByDurables_nocar.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXByDurables_nocar.svg",sep=""))
 dev.off()
 
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "MPXByDurables_all.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
@@ -683,12 +688,13 @@ arrows(barCenters, t(wealth_quantile_params[,3:4]-wealth_quantile_se[,3:4]*1.96)
 text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
 #dev.copy(png, paste(figures_dir, "MPXByDurables_all.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "MPXByDurables_all.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPXByDurables_all.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXByDurables_all.svg",sep=""))
 dev.off()
 
 #create blank white graph, for use in slides
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "MPXByDurables_blank.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
 barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
@@ -700,7 +706,7 @@ barCenters <- barplot(height=t(wealth_quantile_params[,3:4]),
                       ylab = axis_string, border="black", axes=TRUE)
 rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "white",border=NA)
 #dev.copy(png, paste(figures_dir, "MPXByDurables_blank.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "MPXByDurables_blank.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPXByDurables_blank.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXByDurables_blank.svg",sep=""))
 dev.off()
 ###############################################################################
@@ -731,7 +737,8 @@ benchmark_results <- read.csv(paste(PythonResults_folder,'benchmark_liquidwealth
 prefshock_results <- read.csv(paste(PythonResults_folder,'prefshock_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
 
 #plot transitory model results
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
@@ -754,12 +761,13 @@ arrows(barCenters, t(params-se*1.96),
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
 #dev.copy(png, paste(figures_dir, "benchmark_tran_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "benchmark_tran_denmark.svg",sep=""))
 dev.off()
 
 #plot transitory model results with preference shock model
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,4],prefshock_results[,4]),nrow=5,ncol=2)
@@ -769,7 +777,7 @@ barCenters <- barplot(height=t(params),
                       names.arg=quantile_names,
                       cex.names=0.75,
                       beside=TRUE,col=c(colors[2],"grey85"),
-                      las=2,ylim=c(0,plotTop), xaxt="n", 
+                      las=2,ylim=c(0,plotTop), xaxt="n",
                       main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
                       ylab = axis_string, xlab = "Liquid Wealth Quintile", border=NA, axes=TRUE)
 params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
@@ -792,13 +800,14 @@ arrows(barCenters, t(params-se*1.96),
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model")),"Model with Preference Shocks"), fill=c(colors[2],colors[3],"grey85"),bty="n")
 #dev.copy(png, paste(figures_dir, "prefshock_tran_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "prefshock_tran_denmark.svg",sep=""))
 dev.off()
 
 
 #plot permanent model results
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,3],benchmark_results[,3]),nrow=5,ncol=2)
@@ -821,12 +830,13 @@ arrows(barCenters, t(params-se*1.96),
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
 #dev.copy(png, paste(figures_dir, "benchmark_perm_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "benchmark_perm_denmark.svg",sep=""))
 dev.off()
 
 #plot permanent model results
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(wealth_quantile_params[,3],prefshock_results[,3]),nrow=5,ncol=2)
@@ -859,13 +869,14 @@ arrows(barCenters, t(params-se*1.96),
        angle=90,code=3, length=0.05)
 legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
 #dev.copy(png, paste(figures_dir, "prefshock_perm_denmark.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "prefshock_perm_denmark.svg",sep=""))
 dev.off()
 
 
 #plot data compared to model MPC
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "MPC_accuracy.pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 quantile_names = c("1","2","3","4","5")
 params = matrix(c(prefshock_results[,4],prefshock_results[,5]),nrow=5,ncol=2)
@@ -880,7 +891,7 @@ barCenters <- barplot(height=t(params),
 text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste("Empirical Method")),expression(paste("Model Partial Derivative (6m MPC)"))), fill=c(colors[2],colors[3]),bty="n")
 #dev.copy(png, paste(figures_dir, "MPC_accuracy.png",sep=""))
-dev.copy(pdf, paste(figures_dir, "MPC_accuracy.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPC_accuracy.pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPC_accuracy.svg",sep=""))
 dev.off()
 
@@ -999,12 +1010,12 @@ mean_Income
 ###############################################################################
 
 ###############################################################################
-# Do robustness graphs 
+# Do robustness graphs
 
 
 # Function to plot shock variances and consumption elasticities
 robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, title_string, filename, param_col=4, legend_xpos = NULL, x_label="Quantile") {
-  
+
   this_colors = c('#fb8072','#bebada','#ffffb3','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#8dd3c7')
   this_colors = this_colors[1:length(tag_list)]
   num_quantiles = length(quantile_labels)
@@ -1018,7 +1029,8 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
     params[,i] = output$category_params[,param_col]
     se[,i] = output$category_se[,param_col]
   }
-  dev.new()
+  #dev.new()
+  pdf(paste(figures_dir, filename,".pdf",sep=""))
   par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
   plotTop = max(max(params),1.0)
   #plotTop = max(params)
@@ -1028,9 +1040,9 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
                         beside=TRUE,col=this_colors,
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=title_string,
-                        ylab = axis_string, 
+                        ylab = axis_string,
                         xlab = x_label,
-                        border="black", 
+                        border="black",
                         axes=TRUE)
   text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=0, adj=1, labels=quantile_labels,xpd=TRUE)
   segments(barCenters, t(params-se*1.96),
@@ -1045,7 +1057,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   }
   legend(legend_xpos, plotTop, legend=tag_list_legend, fill=this_colors,bty="n")
   #dev.copy(png, paste(figures_dir, filename,".png",sep=""))
-  dev.copy(pdf, paste(figures_dir, filename,".pdf",sep=""))
+  #dev.copy(pdf, paste(figures_dir, filename,".pdf",sep=""))
   #dev.copy(svg, paste(figures_dir, filename,".svg",sep=""))
   dev.off()
 }
