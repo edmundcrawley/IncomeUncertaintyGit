@@ -57,9 +57,10 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       }
       right_axis=TRUE
     }
-    dev.new()
+    #dev.new()
+    pdf(paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
     par(mar=c(8,7,4,5)+1,cex.axis=1.2,cex.lab=1.5)
-    barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=colors)
+    #barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=colors)
     plotTop = max(max(params[,param_cols]),1.0)
     barCenters <- barplot(height=t(params[,param_cols]),
                           names.arg=labels,
@@ -154,7 +155,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       roundrect(mid = c(xpos,ypos), col = colors[1], radx = 4, rady = 0.03,dr = 0.001, rx=1,lcol=NA)
       text(xpos,ypos,"Wealthy",col="black")
     }
-    dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
+    #dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
     dev.off()
   }
 }

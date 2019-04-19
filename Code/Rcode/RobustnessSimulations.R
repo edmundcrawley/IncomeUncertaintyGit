@@ -5,6 +5,11 @@
 #
 # 
 ###############################################################################
+# This file simulates a permanent/transitory income along with a permanent/transitory consumption response
+# The transitory consumption response either decays as an AR(1) or as specified in Fagereng, Holm and Natvik (2018)
+# We then run the estimation procedure (which assumes transitory consumption decays to zero after 2 years) and see how
+# it compares with the 'truth'
+
 
 ServerRcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/"
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
@@ -172,24 +177,26 @@ phi_estimates_fagereng = read.csv(paste(tables_dir,"phi_estimates_fagereng.csv",
 true_MPC_estimates_fagereng = read.csv(paste(tables_dir,"true_MPC_estimates_fagereng.csv",sep=""), header = TRUE)[,2]
 
 
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "DecayBias.pdf",sep=""))
 par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
 plot(true_MPC_estimates_ar1,psi_estimates_ar1,col=colors[1],xlab="True MPC",ylab="Estimated MPC",type="l",lwd=4, 
      main = "Bias Due to Persistent Consumption")
 lines(c(0,1),c(0,1),lwd=4)
 lines(true_MPC_estimates_fagereng,psi_estimates_fagereng,col=colors[2],lwd=4)
 legend(0.1,0.9,legend=c("45 degree line","Exponential Decay","Fagereng et al. Decay"), col=c("black",colors),bty="n",lwd=4)
-dev.copy(pdf, paste(figures_dir, "DecayBias.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "DecayBias.pdf",sep=""))
 dev.off()
 
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "DecayBias_phi.pdf",sep=""))
 par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
 plot(true_MPC_estimates_ar1,phi_estimates_ar1,col=colors[1],xlab="True Transitory MPC",ylab="Estimated Permanent MPC",type="l",lwd=4, 
      main = "Bias Due to Persistent Consumption",ylim=c(0,1.1))
 lines(c(0,1),c(1,1),lwd=4)
 lines(true_MPC_estimates_fagereng,phi_estimates_fagereng,col=colors[2],lwd=4)
 legend(0.1,0.9,legend=c("True Permanent MPC","Exponential Decay","Fagereng et al. Decay"), col=c("black",colors),bty="n",lwd=4)
-dev.copy(pdf, paste(figures_dir, "DecayBias_phi.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "DecayBias_phi.pdf",sep=""))
 dev.off()
 
 ################################################################################################################
@@ -260,10 +267,11 @@ for (k in 1:num_sims){
   phi_se_estimates = phi_se_estimates+CS_output$ins_perm_se/num_sims
 }
 # plot income growth std
-dev.new()
+#dev.new()
+pdf(paste(figures_dir, "IncomeGrowthStd.pdf",sep=""))
 par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
 plot(income_growth_year,income_growth_std,col=colors[1],ylim=c(0.0,0.1),xlab="Year",ylab="Income Growth Std.",
      main="Income Growth Standard Deviation by Year")
 lines(income_growth_year,income_growth_std,col=colors[1])
-dev.copy(pdf, paste(figures_dir, "IncomeGrowthStd.pdf",sep=""))
+#dev.copy(pdf, paste(figures_dir, "IncomeGrowthStd.pdf",sep=""))
 dev.off()

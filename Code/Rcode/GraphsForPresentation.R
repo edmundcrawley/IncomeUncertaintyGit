@@ -7,6 +7,13 @@
 # 
 ###############################################################################
 
+# Set folders
+moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
+figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
+PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
+
+tag = "_level_lincome_head"
+
 thickness = 2
 plot_width = 9.5
 right_mar = 17
