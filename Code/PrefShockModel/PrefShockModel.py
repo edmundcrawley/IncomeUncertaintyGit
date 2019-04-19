@@ -619,6 +619,7 @@ class PrefLaborMarket(Market):
         Make a new instance of PrefLaborMarket.
         '''
         self.assignParameters(**kwds)      
+        self.print_parallel_error_once = True  
         # Save the current file's directory location for writing output:
         self.my_file_path = os.path.dirname(os.path.abspath(__file__))
         

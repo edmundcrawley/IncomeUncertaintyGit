@@ -225,8 +225,8 @@ for i in range(num_quantiles):
 # match either high or low wealth households
 ###############################################################################
 #These are the inputs
-#b_to_yagg_target = 0.5
-b_to_yagg_target = 0.03
+b_to_yagg_target = 0.5
+#b_to_yagg_target = 0.03
 income_var_target = 0.01
 sim_periods = 1200
 ignore_periods = 200
@@ -235,10 +235,12 @@ AgentCount = 1000
 bounds=[(0.9,0.99),(0.002,0.2)]
 run_optimization = True
 
-num_pref_vals = 2
+num_pref_vals = 5
+num_pref_vals = 2   #For testing ONLY
 max_pref_val = 0.8
 pref_vals = np.linspace(0.0001,max_pref_val,num_pref_vals)
-num_labelas_vals = 2
+num_labelas_vals = 5
+num_labelas_vals = 2    #For testing ONLY
 max_labor_elas = 0.5
 labor_elas = np.linspace(0.0001,max_labor_elas,num_labelas_vals)
 

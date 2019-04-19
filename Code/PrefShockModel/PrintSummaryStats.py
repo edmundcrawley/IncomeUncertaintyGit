@@ -26,7 +26,7 @@ def mystr3(number):
         out = ''
     return out
 
-filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\descriptives_text.csv"
+filename = "../descriptives_text.csv"
 summary_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.9) + "\\textwidth}\n"
@@ -58,7 +58,7 @@ with open('./Tables/summary_statistics.tex','w') as f:
     
 # This file also creates the URE and NNP table
     
-filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
+filename = "../URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 #Do large table for paper
@@ -108,7 +108,7 @@ with open('./Tables/URE_table.tex','w') as f:
     f.close()
 
 # And a table for all sufficient stats    
-filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
+filename = "../URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
@@ -126,7 +126,7 @@ with open('./Tables/sufficient_stats.tex','w') as f:
     
 
 # And a table for all sufficient stats    
-filename = "C:\Users\edmun\OneDrive\Documents\Research\Denmark\IncomeUncertaintyGit\Code\URE_NNP_positions_text.csv"
+filename = "../URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
