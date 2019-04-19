@@ -60,8 +60,6 @@ Temporary Items
 *.cb
 *.cb2
 
-### pdf ????  ###
-*.pdf
 
 ### Matlab ###
 *.asv
