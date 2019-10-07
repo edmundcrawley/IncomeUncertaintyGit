@@ -1,6 +1,6 @@
 \RequireVersions{
   *{application}{TeX}     {1990/03/25 v3.x}
-  *{format} {LaTeX2e}     {2018-04-01 v2.e}
+  *{format} {LaTeX2e}     {2018-12-01 v2.e}
   *{file}   {./econtexRoot.tex}{0000/00/00 v0.0}
   *{file}   {./econtexPaths.tex}{0000/00/00 v0.0}
   *{class}  {./texmf-local/tex/latex/econtex}{0000/00/00 v0.0}
@@ -17,14 +17,14 @@
   *{file}   {scrsize12pt.clo}{2019/02/01 v3.26b}
   *{package}{typearea}    {2019/02/01 v3.26b}
   *{package}{fontenc}     {0000/00/00 v0.0}
-  *{file}   {t1enc.def}   {2017/04/05 v2.0i}
-  *{package}{babel}       {2018/06/05 v3.22}
+  *{file}   {t1enc.def}   {2018/08/11 v2.0j}
+  *{package}{babel}       {2019/04/22 v3.30}
   *{file}   {bblopts.cfg} {2005/09/08 v0.1}
   *{file}   {english.ldf} {2017/06/06 v3.3r}
   *{package}{calc}        {2017/05/25 v4.3}
   *{package}{cancel}      {2013/04/12 v2.2}
   *{package}{verbatim}    {2014/10/28 v1.5q}
-  *{package}{amsmath}     {2017/09/02 v2.17a}
+  *{package}{amsmath}     {2018/12/01 v2.17b}
   *{package}{amstext}     {2000/06/29 v2.01}
   *{package}{amsgen}      {1999/11/30 v2.0}
   *{package}{amsbsy}      {1999/11/29 v1.2d}
@@ -34,9 +34,9 @@
   *{package}{amsthm}      {2017/10/31 v2.20.4}
   *{package}{threeparttable}{2003/06/13 v3.0}
   *{package}{dcolumn}     {2014/10/28 v1.06}
-  *{package}{array}       {2018/04/30 v2.4h}
-  *{package}{multicol}    {2018/04/20 v1.8s}
-  *{package}{multirow}    {2018/08/03 v2.3}
+  *{package}{array}       {2018/12/30 v2.4k}
+  *{package}{multicol}    {2018/12/27 v1.8v}
+  *{package}{multirow}    {2019/01/01 v2.4}
   *{package}{booktabs}    {2005/04/14 v1.61803}
   *{package}{latexsym}    {1998/08/17 v2.2e}
   *{package}{afterpage}   {2014/10/28 v1.08}
@@ -47,7 +47,7 @@
   *{package}{fontenc}     {0000/00/00 v0.0}
   *{file}   {t3enc.def}   {2001/12/31 v3}
   *{file}   {t1cmss.fd}   {2014/09/29 v2.5h}
-  *{file}   {t1enc.def}   {2017/04/05 v2.0i}
+  *{file}   {t1enc.def}   {2018/08/11 v2.0j}
   *{package}{xcolor}      {2016/05/11 v2.12}
   *{file}   {color.cfg}   {2016/01/02 v1.6}
   *{file}   {pdftex.def}  {2018/01/08 v1.0l}
@@ -73,7 +73,7 @@
   *{package}{graphics}    {2017/06/25 v1.2c}
   *{package}{trig}        {2016/01/03 v1.10}
   *{file}   {graphics.cfg}{2016/06/04 v1.11}
-  *{package}{hyperref}    {2018/02/06 v6.86b}
+  *{package}{hyperref}    {2018/11/30 v6.88e}
   *{package}{hobsub-hyperref}{2016/05/16 v1.14}
   *{package}{hobsub-generic}{2016/05/16 v1.14}
   *{package}{hobsub}      {2016/05/16 v1.14}
@@ -82,11 +82,11 @@
   *{package}{ifluatex}    {2016/05/16 v1.4}
   *{package}{ifvtex}      {2016/05/16 v1.6}
   *{package}{intcalc}     {2016/05/16 v1.2}
-  *{package}{ifpdf}       {2017/03/15 v3.2}
+  *{package}{ifpdf}       {2018/09/07 v3.3}
   *{package}{etexcmds}    {2016/05/16 v1.6}
   *{package}{kvsetkeys}   {2016/05/16 v1.17}
   *{package}{kvdefinekeys}{2016/05/16 v1.4}
-  *{package}{pdftexcmds}  {2018/01/30 v0.27}
+  *{package}{pdftexcmds}  {2018/09/10 v0.29}
   *{package}{pdfescape}   {2016/05/16 v1.14}
   *{package}{bigintcalc}  {2016/05/16 v1.4}
   *{package}{bitset}      {2016/05/16 v1.2}
@@ -101,9 +101,9 @@
   *{package}{ifxetex}     {2010/09/12 v0.6}
   *{package}{auxhook}     {2016/05/16 v1.4}
   *{package}{kvoptions}   {2016/05/16 v3.12}
-  *{file}   {pd1enc.def}  {2018/02/06 v6.86b}
+  *{file}   {pd1enc.def}  {2018/11/30 v6.88e}
   *{file}   {hyperref.cfg}{2002/06/06 v1.2}
-  *{file}   {hpdftex.def} {2018/02/06 v6.86b}
+  *{file}   {hpdftex.def} {2018/11/30 v6.88e}
   *{package}{rerunfilecheck}{2016/05/16 v1.8}
   *{package}{./texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{package}{endfloat}    {2018/03/24 v2.6}
@@ -153,9 +153,9 @@
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
   *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/TimeAggExample2.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitory.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/TimeAgg_simple.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/consumption_measures.png}{0000/00/00 v0.0}
   *{file}   {./Figures/VarianceByLiquidWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByLiquidWealth_level_lincome_head.pdf}{0000/00/00 v0.0}
