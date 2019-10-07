@@ -63,7 +63,7 @@ estimation_by_category<- function(category_moments,category_set) {
 }
 
 # Function to plot shock variances and consumption elasticities
-plot_estimataion_output<- function(params, se, labels, category_for_title, category_for_save,transitory_only=FALSE) {
+plot_estimataion_output<- function(params, se, labels, category_for_title, category_for_save,transitory_only=FALSE,category_label="") {
   # First plot the variances
   #dev.new()
   pdf(paste(figures_dir, "VarianceBy",category_for_save,tag,".pdf",sep=""))
@@ -86,7 +86,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         beside=TRUE,col=this_colors,
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=paste("Permanent and Transitory Variance by ",category_for_title),
-                        ylab = "Shock Variance\n", border="black", axes=TRUE)
+                        ylab = "Shock Variance\n", border="black", axes=TRUE,xlab=category_label)
   text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
   segments(barCenters, t(params[,param_cols]-se[,param_cols]*1.96),
            barCenters,
@@ -120,7 +120,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         beside=TRUE,col=this_colors,
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=paste(title_string, " by ",category_for_title),
-                        ylab = axis_string, border="black", axes=TRUE)
+                        ylab = axis_string, border="black", axes=TRUE,xlab=category_label)
   text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
   segments(barCenters, t(params[,param_cols]-se[,param_cols]*1.96),
            barCenters,
@@ -915,8 +915,8 @@ URE_quantile_se = output$category_se
 URE_quantile_obs = output$category_obs
 URE_quantile_total_var = output$category_total_var
 URE_quantile_set = t(round(moments_by_URE_quantile$quantile_means/mean_household_consumption,round_digits))
-plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE)
-plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","permURE",transitory_only = FALSE)
+plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE, category_label = "URE/Mean Expenditure")
+plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","permURE",transitory_only = FALSE, category_label = "URE/Mean Expenditure")
 
 
 #Now calculate the sufficient statistic
@@ -924,6 +924,7 @@ elas_URE_NR = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_me
 elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
 
 mean_URE_MPX = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means))
+mean_URE_MPX_se = (sum((URE_quantile_se[,4]*t(moments_by_URE_quantile$quantile_means))^2)^0.5)/num_quantiles
 
 ###############################################################################
 ###############################################################################
@@ -940,14 +941,16 @@ NNP_quantile_se = output$category_se
 NNP_quantile_obs = output$category_obs
 NNP_quantile_total_var = output$category_total_var
 NNP_quantile_set = t(round(moments_by_NNP_quantile$quantile_means /mean_household_consumption,round_digits))
-plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","NNP",transitory_only = TRUE)
-plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","permNNP",transitory_only = FALSE)
+plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","NNP",transitory_only = TRUE, category_label = "NNP/Mean Expenditure")
+plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","permNNP",transitory_only = FALSE, category_label = "NNP/Mean Expenditure")
 
 #Now calculate the sufficient statistic
 elas_NNP_NR = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
 elas_NNP = elas_NNP_NR - mean(NNP_quantile_params[,4])*mean(t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
 
 mean_NNP_MPX = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means))
+mean_NNP_MPX_se = (sum((NNP_quantile_se[,4]*t(moments_by_NNP_quantile$quantile_means))^2)^0.5)/num_quantiles
+
 ###############################################################################
 # load Income quintile data and create graph
 load(paste(moments_dir,'moments_by_Income_quantile',durable_tag,'.RData',sep=''))
@@ -962,16 +965,19 @@ Income_quantile_se = output$category_se
 Income_quantile_obs = output$category_obs
 Income_quantile_total_var = output$category_total_var
 Income_quantile_set = round(t(moments_by_Income_quantile$quantile_means /mean_household_consumption),round_digits)
-plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","Income",transitory_only = TRUE)
-plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","permIncome",transitory_only = FALSE)
+plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","Income",transitory_only = TRUE, category_label = "Income/Mean Expenditure")
+plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","permIncome",transitory_only = FALSE, category_label = "Income/Mean Expenditure")
 
 #Now calculate the sufficient statistic
 elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
 elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
 
 mean_Income_MPX = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means))
+mean_Income_MPX_se = (sum((Income_quantile_se[,4]*t(moments_by_Income_quantile$quantile_means))^2)^0.5)/num_quantiles
+
 cov_Income_MPX = mean_Income_MPX-mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means))
 mean_MPX = mean(Income_quantile_params[,4])
+mean_MPX_se = (sum(Income_quantile_se[,4]^2)^0.5)/num_quantiles
 mean_Income = mean(t(moments_by_Income_quantile$quantile_means))
 ###############################################################################
 
@@ -996,6 +1002,8 @@ elas_MeanCons_NR = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quant
 elas_MeanCons = elas_MeanCons_NR - mean(MeanCons_quantile_params[,4])*mean(t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
 
 mean_cons_MPX = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means))
+mean_cons_MPX_se = (sum((MeanCons_quantile_se[,4]*t(moments_by_MeanCons_quantile$quantile_means))^2)^0.5)/num_quantiles
+
 
 cons_weighted_MPC = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means) /mean(t(moments_by_MeanCons_quantile$quantile_means)))
 
@@ -1212,6 +1220,98 @@ num_quantiles = 5
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Liquid Wealth Quintile", "DivPerm_tranMPX_liquidwealth", param_col=4,legend_xpos = 6, x_label="Quintile")
 #permanent
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "DivPerm_permMPX_liquidwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
+
+
+#################################################################################
+# 
+# Output Auclert sufficient statistics
+# aggregated up to include out of sample MPX
+#
+# 
+###############################################################################
+
+# Order of groups
+# Our Sample
+# Head <30
+# Head >55
+# Pensions and Special Saving
+# General government (+NPISH)
+# Non-financial corporations
+# Financial sector (excl. pension funds)
+# Rest of the world
+
+# Data below comes from National accounts and Stata files (see URE_NNP_positions_NationalAccounts.xlsx in the Code directory)
+NNP_by_group = c(-1402.5259604757, -216.9792779, -161.2326999, 939.6772886, -583.8741698, -333.746706, 1532.6105, 227.0940084)
+URE_by_group = c(-421.5768154,  -105.331947, 38.6470548,  257.4458325,  -159.965526,  -91.4374537,  419.8932876,  62.21753654)
+MPX_by_group = c(-999, 0.5, 0.5, 0.1, 0.0, 0.1, 0.1, 0.0) #note first category will be replaced with estimations
+Total_consumption = 921.3977035
+Total_consumption_under_30 = 149.357466144686
+Total_consumption_over_55 = 265.951785816733
+sample_size = 1289481.85714286 #note not an integer because this is an average over many years
+under_30_size = 669565.714285714
+over_55_size = 937670.1429
+total_size = sample_size+under_30_size+over_55_size
+
+Total_income_under_30 = 138.996539325257
+Total_income_over_55 = 251.828251187066
+
+E_R_component = URE_by_group*MPX_by_group/Total_consumption
+E_R_component[1] = mean_URE_MPX*sample_size/(Total_consumption*1000000000)
+E_R_component_se = mean_URE_MPX_se*sample_size/(Total_consumption*1000000000)
+
+E_P_component = NNP_by_group*MPX_by_group/Total_consumption
+E_P_component[1] = mean_NNP_MPX*sample_size/(Total_consumption*1000000000)
+E_P_component_se = mean_NNP_MPX_se*sample_size/(Total_consumption*1000000000)
+
+
+M_component = c(0,0,0)
+M_component[1] = mean_Income_MPX*sample_size/(Total_consumption*1000000000)
+M_component[2] = Total_income_under_30*MPX_by_group[2]/Total_consumption
+M_component[3] = Total_income_over_55*MPX_by_group[3]/Total_consumption
+M_component_se = mean_Income_MPX_se*sample_size/(Total_consumption*1000000000)
+
+Mean_MPX_component = c(0,0,0)
+Mean_MPX_component[1] = mean_MPX*sample_size/total_size
+Mean_MPX_component[2] = MPX_by_group[2]*under_30_size/total_size
+Mean_MPX_component[3] = MPX_by_group[3]*over_55_size/total_size
+Mean_MPX_component_se = mean_MPX_se*sample_size/total_size
+
+Income_over_C_component = c(0,0,0)
+Income_over_C_component[1] = mean_Income*sample_size/(Total_consumption*1000000000)
+Income_over_C_component[2] = Total_income_under_30/Total_consumption
+Income_over_C_component[3] = Total_income_over_55/Total_consumption
+
+E_R_auclert = sum(E_R_component)
+E_R_auclert_se = E_P_component_se
+E_P_auclert = sum(E_P_component)
+E_P_auclert_se = E_P_component_se
+M_auclert = sum(M_component)
+M_auclert_se = M_component_se
+E_Y_auclert = sum(M_component) - sum(Mean_MPX_component)*sum(Income_over_C_component)
+E_Y_auclert_se = (M_component_se^2 + Mean_MPX_component_se^2*sum(Income_over_C_component)^2)^0.5
+S_auclert = 1.0 - (mean_cons_MPX*sample_size/(Total_consumption*1000000000) + MPX_by_group[2]*Total_consumption_under_30/Total_consumption + MPX_by_group[2]*Total_consumption_over_55/Total_consumption ) 
+S_auclert_se = mean_cons_MPX_se*sample_size/(Total_consumption*1000000000)
+
+
+# Convert to dollars for the paper
+x_rate_2015 = 6.87
+NNP_dollar_by_group = NNP_by_group/x_rate_2015
+URE_dollar_by_group = URE_by_group/x_rate_2015
+
+# Write outputs to csv file
+output = matrix(NA,nrow=9,ncol=7)
+output[2:8,1] = MPX_by_group[2:8]
+output[1:8,2] = NNP_dollar_by_group
+output[1:8,3] = URE_dollar_by_group
+output[1:8,4] = E_P_component
+output[9,4] = sum(E_P_component)
+output[1:8,5] = E_R_component
+output[9,5] = sum(E_R_component)
+output[1:5,6] = c(M_auclert, E_Y_auclert, E_P_auclert, E_R_auclert, S_auclert)
+output[1:5,7] = c(M_auclert_se, E_Y_auclert_se, E_P_auclert_se, E_R_auclert_se, S_auclert_se)
+
+write.table(output, file = paste(tables_dir,"URE_NNP_positions_text.csv",sep=""),row.names=FALSE, na="",col.names=FALSE, sep=",")
+
 
 
 ###############################################################################

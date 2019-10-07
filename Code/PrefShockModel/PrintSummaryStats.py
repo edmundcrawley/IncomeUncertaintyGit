@@ -58,7 +58,7 @@ with open('./Tables/summary_statistics.tex','w') as f:
     
 # This file also creates the URE and NNP table
     
-filename = "../URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 #Do large table for paper
@@ -108,15 +108,17 @@ with open('./Tables/URE_table.tex','w') as f:
     f.close()
 
 # And a table for all sufficient stats    
-filename = "../URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
    
 output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{ccccc}  \n"
 output += "$\mathcal{M}$ & $\mathcal{E}_Y$ & $\mathcal{E}_P$  & $\mathcal{E}_R$ & $\mathcal{S}$ \n"
-output += "\\\\ \\midrule"
-output += "\\\\ " + mystr2(URENNP_data[0,5]) + " & " + mystr2(URENNP_data[1,5]) + " & "+ mystr2(URENNP_data[2,5]) + " & "+ mystr2(URENNP_data[3,5]) + " & "+ mystr2(URENNP_data[4,5]) + " \n"
+output += "\\\\ \\midrule "
+output += mystr2(URENNP_data[0,5]) + " & " + mystr2(URENNP_data[1,5]) + " & "+ mystr2(URENNP_data[2,5]) + " & "+ mystr2(URENNP_data[3,5]) + " & "+ mystr2(URENNP_data[4,5]) + " \n"
+output += "\\\\ (" + mystr2(URENNP_data[0,6]) + ") & (" + mystr2(URENNP_data[1,6]) + ") & ("+ mystr2(URENNP_data[2,6]) + ") & ("+ mystr2(URENNP_data[3,6]) + ") & ("+ mystr2(URENNP_data[4,6]) + ") \n"
+
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
@@ -126,7 +128,7 @@ with open('./Tables/sufficient_stats.tex','w') as f:
     
 
 # And a table for all sufficient stats    
-filename = "../URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
