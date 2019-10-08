@@ -1302,7 +1302,9 @@ URE_dollar_by_group = URE_by_group/x_rate_2015
 output = matrix(NA,nrow=9,ncol=7)
 output[2:8,1] = MPX_by_group[2:8]
 output[1:8,2] = NNP_dollar_by_group
+output[9,2] = sum(NNP_dollar_by_group)
 output[1:8,3] = URE_dollar_by_group
+output[9,3] = sum(URE_dollar_by_group)
 output[1:8,4] = E_P_component
 output[9,4] = sum(E_P_component)
 output[1:8,5] = E_R_component
