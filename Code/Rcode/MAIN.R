@@ -84,7 +84,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
                         names.arg=labels,
                         cex.names=0.75,
                         beside=TRUE,col=this_colors,
-                        las=2,ylim=c(0,plotTop), xaxt="n",
+                        las=2,ylim=c(0,plotTop*1.05), xaxt="n",
                         main=paste("Permanent and Transitory Variance by ",category_for_title),
                         ylab = "Shock Variance\n", border="black", axes=TRUE,xlab=category_label)
   text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
@@ -621,9 +621,9 @@ arrows(barCenters, t(wealth_quantile_params_nodurableproxy[,3:4]-wealth_quantile
        angle=90,code=3, length=0.05)
 text_x_pos = barCenters[1,4]
 text_y_pos = 1.0
-text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE,col="grey90")
-text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Cars",xpd=TRUE,col="grey80")
-text(x=barCenters[1,4]+1, y =text_y_pos-0.1, adj = c(0,0), labels="Non-durable Proxy",xpd=TRUE)
+text(x=barCenters[1,4]+1, y =text_y_pos, adj = c(0,0), labels="All Expenditure",xpd=TRUE,col="grey60")
+text(x=barCenters[1,4]+1, y =text_y_pos-0.05, adj = c(0,0), labels="Excluding Cars",xpd=TRUE,col="grey40")
+text(x=barCenters[1,4]+1, y =text_y_pos-0.1, adj = c(0,0), labels="Nondurable Proxy",xpd=TRUE)
 legend(2, plotTop, legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX"))), fill=c(colors[1],colors[2]),bty="n")
 #dev.copy(png, paste(figures_dir, "MPXByDurables_nodurableproxy.png",sep=""))
 #dev.copy(pdf, paste(figures_dir, "MPXByDurables_nodurableproxy.pdf",sep=""))
