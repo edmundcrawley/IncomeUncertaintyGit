@@ -15,6 +15,34 @@ create_moments_CS <- function(all_data, diff_to_use=3:5) {
     # length of panel. Assumes all individuals appear in all years
     T  <- max(all_data[,col_year])-min(all_data[,col_year])+1 
     y  <- nrow(all_data) 
+    
+    
+    #Although in Stata we get residuals of income, when we select on some aspects of the data
+    #the mean changes in income and consumption may no longer be zero. This can introduce bias.
+    #Here we recenter the sample being examined year by year
+    recenter_means=TRUE
+    mean_dy = matrix(0.0,y)
+    mean_dc = matrix(0.0,y)
+    for (i in 1:T){
+      index = i + (0:(y/T -1))*T
+      dy_with_na = all_data[,coly_dif]
+      dy_with_na[all_data[,coldy_dif]==0] = NA
+      dc_with_na = all_data[,colc_dif]
+      dc_with_na[all_data[,coldc_dif]==0] = NA
+      mean_dy[index] = mean(dy_with_na[index],na.rm=TRUE)
+      mean_dc[index] = mean(dc_with_na[index],na.rm=TRUE)
+    }
+    #take out means if required
+    if (recenter_means==TRUE) {
+      all_data[,coly_dif] = all_data[,coly_dif] - mean_dy
+      all_data[,coly_dif][all_data[,coldy_dif]==0] = 0
+      all_data[,colc_dif] = all_data[,colc_dif] - mean_dc
+      all_data[,colc_dif][all_data[,coldc_dif]==0] = 0
+      #store the size of mean removed
+    }
+    mean_dy = mean_dy[1:T]
+    mean_dc = mean_dc[1:T]
+
 
     #matrix containing the 3/4/5th (or diff_to_use) differences
     #First half of the columns are income growth, second half are consumption growth
@@ -103,7 +131,7 @@ create_moments_CS <- function(all_data, diff_to_use=3:5) {
     #And regression coefficients of consumption change vs income change for different time periods
     reg_coef = moment_cy/moment_y2
 
-    output <- list("c_vector" = c_vector, "omega" = omega, "T" = T, "delta_y_var"=delta_y_var,"reg_coef"=reg_coef,"moment_y2"=moment_y2,"moment_cy"=moment_cy,"d_dif"=d_dif)
+    output <- list("c_vector" = c_vector, "omega" = omega, "T" = T, "delta_y_var"=delta_y_var,"reg_coef"=reg_coef,"moment_y2"=moment_y2,"moment_cy"=moment_cy,"d_dif"=d_dif,"mean_dy"=mean_dy,"mean_dc"=mean_dc)
     return (output)
 }
 
