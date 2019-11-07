@@ -15,6 +15,34 @@ create_moments_BPP <- function(all_data) {
   T  <- max(all_data[,col_year])-min(all_data[,col_year])+1 
   y  <- nrow(all_data) 
   
+  #Although in Stata we get residuals of income, when we select on some aspects of the data
+  #the mean changes in income and consumption may no longer be zero. This can introduce bias.
+  #Here we recenter the sample being examined year by year
+  recenter_means=TRUE
+  mean_dy = matrix(0.0,y)
+  mean_dc = matrix(0.0,y)
+  for (i in 1:T){
+    index = i + (0:(y/T -1))*T
+    dy_with_na = all_data[,coly_dif]
+    dy_with_na[all_data[,coldy_dif]==0] = NA
+    dc_with_na = all_data[,colc_dif]
+    dc_with_na[all_data[,coldc_dif]==0] = NA
+    mean_dy[index] = mean(dy_with_na[index],na.rm=TRUE)
+    mean_dc[index] = mean(dc_with_na[index],na.rm=TRUE)
+  }
+  #take out means if required
+  if (recenter_means==TRUE) {
+    all_data[,coly_dif] = all_data[,coly_dif] - mean_dy
+    all_data[,coly_dif][all_data[,coldy_dif]==0] = 0
+    all_data[,colc_dif] = all_data[,colc_dif] - mean_dc
+    all_data[,colc_dif][all_data[,coldc_dif]==0] = 0
+    #store the size of mean removed
+  }
+  mean_dy = mean_dy[1:T]
+  mean_dc = mean_dc[1:T]
+  
+  
+  
   # dif 
   dif    <- array(1:T^2, dim=c(T,T))*0.0
   d_dif  <- array(1:T^2, dim=c(T,T))*0.0
@@ -106,8 +134,8 @@ create_moments_BPP <- function(all_data) {
   
   only_income = FALSE
   if (only_income) {
-    output <- list("c_vector" = c_vector_income_only, "omega" = omega_income_only, "d_dif"=d_dif)
+    output <- list("c_vector" = c_vector_income_only, "omega" = omega_income_only, "d_dif"=d_dif, "mean_dy"=mean_dy, "mean_dc"=mean_dc)
   }  else {
-    output <- list("c_vector" = c_vector_both, "omega" = omega_both, "d_dif"=d_dif)
+    output <- list("c_vector" = c_vector_both, "omega" = omega_both, "d_dif"=d_dif, "mean_dy"=mean_dy,"mean_dc"=mean_dc)
   }
   return (output) }
