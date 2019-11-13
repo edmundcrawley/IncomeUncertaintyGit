@@ -264,6 +264,30 @@ moments_by_Income_quantile$quantile_means = quantile_means
 
 save(moments_by_Income_quantile,file=paste(moments_dir,'BPP_moments_by_Income_quantile',durable_tag,'.RData',sep=''))
 ###############################################################################
+# Sort into MeanCons quintiles and calculate related moments
+MeanCons_col =32
+MeanCons = array(0.0, dim=c(y,1))
+for (k in 0:((y/T)-1)){
+  i <- k*T
+  MeanCons[(i+1):(i+T),] = mean(raw_data[(i+1):(i+T),MeanCons_col],na.rm=TRUE)
+}
+num_quantiles =10
+
+quantile_cutoffs = t(read.csv(paste(empirical_input_folder,"Consumption_decile_cutoffs.txt",sep=""), sep=",",header=FALSE))
+quantile_cutoffs = c(min(MeanCons,na.rm=TRUE)-1000, quantile_cutoffs[1:num_quantiles-1], max(MeanCons,na.rm=TRUE)+1000)
+MeanCons_quantile = as.numeric(cut(MeanCons,breaks=quantile_cutoffs,include.lowest=TRUE, labels=1:num_quantiles))
+MeanCons_quantile_set = as.character(1:num_quantiles)
+moments_by_MeanCons_quantile =moments_by_category_BPP(MeanCons_quantile, MeanCons_quantile_set,(first_year & age_range))
+# Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
+quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
+moments_by_MeanCons_quantile$quantiles = quantiles
+
+quantile_means = read.csv(paste(empirical_input_folder,"Consumption_decile_means.txt",sep=""), sep=",",header=FALSE)
+moments_by_MeanCons_quantile$quantile_means = quantile_means
+
+save(moments_by_MeanCons_quantile,file=paste(moments_dir,'BPP_moments_by_MeanCons_quantile',durable_tag,'.RData',sep=''))
+###############################################################################
+
 #reverse changes to all_data
 all_data[,5]=raw_data[,5]
 all_data[,6]=raw_data[,6]
@@ -275,7 +299,7 @@ write.table(moments_all$omega, file = paste(moments_dir,'moments_all','_omega','
 write.table(moments_all$d_dif, file = paste(moments_dir,'moments_all','_d_dif','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
 
 #moments by quantiles
-for(quantile_type in c("liquid_wealth_quantile","net_wealth_quantile","URE_quantile","NNP_quantile","Income_quantile")){
+for(quantile_type in c("liquid_wealth_quantile","net_wealth_quantile","URE_quantile","NNP_quantile","Income_quantile","MeanCons_quantile")){
   if (quantile_type=="liquid_wealth_quantile" || quantile_type=="net_wealth_quantile") {
     num_quantiles = 5
   }
