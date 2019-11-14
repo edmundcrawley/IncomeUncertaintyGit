@@ -1,0 +1,121 @@
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}
+\caption{Regression Coefficients of Consumption Growth on Income Growth}
+\label{fig:GrowthReg}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.7]{\econtexRoot/Figures/GenericTransitory.pdf}
+\caption{Generic Transitory Shock Impulse Response}
+\label{fig:GenericTransitory}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.6]{\econtexRoot/Figures/GenericTransitoryConsumptionWithBPP.pdf}
+\caption{Generic Transitory Shock Impulse Response}
+\label{fig:GenericTransitoryBPP}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.5]{\econtexRoot/Figures/TimeAgg_simple.pdf}
+\caption{The Time Aggregation Problem}
+\label{fig:TimeAgg}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.8]{\econtexRoot/Figures/consumption_measures.png}
+\caption{Imputed Register Measure and National Account Measure of Expenditure (from \cite{abildgren_consistency_2018})}
+\label{fig:ConsumptionMeasures}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.pdf}
+\centering
+\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByLiquidWealth_level_lincome_head.pdf}
+\caption{Variance and MPX by Liquid Wealth Quintile}
+\label{fig:MPXByLiquidWealth}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
+\centering
+\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.pdf}
+\caption{Variance and MPX by Net Wealth Quintile}
+\label{fig:MPXByNetWealth}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
+\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
+\caption{MPX Distribution by URE, NNP, and Income}
+\label{fig:MPCAuclert}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics[scale=0.45]{\econtexRoot/Figures/benchmark_Lorenz.png}
+\caption{Lorenz Curve for Danish Liquid Assets}
+\label{fig:Lorenz}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark.pdf}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark_pref.pdf}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark.pdf}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark_pref.pdf}
+\caption{Baseline model (LHS) and Preference Shock Model (RHS) with the Data}
+\label{fig:CSTW}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.6]{\econtexRoot/Figures/DurableBias.pdf}
+\caption{Bias in Transitory MPX with Delay in Durable Goods Purchase}
+\label{fig:durable_bias}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.55]{\econtexRoot/Figures/MPXByDurables_nodurableproxy.pdf}
+\caption{MPX Removing Cars and Using the Nondurable Proxy Panel}
+\label{fig:MPXByDurables}
+\end{centering}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\begin{centering}
+\includegraphics[scale=0.4]{\econtexRoot/Figures/DecayBias.pdf}
+\caption{Bias from Persistent Consumption}
+\label{fig:DecayBias}
+\end{centering}
+\end{figure}

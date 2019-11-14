@@ -1,0 +1,52 @@
+\begin{sidewaystable} \small
+\caption{Estimates of the Marginal Propensity to Consume from Income Shocks}
+\label{table:MPCLiterature}
+\begin{minipage}{\textwidth}
+\input\econtexRoot/Tables/MPCLiterature.tex
+\footnotesize{$^{\star}$ Elasticity. Methods: 1) Natural experiment 2) Survey question 3) Covariance restrictions \\
+This table is adapted from \cite{carroll_distribution_2017}.}
+\end{minipage}
+\end{sidewaystable}
+\efloatseparator
+ 
+\begin{table}
+\caption{Summary Statistics}
+%\captionof{table}{Summary Statistics}
+\label{table:SummaryStatistics}
+\input\econtexRoot/Tables/summary_statistics.tex
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+\caption{Sufficient Statistics Definitions}
+%\captionof{table}{Sufficient Statistics Definitions}
+\label{table:auclertSS}
+\resizebox{\textwidth}{!}{\begin{tabular}{ccl}
+\textbf{Statistic} & \textbf{Definition} & \textbf{Description} \\
+\hline
+$\mathcal{M}$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Income deciles} } \text{MPX}_i Y_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j Y_j \Bigg]$ & Income-weighted MPX \\
+$\mathcal{E}_Y$ & $\mathcal{M} - \overline{\text{MPX}}\frac{Y}{C}$ & Redistribution elasticity for Y \\
+$\mathcal{E}_P$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{NNP deciles} } \text{MPX}_i \text{NNP}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{NNP}_j \Bigg]$ & Redistribution elasticity for P \\
+$\mathcal{E}_R$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{URE deciles} } \text{MPX}_i \text{URE}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{URE}_j \Bigg]$ & Redistribution elasticity for R \\
+$\mathcal{S}$ &$1-\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Consumption deciles} } \text{MPX}_i C_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j C_j \Bigg]$ & Hicksian scaling factor \\
+\hline
+\end{tabular}}
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+\caption{Aggregating Redistribution Elasticities}
+%\captionof{table}{Aggregating Redistribution Elasticities}
+\label{table:aggElas}
+\input ./Tables/URE_NNP_table.tex
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+\caption{Sufficient Statistics}
+%\captionof{table}{Sufficient Statistics}
+\label{table:suff_stats}
+\begin{center}
+\input ./Tables/sufficient_stats.tex
+\end{center}
+\end{table}
