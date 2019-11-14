@@ -264,6 +264,8 @@ moments_by_Income_quantile$quantile_means = quantile_means
 
 save(moments_by_Income_quantile,file=paste(moments_dir,'BPP_moments_by_Income_quantile',durable_tag,'.RData',sep=''))
 ###############################################################################
+
+# ###############################################################################
 # Sort into MeanCons quintiles and calculate related moments
 MeanCons_col =32
 MeanCons = array(0.0, dim=c(y,1))
@@ -287,6 +289,8 @@ moments_by_MeanCons_quantile$quantile_means = quantile_means
 
 save(moments_by_MeanCons_quantile,file=paste(moments_dir,'BPP_moments_by_MeanCons_quantile',durable_tag,'.RData',sep=''))
 ###############################################################################
+
+
 
 #reverse changes to all_data
 all_data[,5]=raw_data[,5]
