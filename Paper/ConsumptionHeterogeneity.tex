@@ -8,8 +8,8 @@
 \usepackage{placeins}
 \usepackage{pdfpages}
 \usepackage{setspace}
-\onehalfspacing
-%\doublespacing
+%\onehalfspacing
+\doublespacing
 \usepackage{booktabs,rotating}
 
 
@@ -98,8 +98,8 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 
 
 \begin{authorsinfo}
-\name{Crawley: Federal Reserve Board, \href{mailto:edmund.s.crawley@frb.gov}{\texttt{edmund.s.crawley@frb.gov}}}
-\name{Kuchler: Danmarks Nationalbank, \href{mailto:aku@nationalbanken.dk}{\texttt{aku@nationalbanken.dk}}}
+\name{Crawley: Federal Reserve Board, Constitution Ave \& 20th Street NW, Washington, DC 20551, USA, \href{mailto:edmund.s.crawley@frb.gov}{\texttt{edmund.s.crawley@frb.gov}}}
+\name{Kuchler: Danmarks Nationalbank, Havnegade 5, 1093 Kobenhaven K, Denmark, \href{mailto:aku@nationalbanken.dk}{\texttt{aku@nationalbanken.dk}}}
 \end{authorsinfo}
 \thanks{Viewpoints and conclusions stated in this paper are the responsibility of the authors alone and do not necessarily reflect the viewpoints of Danmarks Nationalbank or the Federal Reserve Board. The authors wish to thank colleagues and participants at conferences and seminars at Banque de France, BLS, Bocconi University, Danish Ministry of Finance, Danmarks Nationalbank, Deutsche Bundesbank, European Central Bank, Federal Reserve Board, FDIC, Georgetown University, Johns Hopkins University, University of Bergamo, University of Copenhagen, and the Boston, San Francisco, and New York Feds for useful comments and suggestions.}
 
@@ -112,7 +112,7 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 \section{Introduction}
 How do differences in household consumption behavior affect the business cycle? Recent heterogeneous agent models suggest that wealth redistribution between households with high and low marginal propensity to consume (MPC) may play a dominant role in propagating macroeconomic shocks, particularly for monetary policy.\footnote{See for example \cite{kaplan_monetary_2016}; \cite{garriga_mortgages_2017}; and \cite{greenwald_mortgage_2018}} Testing the microfoundations of these models empirically, and quantifying the macroeconomic importance of redistribution, often boils down to measuring how MPCs vary systematically over dimensions such as wealth and exposure to interest rates. However, shortcomings in both the empirical methods used to measure MPCs and in the available data have limited the literature's ability to do this.
 
-This paper overcomes some of these shortcomings. We present a new method to measure MPCs from income and consumption panel data. We then apply this method to different groups of households in administrative data from Denmark.
+In this paper we overcome some of these shortcomings. We present a new method to measure MPCs from income and consumption panel data. We then apply this method to different groups of households in administrative data from Denmark.
 
 Our method builds upon that of \cite{blundell_consumption_2008} (henceforth BPP), following their lead by imposing identifying restrictions on household income and consumption dynamics.\footnote{The BPP method, and those closely related to it, has become a standard tool in the literature. See, for example, \cite{violante_wealthy_2014}; \cite{auclert_monetary_2017}; and \cite{manovskii_how_2017}} We make two improvements to the method. First, we explicitly model the time aggregated nature of income and consumption in our data. Time aggregation, overlooked in much of the household finance literature, can result in significant estimation bias if it is not explicitly modeled.\footnote{\cite{crawley_time_2019} shows that estimates of the elasticity of consumption to transitory income shocks using the BPP method depend strongly on the nature of time aggregation in the data. He shows the estimate of the elasticity of consumption to transitory income increases from to 0.05 - the estimate in BPP - to 0.25 when the time aggregated nature of the PSID data is modeled.} Second, we allow complete freedom in how consumption responds to a transitory income shock for up to two years, after which the we assume no further response. This contrasts with the assumption in BPP that consumption follows a random walk. The random walk assumption, incompatible with the high MPCs we observe in the data, was previously thought to be benign for estimates of consumption responses to transitory shocks.\footnote{\cite{kaplan_how_2010} show that the estimate of the period one consumption response to transitory shocks in BPP is unaffected by assumptions on the path of consumption in following periods. This result does not hold for time aggregated data - in our data we would greatly overestimate MPCs if we assumed a random walk, see online appendix \ref{BPP_compare}.} However, this is not true for time aggregated data. A consequence of allowing freedom for two years is that our method requires a slightly longer panel than BPP, but we believe the estimates we get, robust to many forms of misspecification, are worth this cost.
 
@@ -120,7 +120,7 @@ We estimate the average MPC in the economy to be 0.5, close to estimates obtaine
 
 Our data consist of a panel of income and expenditure for the entire Danish population, along with details of the interest rate sensitivity of households' financial assets and liabilities that we require to estimate the redistribution effects of monetary policy. Income and wealth data are largely third party reported to the tax authority and correspondingly accurate. We use the household budget constraint to back out expenditure from income and wealth, an increasingly common approach with Scandinavian data.
 
-Speaking to the microfoundations of consumption behavior, we uncover a clear negative monotonic relation between MPC and liquid wealth. We show that the sign of this relationship is in line with standard buffer-stock models, although the magnitude of MPCs, especially for households with the most liquid assets, is difficult to reconcile with theory. When we include illiquid wealth, such as housing, this monotonic relationship between wealth and MPC no longer holds - those with close to zero net worth have higher MPCs than both those with negative and positive net worth. This is consistent with the wealthy hand-to-mouth model of \cite{violante_wealthy_2014}.
+Speaking to the microfoundations of consumption behavior, we uncover a clear negative monotonic relation between MPC and liquid wealth. We show that the sign of this relationship is in line with standard buffer-stock models, although the magnitude of MPCs, especially for households with the most liquid assets, is difficult to reconcile with theory. When we include illiquid wealth, such as housing, this monotonic relationship between wealth and MPC no longer holds - those with close to zero net worth have higher MPCs than both those with negative and positive net worth. That liquid wealth is more predictive of MPCs than net worth is consistent with the wealthy hand-to-mouth model of \cite{violante_wealthy_2014}.
 
 The strength of our method and data over previous studies can be clearly seen when we move to quantifying the size of monetary policy redistribution channels. We follow the decomposition of \cite{auclert_monetary_2017}, who identifies the relevant dimensions of redistribution such as unhedged interest rate exposure. However, being limited by the econometric methods he has at hand as well as by publicly available data sources, he finds it challenging to get a clear picture of how MPCs vary over these dimensions.
 
@@ -727,7 +727,7 @@ Figure \ref{fig:BPP_liquid} shows the results of using BPP's method on quintiles
 
 Our method differs from BPP in two respects: first we model time aggregation and second we impose that consumption responses to transitory income shocks are short lived, in contrast to the random walk behavior in BPP. \cite{crawley_time_2019} shows how just the first of these, modeling time aggregation, significantly changes BPP's estimates in the PSID data. With the high MPX's that we estimate in our data, it is clear that the random walk assumption cannot be valid. If we only make this first change and estimate again using the Danish administrative data, we estimate the response to permanent income shocks to be 1.18 and to transitory income shocks to be 1.50. These unreasonably high estimates come as a result of the assumption that consumption follows a random walk. In particular, the fact that the response to transitory income shocks is significantly greater than one comes from the method extending the short term response over the period of one year.
 
-This exercise has shown that the original BPP method is both biased and highly sensitive to assumptions made about the path of consumption. In appendices \ref{consumption_persistence_appendix}, \ref{labor_elasticity_model}, \ref{rip_hip_appendix}, and \ref{time_varying_risk_appendix} we show that, in contrast, our method is relatively robust to misspecification.
+This exercise has shown that the original BPP method is both biased and sensitive to assumptions made about the path of consumption. In appendices \ref{consumption_persistence_appendix}, \ref{labor_elasticity_model}, \ref{rip_hip_appendix}, and \ref{time_varying_risk_appendix} we show that, in contrast, our method is relatively robust to misspecification.
 
 \section{Persistent Consumption Response} \label{consumption_persistence_appendix}
 \setcounter{figure}{0}   
