@@ -293,7 +293,7 @@ We are interested in income and consumption decisions at the household level. We
 
 
 
-We work with the residual of income after controlling for observable characteristics of households that may affect their income and consumption. To start, with we remove households in the top and bottom 1\% of the income distribution. We then normalize by average household income over the observed period and regress income on dummies for age, year, highest level of education, marital status, homeowner status, and number of children along with interaction of age with education, marital status, and homeowner status. We take the change in the residuals of this regression to be the unexpected income change for a household from one year to the next and remove households in the top and bottom 1\% of the unexpected income \textit{change} distribution.
+We work with the residual of income after controlling for observable characteristics of households that may affect their income and consumption. To start, we remove households in the top and bottom 1\% of the income distribution. We then normalize by average household income over the observed period and regress income on dummies for age, year, highest level of education, marital status, homeowner status, and number of children along with interaction of age with education, marital status, and homeowner status. We take the change in the residuals of this regression to be the unexpected income change for a household from one year to the next and remove households in the top and bottom 1\% of the unexpected income \textit{change} distribution.
 
 \subsection{Imputed Expenditure} \label{cons_imputation}
 Our expenditure data come from imputing expenditure from income and wealth. Along with other Scandinavian countries, Denmark is unusual in that tax reporting includes information about wealth along with income, a legacy from the wealth tax that was phased out between 1989 and 1997. Following the methodology from \cite{browning_imputing_2003} and \cite{fagereng_imputing_2015}, we impute expenditure using the identity
@@ -424,9 +424,9 @@ where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the 
 			$\mathcal{S}$ &$1-\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Consumption deciles} } \text{MPX}_i C_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j C_j \Bigg]$ & Hicksian scaling factor \\
 			\hline
 		\end{tabular}}
-		\end{table}
-	\end{center}
 	\tiny \textbf{Note: } $\overline{\text{MPX}}$ is the mean MPX over all households in the economy. $Y$ and $C$ are aggregate household income and consumption respectively. Bins refers to the seven categories for which we have allocated URE and NNP exposures outside our estimation sample. \{young,old\} are the two bins that contain young and old households (the other five bins are only relevant for URE and NNP exposures as $Y$ and $C$ measure \textit{household} income and consumption).\\
+\end{table}
+\end{center}
 \end{minipage}
 
 
