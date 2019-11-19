@@ -31,6 +31,7 @@ $\mathcal{E}_R$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{URE deciles} } \te
 $\mathcal{S}$ &$1-\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Consumption deciles} } \text{MPX}_i C_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j C_j \Bigg]$ & Hicksian scaling factor \\
 \hline
 \end{tabular}}
+\tiny \textbf{Note: } $\overline{\text{MPX}}$ is the mean MPX over all households in the economy. $Y$ and $C$ are aggregate household income and consumption respectively. Bins refers to the seven categories for which we have allocated URE and NNP exposures outside our estimation sample. \{young,old\} are the two bins that contain young and old households (the other five bins are only relevant for URE and NNP exposures as $Y$ and $C$ measure \textit{household} income and consumption).\\
 \end{table}
 \efloatseparator
  
