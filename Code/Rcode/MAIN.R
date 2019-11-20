@@ -101,6 +101,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
   #dev.copy(svg, paste(figures_dir, "VarianceBy",category_for_save,tag,".svg",sep=""))
   dev.off()
   
+
   # Now plot the Expenditure Elasticities
   #dev.new()
   pdf(paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
@@ -134,6 +135,11 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
   #dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
   #dev.copy(svg, paste(figures_dir, "MPXBy",category_for_save,tag,".svg",sep=""))
   dev.off()
+  
+  #print for 508 compliance for FEDS paper
+  print(labels)
+  print(params)
+
 }
 ###############################################################################
 
@@ -1068,6 +1074,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   #dev.copy(pdf, paste(figures_dir, filename,".pdf",sep=""))
   #dev.copy(svg, paste(figures_dir, filename,".svg",sep=""))
   dev.off()
+  params
 }
 
 tag_list = c("_level_lincome_head","_level_lincome_head_nostocks","_level_lincome_head_negcons","_level_lincome_head_ConsOutliers25")
