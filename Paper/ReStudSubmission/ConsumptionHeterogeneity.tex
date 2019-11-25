@@ -1,6 +1,6 @@
 \input{./econtexRoot}\input{\econtexRoot/econtexPaths.tex}\documentclass[titlepage]{\econtex}\newcommand{\texname}{ConsumptionHeterogeneity}
 \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
-\usepackage[nolists,tablesfirst]{endfloat}
+%\usepackage[nolists,tablesfirst]{endfloat}
 \usepackage{tikz}
 \usepackage{caption}
 \usepackage{titlesec}
@@ -8,13 +8,13 @@
 \usepackage{placeins}
 \usepackage{pdfpages}
 \usepackage{setspace}
-%\onehalfspacing
-\doublespacing
+\onehalfspacing
+%\doublespacing
 \usepackage{booktabs,rotating}
 
-\DeclareDelayedFloatFlavor{sidewaystable}{table}
-\renewcommand{\theposttable}{\Roman{posttbl}}
-\renewcommand{\thepostfigure}{\Roman{postfig}}
+%\DeclareDelayedFloatFlavor{sidewaystable}{table}
+%\renewcommand{\theposttable}{\Roman{posttbl}}
+%\renewcommand{\thepostfigure}{\Roman{postfig}}
 \renewcommand{\thetable}{\Roman{table}}
 \renewcommand{\thefigure}{\Roman{figure}}
 
@@ -105,8 +105,7 @@ Consumption Heterogeneity: Micro Drivers and Macro Implications
 \name{Crawley: Federal Reserve Board, Constitution Avenue \& 20th Street NW, Washington, DC 20551, USA, \href{mailto:edmund.s.crawley@frb.gov}{\texttt{edmund.s.crawley@frb.gov}}.}
 \name{Kuchler: Danmarks Nationalbank, Havnegade 5, 1093 Copenhagen K, Denmark, \href{mailto:aku@nationalbanken.dk}{\texttt{aku@nationalbanken.dk}}.}
 \end{authorsinfo}
-\thanks{\textbf{Word Count:} 15,500 (excluding online appendix) \\
-	Viewpoints and conclusions stated in this paper are the responsibility of the authors alone and do not necessarily reflect the viewpoints of Danmarks Nationalbank or the Federal Reserve Board. The authors wish to thank colleagues and participants at conferences and seminars at Banque de France, BLS, Bocconi University, Danish Ministry of Finance, Danmarks Nationalbank, Deutsche Bundesbank, European Central Bank, Federal Reserve Board, FDIC, Georgetown University, Johns Hopkins University, University of Bergamo, University of Copenhagen, and the Boston, San Francisco, and New York Feds for useful comments and suggestions.}
+\thanks{Viewpoints and conclusions stated in this paper are the responsibility of the authors alone and do not necessarily reflect the viewpoints of Danmarks Nationalbank or the Federal Reserve Board. The authors wish to thank colleagues and participants at conferences and seminars at Banque de France, BLS, Bocconi University, Danish Ministry of Finance, Danmarks Nationalbank, Deutsche Bundesbank, European Central Bank, Federal Reserve Board, FDIC, Georgetown University, Johns Hopkins University, University of Bergamo, University of Copenhagen, and the Boston, San Francisco, and New York Feds for useful comments and suggestions.}
 
 \titlepagefinish
 \setcounter{page}{1}
@@ -408,9 +407,9 @@ where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the 
 
 \begin{minipage}{1.0\textwidth}
 	\begin{center}
-		\begin{table}
-			\caption{Sufficient Statistics Definitions}
-		%\captionof{table}{Sufficient Statistics Definitions}
+%		\begin{table}
+%			\caption{Sufficient Statistics Definitions}
+		\captionof{table}{Sufficient Statistics Definitions}
 		\label{table:auclertSS}
 		\resizebox{\textwidth}{!}{\begin{tabular}{ccl}
 			\textbf{Statistic} & \textbf{Definition} & \textbf{Description} \\
@@ -423,7 +422,7 @@ where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the 
 			\hline
 		\end{tabular}}
 	\tiny \textbf{Note: } $\overline{\text{MPX}}$ is the mean MPX over all households in the economy. $Y$ and $C$ are aggregate household income and consumption respectively. Bins refers to the seven categories for which we have allocated URE and NNP exposures outside our estimation sample. \{young,old\} are the two bins that contain young and old households (the other five bins are only relevant for URE and NNP exposures as $Y$ and $C$ measure \textit{household} income and consumption).\\
-\end{table}
+%\end{table}
 \end{center}
 \end{minipage}
 
@@ -630,33 +629,33 @@ We have assumed that idiosyncratic risk remains constant over time. Given that o
 In this paper we have presented a new method to measure the sensitivity of consumption to permanent and transitory income shocks for different groups of households. Our focus has been to use this method to test the microfoundations of heterogeneous agent models and quantify the importance of consumption heterogeneity for monetary policy. With administrative data from Denmark, we have been able to dig into the distribution of MPC across a variety of dimensions in far more detail than has previously been possible. We find that MPCs vary systematically and in ways that are important for monetary policy transmission, although the current generation of heterogeneous agent models struggle to fit the high sensitivity to income that we observe.
 
 Our hope is that the method we present in this paper, or variants of it, can also be of use to economists in a variety of fields. More and more high-quality microdata on consumption are becoming available, such as the administrative data used here, or the even more detailed transaction-level data available from financial aggregators. If this trend continues, as we hope it will, methods such as ours will become even more valuable in bridging the gap between models and data.\\
-\begin{flushleft}
-\vspace{2cm}
-Edmund Crawley\\
-Federal Reserve Board\\
-Constitution Ave \& 20th Street NW, Washington, DC 20551, USA.\\
-edmund.s.crawley@frb.gov\\
-
-\vspace{1cm}
-Andreas Kuchler\\
-Danmarks Nationalbank\\
-Havnegade 5, 1093 Copenhagen K, Denmark.\\
-aku@nationalbanken.dk
-\end{flushleft}
+%\begin{flushleft}
+%\vspace{2cm}
+%Edmund Crawley\\
+%Federal Reserve Board\\
+%Constitution Ave \& 20th Street NW, Washington, DC 20551, USA.\\
+%edmund.s.crawley@frb.gov\\
+%
+%\vspace{1cm}
+%Andreas Kuchler\\
+%Danmarks Nationalbank\\
+%Havnegade 5, 1093 Copenhagen K, Denmark.\\
+%aku@nationalbanken.dk
+%\end{flushleft}
 
 \small
 \bibliography{AllPapers}
 \normalsize
-\processdelayedfloats
+%\processdelayedfloats
 
 \pagebreak
 \appendix
 \renewcommand\thefigure{\thesection.\arabic{figure}}  
 \renewcommand\thetable{\thesection.\arabic{table}}  
 
-\makeatletter
-\efloat@restorefloats
-\makeatother
+%\makeatletter
+%\efloat@restorefloats
+%\makeatother
 
 \section*{Online Appendix}
 
