@@ -3,13 +3,14 @@
 %\usepackage[nolists,tablesfirst]{endfloat}
 \usepackage{tikz}
 \usepackage{caption}
+\usepackage[standardsections]{scrhack}
 \usepackage{titlesec}
 \setcounter{secnumdepth}{4}
 \usepackage{placeins}
 \usepackage{pdfpages}
 \usepackage{setspace}
 \onehalfspacing
-%\doublespacing
+\doublespacing
 \usepackage{booktabs,rotating}
 
 %\DeclareDelayedFloatFlavor{sidewaystable}{table}
@@ -130,9 +131,7 @@ Broadly speaking, in our data, we see three groups with distinct MPCs and exposu
 
 We estimate that a 1-percentage-point rise in the real interest rate, which redistributes wealth from the wealthy hand-to-mouth debtors who pay the higher rate to the wealthy creditors who receive it, reduces aggregate consumption by 26 basis points through this redistribution channel alone. This channel is absent in representative agent models in which the intertemporal substitution channel instead dominates.
 
-We believe the rich detail we are able to provide on the relationships between MPC, home ownership, liquidity, and interest rate exposure could be used to discipline microfounded macroeconomic models going forward. As a small step toward this goal, we propose extending the standard buffer-stock model to include large transitory preference shocks, matching the high idiosyncratic expenditure volatility we see in the data, to help replicate the high MPCs we observe in the data. 
-
-A growing number of large, high-quality panel datasets on income and consumption are becoming available to economists, which increases the value of robust econometric methods that can uncover household behavior.\footnote{Panel data from financial aggregation platforms have been highly informative about consumption behavior, although access to these data by researchers is very restricted. See \cite{gelman_harnessing_2014}, \cite{ganong_consumer_2017}, and \cite{baker_debt_2015} for examples using U.S. data. \cite{vardardottir_liquid_2016} use data from Iceland.} Beyond the applications in this paper, our method has a wide variety of potential applications in the consumption, household finance, and labor literatures.
+We believe the rich detail we are able to provide on the relationships between MPC, home ownership, liquidity, and interest rate exposure could be used to discipline microfounded macroeconomic models going forward. Furthermore, a growing number of large, high-quality panel datasets on income and consumption are becoming available to economists, which increases the value of robust econometric methods that can uncover household behavior.\footnote{Panel data from financial aggregation platforms have been highly informative about consumption behavior, although access to these data by researchers is very restricted. See \cite{gelman_harnessing_2014}, \cite{ganong_consumer_2017}, and \cite{baker_debt_2015} for examples using U.S. data. \cite{vardardottir_liquid_2016} use data from Iceland.} Beyond the applications in this paper, our method has a wide variety of potential applications in the consumption, household finance, and labor literatures.
 
 \section{Background}
 The need for better methods and data to measure consumption behavior at the household level has grown with the increasing recognition that household heterogeneity may play a key role in macroeconomic dynamics. \cite{kaplan_microeconomic_2018} provide an overview of the theoretical literature incorporating household heterogeneity into models of economic fluctuations. Computational and methodological limitations, along with early work by \cite{krusell_income_1998} showing that the aggregate dynamics of a TFP shock were not much changed in a heterogeneous agent model, have resulted in a slow start for this literature. However, recent advances have allowed for a new generation of Heterogeneous Agent New Keynesian (HANK) models that, as their name suggests, combine elements from both the heterogeneous agent and New Keynesian literature. These models not only match the growing evidence on micro level consumption behavior, but also imply very different aggregate dynamics and/or propagation mechanisms following macroeconomic shocks, compared to their representative agent equivalents. In particular, the transmission mechanism of monetary policy can look very different in a HANK model.\footnote{For example, in the model of \cite{kaplan_monetary_2016}, the intertemporal substitution channel is dwarfed by indirect general equilibrium effects, in stark contrast to a representative agent model.}
@@ -173,7 +172,7 @@ We will look at the estimate of $\beta^N$ in the model
 \end{align*}
 where $N$, the number of years over which growth is measured, varies from 1 to 10. Our full identification will come from the fact that transitory income shocks make up a relatively large proportion of the variance of income growth over a short period, while permanent income shocks dominate the variance of income growth over a long period.
 
-Figure \ref{fig:GrowthReg} shows what we would expect to see under three well known models, as well as what we actually observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.75 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case, 0.75---regardless of transitory shocks. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model.\footnote{These regression results come from the benchmark model presented in section \ref{benchmark_model}, calibrated to the distribution of liquid wealth in Denmark.} In this model the regression of consumption growth on income growth over one year yields a relatively small number as households are able to self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
+Figure \ref{fig:GrowthReg} shows what we would expect to see under three well known models, as well as what we actually observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.75 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case, 0.75---regardless of transitory shocks. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model.\footnote{These regression results come the heterogeneous beta model in \cite{carroll_distribution_2017}, calibrated to match the distribution of liquid wealth in Denmark.} In this model the regression of consumption growth on income growth over one year yields a relatively small number as households are able to self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
 	\begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}
@@ -326,7 +325,7 @@ As our methodology requires income uncertainty to be relatively constant through
 \end{center}
 
 \section{Income and Consumption Characteristics by Household Wealth} \label{MPX_wealth}
-Liquidity constraints are the key microfoundation for the lack of consumption smoothing in heterogeneous agent models. In this section we look at the empirical relation between liquid wealth and the marginal propensity to expend (MPX) out of both permanent and transitory shocks to income. We find a strong monotonic negative relation. We also look at net wealth and find such a monotonic relation no longer holds. In section \ref{model} we show how these empirical results compare to a standard buffer-stock savings model.
+Liquidity constraints are the key microfoundation for the lack of consumption smoothing in heterogeneous agent models. In this section we look at the empirical relation between liquid wealth and the marginal propensity to expend (MPX) out of both permanent and transitory shocks to income. We find a strong monotonic negative relation. We also look at net wealth and find such a monotonic relation no longer holds.
 
 Using our entire estimation sample we find a mean MPX out of transitory shocks of 0.50 and a mean MPX out of permanent shocks of 0.72. However, these averaged results hide a significant amount of heterogeneity. From the standpoint of consumption theory it is the ability of households to self-insure with their own wealth that mostly determines how much they smooth their consumption over shocks. We divide our estimation sample into quintiles according to both liquid wealth (which we define as bank deposits\footnote{The results are little changed using any other definition of liquid wealth as long as housing and debts are excluded. See online appendix \ref{robustness}.}) and net wealth. In each case, wealth is measured as the mean household wealth holdings over the entire sample period.
 \begin{figure}
@@ -342,7 +341,7 @@ Figure \ref{fig:MPXByLiquidWealth} shows the estimated income variances and MPXs
 
 Note that the estimates of income variance we obtain are highly sensitive to our treatment of outliers, but our MPX estimates do not change.\footnote{See online appendix \ref{robustness} for evidence of this.}
 
-The right-hand panel of figure \ref{fig:MPXByLiquidWealth} shows our estimates for the MPX out of permanent and transitory shocks by liquid wealth quintile. The lowest wealth quintile, who hold less than \$2,000 in bank deposits on average over the sample period, look somewhat like hand-to-mouth consumers. They respond almost equally to permanent and transitory shocks, spending over 80\% of income shocks in the year that it arrives. However, the fact that both permanent and transitory MPXs are very similar and significantly less than 1 suggests that these households may be more accurately modeled as saving in an illiquid asset such as housing or a pension following a rule of thumb (say, 20\% of income) and then living hand to mouth on the remainder. As the quintile of liquid wealth increases, the MPX out of both transitory and permanent income decreases. In the top quintile, formed of households that maintained a mean bank balance above \$30,000, the MPX out of permanent shocks is 0.57 and out of transitory shocks 0.23. From the point of view of theory, the responsiveness of spending out of permanent shocks in this quintile is low, while that of transitory shocks is high. A more thorough discussion of how these results compare to a standard model calibrated to Danish characteristics will wait until section \ref{model}.
+The right-hand panel of figure \ref{fig:MPXByLiquidWealth} shows our estimates for the MPX out of permanent and transitory shocks by liquid wealth quintile. The lowest wealth quintile, who hold less than \$2,000 in bank deposits on average over the sample period, look somewhat like hand-to-mouth consumers. They respond almost equally to permanent and transitory shocks, spending over 80\% of income shocks in the year that it arrives. However, the fact that both permanent and transitory MPXs are very similar and significantly less than 1 suggests that these households may be more accurately modeled as saving in an illiquid asset such as housing or a pension following a rule of thumb (say, 20\% of income) and then living hand to mouth on the remainder. As the quintile of liquid wealth increases, the MPX out of both transitory and permanent income decreases. In the top quintile, formed of households that maintained a mean bank balance above \$30,000, the MPX out of permanent shocks is 0.57 and out of transitory shocks 0.23. From the point of view of theory, the responsiveness of spending out of permanent shocks in this quintile is low, while that of transitory shocks is high.
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
@@ -468,66 +467,9 @@ For both of these channels, but particularly the interest rate exposure channel,
 \end{center}
 A long outstanding question in monetary economics is why monetary policy acts with a lag. Two competing theories are habits models such as \cite{fuhrer_habit_2000} and sticky information models such as \cite{mankiw_sticky_2002}. \cite{carroll_sticky_2018} find evidence toward the idea that households react fast to their own idiosyncratic income shocks, but news about macroeconomic shocks takes time to be absorbed. A possible third alternative to both of these theories is that households respond strongly to their realized income today, but not to income anticipated in the future. As it takes time for variable rate mortgages to reset (typically from six months up to five years in Denmark), this would result in the interest rate exposure channel acting with a delay. Indeed, the literature on consumption responses to transitory income shocks has generally found little difference between anticipated and unanticipated responses. Many of the estimates in table \ref{table:MPCLiterature} use anticipated shocks (such as tax rebates) as an instrument and find large MPCs, suggesting households do not necessarily pay attention to anticipated cash flows until they arrive. \cite{ganong_consumer_2017} show this very clearly: there is a sharp consumption drop in the month that unemployment benefits expire, an entirely anticipated event. A model that takes these results seriously, along with a large role for the interest rate exposure channel of monetary policy, could be a fruitful area for future research. 
 
-\section{Benchmark Model and Taste Shock Extension} \label{model}
-In this section we calibrate a standard incomplete markets model to Danish characteristics, including the liquid wealth distribution in Denmark, and use it to see if we can match the consumption responses we measure in the data.\footnote{By calibrating to the liquid wealth distribution, we are implicitly assuming that households cannot access any of their illiquid wealth, similar to the two asset model in \cite{auclert_ikc}. A model such as \cite{violante_wealthy_2014} or \cite{gorea_liquidity_2017} that allows households to buy and sell an illiquid asset at a cost would result in lower overall MPCs.}
-
-Motivated by the fact that the standard model results in lower transitory MPX numbers than we find in the data, we make a simple extension to the model to account for potentially large preference shocks. We propose that such shocks, which have generally played a much smaller role in the literature than income shocks, are perhaps quantitatively more important for precautionary savings behavior.
-
-\subsection{Benchmark Model Calibrated to Danish Data} \label{benchmark_model}
-Our baseline model is the now very familiar buffer-stock saving model of \cite{carroll_buffer_1997}. Given market resources ($\boldmath{\mLevBF}_t$), households in this model maximize expected utility
-\begin{align*}
-	\mathbb{E}_t \sum_{s=t}^{\infty} \beta^s u(\cLevBF_s)
-\end{align*}
-subject to the constraints\footnote{Here $\cLevBF_t$ is consumption, $\aLevBF_t$ end-of-period assets, $R$ the constant real interest rate (set to 1.065), $\bLevBF_t$ beginning-of-period assets, $\yLevBF_t$ income, and $\pLevBF_t$ permanent income.}
-\begin{align*}
-	\aLevBF_t = \mLevBF_t - \cLevBF_t \\
-	\bLevBF_t = R\aLevBF_t \\
-	\yLevBF_t = \theta_t \pLevBF_t \\
-	\pLevBF_t = \Psi_t \pLevBF_{t-1} \\
-	\mLevBF_t = \bLevBF_t + \yLevBF_t
-\end{align*}
-where the felicity function, $u(\cLevBF)$, is CRRA. We calibrate our model to match both the income uncertainty (as measured using our methodology) and the liquid wealth distribution in Denmark. The model is quarterly, and we aggregate both income and consumption to the annual frequency where required.
-
-Permanent income, $\pLevBF_t$, experiences normally distributed shocks, $\Psi_t$, with (annualized) variance equal to 0.004, matching our population estimate. Transitory income shocks, $\theta_t$, are normally distributed with (annualized) variance 0.0035 if employed, and a small 0.001 probability of a zero income, unemployed, state that induces a natural borrowing constraint at zero.
-
-We examine an economy in steady state, where each agent has a probability $1/160$ of dying each quarter and being replaced by another agent with permanent income equal to one, and no initial wealth.
-
- To be able to match the liquid wealth distribution, especially at the low end, we follow \cite{krusell_income_1998} and \cite{carroll_distribution_2017} and allow for ex-ante heterogeneity in the discount factor $\beta$. Specifically, an agent $i$ has a discount factor $\beta_i$ where $\beta_i$ is i.i.d. across agents and follows a uniform distribution between $\beta_{low}$ and $\beta_{high}$. These two parameters allow us to match the fact that while the mean level of liquid assets is high, about half of all households have close to zero liquid assets. Matching the lower part of this distribution is critical to generate transitory consumption elasticities substantially above zero. The Lorenz curve for liquid assets, both in the data and in the model, is shown in figure \ref{fig:Lorenz}.\footnote{We calibrate to the 20th, 40th, and 60th percentile of liquid wealth, leaving out the 80th percentile, to better match the wealth of the lower half of the distribution, which is necessary to achieve reasonably high MPCs in a model like this. The figure shows that the fit in the upper half of the distribution is less precise. Our estimates of $\beta_{low}$ and $\beta_{high}$ are 0.978 and 0.992, respectively.}
-\begin{figure} 
-		\centering
-		\includegraphics[scale=0.45]{\econtexRoot/Figures/benchmark_Lorenz.png}
-		\caption{Lorenz Curve for Danish Liquid Assets}
-		\label{fig:Lorenz}
-\end{figure}
-
-\subsection{Model with Preference Shocks}
-The baseline model exhibits two features in tension with the data. First, the marginal propensity to consume out of transitory income shocks, while exhibiting the right shape relative to liquid wealth, is too low relative to the data. Second, as would be expected in such a consumption-smoothing model, the path of expenditure is significantly less volatile than income. However, the data show the opposite: the standard deviation of changes in expenditure is around 0.37, compared to 0.12 for income. There is very little evidence on the true size of expenditure shocks, partly because of large measurement errors known to be present in consumption survey data. While we believe the 0.37 number from our data also contains measurement error, as well as large expected expenditures such as new cars for which finance may be readily available, it seems likely that the expenditure shocks could be large. Indeed, typical financial advice to maintain a buffer stock will mention unexpected costs such as medical bills or a leaky roof before income shocks.\footnote{For example, in 2016,  Forbes Magazine suggested ``you could find yourself thrown off by a chipped tooth or fender bender. So having an emergency fund padded with nine months of the highest earner's net income may help give you a bit more peace of mind that you could weather a financial storm.''} A simple tweak to the baseline model can help the model fit the data along both these dimensions. To achieve this we add a preference shock to expected utility:
-\begin{align*}
-\mathbb{E}_t \sum_{i=t}^{\infty} \beta^i \mathcal{X}_i u(\cLevBF_i)
-\end{align*}
-where $\mathcal{X}_i$ is i.i.d. and calibrated such that the variance of consumption is large.\footnote{We choose preference shocks with an annual standard deviation of 0.3. While this seems large, the resulting consumption change standard deviation is 0.18, significantly lower than 0.37 that we observe in the data.}
-
-\subsection{MPX by Liquid Wealth} 
-The top panel of figure \ref{fig:CSTW} shows how the transitory MPX of the two models compares with the data. While the fact that the MPX decreases with the liquid wealth quintile is robust in both models and in the data, there are two features worth noting. 
-
-First, large preference shocks are required to push the transitory MPX close to the levels we see in the data. Many recent papers, such as \cite{krueger_macroeconomics_2016}, have attempted to carefully quantify the macroeconomic dynamic consequences of a serious heterogeneous agent model but thus far have not included significant preference shocks in their calibrations. The evidence here suggests that such shocks may have a quantitatively important role to play, especially in increasing the MPC. To the extent that the precautionary motive is driven by preference shocks as opposed to income shocks, social insurance for unemployment will not reduce precautionary savings as much as these models presently suggest.
-
-Second, neither of the two models is able to explain the high MPX out of transitory shocks that we observe for the top quintile of liquid assets. These households, which hold a mean balance above \$30,000, appear very responsive to transitory shocks despite the large buffer stock they could potentially use to smooth income shocks.
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark.pdf}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark_pref.pdf}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark.pdf}
-\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark_pref.pdf}
-		\caption{Baseline model (LHS) and Preference Shock Model (RHS) with the Data}
-		\label{fig:CSTW}
-	\end{centering}
-\end{figure}
-
-The bottom panel of figure \ref{fig:CSTW} shows another failure of both of these two simple models: neither is able to capture the fact that the consumption response to permanent shocks is substantially below 1, even for middle and low quintiles of liquid wealth. \cite{straub_consumption_2018} shows that a lifecycle model with nonhomothetic preferences may do better along this front.
-
 \section{Threats to Identification}
 \label{threats_to_identification}
+In the online appendix we address a number of identification concerns.\footnote{Online appendix \ref{Consumption_persistence} looks a consumption persistence beyond two years; \ref{durables_appendix} goes into more detail on durables; \ref{rip_hip_appendix} considers alternative income processes; \ref{time_varying_risk} looks at time-varying risk; and \ref{robustness} looks at alternative data definitions.} Here we focus on two that we think deserve highlighting: measurement error and durable expenditure.
 
 \subsection{Measurement Error} \label{Measurement_error}
 Our identification comes from estimating $\mathrm{Var}(\Delta^N \bar{y})$ and $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ using our observed data. For unbiased estimates of $\mathrm{Var}(\Delta^N \bar{y})$ we require no measurement error in our observed changes in labor income. For unbiased estimation of $\mathrm{Cov}(\Delta^N \bar{c},\Delta^N \bar{y})$ we only require (further to no measurement error in income growth) that the measurement error in expenditure growth is uncorrelated with labor income growth. As our expenditure is imputed from income and changes in assets, this is potentially more of a concern than would be the case in survey data in which questions about consumption are not directly linked to those on income. We will examine potential sources of error in labor income and imputed consumption.
@@ -544,48 +486,7 @@ Expenditure is calculated as the residual of total household income (including i
 \end{itemize}
 
 \subsection{Durables} \label{durables}
-A critique of our empirical methodology is that it does not take account of durable goods, while our data include all spending (except on real estate) and therefore include large and durable goods such as cars and home improvements. The empirical model assumes that in response to a transitive income shock, expenditure increases temporarily for up to two years, which is entirely consistent with a model that includes durable goods. However, the model assumes that in response to a permanent shock to income, expenditure increases once to a new permanent level. A model that included durable goods would instead imply a large one-off expenditure on durable goods to get the households up to their desired stream of durable good services, followed by a decrease back to a permanent level of spending that accounts for replenishing the higher level of depreciating durable goods.
-
-To make this idea more explicit, it will help to write down a simple model. The model will show that our empirical methodology continues to estimate the consumption response to permanent and transitory shocks, but that these need to be interpreted carefully. The model uses the same income process as section \ref{cov_restrictions}. Remembering the income process is made up of two martingale processes, $P_t$ and $Q_t$, which may have jumps, instantaneous income is given by
-\begin{align*}
-dy_t = \Big( \int_{0}^{t}dP_s \Big) dt  +dQ_t 
-\end{align*}
-while instantaneous expenditure now has both a durable and a nondurable component:
-\begin{align*}
-dc_t = \phi_{nd} \Big( \int_{0}^{t} dP_s  \Big) dt + \phi_{d} dP_t + \psi dQ_s
-\end{align*}
-Here we have assumed that the expenditure response to transitory shocks is instantaneous, but it would not change things to assume as before that the response decays to zero after two years. However, it is important that the durable component of the expenditure response to permanent shocks occurs instantaneously with the shock (or very soon after). Aggregating income and consumption annually gives
-\begin{align*}
-\Delta^N \bar{y}_T &=  \Big(\int_{T-N-1}^{T-N} (s-(T-N-1))dP_s  + \int_{T-N}^{T-1}dP_s + \int_{T-1}^{T} (T-s)dP_s \Big) \\
-& \qquad + \Big(\int_{T-1}^{T} dQ_t -\int_{T-N-1}^{T-N} dQ_t \Big) \\
-\Delta^N \bar{c}_T &= \phi_{nd} \Big(\int_{T-N-1}^{T-N} (s-(T-N-1))dP_s  + \int_{T-N}^{T-1}dP_s + \int_{T-1}^{T} (T-s)dP_s \Big) \\
-& \qquad + \phi_d \Big(\int_{T-1}^{T} dP_t -\int_{T-N-1}^{T-N} dP_t \Big) \\
-& \qquad + \psi \Big(\int_{T-1}^{T} dQ_t -\int_{T-N-1}^{T-N} dQ_t \Big) \\
-\end{align*}
-From this we can calculate the covariance:
-\begin{align*}
-\mathrm{Cov}(\Delta^n \bar{c_T},\Delta^n \bar{y_T} ) &= \phi_{nd} \mathrm{Var}(\Delta^n \bar{y_T}) \\
-& \qquad + \phi_d \Bigg( \int_{T-1}^{T} (T-s) \sigma_P^2 dt - \int_{T-N-1}^{T-N}(s-(T-N-1)) \sigma_P^2 dt \Bigg) \\
-& \qquad + \psi\Bigg(\int_{T-1}^{T}  \sigma_Q^2 dt + \int_{T-N-1}^{T-N}\sigma_Q^2 dt\Bigg) \\
-&= \phi_{nd} (n-\frac{1}{3})\sigma_P^2 + 0 +  2 \psi \sigma_Q^2
-\end{align*}
-So the durable component of the covariance cancels out, and our identification method correctly identifies $\phi_{nd}$ and $\psi$ but is unable to identify $\phi_d$.
-
-However, if there is some delay between the household receiving the permanent income shock and purchasing the durable goods, then this introduces an upward bias into the estimate of transitory MPX. The size of the bias grows with the number of months delay between the permanent income shock and the durable goods purchase, plateauing after 12 months at a level of $\frac{\sigma^2_p}{2\sigma^2_q}\phi_d$. Figure \ref{fig:durable_bias} shows how this bias increases with the delay.
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.6]{\econtexRoot/Figures/DurableBias.pdf}
-		\caption{Bias in Transitory MPX with Delay in Durable Goods Purchase}
-		\label{fig:durable_bias}
-	\end{centering}
-\end{figure}
-
-In order to quantify how large this bias may be in practice, we make use of the car registry data available in Denmark. Using data on the current value of cars owned by a household, we perform the same residual calculation to find the change in car value that is unpredictable with the household characteristics we are able to observe. We then construct two new expenditure panels: one in which we remove expenditures on cars, and one in which we make a proxy for non-durable consumption by removing expenditures on cars multiplied by $\frac{1}{0.421}$ (car purchases make up 42.1\% of durable expenditure in Denmark):
-\begin{align*}
-C_T^{\text{nocar}} = C_T - \Delta \text{CarValue} \\
-C_T^{\text{nondurable}} = C_T - \frac{1}{0.421}\Delta \text{CarValue}
-\end{align*}
-The second, nondurable proxy consumption panel, can be modeled as the true non-durable consumption panel with classical measurement error added. This classical measurement error does not bias our estimates, so we can use this nondurable proxy panel to estimate an unbiased MPC out of transitory shocks, where the MPC does not include durable expenditures.
+A critique of our empirical methodology is that it does not take account of durable goods, while our data include all spending (except on real estate) and therefore include large and durable goods such as cars and home improvements. The empirical model assumes that in response to a transitive income shock, expenditure increases temporarily for up to two years, which is entirely consistent with a model that includes durable goods. However, the model assumes that in response to a permanent shock to income, expenditure increases once to a new permanent level. A model that included durable goods would instead imply a large one-off expenditure on durable goods to get the households up to their desired flow of durable good services, followed by a decrease back to a permanent level of spending that accounts for replenishing the higher level of depreciating durable goods.
 \begin{figure} 
 	\begin{centering}
 		\includegraphics[scale=0.55]{\econtexRoot/Figures/MPXByDurables_nodurableproxy.pdf}
@@ -594,34 +495,7 @@ The second, nondurable proxy consumption panel, can be modeled as the true non-d
 	\end{centering}
 \end{figure}
 
-The results of this exercise can be seen in figure \ref{fig:MPXByDurables}. Even without bias, we would expect the nondurable proxy estimates to be lower than those including all expenditures, as the definition of transitory MPX changes over the three panels to exclude cars and then all durable goods. For the lower quintiles of liquid wealth it therefore looks as though the bias is likely very small, as nondurable goods make up 10\% of spending and the MPX estimates are smaller by approximately 10\% in this region. For the top quintile of liquid wealth there seems to be some bias, with the estimate of MPX for all expenditures decreasing from 25\% to an MPC for nondurable goods of 17\%.
-
-While there is some evidence that our results may be biased upward for those in the top quintiles of liquid assets, this bias will only have a small effect on our overall conclusions. As the relevant number for the monetary policy exercise is the MPX rather than the MPC, we have chosen not to adjust our baseline results using this method and accept that a small bias may exist in our data. It should be noted that such a bias will cause the heterogeneous channels of monetary policy to appear smaller than they actually are.
-
-\subsection{Labor Elasticity} \label{labor_elasticity}
-The empirical results of this paper estimate MPX to be at the high end of the literature. The results also conflict with standard consumption theory, particularly at the higher end of the liquid wealth distribution. It is possible that these high transitory MPX estimates are being driven by reverse causality: in years when households wish to spend more, they increase their labor supply. In this case, our assumption that labor income is exogenous would be false. To get a sense of the quantitative magnitude of the bias such reverse causality could induce, in online appendix \ref{labor_elasticity_model} we calibrate a model with both preference shocks and labor supply elasticity. We find the effect is quantitatively small, with both the true MPX and the estimates using our method being close to zero for a simulation of households with liquid wealth in the top quintile. However, for extreme values of preference shocks and labor elasticity, we can generate estimates of the transitory MPX to be as high as 0.25, when the true MPX is 0.08.\footnote{Estimates of the Frisch elasticity in microdata studies range from 0 to 0.5, while macroeconomic studies generally find a much larger elasticity of between 2 and 4 (see \cite{peterman_reconciling_2016}). We do not consider estimates of the Frisch elasticity in the macroeconomic range, as it seems likely to us that these estimates are high due to labor market frictions over the business cycle, rather than genuine labor supply choices of households. Some of the best evidence comes from \cite{cesarini_effect_2017}, who use lottery winnings in Sweden to estimate a Frisch elasticity of 0.14. The extreme values referred to in the text are a Frisch elasticity of 0.5 and an annual preference shock standard deviation of 0.4.}
-
-\subsection{Persistent Consumption Response} \label{Consumption_persistence}
-Our estimation procedure makes the assumption that the consumption response to a transitory income shock decays to zero in a period of two years or less. A slower decay will lead to a downward bias in our estimates of the transitory MPX. Figure \ref{fig:DecayBias} shows the results of our estimation procedure on simulated data under two different assumptions about the transitory consumption response.
-
-The exponential decay line assumes that the consumption flow following a transitory shock decays exponentially.\footnote{Standard buffer-stock models give rise to a consumption response that decays very close to exponentially. In online appendix \ref{consumption_persistence_appendix} we show how our empirical method performs with data simulated from the model in section \ref{model}.} We vary the decay rate to match a range of year 1 MPCs and assume that the entire transitory income is eventually consumed. For high MPCs, and especially those over 0.5, there is very little bias. However, for MPCs significantly below 0.5 our method results in downward-biased estimates. This bias arises because low MPCs, combined with exponential consumption decay, result in a relatively stable consumption flow over the first few years that has not declined close to zero after two years.
-
-Empirical evidence suggests that in fact the consumption response to a transitory shock decays quickly in the first few months and then more slowly after that.\footnote{Both \cite{fagereng_mpc_2016} and \cite{gelman_what_2016} provide evidence for this.} The ``Fagereng et al.'' line in figure \ref{fig:DecayBias} shows the MPC estimate in simulated data in which the consumption response decays according to the estimates made in \cite{fagereng_mpc_2016}. In this case, the fast decay in the first few months results in a smaller bias than the exponential case for low MPCs, while the fact that the decay is slower following these first months results in a larger bias for high MPCs.\footnote{Details of these simulations can be found in online appendix \ref{consumption_persistence_appendix}.} Overall it seems likely that our assumption about the persistence of the consumption response leads to a slight downward bias across the range of MPCs.
-
-Online appendix \ref{consumption_persistence_appendix} shows that our MPX estimates are not very sensitive to the choice of $N$ (years of growth in our identification equations) between 3 and 6, which lends further support to the fact that assuming a two-year limit does not bias our results too much.\footnote{Using $N$ equal to 4 and 5 instead of 3, 4, and 5 allows us to extend the consumption response out to three years, at the expense of losing data and becoming more sensitive to misspecification of the income process.}
-\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/DecayBias.pdf}
-		\caption{Bias from Persistent Consumption}
-		\label{fig:DecayBias}
-	\end{centering}
-\end{figure}
-
-\subsection{RIP or HIP Income Process?} \label{rip_hip}
-Our method makes strong assumptions on the income process---namely, that there is no persistent idiosyncratic component to income growth and that the process contains a random walk. \cite{guvenen_empirical_2009} shows that it is empirically difficult to distinguish between a `Restricted Income Profile' (RIP) like this and a `Heterogenous Income Profile' (HIP) income process, in which (i) shocks to income are much less persistent (e.g., AR(1) with $\rho\approx 0.8$), and (ii) households have a persistent idiosyncratic growth component. The reason the RIP and HIP processes are difficult to tell apart is that the two features (i) and (ii) act in opposite directions on the cross-section variance of income growth. The less persistent income shocks lead the cross-sectional income growth variance to not grow as fast as the HIP model, while the persistent idiosyncratic growth component leads the same variance to grow at a faster rate. The result is that the increase in variance of income growth over three to four years is approximately the same as the increase from four to five years.\footnote{See online appendix \ref{rip_hip_appendix}, which shows how the variance of income growth over N years grows with N.} To the extent that the consumption response to these semi-permanent shocks is similar to the response to the idiosyncratic persistent growth component,\footnote{See \cite{guvenen_learning_2007} for an example of why this might be the case: if households do not know their own idiosyncratic growth ex-ante, a Bayesian learning process will be very slow, so households (at least initially) will react in similar ways to changes in income due to this persistent growth component as a true income shock.} our methodology will continue to provide reasonable estimates of the ``permanent'' MPX and the more familiar transitory MPX. Online appendix \ref{rip_hip_appendix} has more detail on this point.
-
-\subsection{Time-Varying Risk} \label{time_varying_risk}
-We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. In online appendix \ref{time_varying_risk_appendix} we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. In order to test how much this time-varying risk might bias our results, we simulated data with $\phi=1$ and $\psi=0.5$, with permanent variance equal to estimates from the data and transitory variance varying in order to match the time-varying income risk pattern observed in the data. When we ran this simulation we found estimates of $\phi$ and $\psi$ within 1\% of their true values.
+In online appendix \ref{durables_appendix} we address this problem in two ways. First we show that our MPX estimates are unbiased in a simple model that includes durables, as long as we interpret the MPX out of transitory shocks to include durable expenditure (the correct definition for understanding aggregate demand) and the MPX out of permanent shocks to include only the consumption \textit{flow} from durables. Second, we are able to construct a nondurable consumption proxy for each household using registry data on car purchases. This proxy has very large measurement error, but will result in unbiased estimates of the MPC (excluding durables) to both permanent and transitory shocks. The estimated MPCs by liquid wealth quintile are shown in figure \ref{fig:MPXByDurables}. The figure shows the estimates using the nondurable proxy are, as expected, lower than those including all expenditures, although the change in magnitude is similar in size to the overall fraction of durable expenditure, suggesting durables do not play a special role in expenditures following transitory shocks. For the top quintile, durables do appear to play an outsized role, accounting for about a third of the expenditure response to transitory shocks.
 
 %\FloatBarrier
 
@@ -755,11 +629,27 @@ Figure \ref{fig:BPP_liquid} shows the results of using BPP's method on quintiles
 
 Our method differs from BPP in two respects: first we model time aggregation and second we impose that consumption responses to transitory income shocks are short lived, in contrast to the random walk behavior in BPP. \cite{crawley_time_2019} shows how just the first of these, modeling time aggregation, significantly changes BPP's estimates in the PSID data. With the high MPX's that we estimate in our data, it is clear that the random walk assumption cannot be valid. If we only make this first change and estimate again using the Danish administrative data, we estimate the response to permanent income shocks to be 1.18 and to transitory income shocks to be 1.50. These unreasonably high estimates come as a result of the assumption that consumption follows a random walk. In particular, the fact that the response to transitory income shocks is significantly greater than one comes from the method extending the short term response over the period of one year.
 
-This exercise has shown that the original BPP method is both biased and sensitive to assumptions made about the path of consumption. In appendices \ref{consumption_persistence_appendix}, \ref{labor_elasticity_model}, \ref{rip_hip_appendix}, and \ref{time_varying_risk_appendix} we show that, in contrast, our method is relatively robust to misspecification.
+This exercise has shown that the original BPP method is both biased and sensitive to assumptions made about the path of consumption. In appendices \ref{Consumption_persistence}, \ref{rip_hip_appendix}, and \ref{time_varying_risk} we show that, in contrast, our method is relatively robust to misspecification.
 
-\section{Persistent Consumption Response} \label{consumption_persistence_appendix}
+\section{Persistent Consumption Response} \label{Consumption_persistence}
 \setcounter{figure}{0}   
 \setcounter{table}{0} 
+
+Our estimation procedure makes the assumption that the consumption response to a transitory income shock decays to zero in a period of two years or less. A slower decay will lead to a downward bias in our estimates of the transitory MPX. Figure \ref{fig:DecayBias} shows the results of our estimation procedure on simulated data under two different assumptions about the transitory consumption response.
+
+The exponential decay line assumes that the consumption flow following a transitory shock decays exponentially.\footnote{Standard buffer-stock models give rise to a consumption response that decays very close to exponentially.} We vary the decay rate to match a range of year 1 MPCs and assume that the entire transitory income is eventually consumed. For high MPCs, and especially those over 0.5, there is very little bias. However, for MPCs significantly below 0.5 our method results in downward-biased estimates. This bias arises because low MPCs, combined with exponential consumption decay, result in a relatively stable consumption flow over the first few years that has not declined close to zero after two years.
+
+Empirical evidence suggests that in fact the consumption response to a transitory shock decays quickly in the first few months and then more slowly after that.\footnote{Both \cite{fagereng_mpc_2016} and \cite{gelman_what_2016} provide evidence for this.} The ``Fagereng et al.'' line in figure \ref{fig:DecayBias} shows the MPC estimate in simulated data in which the consumption response decays according to the estimates made in \cite{fagereng_mpc_2016}. In this case, the fast decay in the first few months results in a smaller bias than the exponential case for low MPCs, while the fact that the decay is slower following these first months results in a larger bias for high MPCs. Overall it seems likely that our assumption about the persistence of the consumption response leads to a slight downward bias across the range of MPCs.
+
+We also show that our MPX estimates are not very sensitive to the choice of $N$ (years of growth in our identification equations) between 3 and 6, which lends further support to the fact that assuming a two-year limit does not bias our results too much.\footnote{Using $N$ equal to 4 and 5 instead of 3, 4, and 5 allows us to extend the consumption response out to three years, at the expense of losing data and becoming more sensitive to misspecification of the income process.}
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/DecayBias.pdf}
+		\caption{Bias from Persistent Consumption}
+		\label{fig:DecayBias}
+	\end{centering}
+\end{figure}
+
 \subsection{Details on Section \ref{Consumption_persistence} Simulations}
 For the simulations in section \ref{Consumption_persistence} we divided each year into 20 sub-intervals. Both permanent and transitory shocks occur each period, and the transitory shocks have no persistence. At an annual frequency the variance of permanent and transitory shocks are equal. Households spend their permanent income each period, along with their consumption response to the history of transitory shocks. For the exponential decay model, this is
 \begin{align*}
@@ -781,6 +671,73 @@ We then time aggregate both income and consumption over each 20-sub-interval per
 		\label{fig:DecayBias_phi}
 	\end{centering}
 \end{figure}
+\subsection{Estimates Using Different Values of $N$}
+\begin{center}
+	\captionof{table}{$\psi$ Estimates Using Different $N$}
+	\label{table:psi_estimates}
+	\input ./Tables/Psi_array_empirical.tex
+\end{center}
+Table \ref{table:psi_estimates} shows the estimates of the transitory MPX that we recover from our estimation sample when we just use $N=n_1,n_2$ in our identification equations \ref{variance} and \ref{covariance}. Remember in our main results we used GMM with $N=3,4,5$ and we have circled $N=3,5$ to highlight where we get identification from in the paper. The purpose of this exercise is to show that the estimation results are not very sensitive to the values of $N$ chosen, providing more evidence that the assumption we made that the transitory consumption response lasts less than two years is not biasing our results significantly. In fact, the results are not changed dramatically even when $N=1,2$, which suggests the majority of the transitory consumption response is very short-lived.
+
+
+\begin{comment}
+\section{Benchmark Model and Taste Shock Extension} \label{model}
+In this section we calibrate a standard incomplete markets model to Danish characteristics, including the liquid wealth distribution in Denmark, and use it to see if we can match the consumption responses we measure in the data.\footnote{By calibrating to the liquid wealth distribution, we are implicitly assuming that households cannot access any of their illiquid wealth, similar to the two asset model in \cite{auclert_ikc}. A model such as \cite{violante_wealthy_2014} or \cite{gorea_liquidity_2017} that allows households to buy and sell an illiquid asset at a cost would result in lower overall MPCs.}
+
+Motivated by the fact that the standard model results in lower transitory MPX numbers than we find in the data, we make a simple extension to the model to account for potentially large preference shocks. We propose that such shocks, which have generally played a much smaller role in the literature than income shocks, are perhaps quantitatively more important for precautionary savings behavior.
+
+\subsection{Benchmark Model Calibrated to Danish Data} \label{benchmark_model}
+Our baseline model is the now very familiar buffer-stock saving model of \cite{carroll_buffer_1997}. Given market resources ($\boldmath{\mLevBF}_t$), households in this model maximize expected utility
+\begin{align*}
+\mathbb{E}_t \sum_{s=t}^{\infty} \beta^s u(\cLevBF_s)
+\end{align*}
+subject to the constraints\footnote{Here $\cLevBF_t$ is consumption, $\aLevBF_t$ end-of-period assets, $R$ the constant real interest rate (set to 1.065), $\bLevBF_t$ beginning-of-period assets, $\yLevBF_t$ income, and $\pLevBF_t$ permanent income.}
+\begin{align*}
+\aLevBF_t = \mLevBF_t - \cLevBF_t \\
+\bLevBF_t = R\aLevBF_t \\
+\yLevBF_t = \theta_t \pLevBF_t \\
+\pLevBF_t = \Psi_t \pLevBF_{t-1} \\
+\mLevBF_t = \bLevBF_t + \yLevBF_t
+\end{align*}
+where the felicity function, $u(\cLevBF)$, is CRRA. We calibrate our model to match both the income uncertainty (as measured using our methodology) and the liquid wealth distribution in Denmark. The model is quarterly, and we aggregate both income and consumption to the annual frequency where required.
+
+Permanent income, $\pLevBF_t$, experiences normally distributed shocks, $\Psi_t$, with (annualized) variance equal to 0.004, matching our population estimate. Transitory income shocks, $\theta_t$, are normally distributed with (annualized) variance 0.0035 if employed, and a small 0.001 probability of a zero income, unemployed, state that induces a natural borrowing constraint at zero.
+
+We examine an economy in steady state, where each agent has a probability $1/160$ of dying each quarter and being replaced by another agent with permanent income equal to one, and no initial wealth.
+
+To be able to match the liquid wealth distribution, especially at the low end, we follow \cite{krusell_income_1998} and \cite{carroll_distribution_2017} and allow for ex-ante heterogeneity in the discount factor $\beta$. Specifically, an agent $i$ has a discount factor $\beta_i$ where $\beta_i$ is i.i.d. across agents and follows a uniform distribution between $\beta_{low}$ and $\beta_{high}$. These two parameters allow us to match the fact that while the mean level of liquid assets is high, about half of all households have close to zero liquid assets. Matching the lower part of this distribution is critical to generate transitory consumption elasticities substantially above zero. The Lorenz curve for liquid assets, both in the data and in the model, is shown in figure \ref{fig:Lorenz}.\footnote{We calibrate to the 20th, 40th, and 60th percentile of liquid wealth, leaving out the 80th percentile, to better match the wealth of the lower half of the distribution, which is necessary to achieve reasonably high MPCs in a model like this. The figure shows that the fit in the upper half of the distribution is less precise. Our estimates of $\beta_{low}$ and $\beta_{high}$ are 0.978 and 0.992, respectively.}
+\begin{figure} 
+	\centering
+	\includegraphics[scale=0.45]{\econtexRoot/Figures/benchmark_Lorenz.png}
+	\caption{Lorenz Curve for Danish Liquid Assets}
+	\label{fig:Lorenz}
+\end{figure}
+
+\subsection{Model with Preference Shocks}
+The baseline model exhibits two features in tension with the data. First, the marginal propensity to consume out of transitory income shocks, while exhibiting the right shape relative to liquid wealth, is too low relative to the data. Second, as would be expected in such a consumption-smoothing model, the path of expenditure is significantly less volatile than income. However, the data show the opposite: the standard deviation of changes in expenditure is around 0.37, compared to 0.12 for income. There is very little evidence on the true size of expenditure shocks, partly because of large measurement errors known to be present in consumption survey data. While we believe the 0.37 number from our data also contains measurement error, as well as large expected expenditures such as new cars for which finance may be readily available, it seems likely that the expenditure shocks could be large. Indeed, typical financial advice to maintain a buffer stock will mention unexpected costs such as medical bills or a leaky roof before income shocks.\footnote{For example, in 2016,  Forbes Magazine suggested ``you could find yourself thrown off by a chipped tooth or fender bender. So having an emergency fund padded with nine months of the highest earner's net income may help give you a bit more peace of mind that you could weather a financial storm.''} A simple tweak to the baseline model can help the model fit the data along both these dimensions. To achieve this we add a preference shock to expected utility:
+\begin{align*}
+\mathbb{E}_t \sum_{i=t}^{\infty} \beta^i \mathcal{X}_i u(\cLevBF_i)
+\end{align*}
+where $\mathcal{X}_i$ is i.i.d. and calibrated such that the variance of consumption is large.\footnote{We choose preference shocks with an annual standard deviation of 0.3. While this seems large, the resulting consumption change standard deviation is 0.18, significantly lower than 0.37 that we observe in the data.}
+
+\subsection{MPX by Liquid Wealth} 
+The top panel of figure \ref{fig:CSTW} shows how the transitory MPX of the two models compares with the data. While the fact that the MPX decreases with the liquid wealth quintile is robust in both models and in the data, there are two features worth noting. 
+
+First, large preference shocks are required to push the transitory MPX close to the levels we see in the data. Many recent papers, such as \cite{krueger_macroeconomics_2016}, have attempted to carefully quantify the macroeconomic dynamic consequences of a serious heterogeneous agent model but thus far have not included significant preference shocks in their calibrations. The evidence here suggests that such shocks may have a quantitatively important role to play, especially in increasing the MPC. To the extent that the precautionary motive is driven by preference shocks as opposed to income shocks, social insurance for unemployment will not reduce precautionary savings as much as these models presently suggest.
+
+Second, neither of the two models is able to explain the high MPX out of transitory shocks that we observe for the top quintile of liquid assets. These households, which hold a mean balance above \$30,000, appear very responsive to transitory shocks despite the large buffer stock they could potentially use to smooth income shocks.
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_tran_denmark_pref.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/CSTW_perm_denmark_pref.pdf}
+		\caption{Baseline model (LHS) and Preference Shock Model (RHS) with the Data}
+		\label{fig:CSTW}
+	\end{centering}
+\end{figure}
+
+The bottom panel of figure \ref{fig:CSTW} shows another failure of both of these two simple models: neither is able to capture the fact that the consumption response to permanent shocks is substantially below 1, even for middle and low quintiles of liquid wealth. \cite{straub_consumption_2018} shows that a lifecycle model with nonhomothetic preferences may do better along this front.
 
 \subsection{Persistent Consumption in the Preference Shock Model}
 Using a model we are able to calculate precisely the partial derivative of expenditure with respect to transitory income. To be comparable to the time period of our empirical MPX we take the mean MPX over one, two, three and four quarters:\footnote{Remember our empirical method measures the covariance of income with expenditure in the same calendar year. If the shock happens in the first quarter, then we will count expenditure over the next four quarters. If the shocks happen in the final quarter, then only one quarter of expenditure will be captured.}
@@ -798,15 +755,10 @@ where $\text{MPX}_q$ is the partial derivative in the quarterly model.
 
 Figure \ref{fig:MPC_accuracy} shows how the empirical method performs on data simulated from the preference shock model of section \ref{model}. The method works well when the MPX is high, but overestimates the MPX when it is low, which is a direct result of the assumption that the consumption response to a transitory shocks decays within a two year period. The consumption response in the model is very close to the exponential decay model previously simulated, so it is not surprising that the bias is large for low values of the MPX. As above, empirical evidence suggests that, even for households with low MPX, the initial decay of the consumption response occurs much faster than exponential decay would suggest.
 
-\subsection{Estimates Using Different Values of $N$}
-\begin{center}
-	\captionof{table}{$\psi$ Estimates Using Different $N$}
-	\label{table:psi_estimates}
-	\input ./Tables/Psi_array_empirical.tex
-\end{center}
-Table \ref{table:psi_estimates} shows the estimates of the transitory MPX that we recover from our estimation sample when we just use $N=n_1,n_2$ in our identification equations \ref{variance} and \ref{covariance}. Remember in our main results we used GMM with $N=3,4,5$ and we high circled $N=3,5$ to highlight where we get identification from in the paper. The purpose of this exercise is to show that the estimation results are not very sensitive to the values of $N$ chosen, providing more evidence that the assumption we made that the transitory consumption response lasts less than two years is not biasing our results significantly. In fact, the results are not changed dramatically even when $N=1,2$, which suggests the majority of the transitory consumption response is very short-lived.
+\section{Labor Elasticity} \label{labor_elasticity}
+The empirical results of this paper estimate MPX to be at the high end of the literature. The results also conflict with standard consumption theory, particularly at the higher end of the liquid wealth distribution. It is possible that these high transitory MPX estimates are being driven by reverse causality: in years when households wish to spend more, they increase their labor supply. In this case, our assumption that labor income is exogenous would be false. To get a sense of the quantitative magnitude of the bias such reverse causality could induce, in online appendix \ref{labor_elasticity_model} we calibrate a model with both preference shocks and labor supply elasticity. We find the effect is quantitatively small, with both the true MPX and the estimates using our method being close to zero for a simulation of households with liquid wealth in the top quintile. However, for extreme values of preference shocks and labor elasticity, we can generate estimates of the transitory MPX to be as high as 0.25, when the true MPX is 0.08.\footnote{Estimates of the Frisch elasticity in microdata studies range from 0 to 0.5, while macroeconomic studies generally find a much larger elasticity of between 2 and 4 (see \cite{peterman_reconciling_2016}). We do not consider estimates of the Frisch elasticity in the macroeconomic range, as it seems likely to us that these estimates are high due to labor market frictions over the business cycle, rather than genuine labor supply choices of households. Some of the best evidence comes from \cite{cesarini_effect_2017}, who use lottery winnings in Sweden to estimate a Frisch elasticity of 0.14. The extreme values referred to in the text are a Frisch elasticity of 0.5 and an annual preference shock standard deviation of 0.4.}
 
-\section{Labor Elasticity Model} \label{labor_elasticity_model}
+\subsection{Labor Elasticity Model} \label{labor_elasticity_model}
 \setcounter{figure}{0}   
 \setcounter{table}{0} 
 Here we detail the model and simulation results summarized in section \ref{labor_elasticity}. The model extends the standard incomplete markets model from section \ref{model}, incorporating both preference shocks, so that households have some years when their utility of consumption is greater than others, and labor elasticity, so that households can adjust their income based on the marginal utility of consumption. The household's problem is to maximize expected lifetime utility:
@@ -856,11 +808,62 @@ Table \ref{table:psi_mpc_laborsupply} compares the actual mean MPC in the model 
 The right-hand panel of table \ref{table:psi_mpc_laborsupply} shows the effect of preference shocks and labor elasticity on our empirical estimates of $\psi$, the transitory MPX. The top row shows that our estimate is lower than the MPC (due to the fact that at these low levels of MPC, more than two years is required for the transitory effect to decay away). It does, however, follow the same pattern as the MPC and falls in magnitude as the ability of households to adjust labor supply increases. Similarly, going down the first row shows that the estimated MPX increases with the preference shock. However, the similarity to the MPX table ends when we increase \textit{both} labor elasticity \textit{and} the size of the preference shocks. Our estimate can grow large, up to a value of 0.25, when extreme values are chosen: a Frisch elasticity of 0.5 and a preference shock standard deviation of 0.4. This measured transitory MPX now bears little relation to the MPX (which is 0.08). Instead, it is being driven by reverse causality, whereby preference shocks are driving consumption along with the decision to increase labor. The observed ``shocks'' to income are therefore highly correlated with consumption, but they are not causing the consumption dynamics exogenously.
 
 This exercise suggests the bias due to reverse causality is likely to be small, but further investigation may be worthwhile.
+\end{comment}
+
+\section{Durables}\label{durables_appendix}
+In this appendix we expand on section \ref{durables} on durable expenditure. First, it will help to write down a simple model. The model will show that our empirical methodology continues to estimate the consumption response to permanent and transitory shocks, but that these need to be interpreted carefully. The model uses the same income process as section \ref{cov_restrictions}. Remembering the income process is made up of two martingale processes, $P_t$ and $Q_t$, which may have jumps, instantaneous income is given by
+\begin{align*}
+dy_t = \Big( \int_{0}^{t}dP_s \Big) dt  +dQ_t 
+\end{align*}
+while instantaneous expenditure now has both a durable and a nondurable component:
+\begin{align*}
+dc_t = \phi_{nd} \Big( \int_{0}^{t} dP_s  \Big) dt + \phi_{d} dP_t + \psi dQ_s
+\end{align*}
+Here we have assumed that the expenditure response to transitory shocks is instantaneous, but it would not change things to assume as before that the response decays to zero after two years. However, it is important that the durable component of the expenditure response to permanent shocks occurs instantaneously with the shock (or very soon after). Aggregating income and consumption annually gives
+\begin{align*}
+\Delta^N \bar{y}_T &=  \Big(\int_{T-N-1}^{T-N} (s-(T-N-1))dP_s  + \int_{T-N}^{T-1}dP_s + \int_{T-1}^{T} (T-s)dP_s \Big) \\
+& \qquad + \Big(\int_{T-1}^{T} dQ_t -\int_{T-N-1}^{T-N} dQ_t \Big) \\
+\Delta^N \bar{c}_T &= \phi_{nd} \Big(\int_{T-N-1}^{T-N} (s-(T-N-1))dP_s  + \int_{T-N}^{T-1}dP_s + \int_{T-1}^{T} (T-s)dP_s \Big) \\
+& \qquad + \phi_d \Big(\int_{T-1}^{T} dP_t -\int_{T-N-1}^{T-N} dP_t \Big) \\
+& \qquad + \psi \Big(\int_{T-1}^{T} dQ_t -\int_{T-N-1}^{T-N} dQ_t \Big) \\
+\end{align*}
+From this we can calculate the covariance:
+\begin{align*}
+\mathrm{Cov}(\Delta^n \bar{c_T},\Delta^n \bar{y_T} ) &= \phi_{nd} \mathrm{Var}(\Delta^n \bar{y_T}) \\
+& \qquad + \phi_d \Bigg( \int_{T-1}^{T} (T-s) \sigma_P^2 dt - \int_{T-N-1}^{T-N}(s-(T-N-1)) \sigma_P^2 dt \Bigg) \\
+& \qquad + \psi\Bigg(\int_{T-1}^{T}  \sigma_Q^2 dt + \int_{T-N-1}^{T-N}\sigma_Q^2 dt\Bigg) \\
+&= \phi_{nd} (n-\frac{1}{3})\sigma_P^2 + 0 +  2 \psi \sigma_Q^2
+\end{align*}
+So the durable component of the covariance cancels out, and our identification method correctly identifies $\phi_{nd}$ and $\psi$ but is unable to identify $\phi_d$.
+
+However, if there is some delay between the household receiving the permanent income shock and purchasing the durable goods, then this introduces an upward bias into the estimate of transitory MPX. The size of the bias grows with the number of months delay between the permanent income shock and the durable goods purchase, plateauing after 12 months at a level of $\frac{\sigma^2_p}{2\sigma^2_q}\phi_d$. Figure \ref{fig:durable_bias} shows how this bias increases with the delay.
+\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.6]{\econtexRoot/Figures/DurableBias.pdf}
+		\caption{Bias in Transitory MPX with Delay in Durable Goods Purchase}
+		\label{fig:durable_bias}
+	\end{centering}
+\end{figure}
+
+In order to quantify how large this bias may be in practice, we make use of the car registry data available in Denmark. Using data on the current value of cars owned by a household, we perform the same residual calculation to find the change in car value that is unpredictable with the household characteristics we are able to observe. We then construct two new expenditure panels: one in which we remove expenditures on cars, and one in which we make a proxy for non-durable consumption by removing expenditures on cars multiplied by $\frac{1}{0.421}$ (car purchases make up 42.1\% of durable expenditure in Denmark):
+\begin{align*}
+C_T^{\text{nocar}} = C_T - \Delta \text{CarValue} \\
+C_T^{\text{nondurable}} = C_T - \frac{1}{0.421}\Delta \text{CarValue}
+\end{align*}
+The second, nondurable proxy consumption panel, can be modeled as the true non-durable consumption panel with classical measurement error added. This classical measurement error does not bias our estimates, so we can use this nondurable proxy panel to estimate an unbiased MPC out of transitory shocks, where the MPC does not include durable expenditures.
+
+The results of this exercise can be seen in figure \ref{fig:MPXByDurables}. Even without bias, we would expect the nondurable proxy estimates to be lower than those including all expenditures, as the definition of transitory MPX changes over the three panels to exclude cars and then all durable goods. For the lower quintiles of liquid wealth it therefore looks as though the bias is likely very small, as nondurable goods make up 10\% of spending and the MPX estimates are smaller by approximately 10\% in this region. For the top quintile of liquid wealth there seems to be some bias, with the estimate of MPX for all expenditures decreasing from 25\% to an MPC for nondurable goods of 17\%.
+
+While there is some evidence that our results may be biased upward for those in the top quintiles of liquid assets, this bias will only have a small effect on our overall conclusions. As the relevant number for the monetary policy exercise is the MPX rather than the MPC, we have chosen not to adjust our baseline results using this method and accept that a small bias may exist in our data. It should be noted that such a bias will cause the heterogeneous channels of monetary policy to appear smaller than they actually are.
+
 
 \section{RIP or HIP Income Process?} \label{rip_hip_appendix}
 \setcounter{figure}{0}   
 \setcounter{table}{0} 
-There has been a long-standing and unresolved quest in the literature to find a parsimonious representation of the labor income process. Two competing candidates are Restricted Income Profile (RIP) and Heterogeneous Income Profile (HIP) processes. Both can be described by the equations:
+\subsection{RIP or HIP Income Process?} \label{rip_hip}
+Our method makes strong assumptions on the income process---namely, that there is no persistent idiosyncratic component to income growth and that the process contains a random walk. \cite{guvenen_empirical_2009} shows that it is empirically difficult to distinguish between a `Restricted Income Profile' (RIP) like this and a `Heterogenous Income Profile' (HIP) income process, in which (i) shocks to income are much less persistent (e.g., AR(1) with $\rho\approx 0.8$), and (ii) households have a persistent idiosyncratic growth component. The reason the RIP and HIP processes are difficult to tell apart is that the two features (i) and (ii) act in opposite directions on the cross-section variance of income growth. The less persistent income shocks lead the cross-sectional income growth variance to not grow as fast as the HIP model, while the persistent idiosyncratic growth component leads the same variance to grow at a faster rate. The result is that the increase in variance of income growth over three to four years is approximately the same as the increase from four to five years. To the extent that the consumption response to these semi-permanent shocks is similar to the response to the idiosyncratic persistent growth component,\footnote{See \cite{guvenen_learning_2007} for an example of why this might be the case: if households do not know their own idiosyncratic growth ex-ante, a Bayesian learning process will be very slow, so households (at least initially) will react in similar ways to changes in income due to this persistent growth component as a true income shock.} our methodology will continue to provide reasonable estimates of the ``permanent'' MPX and the more familiar transitory MPX. 
+
+Both the Restricted Income Profile (RIP) and Heterogeneous Income Profile (HIP) processes can be described by the equations:
 \begin{align*}
 	y_h^i = \beta^i h + z^i_h + \varepsilon^h_i\\
 	z^i_h = \rho z^i_{h-1]} + \eta^h_i
@@ -887,9 +890,11 @@ A full investigation of the implications of different income processes is beyond
 	\end{centering}
 \end{figure}
 
-\section{Time-Varying Risk} \label{time_varying_risk_appendix}
+\section{Time-Varying Risk} \label{time_varying_risk}
 \setcounter{figure}{0}   
 \setcounter{table}{0} 
+We have assumed that idiosyncratic risk remains constant over time. Given that our sample period covers the great recession, this may not be appropriate. Here we show how the variance of income growth has varied over time, peaking just after the crisis in 2010. In order to test how much this time-varying risk might bias our results, we simulated data with $\phi=1$ and $\psi=0.5$, with permanent variance equal to estimates from the data and transitory variance varying in order to match the time-varying income risk pattern observed in the data. When we run this simulation we find estimates of $\phi$ and $\psi$ within 1\% of their true values.
+
 Figure \ref{fig:income_growth_std} shows how the standard deviation of income growth has changed over the sample period. From trough to peak, the standard deviation increases approximately 10\%. In the simulation referred to in section \ref{time_varying_risk}, we assume that both transitory income and transitory consumption response have no persistence. We divide each year into 20 sub-periods, choose the variance of permanent shocks to be 0.003, and allow time-varying transitory shocks to match the pattern in figure \ref{fig:income_growth_std}. We choose values of $\phi=1$ and $\psi=0.5$ and apply our estimation procedure (that assumes constant variance) to the simulated data. We recover estimated values of $\phi$ and $\psi$ to be 1.006 and 0.499, respectively.
 \begin{figure} 
 	\begin{centering}

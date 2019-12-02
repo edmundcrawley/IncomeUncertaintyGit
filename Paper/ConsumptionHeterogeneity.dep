@@ -8,14 +8,14 @@
   *{package}{ifthen}      {2014/09/29 v1.1c}
   *{package}{chngpage}    {2009/10/20 v1.2b}
   *{package}{setspace}    {2011/12/19 v6.7a}
-  *{class}  {scrartcl}    {2019/02/01 v3.26b}
-  *{package}{scrkbase}    {2019/02/01 v3.26b}
-  *{package}{scrbase}     {2019/02/01 v3.26b}
+  *{class}  {scrartcl}    {2019/10/12 v3.27}
+  *{package}{scrkbase}    {2019/10/12 v3.27}
+  *{package}{scrbase}     {2019/10/12 v3.27}
   *{package}{keyval}      {2014/10/28 v1.15}
-  *{package}{scrlfile}    {2019/02/01 v3.26b}
-  *{package}{tocbasic}    {2019/02/01 v3.26b}
-  *{file}   {scrsize12pt.clo}{2019/02/01 v3.26b}
-  *{package}{typearea}    {2019/02/01 v3.26b}
+  *{package}{scrlfile}    {2019/10/12 v3.27}
+  *{package}{tocbasic}    {2019/10/12 v3.27}
+  *{file}   {scrsize12pt.clo}{2019/10/12 v3.27}
+  *{package}{typearea}    {2019/10/12 v3.27}
   *{package}{fontenc}     {0000/00/00 v0.0}
   *{file}   {t1enc.def}   {2018/08/11 v2.0j}
   *{package}{babel}       {2019/04/22 v3.30}
@@ -32,12 +32,19 @@
   *{package}{amssymb}     {2013/01/14 v3.01}
   *{package}{amsfonts}    {2013/01/14 v3.01}
   *{package}{amsthm}      {2017/10/31 v2.20.4}
+  *{package}{xpatch}      {2012/10/02 v0.3}
+  *{package}{expl3}       {2019-11-07 v3}
+  *{file}   {expl3-code.tex}{2019-11-07 v3}
+  *{file}   {l3deprecation.def}{2019-04-06 v3}
+  *{file}   {l3backend-pdfmode.def}{2019-04-06 v3}
+  *{package}{xparse}      {2019-10-11 v3}
+  *{package}{etoolbox}    {2019/09/21 v2.5h}
   *{package}{threeparttable}{2003/06/13 v3.0}
   *{package}{dcolumn}     {2014/10/28 v1.06}
   *{package}{array}       {2018/12/30 v2.4k}
   *{package}{multicol}    {2018/12/27 v1.8v}
   *{package}{multirow}    {2019/01/01 v2.4}
-  *{package}{booktabs}    {2005/04/14 v1.61803}
+  *{package}{booktabs}    {2019/10/08 v1.6180339}
   *{package}{latexsym}    {1998/08/17 v2.2e}
   *{package}{afterpage}   {2014/10/28 v1.08}
   *{package}{endnotes}    {0000/00/00 v0.0}
@@ -59,7 +66,7 @@
   *{package}{optional}    {2005/01/26 v2.2b;}
   *{package}{natbib}      {2010/09/13 v8.31b}
   *{package}{footmisc}    {2011/06/06 v5.5b}
-  *{package}{manyfoot}    {2005/09/11 v1.10}
+  *{package}{manyfoot}    {2019/08/03 v1.11}
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
   *{package}{./texmf-local/tex/latex/econtexSetup}{0000/00/00 v0.0}
@@ -74,71 +81,72 @@
   *{package}{trig}        {2016/01/03 v1.10}
   *{file}   {graphics.cfg}{2016/06/04 v1.11}
   *{package}{hyperref}    {2018/11/30 v6.88e}
-  *{package}{hobsub-hyperref}{2016/05/16 v1.14}
-  *{package}{hobsub-generic}{2016/05/16 v1.14}
-  *{package}{hobsub}      {2016/05/16 v1.14}
-  *{package}{infwarerr}   {2016/05/16 v1.4}
+  *{package}{hobsub-hyperref}{2019-11-14 v0.0}
   *{package}{ltxcmds}     {2016/05/16 v1.23}
-  *{package}{ifluatex}    {2016/05/16 v1.4}
   *{package}{ifvtex}      {2016/05/16 v1.6}
-  *{package}{intcalc}     {2016/05/16 v1.2}
-  *{package}{ifpdf}       {2018/09/07 v3.3}
-  *{package}{etexcmds}    {2016/05/16 v1.6}
-  *{package}{kvsetkeys}   {2016/05/16 v1.17}
-  *{package}{kvdefinekeys}{2016/05/16 v1.4}
   *{package}{pdftexcmds}  {2018/09/10 v0.29}
+  *{package}{infwarerr}   {2016/05/16 v1.4}
+  *{package}{ifluatex}    {2016/05/16 v1.4}
+  *{package}{ifpdf}       {2018/09/07 v3.3}
+  *{package}{kvsetkeys}   {2016/05/16 v1.17}
+  *{package}{etexcmds}    {2016/05/16 v1.6}
+  *{package}{kvdefinekeys}{2016/05/16 v1.4}
   *{package}{pdfescape}   {2016/05/16 v1.14}
-  *{package}{bigintcalc}  {2016/05/16 v1.4}
-  *{package}{bitset}      {2016/05/16 v1.2}
-  *{package}{uniquecounter}{2016/05/16 v1.3}
-  *{package}{letltxmacro} {2016/05/16 v1.5}
-  *{package}{hopatch}     {2016/05/16 v1.3}
-  *{package}{xcolor-patch}{2016/05/16 v0.0}
-  *{package}{atveryend}   {2016/05/16 v1.9}
-  *{package}{atbegshi}    {2016/06/09 v1.18}
-  *{package}{refcount}    {2016/05/16 v3.5}
   *{package}{hycolor}     {2016/05/16 v1.8}
-  *{package}{ifxetex}     {2010/09/12 v0.6}
+  *{package}{xcolor-patch}{2016/05/16 v0.0}
+  *{package}{hopatch}     {2016/05/16 v1.3}
+  *{package}{letltxmacro} {2016/05/16 v1.5}
   *{package}{auxhook}     {2016/05/16 v1.4}
+  *{package}{ifxetex}     {2010/09/12 v0.6}
   *{package}{kvoptions}   {2016/05/16 v3.12}
   *{file}   {pd1enc.def}  {2018/11/30 v6.88e}
+  *{package}{intcalc}     {2016/05/16 v1.2}
   *{file}   {hyperref.cfg}{2002/06/06 v1.2}
+  *{package}{bitset}      {2016/05/16 v1.2}
+  *{package}{bigintcalc}  {2016/05/16 v1.4}
+  *{package}{atbegshi}    {2016/06/09 v1.18}
   *{file}   {hpdftex.def} {2018/11/30 v6.88e}
+  *{package}{atveryend}   {2016/05/16 v1.9}
   *{package}{rerunfilecheck}{2016/05/16 v1.8}
+  *{package}{uniquecounter}{2016/05/16 v1.3}
   *{package}{./texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
-  *{package}{tikz}        {2019/04/04 v3.1.2}
-  *{package}{pgf}         {2019/04/04 v3.1.2}
-  *{package}{pgfrcs}      {2019/04/04 v3.1.2}
+  *{package}{tikz}        {2019/08/03 v3.1.4b}
+  *{package}{pgf}         {2019/08/03 v3.1.4b}
+  *{package}{pgfrcs}      {2019/08/03 v3.1.4b}
   *{package}{everyshi}    {2001/05/15 v3.00}
   *{file}   {pgfrcs.code.tex}{0000/00/00 v0.0}
-  *{package}{pgfcore}     {2019/04/04 v3.1.2}
-  *{package}{pgfsys}      {2019/04/04 v3.1.2}
+  *{package}{pgfcore}     {2019/08/03 v3.1.4b}
+  *{package}{pgfsys}      {2019/08/03 v3.1.4b}
   *{file}   {pgfsys.code.tex}{0000/00/00 v0.0}
-  *{file}   {pgfsyssoftpath.code.tex}{2019/04/04 v3.1.2}
-  *{file}   {pgfsysprotocol.code.tex}{2019/04/04 v3.1.2}
+  *{file}   {pgfsyssoftpath.code.tex}{2019/08/03 v3.1.4b}
+  *{file}   {pgfsysprotocol.code.tex}{2019/08/03 v3.1.4b}
   *{file}   {pgfcore.code.tex}{0000/00/00 v0.0}
-  *{package}{pgfcomp-version-0-65}{2019/04/04 v3.1.2}
-  *{package}{pgfcomp-version-1-18}{2019/04/04 v3.1.2}
-  *{package}{pgffor}      {2019/04/04 v3.1.2}
+  *{package}{pgfcomp-version-0-65}{2019/08/03 v3.1.4b}
+  *{package}{pgfcomp-version-1-18}{2019/08/03 v3.1.4b}
+  *{package}{pgffor}      {2019/08/03 v3.1.4b}
   *{package}{pgfkeys}     {0000/00/00 v0.0}
   *{file}   {pgfkeys.code.tex}{0000/00/00 v0.0}
   *{package}{pgfmath}     {0000/00/00 v0.0}
   *{file}   {pgfmath.code.tex}{0000/00/00 v0.0}
   *{file}   {pgffor.code.tex}{0000/00/00 v0.0}
   *{file}   {tikz.code.tex}{0000/00/00 v0.0}
-  *{package}{caption}     {2018/10/06 v3.3-154}
-  *{package}{caption3}    {2018/09/12 v1.8c}
-  *{package}{titlesec}    {2016/03/21 v2.10.2}
+  *{package}{caption}     {2019/09/01 v3.3d}
+  *{package}{caption3}    {2019/09/01 v1.8d}
+  *{package}{scrhack}     {2019/10/12 v3.27}
+  *{file}   {setspace.hak}{2019/10/12 v3.27}
+  *{file}   {standardsections.hak}{2019/10/12 v3.27}
+  *{package}{titlesec}    {2019/10/16 v2.13}
   *{package}{placeins}    {2005/04/18 v2.2}
-  *{package}{pdfpages}    {2017/10/31 v0.5l}
+  *{package}{pdfpages}    {2019/09/21 v0.5n}
   *{package}{eso-pic}     {2018/04/12 v2.0h}
-  *{file}   {pppdftex.def}{2017/10/31 v0.5l}
+  *{file}   {pppdftex.def}{2019/09/21 v0.5n}
   *{package}{rotating}    {2016/08/11 v2.16d}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2016/05/15 v2.6}
   *{package}{grfext}      {2016/05/16 v1.2}
   *{package}{nameref}     {2016/05/21 v2.44}
+  *{package}{refcount}    {2016/05/16 v3.5}
   *{package}{gettitlestring}{2016/05/16 v1.5}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.out}{0000/00/00 v0.0}
@@ -146,6 +154,7 @@
   *{file}   {bkm-pdftex.def}{2016/05/17 v1.26}
   *{package}{pdflscape}   {2016/05/14 v0.11}
   *{package}{lscape}      {2000/10/22 v3.01}
+  *{file}   {lscape.hak}  {2019/10/12 v3.27}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
@@ -164,22 +173,16 @@
   *{file}   {./Figures/MPXByUREdetailsPaper_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByNNP_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByIncome_level_lincome_head.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/benchmark_Lorenz.png}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_tran_denmark.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_tran_denmark_pref.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_perm_denmark.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/CSTW_perm_denmark_pref.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/DurableBias.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByDurables_nodurableproxy.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/DecayBias.pdf}{0000/00/00 v0.0}
   *{file}   {ConsumptionHeterogeneity.bbl}{0000/00/00 v0.0}
   *{file}   {./Figures/VarianceByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByAge_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_type.png}{0000/00/00 v0.0}
   *{file}   {./Figures/mortgage_by_maturity.png}{0000/00/00 v0.0}
   *{file}   {./Figures/MPXByLiquidWealthBPP_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/DecayBias.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/DecayBias_phi.pdf}{0000/00/00 v0.0}
-  *{file}   {./Figures/MPC_accuracy.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/DurableBias.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/IncreasingDiff_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/IncomeGrowthStd.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/Robust_tranMPX_liquidwealth.pdf}{0000/00/00 v0.0}
