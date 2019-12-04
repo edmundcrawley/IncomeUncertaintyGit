@@ -23,19 +23,15 @@
   {Experiment} in {Singapore},'' \emph{American Economic Review}, 104(12),
   4205--30.
 
+\harvarditem[Aiyagari]{Aiyagari}{1994}{aiyagari_uninsured_1994}
+\textsc{Aiyagari, S.~Rao}  (1994): ``Uninsured {Idiosyncratic} {Risk} and
+  {Aggregate} {Saving},'' \emph{Quarterly Journal of Economics}, 109, 659--684.
+
 \harvarditem[Altonji and Segal]{Altonji and
   Segal}{1996}{altonji_small-sample_1996}
 \textsc{Altonji, Joseph,  {and} Lewis~M. Segal}  (1996): ``Small-{Sample}
   {Bias} in {GMM} {Estimation} of {Covariance} {Structures},'' \emph{Journal of
   Business \& Economic Statistics}, 14(3), 353--66.
-
-\harvarditem[Ampudia, Georgarakos, Slacalek, Tristani, Vermeulen, and
-  Violante]{Ampudia, Georgarakos, Slacalek, Tristani, Vermeulen, and
-  Violante}{2018}{ampudia_monetary_2018}
-\textsc{Ampudia, Miguel, Dimitris Georgarakos, Jiri Slacalek, Oreste Tristani,
-  Philip Vermeulen,  {and} Giovanni Violante}  (2018): ``Monetary {Policy} and
-  {Household} {Inequality},'' {SSRN} {Scholarly} {Paper} ID 3223542, Social
-  Science Research Network, Rochester, NY.
 
 \harvarditem[Arellano, Blundell, and Bonhomme]{Arellano, Blundell, and
   Bonhomme}{2017}{arellano_earnings_2017}
@@ -46,12 +42,6 @@
 \harvarditem[Auclert]{Auclert}{2019}{auclert_monetary_2017}
 \textsc{Auclert, Adrien}  (2019): ``Monetary Policy and the Redistribution
   Channel,'' \emph{American Economic Review}, 109(6), 2333--67.
-
-\harvarditem[Auclert, Rognlie, and Straub]{Auclert, Rognlie, and
-  Straub}{2018}{auclert_ikc}
-\textsc{Auclert, Adrien, Matthew Rognlie,  {and} Ludwig Straub}  (2018): ``The
-  Intertemporal Keynesian Cross,'' Working Paper 25020, National Bureau of
-  Economic Research.
 
 \harvarditem[Baker]{Baker}{2018}{baker_debt_2015}
 \textsc{Baker, Scott~R.}  (2018): ``Debt and the Response to Household Income
@@ -70,6 +60,10 @@
 \textsc{Best, Michael~Carlos, James~S Cloyne, Ethan Ilzetzki,  {and} Henrik~J
   Kleven}  (2019): ``{Estimating the Elasticity of Intertemporal Substitution
   Using Mortgage Notches},'' \emph{Review of Economic Studies}, Forthcoming.
+
+\harvarditem[Bewley]{Bewley}{1983}{bewley_difficulty_1983}
+\textsc{Bewley, Truman}  (1983): ``A {Difficulty} with the {Optimum} {Quantity}
+  of {Money},'' \emph{Econometrica}, 51(5), 1485--504.
 
 \harvarditem[Blanchard, Lopez-de Silanes, and Shleifer]{Blanchard, Lopez-de
   Silanes, and Shleifer}{1994}{blanchard_what_1994}
@@ -118,11 +112,6 @@
   White}  (2017): ``The Distribution of Wealth and the Marginal Propensity to
   Consume,'' \emph{Quantitative Economics}, 8(3), 977--1020.
 
-\harvarditem[Carroll]{Carroll}{1997}{carroll_buffer_1997}
-\textsc{Carroll, Christopher~D.}  (1997): ``Buffer {Stock} {Saving} and the
-  {Life} {Cycle}/{Permanent} {Income} {Hypothesis},'' \emph{Quarterly Journal
-  of Economics}, CXII(1), 1--56.
-
 \harvarditem[Carroll]{Carroll}{2001}{carroll_death_2001}
 \textsc{Carroll, Christopher~Dixon}  (2001): ``Death to the {Log}-{Linearized}
   {Consumption} {Euler} {Equation}! ({And} {Very} {Poor} {Health} to the
@@ -134,13 +123,6 @@
   {and} Matthew~N White}  (2019): ``Sticky {Expectations} and {Consumption}
   {Dynamics},'' \emph{American {Economic} {Journal:} {Macroeconomics}},
   Forthcoming.
-
-\harvarditem[Cesarini, Lindqvist, Notowidigdo, and Ostling]{Cesarini,
-  Lindqvist, Notowidigdo, and Ostling}{2017}{cesarini_effect_2017}
-\textsc{Cesarini, David, Erik Lindqvist, Matthew~J. Notowidigdo,  {and} Robert
-  Ostling}  (2017): ``The {Effect} of {Wealth} on {Individual} and {Household}
-  {Labor} {Supply}: {Evidence} from {Swedish} {Lotteries},'' \emph{American
-  Economic Review}, 107(12), 3917--46.
 
 \harvarditem[Cloyne, Ferreira, and Surico]{Cloyne, Ferreira, and
   Surico}{2019}{cloyne_monetary_2016}
@@ -238,12 +220,6 @@
   Measure the Response of Spending to Income,'' \emph{Science}, 345(6193),
   212--15.
 
-\harvarditem[Gorea and Midrigan]{Gorea and
-  Midrigan}{2017}{gorea_liquidity_2017}
-\textsc{Gorea, Denis,  {and} Virgiliu Midrigan}  (2017): ``Liquidity
-  {Constraints} in the {U}.{S}. {Housing} {Market},'' NBER {Working} {Paper}
-  23345, National Bureau of Economic Research.
-
 \harvarditem[Greenwald]{Greenwald}{2018}{greenwald_mortgage_2018}
 \textsc{Greenwald, Daniel}  (2018): ``The {Mortgage} {Credit} {Channel} of
   {Macroeconomic} {Transmission},'' {SSRN} {Scholarly} {Paper} ID 2735491,
@@ -284,6 +260,16 @@
 \textsc{Hsieh, Chang-Tai}  (2003): ``Do Consumers React to Anticipated Income
   Changes? Evidence from the Alaska Permanent Fund,'' \emph{American Economic
   Review}, 99(1), 397--405.
+
+\harvarditem[Huggett]{Huggett}{1993}{huggett_risk_1993}
+\textsc{Huggett, Mark}  (1993): ``The risk-free rate in heterogeneous-agent
+  incomplete-insurance economies,'' \emph{Journal of Economic Dynamics and
+  Control}, 17(5), 953--69.
+
+\harvarditem[Imrohoro\u{g}lu]{Imrohoro\u{g}lu}{1989}{imrohoroglu_cost_1989}
+\textsc{Imrohoro\u{g}lu, Ay\c{s}e}  (1989): ``Cost of {Business} {Cycles} with
+  {Indivisibilities} and {Liquidity} {Constraints},'' \emph{Journal of
+  Political Economy}, 97(6), 1364--83.
 
 \harvarditem[Jappelli and Pistaferri]{Jappelli and
   Pistaferri}{2010}{jappelli_consumption_2010}
@@ -331,12 +317,6 @@
   {Measured} by {Administrative} {Records}: {Evidence} {From} {Sweden},'' in
   \emph{{NBER} {Chapters}: Improving the Measurement of Consumer Expenditures},
   pp. 308--46. National Bureau of Economic Research.
-
-\harvarditem[Krueger, Mitman, and Perri]{Krueger, Mitman, and
-  Perri}{2016}{krueger_macroeconomics_2016}
-\textsc{Krueger, D., K.~Mitman,  {and} F.~Perri}  (2016): \emph{{Macroeconomics
-  and Household Heterogeneity, }}pp. 843--921, Handbook of Macroeconomics.
-  Elsevier.
 
 \harvarditem[Krusell and Smith]{Krusell and Smith}{1998}{krusell_income_1998}
 \textsc{Krusell, Per,  {and} Anthony Smith}  (1998): ``Income and {Wealth}
@@ -422,10 +402,10 @@
 \textsc{Patterson, Christina}  (2019): ``The Matching Multiplier and the
   Amplification of Recessions,'' Mimeo, Department of Economics, MIT.
 
-\harvarditem[Peterman]{Peterman}{2016}{peterman_reconciling_2016}
-\textsc{Peterman, William~B.}  (2016): ``Reconciling {Micro} and {Macro}
-  {Estimates} of the {Frisch} {Labor} {Supply} {Elasticity},'' \emph{Economic
-  Inquiry}, 54(1), 100--20.
+\harvarditem[Reiter]{Reiter}{2009}{reiter_solving_2009}
+\textsc{Reiter, Michael}  (2009): ``Solving heterogeneous-agent models by
+  projection and perturbation,'' \emph{Journal of Economic Dynamics and
+  Control}, 33(3), 649--665.
 
 \harvarditem[Sahm, Shapiro, and Slemrod]{Sahm, Shapiro, and
   Slemrod}{2010}{Sahmetal:2008TaxRebates}
@@ -446,10 +426,6 @@
 \harvarditem[Souleles]{Souleles}{2002}{souleles:responseToReaganCuts}
 \textsc{\BySame{}}  (2002): ``Consumer Response to the Reagan Tax Cuts,''
   \emph{Journal of Public Economics}, 85, 99--120.
-
-\harvarditem[Straub]{Straub}{2019}{straub_consumption_2018}
-\textsc{Straub, Ludwig}  (2019): ``Consumption, Savings, and the Distribution
-  of Permanent Income,'' Working {Paper}.
 
 \harvarditem[Violante, Kaplan, and Weidner]{Violante, Kaplan, and
   Weidner}{2014}{violante_wealthy_2014}

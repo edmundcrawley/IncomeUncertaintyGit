@@ -140,6 +140,8 @@
   *{package}{pdfpages}    {2019/09/21 v0.5n}
   *{package}{eso-pic}     {2018/04/12 v2.0h}
   *{file}   {pppdftex.def}{2019/09/21 v0.5n}
+  *{package}{fontenc}     {0000/00/00 v0.0}
+  *{file}   {t1enc.def}   {2018/08/11 v2.0j}
   *{package}{rotating}    {2016/08/11 v2.16d}
   *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
@@ -160,7 +162,7 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2003/10/30 v2.0}
   *{file}   {t1cmtt.fd}   {2014/09/29 v2.5h}
-  *{file}   {./Figures/basic_regression_liquid_wealth_level_lincome_head.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/basic_regression_for_paper_level_lincome_head.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitory.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GenericTransitoryConsumptionWithBPP.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/TimeAgg_simple.pdf}{0000/00/00 v0.0}
