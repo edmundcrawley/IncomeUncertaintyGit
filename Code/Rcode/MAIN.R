@@ -411,10 +411,10 @@ par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
 lines(FromPython[1:dim(reg_coefs)[1]],lty='solid',col='red',type='o')
-points(reg_coefs)
-lines(reg_coefs)
-lines(reg_coefs+1.96*std_errors,lty='dashed')
-lines(reg_coefs-1.96*std_errors,lty='dashed')
+points(reg_coefs,col='black')
+lines(reg_coefs,col='black')
+lines(reg_coefs+1.96*std_errors,lty='dashed',col='black')
+lines(reg_coefs-1.96*std_errors,lty='dashed',col='black')
 #Add high and low liquid quantiles
 points(reg_coefs_liquid_wealth$X1)
 lines(reg_coefs_liquid_wealth$X1)
@@ -424,14 +424,14 @@ points(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5+1.96*std_errors_liquid_wealth$X5,lty='dashed')
 lines(reg_coefs_liquid_wealth$X5-1.96*std_errors_liquid_wealth$X5,lty='dashed')
-legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock"), col=c("blue","green","red"),lty=c("solid","solid","solid"),bty="n")
+legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
 arrows(2, 0.12, 9, 0.12)
 arrows(9, 0.12, 2, 0.12)
 text(3.5, 0.22, labels = "Relatively more \n transitory variance")
 text(7.5, 0.22, labels = "Relatively more \n permanent variance")
-text(3.0, 0.65, labels = "All Households")
-text(3.0, 0.92, labels = "Least Liquid")
-text(3.75, 0.44, labels = "Most Liquid")
+text(1.8, 0.645, labels = "All Households", cex=0.8)
+text(3.0, 0.92, labels = "Least Liquid", cex=0.8)
+text(3.75, 0.44, labels = "Most Liquid", cex=0.8)
 dev.off()
 
 ##############################################################################
@@ -1363,11 +1363,12 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
   category_for_save_input = category_for_save
   param_cols=4:6
   xlabel_pos = 2
+  ylabel = "MPX"
   
   # Loop through plots for presentation
   for (i in 0:7){
     if (i==0 | i==1 | i==2){
-      this_legend=c(expression(paste(psi," Transitory MPX")))
+      this_legend=c(expression(paste(" Transitory MPX")))
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-2),matrix(0,nrow(params_input),2))
       se = se_input
@@ -1381,7 +1382,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       }
     }
     if (i==3 | i==4){
-      this_legend=c(expression(paste(psi," Transitory MPX")),"Homeownership")
+      this_legend=c(expression(paste(" Transitory MPX")),"Homeownership")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-1),matrix(0,nrow(params_input),1))
       se = se_input
@@ -1392,7 +1393,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       right_axis=FALSE
     }
     if (i==5 | i==6 | i==7){
-      this_legend=c(expression(paste(psi," Transitory MPX")),"Homeownership","Liquid Assets (Right Axis)")
+      this_legend=c(expression(paste(" Transitory MPX")),"Homeownership","Liquid Assets (Right Axis)")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input
       se = se_input
@@ -1402,6 +1403,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       }
       if (i==7){
         category_for_save = paste(category_for_save_input,"Paper",sep="")
+        ylabel = "MPX or Homeownership rate"
       }
       right_axis=TRUE
     }
@@ -1416,7 +1418,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
                           beside=TRUE,col=colors,
                           las=2,ylim=c(0,plotTop), xaxt="n",
                           main=paste(title_string, " by ",category_for_title),
-                          ylab = "MPX",xlab="URE/Mean Expenditure", border="black", axes=TRUE, width = c(2,1,1))
+                          ylab = ylabel,xlab="URE/Mean Expenditure", border="black", axes=TRUE, width = c(2,1,1))
     text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=labels,xpd=TRUE)
     segments(barCenters, t(params[,param_cols]-se[,param_cols]*1.96),
              barCenters,
