@@ -107,7 +107,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
   pdf(paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
   if (transitory_only){
     param_cols=4
-    this_legend=c(expression(paste(psi," Transitory MPX")))
+    this_legend=c(expression(paste("Transitory MPX")))
   } else {
     param_cols=3:4
     this_legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX")))
@@ -1368,7 +1368,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
   # Loop through plots for presentation
   for (i in 0:7){
     if (i==0 | i==1 | i==2){
-      this_legend=c(expression(paste(" Transitory MPX")))
+      this_legend=c(expression(paste("Transitory MPX")))
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-2),matrix(0,nrow(params_input),2))
       se = se_input
@@ -1382,7 +1382,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       }
     }
     if (i==3 | i==4){
-      this_legend=c(expression(paste(" Transitory MPX")),"Homeownership")
+      this_legend=c(expression(paste("Transitory MPX")),"Homeownership")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input*cbind(matrix(1,nrow(params_input),ncol(params_input)-1),matrix(0,nrow(params_input),1))
       se = se_input
@@ -1393,7 +1393,7 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
       right_axis=FALSE
     }
     if (i==5 | i==6 | i==7){
-      this_legend=c(expression(paste(" Transitory MPX")),"Homeownership","Liquid Assets (Right Axis)")
+      this_legend=c(expression(paste("Transitory MPX")),"Homeownership","Liquid Assets (Right Axis)")
       colors = c("#91bfdb","#ffffbf","#fc8d59")
       params = params_input
       se = se_input

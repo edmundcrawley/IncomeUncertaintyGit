@@ -64,7 +64,7 @@ URENNP_data = np.genfromtxt(filename, delimiter=',')
 #Do large table for paper
 output = "\\begin{minipage}{" + str(0.9) + "\\textwidth}\n"
 output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccccc}  \n"
-output += " & MPX & NNP & URE &  $\mathcal{E}_P$ component & $\mathcal{E}_R$ component \n"
+output += " & \\textbf{MPX} & \\textbf{NNP} & \\textbf{URE} &  \\textbf{$\mathcal{E}_P$ component} & \\textbf{$\mathcal{E}_R$ component} \n"
 output += "\\\\ \\midrule"
 output += "\\\\ Sample            & " +  "See Distribution"         + " & " + mystr1(URENNP_data[0,1]) + " & "+ mystr1(URENNP_data[0,2]) + " & "+ mystr2(URENNP_data[0,3]) + " & "+ mystr2(URENNP_data[0,4])  + " \n"
 output += "\\\\ Young             & "    + mystr3(URENNP_data[1,0]) + " & " + mystr1(URENNP_data[1,1]) + " & "+ mystr1(URENNP_data[1,2]) + " & "+ mystr2(URENNP_data[1,3]) + " & "+ mystr2(URENNP_data[1,4])  + " \n"
