@@ -128,29 +128,6 @@
 	\end{tikzpicture}
 	}
 }
-\begin{comment}
-\frame
-{
-	\frametitle{Why Do We Care? (as macroeconomists)}
-	1) Heterogenous agent models have testable micro behavior \tikz[baseline]{\node(micro){}}\\
-	\bigskip
-	2) Quantify Macro Implications \tikz[baseline]{\node(macro){}}
-	\only<2->{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (micro1a)  at ([shift={(-2.2,0.3)}]micro) {};
-	\node (micro1b)  at ([shift={(-1,0.8)}]micro1a) {};
-	\draw[blue,thick,->] (micro1a)  to [in=270,out=90] (micro1b) node[anchor=south,text = blue] {\begin{tabular}{l} e.g. Consumption smoothing requires liquid wealth  \end{tabular}};
-	\end{tikzpicture}
-	}
-	\only<3->{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (macro1a)  at ([shift={(-2.8,0.0)}]macro) {};
-	\node (macro1b)  at ([shift={(-0.0,-0.8)}]macro1a) {};
-	\draw[blue,thick,->] (macro1a)  to [in=90,out=270] (macro1b) node[anchor=north,text = blue] {\begin{tabular}{l} e.g. Redistribution in Monetary Policy  \end{tabular}};
-	\end{tikzpicture}
-	}
-}
-\end{comment}
 \frame
 {
 	\frametitle{What do we find? (Liquid Wealth)}
@@ -251,93 +228,14 @@
 	\begin{tikzpicture}[remember picture,overlay]
 	\node (continuousa)  at ([shift={(0,0.1)}]continuous) {};
 	\node (continuousb)  at ([shift={(1,0)}]continuousa) {};
-	\draw[blue,thick,->] (continuousa)  to [in=180,out=0] (continuousb) node[anchor=west,text = blue] {\begin{tabular}{lcl} Time Aggregation Problem  \end{tabular}};
+	\draw[blue,thick,->] (continuousa)  to [in=180,out=0] (continuousb) node[anchor=west,text = blue] {\begin{tabular}{lcl} Time Aggregation Bias  \end{tabular}};
 	\end{tikzpicture}
 	}
-}
-\frame
-{
-	\frametitle{Identification Restrictions: Income Process}
-	\begin{itemize} 
-		\item Permanent Income (random walk)
-		\item Transitory Income (persistence $<$ 2 years)
-	\end{itemize}
-\vspace{-0.2cm}
-	\begin{figure}
-		\includegraphics[scale=0.35,trim= 0 0.6cm 0 1.2cm,clip]{../Figures/GenericTransitory_slides.pdf}
-	\end{figure}
-	\vspace{-0.5cm}
-	\begin{align*}
-	\onslide<2->{\onslide<3->{\color{blue} \tikz[baseline]{\node(n1){}}\bar{y}_T =} \onslide<3->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} y_t\onslide<3->{\color{blue}dt} &= \onslide<3->{ \color{blue} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}p_t \onslide<3->{\color{blue}dt} \color{black} + \onslide<3->{\color{blue}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}f(t-s)dq_s\onslide<3->{\color{blue}dt}  }
-	\end{align*}
-	\only<2>{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (n4a)  at ([shift={(0.2,-0.05)}]n4) {};
-	\node (n5a)  at ([shift={(0.5,-0.2)}]n5) {};
-	\draw[blue,thick,->] (n4a)  to [in=90,out=245] + (225:1.3cm) node[anchor=north,text = blue] {Permanent income flow};
-	\draw[blue,thick,->] (n5a) to [in=90,out=245] + (290:0.8cm) node[anchor=north,text = blue] {Transitory income flow};
-	\end{tikzpicture}
+	\only<5->{
+	\hspace{-1.17cm}Time Aggregation Bias is large:\\
+	Our average MPX $\approx$ 0.5\\
+	Blundell, Pistaferri and Preston (2008)  MPX $\approx$ 0.13
 	}
-	\only<3>{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (n1a)  at ([shift={(0.25,0.2)}]n1) {};
-	\node (n2a)  at ([shift={(0.45,-0.45)}]n2) {};
-	\draw[blue,thick,->] (n1a)  to [in=270,out=90] + (90:0.6cm) node[anchor=south,text = blue] {Observed Income};
-	\draw[blue,thick,->] (n2a)  to [in=90,out=270] + (270:0.6cm) node[anchor=north,text = blue] {Time Aggregation};
-	\end{tikzpicture}
-	}
-}
-\frame
-{
-	\frametitle{Identification Restrictions: Consumption Response}
-	\label{cons_identification}
-	\begin{itemize}
-		\item Permanent: Moves by fraction $\phi$ of shock
-		\item Transitory: Persistence $<$ 2 years \qquad \qquad \qquad \qquad \hyperlink{cons_decay}{\beamerbutton{Evidence}}
-	\end{itemize}
-\vspace{-0.2cm}
-	\begin{figure}
-	\includegraphics[scale=0.35,trim= 0 0.6cm 0 1.2cm,clip]{../Figures/GenericTransitoryConsumption_slides.pdf}
-\end{figure}
-\vspace{-0.5cm}
-\begin{align*}
-\onslide<2->{\onslide<3->{\color{blue} \tikz[baseline]{\node(n1){}}\bar{c}_T =} \onslide<3->{\tikz[baseline]{\node(n2){}}\int_{T-1}^{T}}\color{black} c_t\onslide<3->{\color{blue}dt} &= \onslide<3->{ \color{blue} \int_{T-1}^{T}}\color{black} \tikz[baseline]{\node(n4){}}\phi p_t \onslide<3->{\color{blue}dt} \color{black} + \onslide<3->{\color{blue}\int_{T-1}^{T}}\color{black}\int_{t-2}^{t} \tikz[baseline]{\node(n5){}}g(t-s)dq_s\onslide<3->{\color{blue}dt}}
-\end{align*}
-\only<2>{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (n4a)  at ([shift={(0.2,-0.05)}]n4) {};
-	\node (n5a)  at ([shift={(0.5,-0.2)}]n5) {};
-	\draw[blue,thick,->] (n4a)  to [in=90,out=245] + (225:1.3cm) node[anchor=north,text = blue] {Permanent consumption flow};
-	\draw[blue,thick,->] (n5a) to [in=90,out=245] + (290:0.8cm) node[anchor=north,text = blue] {Transitory consumption flow};
-	\end{tikzpicture}
-}
-\only<3>{
-	\begin{tikzpicture}[remember picture,overlay]
-	\node (n1a)  at ([shift={(0.25,0.2)}]n1) {};
-	\node (n2a)  at ([shift={(0.45,-0.45)}]n2) {};
-	\draw[blue,thick,->] (n1a)  to [in=270,out=90] + (90:0.6cm) node[anchor=south,text = blue] {h \ \ \ \ \ \ Observed Consumption};
-	\draw[blue,thick,->] (n2a)  to [in=90,out=270] + (270:0.6cm) node[anchor=north,text = blue] {Time Aggregation};
-	\end{tikzpicture}
-}
-}
-\frame
-{
-	\frametitle{Full Identification}
-We use GMM on the equations:
-\begin{empheq}[box=\tcbhighmath]{align*}
-\mathrm{Var}(\Delta^N \bar{y_T} ) &= \hspace{0.55em} \Big(N-\frac{1}{3}\Big) \sigma^2_p + 2  \sigma^2_{\tilde{q}} \\
-\mathrm{Cov}(\Delta^N \bar{c_T},\Delta^N \bar{y_T} ) &= \phi \Big(N-\frac{1}{3}\Big) \sigma^2_p + 2 \psi \sigma^2_{\tilde{q}}
-\end{empheq}
-with $N=3,4,5$ (and $T=2007,..,2015$) to identify:\\
-\bigskip
-\begin{itemize}
-	\item $\sigma^2_p$: Permanent shock variance
-	\item $\sigma^2_{\tilde{q}}$: (Time aggregated) transitory shock variance
-	\item $\phi$: MPX out of permanent income shocks
-	\item $\psi$: MPX out of transitory income shocks
-\end{itemize}
-\bigskip
-where  $\psi$ is the regression coefficient of `transitory' consumption on transitory income
 }
 \section{Data}
 \frame
