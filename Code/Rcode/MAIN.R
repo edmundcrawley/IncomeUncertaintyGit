@@ -110,7 +110,7 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
     this_legend=c(expression(paste("Transitory MPX")))
   } else {
     param_cols=3:4
-    this_legend=c(expression(paste(phi," Permanent MPX")),expression(paste(psi," Transitory MPX")))
+    this_legend=c(expression(paste("Permanent MPX")),expression(paste("Transitory MPX")))
   }
   par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
   #barCenters <- barplot(t(params[,param_cols]),names.arg=labels,cex.names=0.8,beside=TRUE,col=this_colors)
