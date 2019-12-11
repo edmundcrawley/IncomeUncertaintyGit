@@ -128,6 +128,7 @@
 	\end{tikzpicture}
 	}
 }
+\begin{comment}
 \frame
 {
 	\frametitle{What do we find? (Liquid Wealth)}
@@ -182,6 +183,7 @@
 	\end{tikzpicture}
 	}
 }
+\end{comment}
 \section{Empirical Strategy}
 \setbeamercovered{invisible}
 \frame[t]{
@@ -231,24 +233,31 @@
 	\draw[blue,thick,->] (continuousa)  to [in=180,out=0] (continuousb) node[anchor=west,text = blue] {\begin{tabular}{lcl} Time Aggregation Bias  \end{tabular}};
 	\end{tikzpicture}
 	}
-	\only<5->{
-	\hspace{-1.17cm}Time Aggregation Bias is large:\\
-	Our average MPX $\approx$ 0.5\\
-	Blundell, Pistaferri and Preston (2008)  MPX $\approx$ 0.13
-	}
 }
 \frame
 {
 	\frametitle{Time Aggregation Problem}
-		\centering
-		\onslide<1->{
-			\begin{tikzpicture}
-			\node (img1) {\includegraphics[height=7cm]{../Figures/TimeAgg_simple_1.pdf}};
-			\onslide<2->{
-				\node (img2) {\includegraphics[height=7cm]{../Figures/TimeAgg_simple.pdf}};
-			}
-			\end{tikzpicture}
+	\begin{columns}
+	\column{0.5\linewidth}
+	\centering
+	\onslide<1->{
+		\begin{tikzpicture}
+		\node (img1) {\includegraphics[height=5.5cm]{../Figures/TimeAgg_simple_1.pdf}};
+		\onslide<2->{
+			\node (img2) {\includegraphics[height=5.5cm]{../Figures/TimeAgg_simple.pdf}};
 		}
+		\end{tikzpicture}
+	}
+	\column{0.5\linewidth}
+	\onslide<3->{Time Aggregation Bias is large:\\
+		\bigskip
+		Our average MPC $\approx$ \textbf{0.5}\\
+		\vspace{0.2cm}
+		Blundell, Pistaferri and Preston (2008)  MPC $\approx$ \textbf{0.13}\\
+		\bigskip
+		MPC: Marginal Propensity to Consume
+	\end{columns}
+}
 }
 \section{Data}
 \frame
@@ -312,15 +321,25 @@
 	\end{itemize}
 	}
 }
-\section{Liquid Wealth}
+\section{Results}
 \frame
 {
-	\frametitle{MPX by Liquid Wealth Quintile}
+	\frametitle{MPC by Liquid Wealth Quintile}
 	\label{MPXbyLiquidWealth}
 	\centering
-		\includegraphics[scale=0.5, trim=1.3cm 0 0 1.3cm]{../Figures/MPXByLiquidWealth_level_lincome_head_CFPBslides.pdf}
+		\includegraphics[scale=0.5, trim=1.3cm 0 0 1.3cm]{./SlideFigures/MPCByLiquidWealth_level_lincome_head.pdf}
 }
-\section{Monetary Policy}
+\frame[t]
+{
+	\frametitle{Monetary Policy: Interest Rate Exposure Channel}
+	\only<1>{
+		\includegraphics[width=11cm]{./SlideFigures/IRE_Big1.png}
+	}
+	\only<2>{
+		\includegraphics[width=11cm]{./SlideFigures/IRE_Big3_CFPB.png}
+	}
+}
+\begin{comment}
 \frame{
 	\frametitle{Monetary Policy: Interest Rate Exposure Channel}
 	Some households pay interest \\
@@ -341,27 +360,28 @@
 		\item $L_i = $ Maturing liabilities
 	\end{itemize}
 }
+\end{comment}
 \frame{
-	\frametitle{MPX by Unhedged Interest Rate Exposure}
+	\frametitle{MPC by Unhedged Interest Rate Exposure}
 		\begin{center}
 		\begin{tikzpicture}
-		\node (img2) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetailsblank_level_lincome_head.pdf}};
+		\node (img2) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetailsblank_level_lincome_head.pdf}};
 		\node (img3)
-		{\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetails1a_level_lincome_head.pdf}};
+		{\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetails1a_level_lincome_head.pdf}};
 		\pause
-		\node (img6) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetailsblank_level_lincome_head.pdf}};
+		\node (img6) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetailsblank_level_lincome_head.pdf}};
 		\node (img7)
-		{\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetails2a_level_lincome_head.pdf}};
+		{\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetails2a_level_lincome_head.pdf}};
 		\pause
-		\node (img10) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetailsblank_level_lincome_head.pdf}};
-		\node (img11) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{../Figures/MPXByUREdetails3a_level_lincome_head.pdf}};
+		\node (img10) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetailsblank_level_lincome_head.pdf}};
+		\node (img11) {\includegraphics[scale=0.53,trim=0 0 0 1.7cm ,clip]{./SlideFigures/MPXByUREdetails3a_level_lincome_head.pdf}};
 		\onslide<1->
 		\end{tikzpicture}
 	\end{center}
 }
 \frame{
 	\frametitle{Monetary Policy: Interest Rate Exposure Channel}
-		\includegraphics[width=11cm]{./SlideFigures/IRE_Big3.png} \tikz[baseline]{\node(ire){}}
+		\includegraphics[width=11cm]{./SlideFigures/IRE_Big3_CFPB2.png} \tikz[baseline]{\node(ire){}}
 		\vspace{-.5cm}
 		\begin{align*}
 		\text{1yr rate }&\uparrow \ 1\% \\
@@ -386,7 +406,7 @@
 	Applied to Danish Registry Data
 	\begin{itemize}
 	\item Sample Size $\implies$ Sharp Focus on Heterogeneity
-	\item High MPX from transitory shocks, Low MPX from Permanent shocks
+	\item High MPC from transitory shocks, Low MPC from Permanent shocks
 	\item Quantify Monetary Policy Transmission Channels
 \end{itemize}
 	\bigskip
