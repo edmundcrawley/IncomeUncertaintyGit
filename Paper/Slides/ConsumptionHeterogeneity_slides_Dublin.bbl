@@ -1,0 +1,23 @@
+\ifx\undefined\BySame
+\newcommand{\BySame}{\leavevmode\rule[.5ex]{3em}{.5pt}\ }
+\fi
+\ifx\undefined\textsc
+\newcommand{\textsc}[1]{{\sc #1}}
+\newcommand{\emph}[1]{{\em #1\/}}
+\let\tmpsmall\small
+\renewcommand{\small}{\tmpsmall\sc}
+\fi
+\begin{thebibliography}{}
+
+\harvarditem[Fagereng, Holm, and Natvik]{Fagereng, Holm, and
+  Natvik}{2016}{fagereng_mpc_2016}
+\textsc{Fagereng, Andreas, Martin~B. Holm,  {and} Gisle~J. Natvik}  (2016):
+  ``{MPC} {Heterogeneity} and {Household} {Balance} {Sheets},'' Discussion
+  {Paper}, Statistics Norway, Research Department.
+
+\harvarditem[Gelman]{Gelman}{2016}{gelman_what_2016}
+\textsc{Gelman, Michael}  (2016): ``What Drives Heterogeneity in the Marginal
+  Propensity to Consume? Temporary Shocks vs Persistent Characteristics,''
+  Working {Paper}.
+
+\end{thebibliography}
