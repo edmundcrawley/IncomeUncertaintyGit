@@ -115,8 +115,8 @@ implied_cov_BPP <-function(params, ma, taste, T, perm_shk_params, tran_shk_param
     #/* Final matrix */
     
     dif[1:T,1:T]            <-difc
-    dif[(T+1):(2*T),1:T]        <-difyc
-    dif[1:T,(T+1):(2*T)]        <- t(difyc)
+    dif[(T+1):(2*T),1:T]        <-t(difyc) # NOTE: BPP got this transpose wrong, it is fixed here
+    dif[1:T,(T+1):(2*T)]        <- difyc
     dif[(T+1):(2*T),(T+1):(2*T)]    <-dify
     
 #    difa1 <- rbind(dif[1:8,],dif[12:(2*T),])
@@ -330,8 +330,8 @@ implied_cov_BPP_with_TimeAgg <-function(params, ma, taste, T, perm_shk_params, t
   #/* Final matrix */
   
   dif[1:T,1:T]            <-difc
-  dif[(T+1):(2*T),1:T]        <-difyc
-  dif[1:T,(T+1):(2*T)]        <- t(difyc)
+  dif[(T+1):(2*T),1:T]        <-t(difyc) # NOTE: BPP got this transpose wrong, it is fixed here
+  dif[1:T,(T+1):(2*T)]        <- difyc
   dif[(T+1):(2*T),(T+1):(2*T)]    <-dify
   
   #    difa1 <- rbind(dif[1:8,],dif[12:(2*T),])
