@@ -40,7 +40,7 @@ CS_parameter_estimation <- function(c_vector, omega,T,diff_to_use=3:5,cols_per_d
     init_params[1] <- 0.03 
     init_params[2] <-0.03
     init_params[3] <-0.7
-    init_params[4] <-0.7
+    init_params[4] <-0.5
 
     objectiveFun <-function(params, empirical_cov, weight_matrix,T,diff_to_use=3:5,cols_per_diff=NULL){
         model_cov <- implied_cov_CS(params,T,diff_to_use,cols_per_diff)
