@@ -1317,7 +1317,7 @@ Income_over_C_component[2] = Total_income_under_30/Total_consumption
 Income_over_C_component[3] = Total_income_over_55/Total_consumption
 
 E_R_auclert = sum(E_R_component)
-E_R_auclert_se = E_P_component_se
+E_R_auclert_se = E_R_component_se
 E_P_auclert = sum(E_P_component)
 E_P_auclert_se = E_P_component_se
 M_auclert = sum(M_component)

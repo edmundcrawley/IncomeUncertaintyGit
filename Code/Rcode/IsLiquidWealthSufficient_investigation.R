@@ -1,4 +1,4 @@
-
+require(spatstat)
 
 ###############################################################################
 # load liquid weath DECILE data and create graph
@@ -117,5 +117,46 @@ R2_Con = 1- mean_sq_prediction_error/mean_sq_error
 std_dev_Con = mean_sq_error^0.5
 std_dev_pred_Con = mean_sq_prediction_error^0.5
 
+############################## Load SCF data
+
+SCF_data = read.csv(paste("C:\\Users\\edmun\\OneDrive\\Documents\\Research\\SCF\\StataDownload",'\\SCF_Auclert','.csv',sep=''), header = TRUE)
+
+URE_MPC_predict_by_decile = array(0, dim=c(10))
+URE_MPC_predict_by_decile_median = array(0, dim=c(10))
+URE_by_decile = array(0, dim=c(10))
+liq_by_URE_decile = array(0, dim=c(10))
+for (i in 1:10){
+  URE_by_decile[i] = weighted.mean(SCF_data$URE[SCF_data$URE_decile==i],SCF_data$wgt[SCF_data$URE_decile==i])
+  URE_MPC_predict_by_decile_median[i] = MPC_tran_predict(weighted.median(SCF_data$liq[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i]))
+  liq_by_URE_decile[i] = weighted.median(SCF_data$liq[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i])
+}
+
+barCenters <- barplot(height=t(cbind(URE_MPC_predict_by_decile_median,URE_decile_MPC_predict)), 
+                      beside=TRUE, col=colors, ylim = c(0,1),
+                      main="URE Deciles")
 
 
+NNP_MPC_predict_by_decile = array(0, dim=c(10))
+NNP_MPC_predict_by_decile_median = array(0, dim=c(10))
+NNP_by_decile = array(0, dim=c(10))
+liq_by_NNP_decile = array(0, dim=c(10))
+for (i in 1:10){
+  NNP_by_decile[i] = weighted.mean(SCF_data$NNP[SCF_data$NNP_decile==i],SCF_data$wgt[SCF_data$NNP_decile==i])
+  NNP_MPC_predict_by_decile_median[i] = MPC_tran_predict(weighted.median(SCF_data$liq[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i]))
+  liq_by_NNP_decile[i] = weighted.median(SCF_data$liq[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i])
+}
+
+barCenters <- barplot(height=t(cbind(NNP_MPC_predict_by_decile_median,NNP_decile_MPC_predict)), 
+                      beside=TRUE, col=colors, ylim = c(0,1),
+                      main="NNP Deciles")
+
+total_C = 0.7*18.7*1000000000000 #18.7 trillion GDP, 70% consumption
+total_households = sum(SCF_data$wgt)
+C_per_HH = total_C/total_households
+
+E_R_unbalanced = sum(URE_by_decile/10*URE_MPC_predict_by_decile_median/C_per_HH)
+E_R = E_R_unbalanced -sum(URE_by_decile/10)*0.1/C_per_HH #assume MPC=0.1 for indirectly held assets
+
+
+E_P_unbalanced = sum(NNP_by_decile/10*NNP_MPC_predict_by_decile_median/C_per_HH)
+E_P = E_P_unbalanced -sum(NNP_by_decile/10)*0.1/C_per_HH #assume MPC=0.1 for indirectly held assets
