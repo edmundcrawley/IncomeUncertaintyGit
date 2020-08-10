@@ -147,3 +147,27 @@ with open('./Tables/sufficient_stats2.tex','w') as f:
     f.write(output)
     f.close()
 
+
+# And a table for how well liquid wealth predicts MPX    
+filename = "../Rcode/Tables/prediction_errors.csv"
+prediction_errors = np.genfromtxt(filename, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.65) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lcccc}  \n"
+output += " & \multicolumn{2}{c}{Transitory} & \multicolumn{2}{c}{Permanent} \n"
+output += "\\\\  Interpolate using: & Absolute & Ratio & Absolute & Ratio  \n"
+output += "\\\\ \\midrule "
+output += "\\\\  URE Deciles" + " & " + mystr2(prediction_errors[0,0]) + " & "+ mystr2(prediction_errors[0,1]) + " & "+ mystr2(prediction_errors[0,2]) + " & "+ mystr2(prediction_errors[0,3]) + " \n"
+output += "\\\\  NNP Deciles" + " & " + mystr2(prediction_errors[1,0]) + " & "+ mystr2(prediction_errors[1,1]) + " & "+ mystr2(prediction_errors[1,2]) + " & "+ mystr2(prediction_errors[1,3]) + " \n"
+output += "\\\\  Income Deciles" + " & " + mystr2(prediction_errors[2,0]) + " & "+ mystr2(prediction_errors[2,1]) + " & "+ mystr2(prediction_errors[2,2]) + " & "+ mystr2(prediction_errors[2,3]) + " \n"
+output += "\\\\  Consumption Deciles" + " & " + mystr2(prediction_errors[3,0]) + " & "+ mystr2(prediction_errors[3,1]) + " & "+ mystr2(prediction_errors[3,2]) + " & "+ mystr2(prediction_errors[3,3]) + " \n"
+output += "\\\\  Net Wealth Deciles" + " & " + mystr2(prediction_errors[4,0]) + " & "+ mystr2(prediction_errors[4,1]) + " & "+ mystr2(prediction_errors[4,2]) + " & "+ mystr2(prediction_errors[4,3]) + " \n"
+
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+output += "\\\\ \\textbf{Notes}: Mean square errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period. \n"
+with open('./Tables/prediction_errors.tex','w') as f:
+    f.write(output)
+    f.close()
