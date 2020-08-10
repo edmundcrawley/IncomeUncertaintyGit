@@ -1625,6 +1625,6 @@ text(6, 0.47, labels = "Most Liquid",cex=1.3)
 dev.off()
 
 ##############################################################################
-
-
+# Extra code for "Is Liquid Wealth Sufficient" section
+source(paste(Rcode_folder,"IsLiquidWealthSufficient_investigation.r",sep=""))
 
