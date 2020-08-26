@@ -333,17 +333,7 @@
 	Note that the estimates of income variance we obtain are highly sensitive to our treatment of outliers, but our MPX estimates do not change.\footnote{See online appendix \ref{robustness} for evidence of this.}
 	
 	The right-hand panel of figure \ref{fig:MPXByLiquidWealth} shows our estimates for the MPX out of permanent and transitory shocks by liquid wealth quintile. The lowest wealth quintile, who hold less than \$2,000 in bank deposits on average over the sample period, look somewhat like hand-to-mouth consumers. They respond almost equally to permanent and transitory shocks, spending over 80\% of an income shock in the year that it arrives. However, the fact that both permanent and transitory MPXs are very similar and significantly less than 1 suggests that these households may be more accurately modeled as saving in an illiquid asset such as housing or a pension following a rule of thumb (say, 20\% of income) and then living hand to mouth on the remainder. As the quintile of liquid wealth increases, the MPX out of both transitory and permanent income decreases. In the top quintile, formed of households that maintained a mean bank balance above \$30,000, the MPX out of permanent shocks is 0.57 and out of transitory shocks 0.23. From the point of view of theory, the responsiveness of spending out of permanent shocks in this quintile is low, while that of transitory shocks is high.
-	\begin{figure}
-		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
-		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.pdf}
-		\caption{Variance and MPX by Net Wealth Quintile}
-		\label{fig:MPXByNetWealth}
-	\end{figure}
-	
-	Figure \ref{fig:MPXByNetWealth} shows the estimates for households grouped by quintiles of net wealth. Here the pattern is slightly different. The quintile with the highest MPX out of both transitory and permanent income is the second lowest, the quintile that contains zero net worth. Households in the lowest quintile---those with over \$20,000 in net debt---do not seem to distinguish between permanent and transitory income shocks in their consumption responses, but their MPX for both is about 10 percentage points lower than the quintile with close to zero net wealth. The pattern for quintiles 3 to 5 looks similar to that for liquid wealth: the MPX out of transitory shocks falls sharply to around 0.28, while that out of permanent shocks also falls but more slowly to 0.62.
-	
+
 	These results are broadly in line with the literature. The population mean of 0.5 for transitory MPX is a little higher than most estimates from table \ref{table:MPCLiterature}, but, bearing in mind that our estimate includes durables and is best compared to a six-month MPC, it is certainly not an outlier. The MPX out of permanent shocks of 0.72 is also between the BPP estimate of 0.65\footnote{The permanent ``insurance'' coefficient estimated by BPP does not suffer as much from the time aggregation problem as the transitory coefficient.} and the estimate of 1.0 from \cite{gelman_response_2016}. The strength of the relationship between liquid wealth and MPC is similar to that found in \cite{gelman_what_2016} and stronger than in \cite{fagereng_mpc_2016}.
 	
 	\subsection{Methodology and Result Intuition} \label{method_intuit}
@@ -358,7 +348,7 @@
 	Figure \ref{fig:GrowthReg} shows what we would expect to see under three baseline models where households are subject to both transitory and permanent income shocks, as well as what we observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.75 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case set at 0.75---regardless of shock persistence. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model.\footnote{These results come from the heterogeneous beta model in \cite{carroll_distribution_2017}, calibrated to match the distribution of liquid wealth in Denmark.} In this model, the consumption response to income growth over a one year period is small because households self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases, the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.7]{\econtexRoot/Figures/basic_regression_for_paper_level_lincome_head.pdf}
+			\includegraphics[scale=0.6]{\econtexRoot/Figures/basic_regression_for_paper_level_lincome_head.pdf}
 			\caption{Regression Coefficients of Consumption Growth on Income Growth}
 			\label{fig:GrowthReg}
 		\end{centering}
@@ -368,45 +358,84 @@
 	
 	The two black lines show the regression coefficients where the sample is restricted to households in the lowest and highest quintiles of liquid wealth (averaged over the observed period), respectively. For households in the lowest quintile there is no evidence of consumption smoothing: the consumption response to income growth over one year is both high and almost identical to that over 10 years, strongly suggesting the MPCs for this group out of transitory and permanent shocks are similar and high. Indeed, this is what we see in the lowest quintile of figure \ref{fig:MPXByLiquidWealth}---a result that is highly robust to misspecification. Households in the top quintile of liquid wealth show a clear upward slope in figure \ref{fig:GrowthReg}, indicating a substantial degree of consumption smoothing. The fact that the regression coefficient for this group appears to asymptote well below 1 also suggests, in contrast to standard buffer-stock models, that the MPC out of permanent shocks for liquid households is significantly lower than 1.
 	
-	\section{Monetary Policy and the Redistribution Channel} \label{monetary_policy}
-	\cite{auclert_monetary_2017} lays out a clear and intuitive theory as to how heterogeneity in the MPC out of transitory shocks affects the transmission mechanism of monetary policy. He identifies channels through which monetary policy can act, including those involving redistribution. He then uses this theory to identify a small set of sufficient statistics that help distinguish which of these channels are of quantitative importance.
+	\section{Distribution of MPX across Net Wealth, NNP, URE, and Income}
+	In the section we estimate the distribution of MPX along the dimensions of net wealth,  Net Nominal Position (NNP), Unhedged Interest Rate Exposure (URE) and income. Having uncovered clear patterns of heterogeneity, we show that these patterns are well predicted by the liquid wealth holdings of households along these dimensions.  
+
+	\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
+	\centering
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.pdf}
+	\caption{Variance and MPX by Net Wealth Quintile}
+	\label{fig:MPXByNetWealth}
+	\end{figure}
+
+	Figure \ref{fig:MPXByNetWealth} shows the estimates for households grouped by quintiles of net wealth. In contrast to the monotonic relation between liquid wealth and MPX, the relation between net wealth and MPX is humped shaped. Households in the lowest quintile of net wealth are in debt, but have a lower average MPX than households in the second quintile of net wealth, who have close to zero wealth. This may be because households with negative net wealth, such as young households with student loans, may have more access to credit and maintain a larger buffer stock of liquid assets.
 	
-	While these statistics in theory are highly informative about the transmission mechanism of monetary policy, good data and MPC estimation methods are required to estimate them convincingly. Auclert states, ``As administrative quality household surveys become available and more sophisticated identification methods for MPCs arise, a priority for future work is to refine the estimates I provide here.'' We are able to bring our new MPC estimation method, along with administrative data from Denmark, in order to estimate Auclert's sufficient statistics.
-	
-	Our data have two significant advantages over previous efforts.\footnote{\cite{fagereng_mpc_2016} also estimate Auclert's sufficient statistics, imputing MPCs from lottery winnings in Norway, but they are limited by sample size. \cite{ampudia_monetary_2018} look at differences in Auclert's statistics between European countries but do not attempt to estimate MPCs.} First, our sample is large, containing most households in Denmark. Second, we have detailed balance sheet information for the households. Furthermore, we are able to identify interest rate risk and nominal positions held by firms, foreigners, and the government so that the aggregate position is zero, as required in equilibrium. This allows us to avoid some problematic assumptions otherwise needed for aggregation of household data.
-	
-	\subsection{Distribution of MPX across NNP, URE, and Income}
-	In this section we define a household's Net Nominal Position (NNP) and Unhedged Interest Rate Exposure (URE), and examine the distribution of households' transitory MPX along these dimensions, as well as income. In section \ref{auclert_theory} we show how these distributions can be used to quantify the importance of heterogeneity for monetary policy transmission.
-	
-	The redistribution effects of monetary policy depend crucially on two household characteristics:
+	Next we define two household characteristics, NNP and URE, along which MPX heterogeneity has important consequences for monetary policy:
 	\begin{itemize}
-		\item \textbf{Net Nominal Position (NNP)} is the net value of a household's nominal assets and liabilities. Its relevance for analyzing the redistributive effects of monetary policy comes from the fact that an unexpected rise in the price level will decrease the real wealth of households with positive nominal assets, redistributing it to those with negative NNP (who now have less real debt). In our administrative data, we observe directly held nominal positions and their composition at the household level, including bank deposits and loans, bond holdings, and mortgages. In aggregate, the directly held NNP position of the household sector is negative, which as we will see is balanced in the national accounts by the financial sector as well as foreigners.
-		\item \textbf{Unhedged Interest Rate Exposure (URE)} is the difference between all maturing assets (including income) and liabilities (including planned consumption).\footnote{We define ``maturing'' assets and liabilities as those that are due to have their interest rates reset, even if they contractually exist for a longer period. For example, a 30 year variable rate mortgage with annual interest rate fixation periods is ``maturing'' each year in our definition.} For example, households with a large variable rate mortgage will likely have very negative URE. For these households, the entire value of their mortgage will be adjusted to the new rate. When the interest rate rises for one period they will see their disposable income (after mortgage payments) go down, and hence if they have a high MPX their spending will also decrease. To calculate URE, we assume all household bank deposits and loans have a variable rate that changes instantaneously. For mortgage debt we directly observe the amount resetting over the following year and assume that the new rate will only apply for half of the year.\footnote{See online appendix \ref{mortgage_market} for more details on the Danish mortgage market. Note that the prevalence of fixed-rate mortgages will strongly influence the distribution of URE. To the extent that the United States has more fixed-rate mortgages than Denmark, the interest rate exposure channel is likely to be smaller in the United States. Furthermore, household debt to income is about twice as large in Denmark as the United States.} For all other assets and liabilities we assume a maturity of five years. As with NNP we find households on aggregate have a negative URE position in our data, and this is counterbalanced by the interest rate position of the financial sector.\footnote{See online appendix \ref{URE_NNP_appendix} for more details on how we calculate NNP and URE positions.}
+		\item \textbf{Net Nominal Position (NNP)} is the net value of a household's nominal assets and liabilities. Its relevance for analyzing the redistributive effects of monetary policy comes from the fact that an unexpected rise in the price level will decrease the real wealth of households with positive nominal assets, redistributing it to those with negative NNP (who now have less real debt). In our administrative data, we observe directly held nominal positions and their composition at the household level, including bank deposits and loans, bond holdings, and mortgages. In aggregate, the directly held NNP position of the household sector is negative, which is balanced in the national accounts by the financial sector as well as foreigners.
+		\item \textbf{Unhedged Interest Rate Exposure (URE)} is the difference between all maturing assets (including income) and liabilities (including planned consumption).\footnote{We define ``maturing'' assets and liabilities as those that are due to have their interest rates reset, even if they contractually exist for a longer period. For example, a 30 year variable rate mortgage with annual interest rate fixation periods is ``maturing'' each year in our definition.} For example, households with a large variable rate mortgage will likely have very negative URE. For these households, the entire value of their mortgage will be adjusted to the new rate. When the interest rate rises for one period they will see their disposable income (after mortgage payments) go down, and hence if they have a high MPX their spending will also decrease. As with NNP we find households on aggregate have a negative URE position in our data, and this is counterbalanced by the interest rate position of the financial sector.\footnote{See online appendix \ref{mortgage_market} for details on the Danish mortgage market and online appendix \ref{URE_NNP_appendix} for details on how we calculate NNP and URE positions.}
 	\end{itemize}
-	
-	Figure \ref{fig:MPCAuclert} shows how the MPX varies across households, according to their URE, NNP, and income. In each case, the value on the x-axis has been divided by the mean level of expenditure in the sample. The top panel shows the estimated MPX for each decile of unhedged interest rate exposure. The deciles on the left contain households most negatively exposed to a rise in interest rates, those in the middle deciles have little exposure, while the two top deciles on the right have the most to gain from an interest rate rise. We have included in this figure data on both rates of homeownership and median liquid assets for each decile. A pattern emerges in which we can roughly categorize the deciles into three groups following \cite{violante_wealthy_2014}:
+
+	Figure \ref{fig:MPCAuclert} shows how the transitory MPX varies across households, according to their URE, NNP, and income. In each case, the value on the x-axis has been divided by the mean level of expenditure in the sample. The top panel shows the estimated MPX for each decile of unhedged interest rate exposure. The deciles on the left contain households most negatively exposed to a rise in interest rates, those in the middle deciles have little exposure, while the two top deciles on the right have the most to gain from an interest rate rise. We have included in this figure data on both rates of homeownership and median liquid assets for each decile. A pattern emerges in which we can roughly categorize the deciles into three groups following \cite{violante_wealthy_2014}:
 	\begin{itemize}
 		\item \textbf{Wealthy Hand-to-Mouth:} The first five deciles contain households with high homeownership rates but few liquid assets. These households have relatively high MPXs, and it is likely that their wealth is locked up in illiquid assets (mostly housing) and that they have large mortgages.
 		\item \textbf{Poor Hand-to-Mouth:} The next three deciles tend to be renters with very little in the way of liquid assets either. These households have very high MPXs and are close to being truly hand-to-mouth. As they have few assets, they have very little exposure to interest rates and cannot easily substitute consumption between periods; therefore, their consumption behavior is likely not affected by changes in interest rates directly.\footnote{Neither the interest rate exposure channel nor the intertemporal substitution channel will have much impact on their consumption. Monetary policy could impact their expenditure strongly through income effects.}
 		\item \textbf{Wealthy:} The top two deciles contain households that are both likely to be homeowners and hold very large liquid asset balances. These are likely to be households that own their house outright without a mortgage and have been able to build up a large stock of liquid assets. Relative to the other deciles, they have low MPX and are likely able to use their assets to effectively smooth consumption.
 	\end{itemize}
-	
-	The distribution of MPX with NNP follows a similar pattern. As mortgages in Denmark are a mixture of fixed and variable rates (see online appendix \ref{mortgage_market} for details on the Danish mortgage market), we can think of a typical household with negative URE or NNP as having a large mortgage, while those with positive URE or NNP are wealthy households with lots of liquid wealth. This pattern has not been evident in previous attempts to measure the distribution of MPX across these dimensions. Most importantly for the theory, the average MPX for those with negative URE and NNP positions is significantly greater than for those with positive URE or NNP. Note that the mean levels of both URE and NNP are negative for the households in our estimation sample, so even a constant (positive) MPX would result in interest rate hikes reducing their expenditure if not balanced by indirectly held exposures.\footnote{In contrast, \cite{auclert_monetary_2017} finds a mean positive URE across households. We believe the difference is partly due to the prevalence of fixed-rate mortgages in the United States, but also due to underreporting of expenditures, especially in the PSID data.}
-	
-	The final chart in figure \ref{fig:MPCAuclert} shows the distribution of MPX with total household income. There is a clear downward trend. If the income of lower-income households decreases more than that of high-income households during a monetary policy contraction, then expenditure will go down by more than the mean income-weighted MPX that would be the result of a representative agent model.\footnote{For comparison, the distribution of  MPX out of permanent income shocks across these three dimensions can be found in online appendix \ref{PermMPXbyURENNP}.}
+
+	The distribution of MPX with NNP follows a similar pattern. This pattern has not been evident in previous attempts to measure the distribution of MPX across these dimensions. 
+
+	The final chart in figure \ref{fig:MPCAuclert} shows the distribution of transitory MPX with total household income. There is a clear downward trend. If the income of lower-income households decreases more than that of high-income households during a monetary policy contraction, then expenditure will go down by more than the mean income-weighted MPX that would be the result of a representative agent model.\footnote{For comparison, the distribution of  MPX out of permanent income shocks across these three dimensions can be found in online appendix \ref{PermMPXbyURENNP}.}
 	\begin{figure} 
-		\begin{centering}
-			\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
-			\caption{MPX Distribution by URE, NNP, and Income}
-			\label{fig:MPCAuclert}
-		\end{centering}
+	\begin{centering}
+		\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
+		\caption{MPX Distribution by URE, NNP, and Income}
+		\label{fig:MPCAuclert}
+	\end{centering}
 	\end{figure}
+
+	\subsection{Liquid Wealth Predicts MPX}
+	\label{liquid_wealth_sufficient}
+	In this section we show that the estimate of a group's MPX obtained only from the median level of liquid wealth in the group is, for all practical purposes, the same as that obtained from running our full estimation procedure on that group. This allows us to plausibly extend our analysis beyond Denmark to measure the extent of MPX heterogeneity in countries for which data on liquid wealth is available, such as the United States.
+
+	We proceed by first estimating the MPX for Danish households for each decile of liquid wealth. We then take the median liquid wealth for the group of households we are interested in, and linearly interpolate an MPX based on the position of this median liquid wealth for the group within the deciles of liquid wealth whose MPX are known. 
+
+	\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/NW_predict_from_Liquid.pdf}
+	\centering
+	\includegraphics[scale=0.4]{\econtexRoot/Figures/URE_predict_from_Liquid.pdf}
+	\caption{Transitory MPX Interpolated From Liquid Wealth}
+	\label{fig:MPXPredict}
+	\end{figure}
+
+	Figure \ref{fig:MPXPredict} shows how estimates obtained in this way, using only the median liquid wealth of each decile, compares with the full estimation of transitory MPX for each decile of net wealth and URE. Median liquid wealth approximates the full estimation level and shape very closely. Table \ref{table:prediction_errors} shows, for each of the dimensions we have previously looked at in this paper, that median wealth predicts the transitory MPX for each decile to around three percentage points, and the permanent MPX for each decile to around four percentage points. Surprisingly, the absolute level of liquid wealth is better at predicting MPX than the ratio of liquid wealth to permanent income, shown in columns 2 and 4 of table \ref{table:prediction_errors}.
+
+	\begin{center}
+	\begin{table}
+		\caption{Mean Prediction Errors Using Interpolated MPX's}
+		\label{table:prediction_errors}
+		\begin{center}
+			\input ./Tables/prediction_errors.tex
+		\end{center}
+	\end{table}
+	\end{center}
+
+	\section{Monetary Policy and the Redistribution Channel} \label{monetary_policy}
+	\cite{auclert_monetary_2017} lays out a clear and intuitive theory as to how heterogeneity in the MPC out of transitory shocks affects the transmission mechanism of monetary policy. He identifies channels through which monetary policy can act, including those involving redistribution. He then uses this theory to identify a small set of sufficient statistics that help distinguish which of these channels are of quantitative importance.
+
+	While these statistics in theory are highly informative about the transmission mechanism of monetary policy, good data and MPC estimation methods are required to estimate them convincingly. Auclert states, ``As administrative quality household surveys become available and more sophisticated identification methods for MPCs arise, a priority for future work is to refine the estimates I provide here.'' We are able to bring our new MPC estimation method, along with administrative data from Denmark, in order to estimate Auclert's sufficient statistics.
+
+	Our data have two significant advantages over previous efforts.\footnote{\cite{fagereng_mpc_2016} also estimate Auclert's sufficient statistics, imputing MPCs from lottery winnings in Norway, but they are limited by sample size. \cite{ampudia_monetary_2018} look at differences in Auclert's statistics between European countries but do not attempt to estimate MPCs.} First, our sample is large, containing most households in Denmark. Second, we have detailed balance sheet information for households in Denmark.
 	
-	\subsection{Theoretical Setup and Sufficient Statistics} \label{auclert_theory}
+	Using the fact, established in section \ref{liquid_wealth_sufficient}, that liquid wealth predicts MPX, we show how to extend the analysis to other countries. While there is no equivalent data source in the US, and in particular expenditure data is hard to come by, we use the fact that liquid wealth is highly predictive of MPX to estimate the size of the monetary policy channels in the US. Specifically, we use the Survey of Consumer Finances (SCF) --- which has detailed balance sheet information --- to calculate households' URE and NNP positions, along with liquid wealth.\footnote{The SCF does not contain saving data, which in the Danish data is a small part of URE, and we ignore this in our calculation of URE in the U.S.} We divide the U.S. population into deciles along each dimension, and estimate each deciles' MPX by interpolating the percentile of liquid wealth of the median household in each decile on the Danish MPX estimates by liquid wealth decile.
+	
 	Auclert's method is to consider individual households' consumption response to a monetary policy shock in which (i) the real rate of interest changes for one period by $dR$, (ii) the price level makes a one-time change of $dP$ and then remains at the new level, and (iii) aggregate income makes a transitory change of $dY$. While the dynamics here are clearly stylized, and in particular lack any lag in the economy's response, we believe such a simple experiment to be highly informative as to the relative sizes of each transmission channel.
-	
+
 	\cite{auclert_monetary_2017} divides the effect of monetary policy on aggregate consumption into five distinct channels:
 	\begingroup
 	\allowdisplaybreaks[0]
@@ -415,108 +444,41 @@
 	& \qquad \underbrace{ + \mathcal{E}_R \frac{dR}{R}}_{\text{Interest Rate Exposure Channel}\qquad}  \underbrace{ - \sigma \mathcal{S}\frac{dR}{R}}_{\text{Intertemporal Substitution Channel}} \label{auclert_channels}
 	\end{align}
 	\endgroup
-	where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the elasticity of relative income to aggregate income, and the five sufficient statistics, $\mathcal{M}$, $\mathcal{E}_Y$, $\mathcal{E}_P$, $\mathcal{E}_R$, and $\mathcal{S}$, are measurable in the data and defined in table \ref{table:auclertSS}.\footnote{Here we are making the simplifying assumptions that $\sigma$ and $\gamma$ are common for all households; see \cite{auclert_monetary_2017} for a discussion.}
+	where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the elasticity of relative income to aggregate income, and the five sufficient statistics, $\mathcal{M}$, $\mathcal{E}_Y$, $\mathcal{E}_P$, $\mathcal{E}_R$, and $\mathcal{S}$, are measurable in the data.\footnote{Further details on these statistics can be found in online appendix \ref{auclert_appendix}. Here we are making the simplifying assumptions that $\sigma$ and $\gamma$ are common for all households; see \cite{auclert_monetary_2017} for a discussion.}
 	
-	In figure \ref{fig:MPCAuclert}, we estimated MPX's for households with heads between the ages of 30 and 55, excluding the young and the old. Furthermore, some of the URE and NNP exposures are held indirectly on households' balance sheets through pension funds and corporations, or by the government and foreigners, so that the URE and NNP exposure in our sample does not aggregate to zero. We allocate the aggregate URE and NNP exposure from our sample into seven bins so that the total exposure across the economy is zero. These bins include households with (i) young (<30) and (ii) old (>55) heads, and exposures held by households indirectly through (iii) pension funds, (iv) government, (v) nonfinancial corporates, (vi) financials, and (vii) exposures held by the rest of the world. Within each of these bins we assume no heterogeneity so that the MPX with respect to these exposures is constant. This assumption is conservative, and likely underestimates the size of the heterogeneous agent channels. Our assumptions on the level of these MPXs can be seen in table \ref{table:aggElas}.
-	
-	\begin{minipage}{1.0\textwidth}
-		\begin{center}
-			%		\begin{table}
-			%			\caption{Sufficient Statistics Definitions}
-			\captionof{table}{Sufficient Statistics Definitions}
-			\label{table:auclertSS}
-			\resizebox{\textwidth}{!}{\begin{tabular}{ccl}
-					\textbf{Statistic} & \textbf{Definition} & \textbf{Description} \\
-					\hline
-					$\mathcal{M}$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Income deciles} } \text{MPX}_i Y_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j Y_j \Bigg]$ & Income-weighted MPX \\
-					$\mathcal{E}_Y$ & $\mathcal{M} - \overline{\text{MPX}}\frac{Y}{C}$ & Redistribution elasticity for Y \\
-					$\mathcal{E}_P$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{NNP deciles} } \text{MPX}_i \text{NNP}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{NNP}_j \Bigg]$ & Redistribution elasticity for P \\
-					$\mathcal{E}_R$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{URE deciles} } \text{MPX}_i \text{URE}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{URE}_j \Bigg]$ & Redistribution elasticity for R \\
-					$\mathcal{S}$ &$1-\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Consumption deciles} } \text{MPX}_i C_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j C_j \Bigg]$ & Hicksian scaling factor \\
-					\hline
-			\end{tabular}}
-			\tiny \textbf{Note: } $\overline{\text{MPX}}$ is the mean MPX over all households in the economy. $Y$ and $C$ are aggregate household income and consumption respectively. Bins refers to the seven categories for which we have allocated URE and NNP exposures outside our estimation sample. \{young,old\} are the two bins that contain young and old households (the other five bins are only relevant for URE and NNP exposures as $Y$ and $C$ measure \textit{household} income and consumption).\\
-			%\end{table}
-		\end{center}
-	\end{minipage}
-	
-	
-	We define $\mathcal{E}_R$ as
-	\begin{align}
-	\mathcal{E}_R = \frac{1}{C}\Bigg[ \sum_{i \in \text{URE deciles} } \text{MPX}_i \text{URE}_i + \sum_{j \in \text{bins}} \text{MPX}_j \text{URE}_j \Bigg]
-	\end{align}
-	where $i$ sums over the 10 deciles of URE, $j$ over the seven bins defined above, and $C$ is aggregate household expenditure in the economy. This method of dealing with the fact that aggregate exposure does not equal zero in the estimation sample is different than the approach taken by Auclert. He assumes the residual exposure is distributed equally across households in the sample. By making use of the national accounts, we believe we are able to get a better handle on the likely MPXs to attach to this residual exposure.
-	
-	
-	\subsection{Out of Sample MPX}
-	The assumptions we make about the MPX of the young and the old, as well as out of indirectly held URE and NNP exposures, are shown in table \ref{table:aggElas}. In each case we believe we have made conservative choices that will underestimate the size of the interest rate exposure channel of monetary policy. For the young we choose an MPX of 0.5, in line with the rest of the population. As the young have aggregate negative exposures, choosing an MPX on the low side is conservative. Similarly, for the old we choose an MPX of 0.5, which is on the high side for this age group. The assumption that there is no heterogeneity in MPX within these groups is also a very conservative assumption.
 	\begin{center}
-		\begin{table}
-			\caption{Aggregating Redistribution Elasticities}
-			%\captionof{table}{Aggregating Redistribution Elasticities}
-			\label{table:aggElas}
-			\input ./Tables/URE_NNP_table.tex
-		\end{table}
+	\begin{table}
+		\caption{Sufficient Statistics}
+		%\captionof{table}{Sufficient Statistics}
+		\label{table:suff_stats}
+		\begin{center}
+			\input ./Tables/sufficient_stats_with_US.tex
+		\end{center}
+	\end{table}
 	\end{center}
-	Much of the URE and NNP exposure is not held directly on the balance sheet of households but instead indirectly through pension funds, corporates, and the government. There is significant evidence that the MPX out of shocks to the value of pension wealth, stocks, or the government balance sheet is substantially lower than the MPX from income. We choose to use the estimate from \cite{maggio_stock_2018} that households' MPX from changes in stock market wealth is about 10\%. This choice is the most quantitatively important for the sufficient statistics, as the bin containing the most exposure is the financial sector, which is positively exposed to interest rate increases. This positive interest rate exposure may seem surprising because banks are typically thought to have long-term assets and short-term debt that would result in negative URE exposure. However, our findings are in line with those of \cite{landier_banks_2013}, who find that the financial sector benefits from interest rate hikes overall. An important caveat is due here: we focus on the MPX out of changes in the assets indirectly held by households through the financial sector and do not assume any spending or lending response at the bank level. This assumption may be reasonable in good times when banks are not credit constrained, but may not hold during a banking crisis. Financial frictions could possibly result in monetary policy being much less effective during a banking crisis as the interest rate exposure channel to household spending is counterbalanced by a channel from bank balance sheet interest rate exposure to lending.\footnote{It should be noted that our analysis is all on the household side. Evidence suggests that firms are also sensitive to changes in cash flow; for example, see \cite{blanchard_what_1994}.} 
-	
-	We choose an MPX of zero for government and the rest of the world. There is no evidence that households respond in any significant way to changes in the government's balance sheet, and furthermore a low MPX is a conservative assumption for the size of the heterogeneous agent channels. As Denmark is a very small part of the world economy, we assume that foreigners spend a negligible proportion of their wealth there.
-	
+
 	\subsection{Results}
 	Our estimates of the five sufficient statistics, along with their standard errors, are shown in table \ref{table:suff_stats}. The aggregate income channel is summarized by $\mathcal{M}$ that we estimate to be 0.52. This means that if income for all households in the economy increased by 1\%, aggregate consumption growth would increase by 52 basis points, broadly in line with calibrations of saver-spender models designed to fit evidence from \cite{campbell_consumption_1989}. We find little role for the redistribution effect of income, $\mathcal{E}_Y$, despite the clear negative correlation between income and MPX seen in figure \ref{fig:MPCAuclert}.\footnote{\cite{patterson_2019} finds a larger role for income heterogeneity by dividing households into groups that have differing income sensitivity to aggregate income.} $\mathcal{S}$, the Hicksian scaling factor, is 0.49, which reduces the size of the intertemporal substitution channel by close to half.
-	
+
 	The two most interesting statistics are $\mathcal{E}_P$ and $\mathcal{E}_R$, both of which act through redistribution from households with low MPX to those with high MPX. $\mathcal{E}_P$ is estimated to be  negative 0.73 suggesting that a one-time increase in the price level of 1\% increases aggregate consumption growth by 73 basis points due to redistribution from those with large nominal assets to those with large nominal debts. This Fisher channel of monetary policy is emphasized in \cite{doepke_inflation_2006}. The interest rate exposure channel is also large. We estimate  $\mathcal{E}_R$ to be  negative 0.26, suggesting that a 1\% increase in the interest rate decreases aggregate household expenditure growth by 26 basis points.
-	
+
 	For both of these channels, but particularly the interest rate exposure channel, it is informative to compare them to the size of the intertemporal substitution channel. An increase in the real interest rate reduces aggregate consumption today by $\sigma \mathcal{S}$ multiplied by the percent point change in the rate. Reliable estimates of $\sigma$ have been elusive to the economics profession, but there is very little evidence of a large positive number. \cite{havranek_measuring_2015} provides a meta-study of the elasticity of intertemporal substitution and finds a mean of zero from studies using macrodata, and 0.3 to 0.4 for those using microdata. Many of these microlevel studies suffer from identification problems.\footnote{See \cite{carroll_death_2001} for a critique of studies of the elasticity of intertemporal substitution.} \cite{best_estimating_2018} make use of mortgage notches in the United Kingdom to overcome some of these problems. They estimate the average elasticity of intertemporal substitution to be 0.1, which would result in a size of the intertemporal substitution channel of monetary policy being 0.05, over five times smaller than our estimate of the interest rate exposure channel.\footnote{Our decomposition does not allow easy comparison of the interest rate exposure channel with the aggregate income channel, as we do not make assumptions about how much aggregate income changes. \cite{cloyne_monetary_2016} compare mortgagors with outright homeowners and find the aggregate income channel is larger than the direct effect of higher mortgage payments.}
-	
+
 	These estimates are significantly different to the results found in \cite{auclert_monetary_2017}. Our estimate of the Fisher channel is an order of magnitude larger, while our estimate of the interest rate exposure channel is over twice as large.\footnote{The differences are mainly driven by two factors: (i) Our methodology uncovers more heterogeneity in MPX; (ii) we allocate URE and NNP exposures to sectors according to the national accounts, as opposed to assuming lump-sum rebates to households.}
-	\begin{center}
-		\begin{table}
-			\caption{Sufficient Statistics}
-			%\captionof{table}{Sufficient Statistics}
-			\label{table:suff_stats}
-			\begin{center}
-				\input ./Tables/sufficient_stats.tex
-			\end{center}
-		\end{table}
-	\end{center}
+
+
+\subsection{An Application to U.S. Data}
+
+
+In the U.S., household debt is approximately half that found in Denmark. As a result, the Fisher channel is smaller (elasticity $\varepsilon_P = -0.25$). Furthermore, the fact that few mortgages adjust their interest rate within the year means the interest rate exposure channel, calculated based on a change in the one year interest rate, is almost non-existent (elasticity $\varepsilon_R = -0.01$). These estimates suggest the redistribution channels are small in the U.S. for changes in the short term interest rate, but do not preclude large effects following changes to the long-term interest rate (see \cite{eichenbaum_2018}).
+	
+
+
 	\begin{comment}
 	A long outstanding question in monetary economics is why monetary policy acts with a lag. Two competing theories are habits models such as \cite{fuhrer_habit_2000} and sticky information models such as \cite{mankiw_sticky_2002}. \cite{carroll_sticky_2018} find evidence toward the idea that households react fast to their own idiosyncratic income shocks, but news about macroeconomic shocks takes time to be absorbed. A possible third alternative to both of these theories is that households respond strongly to their realized income today, but not to income anticipated in the future. As it takes time for variable rate mortgages to reset (typically from six months up to five years in Denmark), this would result in the interest rate exposure channel acting with a delay. Indeed, the literature on consumption responses to transitory income shocks has generally found little difference between anticipated and unanticipated responses. Many of the estimates in table \ref{table:MPCLiterature} use anticipated shocks (such as tax rebates) as an instrument and find large MPCs, suggesting households do not necessarily pay attention to anticipated cash flows until they arrive. \cite{ganong_consumer_2017} show this very clearly: there is a sharp consumption drop in the month that unemployment benefits expire, an entirely anticipated event. A model that takes these results seriously, along with a large role for the interest rate exposure channel of monetary policy, could be a fruitful area for future research. 
 	\end{comment}
 	
-	\section{Using Liquid Wealth to Estimate MPX and Application to the United States}
-	\label{liquid_wealth_sufficient}
-	In this section we show that the estimate of a group's MPX obtained only from the median level of liquid wealth in the group is, for all practical purposes, the same as that obtained from running our full estimation procedure on that group. This allows us to plausibly extend our analysis beyond Denmark to measure the extent of MPX heterogeneity in countries for which data on liquid wealth is available, such as the United States.
-	
-	\subsection{Can Median Liquid Wealth Predict a Group's MPX?}
-	We proceed by first estimating the MPX for Danish households for each decile of liquid wealth. We then take the median liquid wealth for the group of households we are interested in, and linearly interpolate an MPX based on the position of this median liquid wealth for the group within the deciles of liquid wealth whose MPX are known. 
-	
-	\begin{figure}
-		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/NW_predict_from_Liquid.pdf}
-		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/URE_predict_from_Liquid.pdf}
-		\caption{Transitory MPX Interpolated From Liquid Wealth}
-		\label{fig:MPXPredict}
-	\end{figure}
-	
-	Figure \ref{fig:MPXPredict} shows how estimates obtained in this way, using only the median liquid wealth of each decile, compares with the full estimation of transitory MPX for each decile of net wealth and URE. Median liquid wealth approximates the full estimation level and shape very closely. Table \ref{table:prediction_errors} shows, for each of the dimensions we have previously looked at in this paper, that median wealth predicts the transitory MPX for each decile to around four percentage points, and the permanent MPX for each decile to around five percentage points. Surprisingly, the absolute level of liquid wealth is better at predicting MPX than the ratio of liquid wealth to permanent income, shown in columns 2 and 4 of table \ref{table:prediction_errors}.
-	
-	\begin{center}
-		\begin{table}
-			\caption{Mean Prediction Errors Using Interpolated MPX's}
-			\label{table:prediction_errors}
-			\begin{center}
-				\input ./Tables/prediction_errors.tex
-			\end{center}
-		\end{table}
-	\end{center}
-	
-	\subsection{An Application to U.S. Data}
-	While there is no equivalent data source in the US, and in particular expenditure data is hard to come by, we can use the fact that liquid wealth is highly predictive of MPX to estimate the size of the monetary policy channels in the US. Specifically, we use the Survey of Consumer Finances (SCF) --- which has detailed balance sheet information --- to calculate households' URE and NNP positions, along with liquid wealth.\footnote{The SCF does not contain saving data, which in the Danish data is a small part of URE, and we ignore this in our calculation of URE in the U.S.} We divide the population into deciles along each dimension, and estimate each deciles' MPX by interpolating the percentile of liquid wealth of the median household in each decile on the Danish MPX estimates by liquid wealth decile.
-	
-	In the U.S., household debt is approximately half that found in Denmark. As a result, the Fisher channel is smaller (elasticity $\varepsilon_P = -0.25$). Furthermore, the fact that few mortgages adjust their interest rate within the year means the interest rate exposure channel is almost non-existent (elasticity $\varepsilon_R = -0.01$).
-	
+
 	\section{Robustness}
 	\label{threats_to_identification}
 	In the online appendix we address a number of identification concerns.\footnote{Online appendix \ref{Consumption_persistence} looks a consumption persistence beyond two years; \ref{durables_appendix} goes into more detail on durables; \ref{rip_hip_appendix} considers alternative income processes; \ref{time_varying_risk} looks at time-varying risk; and \ref{robustness} looks at alternative data definitions.} Here we focus on two that we think deserve highlighting: measurement error and durable expenditure.
@@ -646,6 +608,59 @@
 	
 	Around one-fourth of the total loan balance is due to have interest rates reset over a 12-month period (see figure \ref{fig:mortgage_by_maturity}). This figure only comprises loans that automatically will have a new interest rate and not active decisions to refinance or extract equity. 
 	
+	\section{Details on the Auclert Statistics}
+	\setcounter{figure}{0}   
+	\setcounter{table}{0} 
+	\label{auclert_appendix}
+	Table \ref{table:auclertSS} defines the five statistics calculated for Denmark in the paper.
+		
+	In figure \ref{fig:MPCAuclert}, we estimated MPX's for households with heads between the ages of 30 and 55, excluding the young and the old. Furthermore, some of the URE and NNP exposures are held indirectly on households' balance sheets through pension funds and corporations, or by the government and foreigners, so that the URE and NNP exposure in our sample does not aggregate to zero. We allocate the aggregate URE and NNP exposure from our sample into seven bins so that the total exposure across the economy is zero. These bins include households with (i) young (<30) and (ii) old (>55) heads, and exposures held by households indirectly through (iii) pension funds, (iv) government, (v) nonfinancial corporates, (vi) financials, and (vii) exposures held by the rest of the world. Within each of these bins we assume no heterogeneity so that the MPX with respect to these exposures is constant. This assumption is conservative, and likely underestimates the size of the heterogeneous agent channels. Our assumptions on the level of these MPXs can be seen in table \ref{table:aggElas}.
+
+	\begin{minipage}{1.0\textwidth}
+	\begin{center}
+		%		\begin{table}
+		%			\caption{Sufficient Statistics Definitions}
+		\captionof{table}{Sufficient Statistics Definitions}
+		\label{table:auclertSS}
+		\resizebox{\textwidth}{!}{\begin{tabular}{ccl}
+				\textbf{Statistic} & \textbf{Definition} & \textbf{Description} \\
+				\hline
+				$\mathcal{M}$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Income deciles} } \text{MPX}_i Y_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j Y_j \Bigg]$ & Income-weighted MPX \\
+				$\mathcal{E}_Y$ & $\mathcal{M} - \overline{\text{MPX}}\frac{Y}{C}$ & Redistribution elasticity for Y \\
+				$\mathcal{E}_P$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{NNP deciles} } \text{MPX}_i \text{NNP}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{NNP}_j \Bigg]$ & Redistribution elasticity for P \\
+				$\mathcal{E}_R$ & $\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{URE deciles} } \text{MPX}_i \text{URE}_i + \sum\limits_{j \in \text{bins}} \text{MPX}_j \text{URE}_j \Bigg]$ & Redistribution elasticity for R \\
+				$\mathcal{S}$ &$1-\frac{1}{C}\Bigg[ \sum\limits_{i \in \text{Consumption deciles} } \text{MPX}_i C_i + \sum\limits_{j \in \{\text{young,old}\}} \text{MPX}_j C_j \Bigg]$ & Hicksian scaling factor \\
+				\hline
+		\end{tabular}}
+		\tiny \textbf{Note: } $\overline{\text{MPX}}$ is the mean MPX over all households in the economy. $Y$ and $C$ are aggregate household income and consumption respectively. Bins refers to the seven categories for which we have allocated URE and NNP exposures outside our estimation sample. \{young,old\} are the two bins that contain young and old households (the other five bins are only relevant for URE and NNP exposures as $Y$ and $C$ measure \textit{household} income and consumption).\\
+		%\end{table}
+	\end{center}
+	\end{minipage}
+
+
+	We define $\mathcal{E}_R$ as
+	\begin{align}
+	\mathcal{E}_R = \frac{1}{C}\Bigg[ \sum_{i \in \text{URE deciles} } \text{MPX}_i \text{URE}_i + \sum_{j \in \text{bins}} \text{MPX}_j \text{URE}_j \Bigg]
+	\end{align}
+	where $i$ sums over the 10 deciles of URE, $j$ over the seven bins defined above, and $C$ is aggregate household expenditure in the economy. This method of dealing with the fact that aggregate exposure does not equal zero in the estimation sample is different than the approach taken by Auclert. He assumes the residual exposure is distributed equally across households in the sample. By making use of the national accounts, we believe we are able to get a better handle on the likely MPXs to attach to this residual exposure.
+
+	The assumptions we make about the MPX of the young and the old, as well as out of indirectly held URE and NNP exposures, are shown in table \ref{table:aggElas}. In each case we believe we have made conservative choices that will underestimate the size of the interest rate exposure channel of monetary policy. For the young we choose an MPX of 0.5, in line with the rest of the population. As the young have aggregate negative exposures, choosing an MPX on the low side is conservative. Similarly, for the old we choose an MPX of 0.5, which is on the high side for this age group. The assumption that there is no heterogeneity in MPX within these groups is also a very conservative assumption.
+	\begin{center}
+	\begin{table}
+		\caption{Aggregating Redistribution Elasticities}
+		%\captionof{table}{Aggregating Redistribution Elasticities}
+		\label{table:aggElas}
+		\input ./Tables/URE_NNP_table.tex
+	\end{table}
+	\end{center}
+	Much of the URE and NNP exposure is not held directly on the balance sheet of households but instead indirectly through pension funds, corporates, and the government. There is significant evidence that the MPX out of shocks to the value of pension wealth, stocks, or the government balance sheet is substantially lower than the MPX from income. We choose to use the estimate from \cite{maggio_stock_2018} that households' MPX from changes in stock market wealth is about 10\%. This choice is the most quantitatively important for the sufficient statistics, as the bin containing the most exposure is the financial sector, which is positively exposed to interest rate increases. This positive interest rate exposure may seem surprising because banks are typically thought to have long-term assets and short-term debt that would result in negative URE exposure. However, our findings are in line with those of \cite{landier_banks_2013}, who find that the financial sector benefits from interest rate hikes overall. An important caveat is due here: we focus on the MPX out of changes in the assets indirectly held by households through the financial sector and do not assume any spending or lending response at the bank level. This assumption may be reasonable in good times when banks are not credit constrained, but may not hold during a banking crisis. Financial frictions could possibly result in monetary policy being much less effective during a banking crisis as the interest rate exposure channel to household spending is counterbalanced by a channel from bank balance sheet interest rate exposure to lending.\footnote{It should be noted that our analysis is all on the household side. Evidence suggests that firms are also sensitive to changes in cash flow; for example, see \cite{blanchard_what_1994}.} 
+
+	We choose an MPX of zero for government and the rest of the world. There is no evidence that households respond in any significant way to changes in the government's balance sheet, and furthermore a low MPX is a conservative assumption for the size of the heterogeneous agent channels. As Denmark is a very small part of the world economy, we assume that foreigners spend a negligible proportion of their wealth there.
+	
+	\subsection{U.S.}
+	A similar proceedure is followed for the U.S., except that the MPX for all age groups is estimated using liquid wealth, and URE and NNP exposure not directely held by households is associated with an MPX of 0.1.	
+	
+	
 	\section{Details on the Calculation of NNP and URE}
 	\setcounter{figure}{0}   
 	\setcounter{table}{0} 
@@ -653,9 +668,9 @@
 	The Net Nominal Position (NNP) and Unhedged Interest Rate Exposure (URE) for the various sectors in the Danish economy are calculated from our household-level dataset as well as the financial accounts from the national accounts statistics. All calculations are based on average values over the years 2009 to 2015, deflated by the consumer price index. 
 	
 	\subsection{NNP and URE for Households}
-	The NNP for households is calculated as financial assets minus liabilities. As financial assets, we include bank deposits as well as the market value of securities (excluding shares). Liabilities include all debt to financial institutions (including credit card debt) as well as publicly administered student debt, tax debt and other debt to government bodies. These data are reported to the tax authorities by financial institutions on behalf of the households. 
+	The NNP for households is calculated as financial assets minus liabilities. As financial assets, we include bank deposits as well as the market value of securities (excluding shares). Liabilities include all debt to financial institutions (including credit card debt) as well as publicly administered student debt, tax debt and other debt to government bodies. These data are reported to the tax authorities by financial institutions on behalf of the households.
 	
-	URE is calculated as annual savings (i.e. after-tax income minus expenditure) plus maturing assets minus maturing liabilities. As maturing assets, we include all bank deposits, thereby assuming that they are floating rate. We assume a maturity of five years for securities held by households and therefore include 20\% of the value of securities. Regarding liabilities, we assume that all bank debt is floating rate. According to the interest rate statistics collected by Danmarks Nationalbank since 2013, on average 95\% of bank debt from households is floating rate, most of which is tied either to a market reference rate or to the Danmarks Nationalbank rate on certificates of deposit, with immediate adjustment. For mortgage debt, we have detailed information allowing us to calculate the stock of debt which is due to have interest rates reset over the coming 12 months. Voluntary refinancing of mortgage loans, with or without extraction of additional equity, takes place to a large extent in Denmark. Our measure of maturing liabilities only includes the loans that are contractually due to have their interest rates reset, and we do not attempt to estimate the amount of additional refinancing. For remaining liabilities, which constitute very small amounts, we have no information regarding maturity, so we assume five years. 
+	URE is calculated as annual savings (i.e. after-tax income minus expenditure) plus maturing assets minus maturing liabilities. As maturing assets, we include all bank deposits, thereby assuming that they are floating rate. We assume a maturity of five years for securities held by households and therefore include 20\% of the value of securities. Regarding liabilities, we assume that all bank debt is floating rate. According to the interest rate statistics collected by Danmarks Nationalbank since 2013, on average 95\% of bank debt from households is floating rate, most of which is tied either to a market reference rate or to the Danmarks Nationalbank rate on certificates of deposit, with immediate adjustment. For mortgage debt, we have detailed information allowing us to calculate the stock of debt which is due to have interest rates reset over the coming 12 months, and assume that the new rate will only apply for half of the year. Voluntary refinancing of mortgage loans, with or without extraction of additional equity, takes place to a large extent in Denmark. Our measure of maturing liabilities only includes the loans that are contractually due to have their interest rates reset, and we do not attempt to estimate the amount of additional refinancing. For remaining liabilities, which constitute very small amounts, we have no information regarding maturity, so we assume five years. 
 	
 	\subsection{Other Sectors}
 	NNP for the other sectors in the economy is obtained from the financial accounts statistics compiled by Danmarks Nationalbank. To most closely resemble the definition used in the household-level data, we define NNP as net assets (i.e., assets minus liabilities) in the following categories: "Currency and deposits", "Securities other than shares", "Loans", and "Trade credits and other accounts receivable/payable". 

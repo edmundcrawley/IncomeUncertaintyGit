@@ -146,6 +146,29 @@ output += "\end{minipage}\n"
 with open('./Tables/sufficient_stats2.tex','w') as f:
     f.write(output)
     f.close()
+    
+    # And a table for all sufficient stats   with US  
+filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
+URENNP_data = np.genfromtxt(filename, delimiter=',')
+filename_US = "../Rcode/Tables/US_auclert_stats.csv"
+US_auclert_stats = np.genfromtxt(filename_US, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.3) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lcc}  \n"
+output += " & Denmark & U.S. \n"
+output += "\\\\ \\midrule "
+output += "$\mathcal{M}$ & "+ mystr2(URENNP_data[0,5])+ "&"+ mystr2(US_auclert_stats[0])+ " \n"
+output += "\\\\  $\mathcal{E}_Y$ & "+ mystr2(URENNP_data[1,5])+ "&"+ mystr2(US_auclert_stats[1])+" \n"
+output += "\\\\  $\mathcal{E}_P$  & "+ mystr2(URENNP_data[2,5])+ "&"+ mystr2(US_auclert_stats[2])+" \n"
+output += "\\\\  $\mathcal{E}_R$ & "+ mystr2(URENNP_data[3,5])+ "&"+ mystr2(US_auclert_stats[3])+" \n"
+output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ "& "+" \n"
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+with open('./Tables/sufficient_stats_with_US.tex','w') as f:
+    f.write(output)
+    f.close()
 
 
 # And a table for how well liquid wealth predicts MPX    
@@ -161,13 +184,13 @@ output += "\\\\ \\midrule "
 output += "\\\\  URE Deciles" + " & " + mystr2(prediction_errors[0,0]) + " & "+ mystr2(prediction_errors[0,1]) + " & "+ mystr2(prediction_errors[0,2]) + " & "+ mystr2(prediction_errors[0,3]) + " \n"
 output += "\\\\  NNP Deciles" + " & " + mystr2(prediction_errors[1,0]) + " & "+ mystr2(prediction_errors[1,1]) + " & "+ mystr2(prediction_errors[1,2]) + " & "+ mystr2(prediction_errors[1,3]) + " \n"
 output += "\\\\  Income Deciles" + " & " + mystr2(prediction_errors[2,0]) + " & "+ mystr2(prediction_errors[2,1]) + " & "+ mystr2(prediction_errors[2,2]) + " & "+ mystr2(prediction_errors[2,3]) + " \n"
-output += "\\\\  Consumption Deciles" + " & " + mystr2(prediction_errors[3,0]) + " & "+ mystr2(prediction_errors[3,1]) + " & "+ mystr2(prediction_errors[3,2]) + " & "+ mystr2(prediction_errors[3,3]) + " \n"
+#output += "\\\\  Consumption Deciles" + " & " + mystr2(prediction_errors[3,0]) + " & "+ mystr2(prediction_errors[3,1]) + " & "+ mystr2(prediction_errors[3,2]) + " & "+ mystr2(prediction_errors[3,3]) + " \n"
 output += "\\\\  Net Wealth Deciles" + " & " + mystr2(prediction_errors[4,0]) + " & "+ mystr2(prediction_errors[4,1]) + " & "+ mystr2(prediction_errors[4,2]) + " & "+ mystr2(prediction_errors[4,3]) + " \n"
 
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-output += "\\\\ \\textbf{Notes}: Mean square errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period. \n"
+output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period. \n"
 with open('./Tables/prediction_errors.tex','w') as f:
     f.write(output)
     f.close()
