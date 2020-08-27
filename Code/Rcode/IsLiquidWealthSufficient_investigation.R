@@ -107,6 +107,11 @@ mean_sq_prediction_error = mean((URE_decile_estimates_perm-URE_decile_MPC_predic
 std_dev_pred_URE_ratio_perm = mean_sq_prediction_error^0.5
 std_dev_pred_URE_ratio = mean_sq_prediction_error_ratio^0.5
 
+mean_abs_pred_error_URE            = mean(abs(URE_decile_estimates     -URE_decile_MPC_predict))
+mean_abs_pred_error_ratio_URE      = mean(abs(URE_decile_estimates     -URE_decile_MPC_predict_ratio))
+mean_abs_pred_error_URE_perm       = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_perm))
+mean_abs_pred_error_URE_ratio_perm = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_ratio_perm))
+
 
 NNP_decile_stats = read.csv(paste(moments_dir,'IsLiquidWealthSufficient/NNP_decile_stats1.txt',sep=''))
 NNP_decile_MPC_predict = MPC_tran_predict(as.matrix(NNP_decile_stats['liquidassets_adj_p50'])/exchange_rate)
@@ -135,6 +140,11 @@ std_dev_pred_NNP_perm = mean_sq_prediction_error^0.5
 mean_sq_prediction_error = mean((NNP_decile_estimates_perm-NNP_decile_MPC_predict_ratio_perm)^2)
 std_dev_pred_NNP_ratio_perm = mean_sq_prediction_error^0.5
 std_dev_pred_NNP_ratio = mean_sq_prediction_error_ratio^0.5
+
+mean_abs_pred_error_NNP            = mean(abs(NNP_decile_estimates     -NNP_decile_MPC_predict))
+mean_abs_pred_error_ratio_NNP      = mean(abs(NNP_decile_estimates     -NNP_decile_MPC_predict_ratio))
+mean_abs_pred_error_NNP_perm       = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_perm))
+mean_abs_pred_error_NNP_ratio_perm = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_ratio_perm))
 
 
 Inc_decile_stats = read.csv(paste(moments_dir,'IsLiquidWealthSufficient/inc_decile_stats1.txt',sep=''))
@@ -166,6 +176,11 @@ mean_sq_prediction_error = mean((Inc_decile_estimates_perm-Inc_decile_MPC_predic
 std_dev_pred_Inc_ratio_perm = mean_sq_prediction_error^0.5
 std_dev_pred_Inc_ratio = mean_sq_prediction_error_ratio^0.5
 
+mean_abs_pred_error_Inc            = mean(abs(Inc_decile_estimates     -Inc_decile_MPC_predict))
+mean_abs_pred_error_ratio_Inc      = mean(abs(Inc_decile_estimates     -Inc_decile_MPC_predict_ratio))
+mean_abs_pred_error_Inc_perm       = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_perm))
+mean_abs_pred_error_Inc_ratio_perm = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_ratio_perm))
+
 
 Con_decile_stats = read.csv(paste(moments_dir,'IsLiquidWealthSufficient/con_decile_stats1.txt',sep=''))
 Con_decile_MPC_predict = MPC_tran_predict(as.matrix(Con_decile_stats['liquidassets_adj_p50'])/exchange_rate)
@@ -195,6 +210,11 @@ std_dev_pred_Con_perm = mean_sq_prediction_error^0.5
 mean_sq_prediction_error = mean((Con_decile_estimates_perm-Con_decile_MPC_predict_ratio_perm)^2)
 std_dev_pred_Con_ratio_perm = mean_sq_prediction_error^0.5
 std_dev_pred_Con_ratio = mean_sq_prediction_error_ratio^0.5
+
+mean_abs_pred_error_Con            = mean(abs(Con_decile_estimates     -Con_decile_MPC_predict))
+mean_abs_pred_error_ratio_Con      = mean(abs(Con_decile_estimates     -Con_decile_MPC_predict_ratio))
+mean_abs_pred_error_Con_perm       = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_perm))
+mean_abs_pred_error_Con_ratio_perm = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_ratio_perm))
 
 
 NW_decile_stats = read.csv(paste(moments_dir,'IsLiquidWealthSufficient/netwealth_decile_stats1.txt',sep=''))
@@ -229,28 +249,34 @@ mean_sq_prediction_error = mean((NW_decile_estimates_perm-NW_decile_MPC_predict_
 std_dev_pred_NW_ratio_perm = mean_sq_prediction_error^0.5
 std_dev_pred_NW_ratio = mean_sq_prediction_error_ratio^0.5
 
+mean_abs_pred_error_NW            = mean(abs(NW_decile_estimates     -NW_decile_MPC_predict))
+mean_abs_pred_error_ratio_NW      = mean(abs(NW_decile_estimates     -NW_decile_MPC_predict_ratio))
+mean_abs_pred_error_NW_perm       = mean(abs(NW_decile_estimates_perm-NW_decile_MPC_predict_perm))
+mean_abs_pred_error_NW_ratio_perm = mean(abs(NW_decile_estimates_perm-NW_decile_MPC_predict_ratio_perm))
+
+
 # Write outputs to csv file
 output = matrix(NA,nrow=5,ncol=4)
-output[1,1] = std_dev_pred_URE
-output[1,2] = std_dev_pred_URE_ratio
-output[1,3] = std_dev_pred_URE_perm
-output[1,4] = std_dev_pred_URE_ratio_perm
-output[2,1] = std_dev_pred_NNP
-output[2,2] = std_dev_pred_NNP_ratio
-output[2,3] = std_dev_pred_NNP_perm
-output[2,4] = std_dev_pred_NNP_ratio_perm
-output[3,1] = std_dev_pred_Inc
-output[3,2] = std_dev_pred_Inc_ratio
-output[3,3] = std_dev_pred_Inc_perm
-output[3,4] = std_dev_pred_Inc_ratio_perm
-output[4,1] = std_dev_pred_Con
-output[4,2] = std_dev_pred_Con_ratio
-output[4,3] = std_dev_pred_Con_perm
-output[4,4] = std_dev_pred_Con_ratio_perm
-output[5,1] = std_dev_pred_NW
-output[5,2] = std_dev_pred_NW_ratio
-output[5,3] = std_dev_pred_NW_perm
-output[5,4] = std_dev_pred_NW_ratio_perm
+output[1,1] = mean_abs_pred_error_URE
+output[1,2] = mean_abs_pred_error_ratio_URE
+output[1,3] = mean_abs_pred_error_URE_perm
+output[1,4] = mean_abs_pred_error_URE_ratio_perm
+output[2,1] = mean_abs_pred_error_NNP
+output[2,2] = mean_abs_pred_error_ratio_NNP
+output[2,3] = mean_abs_pred_error_NNP_perm
+output[2,4] = mean_abs_pred_error_NNP_ratio_perm
+output[3,1] = mean_abs_pred_error_Inc
+output[3,2] = mean_abs_pred_error_ratio_Inc
+output[3,3] = mean_abs_pred_error_Inc_perm
+output[3,4] = mean_abs_pred_error_Inc_ratio_perm
+output[4,1] = mean_abs_pred_error_Con
+output[4,2] = mean_abs_pred_error_ratio_Con
+output[4,3] = mean_abs_pred_error_Con_perm
+output[4,4] = mean_abs_pred_error_Con_ratio_perm
+output[5,1] = mean_abs_pred_error_NW
+output[5,2] = mean_abs_pred_error_ratio_NW
+output[5,3] = mean_abs_pred_error_NW_perm
+output[5,4] = mean_abs_pred_error_NW_ratio_perm
 
 write.table(output, file = paste(tables_dir,"prediction_errors.csv",sep=""),row.names=FALSE, na="",col.names=FALSE, sep=",")
 
@@ -315,3 +341,13 @@ E_P = E_P_unbalanced -sum(NNP_by_decile/10)*0.1/C_per_HH #assume MPC=0.1 for ind
 
 M = sum(Inc_by_decile/10*Inc_MPC_predict_by_decile_median/C_per_HH)
 E_Y = M -mean(Inc_MPC_predict_by_decile_median)
+
+
+# Write outputs to csv file
+output = matrix(NA,nrow=1,ncol=4)
+output[1,1] = M
+output[1,2] = E_Y
+output[1,3] = E_P
+output[1,4] = E_R
+write.table(output, file = paste(tables_dir,"US_auclert_stats.csv",sep=""),row.names=FALSE, na="",col.names=FALSE, sep=",")
+
