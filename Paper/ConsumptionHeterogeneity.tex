@@ -315,10 +315,10 @@
 		\end{table}
 	\end{center}
 	
-	\section{Income and Consumption Characteristics by Household Wealth} \label{MPX_wealth}
-	Liquidity constraints are the key microfoundation for the lack of consumption smoothing in heterogeneous agent models. In this section we look at the empirical relation between liquid wealth and the marginal propensity to expend (MPX) out of both permanent and transitory shocks to income. We find a strong monotonic negative relation. We also look at net wealth and find such a monotonic relation no longer holds.
+	\section{Income and Consumption Characteristics by Liquid Wealth} \label{MPX_wealth}
+	Liquidity constraints are the key microfoundation for the lack of consumption smoothing in heterogeneous agent models. In this section we look at the empirical relation between liquid wealth and the marginal propensity to expend (MPX) out of both permanent and transitory shocks to income. We find a strong monotonic negative relation. In section \ref{liquid_wealth_sufficient} we will show liquid wealth predicts MPX across all the other dimensions we look at later in this paper.
 	
-	Using our entire estimation sample we find a mean MPX out of transitory shocks of 0.50 and a mean MPX out of permanent shocks of 0.72. However, these averaged results hide a significant amount of heterogeneity. From the standpoint of consumption theory it is the ability of households to self-insure with their own wealth that mostly determines how much they smooth their consumption over shocks. We divide our estimation sample into quintiles according to both liquid wealth (which we define as bank deposits\footnote{The results are little changed using any other definition of liquid wealth as long as housing and debts are excluded. See online appendix \ref{robustness}.}) and net wealth. In each case, wealth is measured as the mean household wealth holdings over the entire sample period.
+	Using our entire estimation sample we find a mean MPX out of transitory shocks of 0.50 and a mean MPX out of permanent shocks of 0.72. However, these averaged results hide a significant amount of heterogeneity. From the standpoint of consumption theory it is the ability of households to self-insure with their own wealth that mostly determines how much they smooth their consumption over shocks. We divide our estimation sample into quintiles according to liquid wealth.\footnote{We define liquid wealth as the mean bank deposit holding over the entire sample period. The results are little changed using any other definitions of liquid wealth as long as housing and debts are excluded. See online appendix \ref{robustness}.}
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.pdf}
@@ -378,6 +378,16 @@
 		\item \textbf{Unhedged Interest Rate Exposure (URE)} is the difference between all maturing assets (including income) and liabilities (including planned consumption).\footnote{We define ``maturing'' assets and liabilities as those that are due to have their interest rates reset, even if they contractually exist for a longer period. For example, a 30 year variable rate mortgage with annual interest rate fixation periods is ``maturing'' each year in our definition.} For example, households with a large variable rate mortgage will likely have very negative URE. For these households, the entire value of their mortgage will be adjusted to the new rate. When the interest rate rises for one period they will see their disposable income (after mortgage payments) go down, and hence if they have a high MPX their spending will also decrease. As with NNP we find households on aggregate have a negative URE position in our data, and this is counterbalanced by the interest rate position of the financial sector.\footnote{See online appendix \ref{mortgage_market} for details on the Danish mortgage market and online appendix \ref{URE_NNP_appendix} for details on how we calculate NNP and URE positions.}
 	\end{itemize}
 
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
+		\caption{MPX Distribution by URE, NNP, and Income}
+		\label{fig:MPCAuclert}
+	\end{centering}
+	\end{figure}
+
 	Figure \ref{fig:MPCAuclert} shows how the transitory MPX varies across households, according to their URE, NNP, and income. In each case, the value on the x-axis has been divided by the mean level of expenditure in the sample. The top panel shows the estimated MPX for each decile of unhedged interest rate exposure. The deciles on the left contain households most negatively exposed to a rise in interest rates, those in the middle deciles have little exposure, while the two top deciles on the right have the most to gain from an interest rate rise. We have included in this figure data on both rates of homeownership and median liquid assets for each decile. A pattern emerges in which we can roughly categorize the deciles into three groups following \cite{violante_wealthy_2014}:
 	\begin{itemize}
 		\item \textbf{Wealthy Hand-to-Mouth:} The first five deciles contain households with high homeownership rates but few liquid assets. These households have relatively high MPXs, and it is likely that their wealth is locked up in illiquid assets (mostly housing) and that they have large mortgages.
@@ -388,15 +398,6 @@
 	The distribution of MPX with NNP follows a similar pattern. This pattern has not been evident in previous attempts to measure the distribution of MPX across these dimensions. 
 
 	The final chart in figure \ref{fig:MPCAuclert} shows the distribution of transitory MPX with total household income. There is a clear downward trend. If the income of lower-income households decreases more than that of high-income households during a monetary policy contraction, then expenditure will go down by more than the mean income-weighted MPX that would be the result of a representative agent model.\footnote{For comparison, the distribution of  MPX out of permanent income shocks across these three dimensions can be found in online appendix \ref{PermMPXbyURENNP}.}
-	\begin{figure} 
-	\begin{centering}
-		\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
-		\caption{MPX Distribution by URE, NNP, and Income}
-		\label{fig:MPCAuclert}
-	\end{centering}
-	\end{figure}
 
 	\subsection{Liquid Wealth Predicts MPX}
 	\label{liquid_wealth_sufficient}
@@ -446,6 +447,12 @@
 	\endgroup
 	where $\sigma$ is the elasticity of intertemporal substitution, $\gamma$ is the elasticity of relative income to aggregate income, and the five sufficient statistics, $\mathcal{M}$, $\mathcal{E}_Y$, $\mathcal{E}_P$, $\mathcal{E}_R$, and $\mathcal{S}$, are measurable in the data.\footnote{Further details on these statistics can be found in online appendix \ref{auclert_appendix}. Here we are making the simplifying assumptions that $\sigma$ and $\gamma$ are common for all households; see \cite{auclert_monetary_2017} for a discussion.}
 	
+	\subsection{Results}
+	Our estimates of the sufficient statistics for Denmark and the U.S. are shown in table \ref{table:suff_stats}. The aggregate income channel is summarized by $\mathcal{M}$ that we estimate to be 0.52 in Denmark and 0.33 in the U.S.. This means that if income for all households in the economy increased by 1\%, aggregate consumption growth would increase by 52 basis points (33 in the U.S.), broadly in line with calibrations of saver-spender models designed to fit evidence from \cite{campbell_consumption_1989}. The lower number in the U.S. results from greater income inequality than in Denmark, and the fact that high income households (who receive most of a proportional income increase) have relatively lower MPXs.
+	
+	Income inequality in the U.S. also results in a much larger role for the redistribution effect of income, $\mathcal{E}_Y$, coming from the clear negative correlation between income and MPX seen in figure \ref{fig:MPCAuclert}. \cite{patterson_2019} dives deeply into this channel in the U.S. by dividing households into groups that have differing income sensitivity to aggregate income in PSID data. $\mathcal{S}$, the Hicksian scaling factor, is 0.49 in Denmark, which reduces the size of the intertemporal substitution channel by close to half.\footnote{The lack of household consumption data in the SCF prevents us from estimating an equivalent statistic for the U.S..}
+	
+	We also see large differences between Denmark and the U.S. in the Fisher and interest rate exposure channel, both of which are very large for Denmark but less important for the U.S.. $\mathcal{E}_P$ is estimated to be  negative 0.73 in Denmark, suggesting that a one-time increase in the price level of 1\% increases aggregate consumption growth by 73 basis points due to redistribution from those with large nominal assets to those with large nominal debts. This Fisher channel of monetary policy is emphasized in \cite{doepke_inflation_2006}. The fact that household debt in the U.S. is less than half that of Denmark contributes to the far smaller estimate of negative 0.23 for the U.S.. The interest rate exposure channel is also large in Denmark, while almost non-existent in the U.S.. We estimate  $\mathcal{E}_R$ to be  negative 0.26 in Denmark, suggesting that a 1\% increase in the interest rate decreases aggregate household expenditure growth by 26 basis points. The lack of variable rate mortgages in the U.S. contributes to small interest rate exposure channel there. However, this does not exclude the possibility that such a channel could operate through refinancing and long-term interest rates, as highlighted in \cite{eichenbaum_2018}.
 	\begin{center}
 	\begin{table}
 		\caption{Sufficient Statistics}
@@ -456,28 +463,6 @@
 		\end{center}
 	\end{table}
 	\end{center}
-
-	\subsection{Results}
-	Our estimates of the five sufficient statistics, along with their standard errors, are shown in table \ref{table:suff_stats}. The aggregate income channel is summarized by $\mathcal{M}$ that we estimate to be 0.52. This means that if income for all households in the economy increased by 1\%, aggregate consumption growth would increase by 52 basis points, broadly in line with calibrations of saver-spender models designed to fit evidence from \cite{campbell_consumption_1989}. We find little role for the redistribution effect of income, $\mathcal{E}_Y$, despite the clear negative correlation between income and MPX seen in figure \ref{fig:MPCAuclert}.\footnote{\cite{patterson_2019} finds a larger role for income heterogeneity by dividing households into groups that have differing income sensitivity to aggregate income.} $\mathcal{S}$, the Hicksian scaling factor, is 0.49, which reduces the size of the intertemporal substitution channel by close to half.
-
-	The two most interesting statistics are $\mathcal{E}_P$ and $\mathcal{E}_R$, both of which act through redistribution from households with low MPX to those with high MPX. $\mathcal{E}_P$ is estimated to be  negative 0.73 suggesting that a one-time increase in the price level of 1\% increases aggregate consumption growth by 73 basis points due to redistribution from those with large nominal assets to those with large nominal debts. This Fisher channel of monetary policy is emphasized in \cite{doepke_inflation_2006}. The interest rate exposure channel is also large. We estimate  $\mathcal{E}_R$ to be  negative 0.26, suggesting that a 1\% increase in the interest rate decreases aggregate household expenditure growth by 26 basis points.
-
-	For both of these channels, but particularly the interest rate exposure channel, it is informative to compare them to the size of the intertemporal substitution channel. An increase in the real interest rate reduces aggregate consumption today by $\sigma \mathcal{S}$ multiplied by the percent point change in the rate. Reliable estimates of $\sigma$ have been elusive to the economics profession, but there is very little evidence of a large positive number. \cite{havranek_measuring_2015} provides a meta-study of the elasticity of intertemporal substitution and finds a mean of zero from studies using macrodata, and 0.3 to 0.4 for those using microdata. Many of these microlevel studies suffer from identification problems.\footnote{See \cite{carroll_death_2001} for a critique of studies of the elasticity of intertemporal substitution.} \cite{best_estimating_2018} make use of mortgage notches in the United Kingdom to overcome some of these problems. They estimate the average elasticity of intertemporal substitution to be 0.1, which would result in a size of the intertemporal substitution channel of monetary policy being 0.05, over five times smaller than our estimate of the interest rate exposure channel.\footnote{Our decomposition does not allow easy comparison of the interest rate exposure channel with the aggregate income channel, as we do not make assumptions about how much aggregate income changes. \cite{cloyne_monetary_2016} compare mortgagors with outright homeowners and find the aggregate income channel is larger than the direct effect of higher mortgage payments.}
-
-	These estimates are significantly different to the results found in \cite{auclert_monetary_2017}. Our estimate of the Fisher channel is an order of magnitude larger, while our estimate of the interest rate exposure channel is over twice as large.\footnote{The differences are mainly driven by two factors: (i) Our methodology uncovers more heterogeneity in MPX; (ii) we allocate URE and NNP exposures to sectors according to the national accounts, as opposed to assuming lump-sum rebates to households.}
-
-
-\subsection{An Application to U.S. Data}
-
-
-In the U.S., household debt is approximately half that found in Denmark. As a result, the Fisher channel is smaller (elasticity $\varepsilon_P = -0.25$). Furthermore, the fact that few mortgages adjust their interest rate within the year means the interest rate exposure channel, calculated based on a change in the one year interest rate, is almost non-existent (elasticity $\varepsilon_R = -0.01$). These estimates suggest the redistribution channels are small in the U.S. for changes in the short term interest rate, but do not preclude large effects following changes to the long-term interest rate (see \cite{eichenbaum_2018}).
-	
-
-
-	\begin{comment}
-	A long outstanding question in monetary economics is why monetary policy acts with a lag. Two competing theories are habits models such as \cite{fuhrer_habit_2000} and sticky information models such as \cite{mankiw_sticky_2002}. \cite{carroll_sticky_2018} find evidence toward the idea that households react fast to their own idiosyncratic income shocks, but news about macroeconomic shocks takes time to be absorbed. A possible third alternative to both of these theories is that households respond strongly to their realized income today, but not to income anticipated in the future. As it takes time for variable rate mortgages to reset (typically from six months up to five years in Denmark), this would result in the interest rate exposure channel acting with a delay. Indeed, the literature on consumption responses to transitory income shocks has generally found little difference between anticipated and unanticipated responses. Many of the estimates in table \ref{table:MPCLiterature} use anticipated shocks (such as tax rebates) as an instrument and find large MPCs, suggesting households do not necessarily pay attention to anticipated cash flows until they arrive. \cite{ganong_consumer_2017} show this very clearly: there is a sharp consumption drop in the month that unemployment benefits expire, an entirely anticipated event. A model that takes these results seriously, along with a large role for the interest rate exposure channel of monetary policy, could be a fruitful area for future research. 
-	\end{comment}
-	
 
 	\section{Robustness}
 	\label{threats_to_identification}
