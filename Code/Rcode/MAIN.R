@@ -7,20 +7,16 @@
 # 
 ###############################################################################
 
-tag = "_level_lincome_head"
-if (substr(tag,1,6)=="_level") {
-  title_string = "MPX"
-  axis_string = "MPX"
-} else {
-  title_string = "Expenditure Elasticity"
-  axis_string = "Elasticity"
-}
+#tag = "_level_lincome_head"
+tag = ""
+title_string = "MPX"
+axis_string = "MPX"
 
 # Set folders
 Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
-moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
-figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
-tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
+moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/AEJ_revision/"
+figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/AEJ_revision/"
+tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/AEJ_revision/"
 PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
 
 # if running for production store figures here:
@@ -232,7 +228,7 @@ lines(age_set, rollmean(age_params[,1],5,fill=NA), col="green")
 lines(age_set, rollmean(age_params[,2],5,fill=NA), col="red")
 lines(age_set, rollmean(age_total_var,5,fill=NA), col="black")
 lines(age_set, rollmean(2.0/3.0*age_params[,1]+2.0*age_params[,2],5,fill=NA), col="black",lty="dashed")
-legend(40, 0.022, legend=c(expression(paste(sigma[p]^2," Permanent Var")), expression(paste(sigma[q]^2," Transitory Var")), expression(paste("Var(",Delta,"y)")),expression(paste(frac(2,3),sigma[p]^2,"+2",sigma[q]^2,sep=""))), col=c("green","red","black","black"),lty=c("solid","solid","solid","dashed"),bty="n")
+legend(40, 0.025, legend=c(expression(paste(sigma[p]^2," Permanent Var")), expression(paste(sigma[q]^2," Transitory Var")), expression(paste("Var(",Delta,"y)")),expression(paste(frac(2,3),sigma[p]^2,"+2",sigma[q]^2,sep=""))), col=c("green","red","black","black"),lty=c("solid","solid","solid","dashed"),bty="n")
 dev.off()
 
 #png(filename=paste(figures_dir,'MPXByAge',tag,'.png',sep=''))
