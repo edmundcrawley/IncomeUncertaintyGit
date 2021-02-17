@@ -67,8 +67,8 @@ net_wealth_decile_params = category_params
 
 param_num = 4 #3 permanent, 4 transitory
 exchange_rate = 6.87
-liquid_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/liquid_decile_stats1.txt',sep=''))
-lw2perminc_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/liquidtoinc_decile_stats1.txt',sep=''))
+liquid_decile_stats = read.csv(paste(txt_dir,'liquid_decile_stats1.txt',sep=''))
+lw2perminc_decile_stats = read.csv(paste(txt_dir,'liquidtoinc_decile_stats1.txt',sep=''))
 
 MPC_tran_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,param_num],rule=2)
 MPC_tran_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,param_num],rule=2)
@@ -78,7 +78,7 @@ MPC_perm_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50
 MPC_perm_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,3],rule=2)
 
 
-URE_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/URE_decile_stats1.txt',sep=''))
+URE_decile_stats = read.csv(paste(txt_dir,'URE_decile_stats1.txt',sep=''))
 URE_decile_MPC_predict = MPC_tran_predict(as.matrix(URE_decile_stats['liquidassets_adj_p50'])/exchange_rate)
 URE_decile_MPC_predict_ratio = MPC_tran_predict_lw2perminc(as.matrix(URE_decile_stats['liquid_to_perm_p50']))
 URE_decile_estimates = URE_quantile_params[,param_num]
@@ -118,7 +118,7 @@ mean_abs_pred_error_URE_perm       = mean(abs(URE_decile_estimates_perm-URE_deci
 mean_abs_pred_error_URE_ratio_perm = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_ratio_perm))
 
 
-NNP_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/NNP_decile_stats1.txt',sep=''))
+NNP_decile_stats = read.csv(paste(txt_dir,'NNP_decile_stats1.txt',sep=''))
 NNP_decile_MPC_predict = MPC_tran_predict(as.matrix(NNP_decile_stats['liquidassets_adj_p50'])/exchange_rate)
 NNP_decile_MPC_predict_ratio = MPC_tran_predict_lw2perminc(as.matrix(NNP_decile_stats['liquid_to_perm_p50']))
 NNP_decile_estimates = NNP_quantile_params[,param_num]
@@ -152,7 +152,7 @@ mean_abs_pred_error_NNP_perm       = mean(abs(NNP_decile_estimates_perm-NNP_deci
 mean_abs_pred_error_NNP_ratio_perm = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_ratio_perm))
 
 
-Inc_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/inc_decile_stats1.txt',sep=''))
+Inc_decile_stats = read.csv(paste(txt_dir,'inc_decile_stats1.txt',sep=''))
 Inc_decile_MPC_predict = MPC_tran_predict(as.matrix(Inc_decile_stats['liquidassets_adj_p50'])/exchange_rate)
 Inc_decile_MPC_predict_ratio = MPC_tran_predict_lw2perminc(as.matrix(Inc_decile_stats['liquid_to_perm_p50']))
 
@@ -187,7 +187,7 @@ mean_abs_pred_error_Inc_perm       = mean(abs(Inc_decile_estimates_perm-Inc_deci
 mean_abs_pred_error_Inc_ratio_perm = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_ratio_perm))
 
 
-Con_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/con_decile_stats1.txt',sep=''))
+Con_decile_stats = read.csv(paste(txt_dir,'con_decile_stats1.txt',sep=''))
 Con_decile_MPC_predict = MPC_tran_predict(as.matrix(Con_decile_stats['liquidassets_adj_p50'])/exchange_rate)
 Con_decile_MPC_predict_ratio = MPC_tran_predict_lw2perminc(as.matrix(Con_decile_stats['liquid_to_perm_p50']))
 
@@ -222,7 +222,7 @@ mean_abs_pred_error_Con_perm       = mean(abs(Con_decile_estimates_perm-Con_deci
 mean_abs_pred_error_Con_ratio_perm = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_ratio_perm))
 
 
-NW_decile_stats = read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/netwealth_decile_stats1.txt',sep=''))
+NW_decile_stats = read.csv(paste(txt_dir,'netwealth_decile_stats1.txt',sep=''))
 NW_decile_MPC_predict = MPC_tran_predict(as.matrix(NW_decile_stats['liquidassets_adj_p50'])/exchange_rate)
 NW_decile_MPC_predict_ratio = MPC_tran_predict_lw2perminc(as.matrix(NW_decile_stats['liquid_to_perm_p50']))
 
