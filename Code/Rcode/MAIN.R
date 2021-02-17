@@ -19,6 +19,11 @@ figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertai
 tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/AEJ_revision/"
 PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
 
+#####Currently some files come from here - need to remove all of these
+moments_dir_orig = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
+tag_orig = "_level_lincome_head"
+#####Currently some files come from here - need to remove all of these
+
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
@@ -247,8 +252,8 @@ dev.off()
 # Moments by different growth period
 # saved data is divided into two files to reduce file size, put them together first
 moments_loop=list()
-load(paste(moments_dir,'moments_loop_4to7',tag,'.RData',sep=''))
-load(paste(moments_dir,'moments_loop_8to10',tag,'.RData',sep=''))
+load(paste(moments_dir_orig,'moments_loop_4to7',tag_orig,'.RData',sep=''))
+load(paste(moments_dir_orig,'moments_loop_8to10',tag_orig,'.RData',sep=''))
 for (i in 4:7){
   this_moment = paste('moments_',i,sep='')
   moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
@@ -291,7 +296,9 @@ for (n in 1:max_diff){
 }
 ###############################################################################
 # Find regression coefficients for high and low liquid wealth quantiles
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile_10_1and5',tag,'.RData',sep=''))
+#load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_10_1and5',tag,'.RData',sep=''))
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_10',tag,'.RData',sep=''))
+moments_by_liquid_wealth_quantile_10_1and5 = moments_by_liquid_wealth_quantile_10
 max_diff = 10
 reg_coefs_liquid_wealth = list()
 std_errors_liquid_wealth = list()
@@ -579,7 +586,7 @@ dev.off()
 
 ###############################################################################
 # load liquid weath quintile data by non-durable proxyand create graph
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_0nocar','.RData',sep=''))
+load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_0nocar','.RData',sep=''))
 num_quantiles = 5
 round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
@@ -590,7 +597,7 @@ wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
 
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_nocar','.RData',sep=''))
+load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nocar','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output_nocar=output
@@ -599,7 +606,7 @@ wealth_quantile_se_nocar = output$category_se
 wealth_quantile_obs_nocar = output$category_obs
 wealth_quantile_total_var_nocar = output$category_total_var
 
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile_head_nodurableproxy','.RData',sep=''))
+load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nodurableproxy','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output_nodurableproxy=output
@@ -741,189 +748,6 @@ rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "white",borde
 dev.off()
 ###############################################################################
 
-#reload liquid wealth data
-###############################################################################
-# load liquid weath quintile data and create graph
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
-num_quantiles = 5
-round_digits = -3
-wealth_quantile_set = as.character(1:num_quantiles)
-output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
-wealth_quantile_output=output
-wealth_quantile_params = output$category_params
-wealth_quantile_se = output$category_se
-wealth_quantile_obs = output$category_obs
-wealth_quantile_total_var = output$category_total_var
-wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
-wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
-
-
-################################################################################
-# Get CSTW estimated data from Python
-benchmark_results <- read.csv(paste(PythonResults_folder,'benchmark_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
-prefshock_results <- read.csv(paste(PythonResults_folder,'prefshock_liquidwealth.txt',sep=''), sep=" ",header=FALSE)
-
-#plot transitory model results
-#dev.new()
-pdf(paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
-par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[2],colors[3]),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE)
-text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
-segments(barCenters, t(params-se*1.96),
-         barCenters,
-         t(params+se*1.96), lwd=1.5)
-arrows(barCenters, t(params-se*1.96),
-       barCenters,
-       t(params+se*1.96), lwd=1.5,
-       angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[2],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "benchmark_tran_denmark.png",sep=""))
-#dev.copy(pdf, paste(figures_dir, "benchmark_tran_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "benchmark_tran_denmark.svg",sep=""))
-dev.off()
-
-#plot transitory model results with preference shock model
-#dev.new()
-pdf(paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
-par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,4],prefshock_results[,4]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[2],"grey85"),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border=NA, axes=TRUE)
-params = matrix(c(wealth_quantile_params[,4],benchmark_results[,4]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,4],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[2],colors[3]),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Transitory MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE, add=TRUE)
-text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
-segments(barCenters, t(params-se*1.96),
-         barCenters,
-         t(params+se*1.96), lwd=1.5)
-arrows(barCenters, t(params-se*1.96),
-       barCenters,
-       t(params+se*1.96), lwd=1.5,
-       angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model")),"Model with Preference Shocks"), fill=c(colors[2],colors[3],"grey85"),bty="n")
-#dev.copy(png, paste(figures_dir, "prefshock_tran_denmark.png",sep=""))
-#dev.copy(pdf, paste(figures_dir, "prefshock_tran_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "prefshock_tran_denmark.svg",sep=""))
-dev.off()
-
-
-#plot permanent model results
-#dev.new()
-pdf(paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
-par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,3],benchmark_results[,3]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[1],colors[3]),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE)
-text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
-segments(barCenters, t(params-se*1.96),
-         barCenters,
-         t(params+se*1.96), lwd=1.5)
-arrows(barCenters, t(params-se*1.96),
-       barCenters,
-       t(params+se*1.96), lwd=1.5,
-       angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "benchmark_perm_denmark.png",sep=""))
-#dev.copy(pdf, paste(figures_dir, "benchmark_perm_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "benchmark_perm_denmark.svg",sep=""))
-dev.off()
-
-#plot permanent model results
-#dev.new()
-pdf(paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
-par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-quantile_names = c("1","2","3","4","5")
-params = matrix(c(wealth_quantile_params[,3],prefshock_results[,3]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[1],colors[3],"grey85"),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border=NA, axes=TRUE)
-params = matrix(c(wealth_quantile_params[,3],benchmark_results[,3]),nrow=5,ncol=2)
-se = matrix(c(wealth_quantile_se[,3],0,0,0,0,0),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.2)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[1],colors[3]),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Permanent MPX by Liquid Wealth Quantile: Model vs Data"),
-                      ylab = axis_string, xlab = "Liquid Wealth Quintile", border="black", axes=TRUE, add=TRUE)
-text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
-segments(barCenters, t(params-se*1.96),
-         barCenters,
-         t(params+se*1.96), lwd=1.5)
-arrows(barCenters, t(params-se*1.96),
-       barCenters,
-       t(params+se*1.96), lwd=1.5,
-       angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=c(expression(paste("Data")),expression(paste("Model"))), fill=c(colors[1],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "prefshock_perm_denmark.png",sep=""))
-#dev.copy(pdf, paste(figures_dir, "prefshock_perm_denmark.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "prefshock_perm_denmark.svg",sep=""))
-dev.off()
-
-
-#plot data compared to model MPC
-#dev.new()
-pdf(paste(figures_dir, "MPC_accuracy.pdf",sep=""))
-par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
-quantile_names = c("1","2","3","4","5")
-params = matrix(c(prefshock_results[,4],prefshock_results[,5]),nrow=5,ncol=2)
-plotTop = max(max(wealth_quantile_params[,3:4]), 1.0)
-barCenters <- barplot(height=t(params),
-                      names.arg=quantile_names,
-                      cex.names=0.75,
-                      beside=TRUE,col=c(colors[2],colors[3]),
-                      las=2,ylim=c(0,plotTop), xaxt="n",
-                      main=paste("Empirical Estimates and Model Partial Derivatives"),
-                      ylab = axis_string, border="black", axes=TRUE)
-text(x=barCenters[1,]+1, y =-plotTop*0.02, adj=1, labels=quantile_names,xpd=TRUE)
-legend(2, plotTop, legend=c(expression(paste("Empirical Method")),expression(paste("Model Partial Derivative (6m MPC)"))), fill=c(colors[2],colors[3]),bty="n")
-#dev.copy(png, paste(figures_dir, "MPC_accuracy.png",sep=""))
-#dev.copy(pdf, paste(figures_dir, "MPC_accuracy.pdf",sep=""))
-#dev.copy(svg, paste(figures_dir, "MPC_accuracy.svg",sep=""))
-dev.off()
 
 ###########################################################
 # Do Adrien Auclert Stuff
@@ -1062,7 +886,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   se = matrix(0.0,num_quantiles,length(tag_list))
   for (i in 1:length(tag_list)) {
     this_tag = tag_list[i]
-    load(paste(moments_dir,moments_name,this_tag,'.RData',sep=''))
+    load(paste(moments_dir_orig,moments_name,this_tag,'.RData',sep=''))
     output =estimation_by_category(eval(parse(text = moments_name)), make.names(quantile_labels))
     params[,i] = output$category_params[,param_col]
     se[,i] = output$category_se[,param_col]
@@ -1111,41 +935,11 @@ robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:nu
 #permanent
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "Robust_permMPX_liquidwealth", param_col=3, x_label="Quintile")
 
-
-#Net wealth
-num_quantiles = 5
-#transitory
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Net Wealth Quintile", "Robust_tranMPX_netwealth", param_col=4, x_label="Quintile")
-#permanent
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Net Wealth Quintile", "Robust_permMPX_netwealth", param_col=3, x_label="Quintile")
-
-
 #URE
 #transitory
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX by URE Decile", "Robust_tranMPX_URE", param_col=4,legend_xpos = 2, x_label="Decile")
 #permanent
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX by URE Decile", "Robust_permMPX_URE", param_col=3,legend_xpos = 2, x_label="Decile")
-
-#NNP
-#transitory
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX by NNP Decile", "Robust_tranMPX_NNP", param_col=4,legend_xpos = 2, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX by NNP Decile", "Robust_permMPX_NNP", param_col=3,legend_xpos = 2, x_label="Decile")
-
-#Income
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX by Income Decile", "Robust_tranMPX_Income", param_col=4, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX by Income Decile", "Robust_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
-
-
-#MeanCons
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Transitory MPX by Consumption Decile", "Robust_tranMPX_MeanCons", param_col=4, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX by Consumption Decile", "Robust_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
 
 # Compare head with spouse
 tag_list = c("_level_lincome","_level_lincome_head","_level_lincome_spouse")
@@ -1158,13 +952,6 @@ robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:nu
 #permanent
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "Spouse_permMPX_liquidwealth", param_col=3, x_label="Quintile")
 
-#Net wealth
-num_quantiles = 5
-#transitory
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Net Wealth Quintile", "Spouse_tranMPX_netwealth", param_col=4, x_label="Quintile")
-#permanent
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Net Wealth Quintile", "Spouse_permMPX_netwealth", param_col=3, x_label="Quintile")
-
 # Compare head with total
 tag_list = c("_level_lincome","_level_lincome_head")
 tag_list_legend = c("Total","Head")
@@ -1174,27 +961,6 @@ tag_list_legend = c("Total","Head")
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by URE Decile", "total_tranMPX_URE", param_col=4,legend_xpos = 2, x_label="Decile")
 #permanent
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by URE Decile", "total_permMPX_URE", param_col=3,legend_xpos = 2, x_label="Decile")
-
-#NNP
-#transitory
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by NNP Decile", "total_tranMPX_NNP", param_col=4,legend_xpos = 2, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by NNP Decile", "total_permMPX_NNP", param_col=3,legend_xpos = 2, x_label="Decile")
-
-#Income
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by Income Decile", "total_tranMPX_Income", param_col=4 ,legend_xpos = 2, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by Income Decile", "total_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
-
-#MeanCons
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by Consumption Decile", "total_tranMPX_MeanCons", param_col=4 ,legend_xpos = 2, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by Consumption Decile", "total_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
-
 
 # Compare levels with log
 tag_list = c("_level_lincome_head","")
@@ -1207,40 +973,11 @@ robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:nu
 #permanent
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "Logs_permMPX_liquidwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
 
-#Net wealth
-num_quantiles = 5
-#transitory
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Net Wealth Quintile", "Logs_tranMPX_netwealth", param_col=4,legend_xpos = 6, x_label="Quintile")
-#permanent
-robustness_plot(tag_list, "moments_by_net_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Net Wealth Quintile", "Logs_permMPX_netwealth", param_col=3,legend_xpos = 6, x_label="Quintile")
 #URE
 #transitory
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by URE Decile", "Logs_tranMPX_URE", param_col=4,legend_xpos = 6, x_label="Decile")
 #permanent
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by URE Decile", "Logs_permMPX_URE", param_col=3,legend_xpos = 6, x_label="Decile")
-
-#NNP
-#transitory
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by NNP Decile", "Logs_tranMPX_NNP", param_col=4,legend_xpos = 6, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_NNP_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by NNP Decile", "Logs_permMPX_NNP", param_col=3,legend_xpos = 6, x_label="Decile")
-
-#Income
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by Income Decile", "Logs_tranMPX_Income", param_col=4,legend_xpos = 6, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_Income_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by Income Decile", "Logs_permMPX_Income", param_col=3,legend_xpos = 6, x_label="Decile")
-
-#MeanCons
-num_quantiles = 10
-#transitory
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Transitory MPX by Consumption Decile", "Logs_tranMPX_MeanCons", param_col=4,legend_xpos = 6, x_label="Decile")
-#permanent
-robustness_plot(tag_list, "moments_by_MeanCons_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by Consumption Decile", "Logs_permMPX_MeanCons", param_col=3,legend_xpos = 6, x_label="Decile")
-
-
-
 
 tag_list = c("_level_lincome_head","_level_lincome_head_quantilesbyperminc")
 tag_list_legend = c("Baseline", "Liquid Wealth/Permanent Income" )
@@ -1508,8 +1245,8 @@ plot_Auclert_details<- function(params, se, labels, home_ownership, liquid_wealt
 ###############################################################################
 
 
-home_ownership_URE  = read.csv(paste(moments_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,1]
-liquid_wealth_URE  = read.csv(paste(moments_dir,"URE_decile_stats.txt",sep=""), header = FALSE)[,3] #median liquid assets
+home_ownership_URE  = read.csv(paste(moments_dir_orig,"URE_decile_stats.txt",sep=""), header = FALSE)[,1]
+liquid_wealth_URE  = read.csv(paste(moments_dir_orig,"URE_decile_stats.txt",sep=""), header = FALSE)[,3] #median liquid assets
 liquid_wealth_URE = liquid_wealth_URE/(6.87)  #convert to 2015 USD
 
 plot_Auclert_details(URE_quantile_params,URE_quantile_se,URE_quantile_set,home_ownership_URE,liquid_wealth_URE ,"URE Decile","UREdetails")

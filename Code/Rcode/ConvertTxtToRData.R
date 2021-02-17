@@ -22,10 +22,6 @@ CopyQuantileMeans("moments_by_NNP_quantile")
 CopyQuantileMeans("moments_by_MeanCons_quantile")
 CopyQuantileMeans("moments_by_Income_quantile")
 #############NOTE - the following file needs to be updated on MONDAY###########################################
-#Also on Monday, delta_y_var can be replaced with actual data
-#############NOTE - the following file needs to be updated on MONDAY###########################################
-
-
 
 
 MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X", quantile_start = 0) {
@@ -40,7 +36,7 @@ MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X
     
     this_delta_y_var = as.vector(read.table(paste(txt_dir,moments_stub,i+quantile_start,'_delta_y_var.txt',sep=''), header = FALSE, sep = ",", dec = "."))
     #this_delta_y_var = 0.0
-    moments[[paste(quantile_stub,i+quantile_start,sep='')]][["delta_y_var"]] = this_delta_y_var
+    moments[[paste(quantile_stub,i+quantile_start,sep='')]][["delta_y_var"]] = this_delta_y_var$V1
   }
   if (moments_stub == "moments_low_inc_vol_by_liquid_wealth_quantile" | moments_stub == "moments_high_inc_vol_by_liquid_wealth_quantile"){
     this_quantiles = as.vector(read.table(paste(txt_dir,"moments_by_liquid_wealth_quantile",'_quantiles.txt',sep=''), header = FALSE, sep = ",", dec = "."))
@@ -98,3 +94,9 @@ save(moments_by_age_28to55, file=paste(moments_dir,'moments_by_age_28to55.RData'
 
 moments_by_age_56to80 = MomentsForRDataFile('moments_by_age', num_quantiles=25, quantile_stub="age", quantile_start=55 )
 save(moments_by_age_56to80, file=paste(moments_dir,'moments_by_age_56to80.RData',sep=''))
+
+moments_low_inc_vol_by_liquid_wealth_quantile = MomentsForRDataFile('moments_low_inc_vol_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_low_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_low_inc_vol_by_liquid_wealth_quantile.RData',sep=''))
+
+moments_high_inc_vol_by_liquid_wealth_quantile = MomentsForRDataFile('moments_high_inc_vol_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_high_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_high_inc_vol_by_liquid_wealth_quantile.RData',sep=''))
