@@ -33,7 +33,7 @@ global dofiles = "E:\ProjektDB\706172\Workdata\706172\Husholdningsprojekt\Precau
 global logfiles = "E:\ProjektDB\706172\Workdata\706172\Husholdningsprojekt\Precautionary saving with time varying risk\edmund\BPP\logfiles"
 
 // log and load family level data
-*log using "${logfiles}\nostocks", text replace
+log using "${logfiles}\neg_cons", text replace
 if $five_percent_sample == 1 {
 	use  "${savedirectory}\family_firm_5percent_sample.dta"
 }
@@ -69,7 +69,7 @@ drop tot_inc_1 tot_inc_2
 * Set as panel data
 xtset familie_id year
 
-
+/*
 * Correct missing regions in 2006
 preserve
 keep if year == 2005
@@ -84,7 +84,7 @@ keep familie_id region
 rename region region2007
 save "${rawdata}\region2007.dta", replace
 restore
-
+*/
 merge m:1 familie_id  using "${rawdata}\region2005.dta", nogenerate
 merge m:1 familie_id  using "${rawdata}\region2007.dta", nogenerate
 replace region = region2005 if region == "." & year == 2006
@@ -121,7 +121,6 @@ gen NNP = mean_nominal_assets-mean_nominal_liabilities
 
 bys familie_id: egen mean_inc_after_tax = mean(famindkefterskat/PRISS112*100)
 bys familie_id: egen mean_consumption = mean(famforbrug1/PRISS112*100) if ejerskift!=1 & selvst != 1 & ikkeskattepligtig != 1 & famforbrug1>=0
-bys familie_id: egen mean_consumption_2009 = mean(famforbrug1/PRISS112*100) if ejerskift!=1 & selvst != 1 & ikkeskattepligtig != 1 & famforbrug1>=0 & year >=2009
 
 * Descriptive statistics *
 **************************
@@ -146,7 +145,7 @@ gen est_sample = alder_head_08 >= 30 & alder_head_08 <= 55
 gen homeowner = famboligvaerdi>0 & famboligvaerdi!=.
 gen liquidassets_adj = fambankakt/PRISS112*100
 
-global calc_deciles=1
+global calc_deciles=0
 if $calc_deciles ==1 {
 	///Calculate percentiles of URE, NNP and Income for age group between 30 and 55
 	xtile URE_decile = URE if est_sample, nq(10) 
@@ -216,11 +215,11 @@ if $calc_deciles ==1 {
 	outsheet Income_decile_stats* using "${savedirectory}\\Income_decile_stats.txt" if Income_decile_stats1<., replace comma nonames
 
 	
-	xtile Consumption_decile = mean_consumption_2009 if est_sample, nq(10) 
+	xtile Consumption_decile = mean_cons_with_interest if est_sample, nq(10) 
 	matrix Consumption_decile_means = J(10,1,.)
 	matrix Consumption_decile_cutoffs = J(10,1,.)
 	forvalues i= 1(1)10 {
-	sum mean_consumption_2009 if Consumption_decile==`i'
+	sum mean_cons_with_interest if Consumption_decile==`i'
 	matrix Consumption_decile_means[`i',1] = r(mean)
 	matrix Consumption_decile_cutoffs[`i',1] = r(max)
 	}
@@ -274,23 +273,23 @@ di `r(mean)'
 di `r(N)'
 di `r(mean)' * (`r(N)'/7)/1000000000
 
-qui sum mean_consumption_2009
+qui sum mean_cons_with_interest
 di `r(mean)'
 di `r(N)'
 
-qui sum mean_consumption_2009 // if ejerskift == 0 & selvst == 0
+qui sum mean_cons_with_interest// if ejerskift == 0 & selvst == 0
 di `r(mean)'
 di `r(N)'
 
-qui sum mean_consumption_2009 if /*ejerskift == 0 & selvst == 0 &*/ est_sample
+qui sum mean_cons_with_interest if /*ejerskift == 0 & selvst == 0 &*/ est_sample
 di `r(mean)'
 di `r(N)'
 
-qui sum mean_consumption_2009 if /*ejerskift == 0 & selvst == 0 &*/ alder_head_08 < 30
+qui sum mean_cons_with_interest if /*ejerskift == 0 & selvst == 0 &*/ alder_head_08 < 30
 di `r(mean)'
 di `r(N)'
 
-qui sum mean_consumption_2009 if /*ejerskift == 0 & selvst == 0 &*/ alder_head_08 > 55
+qui sum mean_cons_with_interest if /*ejerskift == 0 & selvst == 0 &*/ alder_head_08 > 55
 di `r(mean)'
 di `r(N)'
 
@@ -312,17 +311,11 @@ di `r(N)'
 
 log close A
 
-preserve
-egen mean_consumption_all = mean(mean_consumption_2009)
-egen mean_consumption_sample = mean(mean_consumption_2009) if est_sample
-keep if est_sample == 1
-outsheet mean_consumption_all mean_consumption_sample using "${savedirectory}\\mean_cons.txt" if _n==1 , replace comma
-restore
+
 }
+///////////////////////////////////////////////////////////////////////////////////////
 
 
-
-*cap drop homeowner liquidassets_adj
 
 bysort familie_id: egen inc_perm = mean(famindkefterskat/PRISS112*100)
 
@@ -382,13 +375,9 @@ gen gender = koen_head
 replace gender = 3 if alder_2!=.
 // need dummy for homeowner as consumption measure will vary with this
 *gen homeowner = famboligvaerdi>0 & famboligvaerdi!=.
-gen liquidassets_adj = fambankakt/PRISS112*100
 
 gen fam_lincome = indkefterskat_1
 replace fam_lincome = indkefterskat_1+indkefterskat_2 if alder_head<.
-gen inc_adj = fam_lincome/PRISS112*100
-bys familie_id: egen sd_inc1 = sd(inc_adj)
-gen sd_inc = sd_inc1 / inc_perm
 
 if $level == 0 {
 // log family income adjusted for inflation
@@ -416,9 +405,9 @@ else {
 keep if selvst != 1	//self employed in family (2,029,483 observations deleted)
 keep if ikkeskattepligtig != 1 //not full Danish tax resident (680,972 observations deleted)
 keep if ejerskift!=1	// no real estate transaction in year (messes up consumption measure) (1,245,332 observations deleted)
-keep if famforbrug1>0.01	//has positive consumption (959,522 observations deleted)
+*keep if famforbrug1>0.01	//has positive consumption (959,522 observations deleted)
 keep if famindkefterskat>0.01	//has positive income (85,136 observations deleted)
-//drop top and bottom percentiles in income and consumption
+//drop top and bottom percentiles in CHANGES of income and consumption
 global drop_top = "99.0"
 global drop_bottom = "1.0"
 sort familie_id year
@@ -499,16 +488,16 @@ predict delta_log_y if e(sample), residuals
 reg d_log_cons_adj $regressors
 predict delta_log_c if e(sample), residuals
 */
-/*
+
 //drop top and bottom percentiles of CHNAGES in income and consumption
-global drop_top_change = "99.0"
+/*global drop_top_change = "99.0"
 global drop_bottom_change = "1.0"
 bysort year: egen pincome_top_change = pctile(delta_log_y), p(${drop_top_change})
 bysort year: egen pincome_bottom_change = pctile(delta_log_y), p(${drop_bottom_change})
 bysort year: egen pconsumption_top_change = pctile(delta_log_c), p(${drop_top_change})
 bysort year: egen pconsumption_bottom_change = pctile(delta_log_c), p(${drop_bottom_change})
 gen non_extreme_income_change = delta_log_y<pincome_top_change & delta_log_y>pincome_bottom_change
-gen non_extreme_consumption_change = delta_log_c<pconsumption_top_change & delta_log_c>pconsumption_bottom_change */
+gen non_extreme_consumption_change = delta_log_c<pconsumption_top_change & delta_log_c>pconsumption_bottom_change*/
 drop if delta_log_c==. //Need to check why we drop so many (11million) observations here
 *keep if non_extreme_income_change
 *keep if non_extreme_consumption_change
@@ -564,27 +553,18 @@ else{
 }
 
 if $level == 0 {
-keep familie_id year delta_log_y delta_log_c alder_head fambankakt famnyformue_net PRISS112  ///
-		region part_of_country highest_educ  homeowner famrentudgpr famkursakt famoblakt fampantakt fambankakt ///
-		fambankgaeld famoblgaeld fampantgaeld  famqpassivn  famafdrag_for mortgage_refinance_1y famindkefterskat famforbrug1 PRISS112 ///
-		mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies mean_nominal_assets mean_nominal_liabilities URE NNP mean_consumption 
-		gen industry_agg_head =.
-gen industry_level4_head =.
-gen work_function_level4_head =.
-gen emp_status_head  =.
-gen work_function_agg_head =.
-gen agegroup=.
-gen delta_c_0nocar =.
-gen delta_c_nocar =.
-gen delta_c_nodurableproxy=.
-gen car_included =. 
+keep familie_id year delta_log_y delta_log_c alder_head fambankakt famnyformue_net PRISS112 ///
+		agegroup emp_status_head famhoejstudda work_function_agg_head region part_of_country ///
+		highest_educ industry_agg_head industry_level4_head work_function_agg_head ///
+		work_function_level4_head homeowner ///
+		
 }
 else {
 keep familie_id year delta_y delta_c delta_lincome_head delta_lincome_spouse delta_car_spending ///
 		delta_c_0nocar delta_c_nocar delta_c_nodurableproxy alder_head fambankakt famnyformue_net PRISS112  ///
 		region part_of_country highest_educ  homeowner famrentudgpr famkursakt famoblakt fampantakt fambankakt ///
 		fambankgaeld famoblgaeld fampantgaeld  famqpassivn  famafdrag_for mortgage_refinance_1y famindkefterskat famforbrug1 PRISS112 ///
-		mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies mean_nominal_assets mean_nominal_liabilities URE NNP mean_consumption sd_inc inc_perm
+		mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies mean_nominal_assets mean_nominal_liabilities URE NNP mean_consumption
 //These are legacy pieces of data needed to column numbering to be correct in R code
 gen industry_agg_head =.
 gen industry_level4_head =.
@@ -625,9 +605,8 @@ scalar nind = _N/nyears
 sort familie_id year
 gen id = group(nind)
 
-keep id year delta_log_y y_included delta_log_c c_included agegroup log_liquidassets log_netwealth alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-order id year delta_log_y y_included delta_log_c c_included agegroup log_liquidassets log_netwealth alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-
+keep id year delta_log_y y_included delta_log_c c_included agegroup log_liquidassets log_netwealth alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner
+order id year delta_log_y y_included delta_log_c c_included agegroup log_liquidassets log_netwealth alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner
 
 xtset id year
 
@@ -670,7 +649,7 @@ sort familie_id year
 gen id = group(nind)
 
 
-
+/*
 
 preserve
 keep id year delta_lincome_head lincome_head_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
@@ -693,7 +672,7 @@ if $five_percent_sample == 1 {
 	outsheet using "${savedirectory}\input_for_R_fullsample_level_lincome_spouse.csv",comma replace
 	}
 restore
-
+*/
 preserve
 keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
 order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
@@ -704,90 +683,15 @@ xtset id year
 	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}.csv",comma replace
 	}
 	else{
-	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}.csv",comma replace
+	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_incl_neg_cons.csv",comma replace
 	}
 restore
 	
-	
-
-
-
-	
-* Split by standard deviation of income
-xtile q_sd_inc_13 = sd_inc if year == 2013, n(2)
-bys familie_id: egen q_sd_inc = mean(q_sd_inc_13)
-
-preserve
-keep if q_sd_inc == 1
-keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-
-xtset id year
-
-	if $five_percent_sample == 1 {
-	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}_low_inc_vol.csv",comma replace
 	}
-	else{
-	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_low_inc_vol.csv",comma replace
-	}
-restore
-	
-	
-	
-preserve
-keep if q_sd_inc == 2
-keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-
-xtset id year
-
-	if $five_percent_sample == 1 {
-	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}_high_inc_vol.csv",comma replace
-	}
-	else{
-	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_high_inc_vol.csv",comma replace
-	}
-restore
-	
-	
 
 
-* Liquid_to_income
-preserve
-replace liquidassets_adj = (fambankakt/PRISS112)/inc_perm*100
-keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-
-xtset id year
-
-	if $five_percent_sample == 1 {
-	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}.csv",comma replace
-	}
-	else{
-	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_liquid_to_income.csv",comma replace
-	}
-restore
 
 
-* No_stocks
-preserve
-// drop stockholders (stock value > 10000 USD)
-gen stock_adj = famkursakt / PRISS112 * 100 /6.82
-drop if stock_adj > 10000 & stock_adj != .
-keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
-
-xtset id year
-
-	if $five_percent_sample == 1 {
-	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}.csv",comma replace
-	}
-	else{
-	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_no_stocks.csv",comma replace
-	}
-restore
-	
-}
 
 
 /*

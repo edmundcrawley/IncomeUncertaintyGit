@@ -46,6 +46,7 @@ gen l_sum = l1 + l2 + l3 + l4
 
 replace est_sample = 0 if l_sum == 4 
 
+cap drop liquidassets_adj
 gen liquidassets_adj = fambankakt/PRISS112*100 / 6.87
 gen netwealth_adj = famnyformue_net/PRISS112*100 / 6.87
 gen cons = famforbrug1/PRISS112*100 / 6.87

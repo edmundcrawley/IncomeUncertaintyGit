@@ -15,7 +15,7 @@
 # Choose which input data to use
 five_percent_sample = FALSE
 levels = TRUE
-lincome_head = TRUE       # Labor income hh head 
+lincome_head = FALSE       # Labor income hh head 
 lincome_spouse = FALSE     # Labor income spouse
 
 if (levels) {
@@ -298,9 +298,9 @@ all_data[,6]=raw_data[,6]
 
 ###############################################################################
 #moments_all
-write.table(moments_all$c_vector, file = paste(moments_dir,'moments_all','_c_vector','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
-write.table(moments_all$omega, file = paste(moments_dir,'moments_all','_omega','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
-write.table(moments_all$d_dif, file = paste(moments_dir,'moments_all','_d_dif','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
+write.table(moments_all$c_vector, file = paste(moments_dir,'BPP_moments_all','_c_vector','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
+write.table(moments_all$omega, file = paste(moments_dir,'BPP_moments_all','_omega','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
+write.table(moments_all$d_dif, file = paste(moments_dir,'BPP_moments_all','_d_dif','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
 
 #moments by quantiles
 for(quantile_type in c("liquid_wealth_quantile","net_wealth_quantile","URE_quantile","NNP_quantile","Income_quantile","MeanCons_quantile")){
@@ -312,11 +312,11 @@ for(quantile_type in c("liquid_wealth_quantile","net_wealth_quantile","URE_quant
   }
   for(i in 1:num_quantiles){
     this_moment = paste('moments_by_',quantile_type,'$X',i,'$','c_vector',sep ="")
-    this_file = paste(moments_dir,'moments_by_',quantile_type,i,'c_vector','.txt',sep ='')
+    this_file = paste(moments_dir,'BPP_moments_by_',quantile_type,i,'c_vector','.txt',sep ='')
     write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
   
     this_moment = paste('moments_by_',quantile_type,'$X',i,'$','omega',sep ="")
-    this_file = paste(moments_dir,'moments_by_',quantile_type,i,'_omega','.txt',sep ='')
+    this_file = paste(moments_dir,'BPP_moments_by_',quantile_type,i,'_omega','.txt',sep ='')
     write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
   }
 }
