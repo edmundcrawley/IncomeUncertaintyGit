@@ -32,6 +32,9 @@ liquid_wealth_decile_params = category_params
 category_params = array(0, dim=c(num_quantiles,4))
 category_se = array(0, dim=c(num_quantiles,4))
 for (i in 1:num_quantiles){
+#  this_c_vector = scan(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome',i,'c_vector','.txt',sep=''))
+#  this_omega = as.matrix(read.csv(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome',i,'_omega','.txt',sep=''), header = FALSE))
+  
   this_c_vector = scan(paste(moments_dir_orig,'IsLiquidWealthSufficient/moments_by_liquid_to_perm_quantile',i,'c_vector','.txt',sep=''))
   this_omega = as.matrix(read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/moments_by_liquid_to_perm_quantile',i,'_omega','.txt',sep=''), header = FALSE))
   this_CS_output = CS_parameter_estimation(this_c_vector, this_omega,T)

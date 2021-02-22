@@ -892,7 +892,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   params
 }
 
-tag_list = c("_level_lincome_head","_level_lincome_head_nostocks","_level_lincome_head_negcons","_level_lincome_head_ConsOutliers25")
+tag_list = c("","_level_lincome_nostocks","_level_lincome_negcons","_level_lincome_ConsOutliers25")
 tag_list_legend = c("Baseline","No Stocks","Include Neg Cons", "Strict Outliers" )
 
 #First do liquid wealth
@@ -909,7 +909,7 @@ robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), 
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(c(1,4,7,10)), tag_list_legend, "Permanent MPX by URE Decile", "Robust_permMPX_URE", param_col=3,legend_xpos = 2, x_label="Decile")
 
 # Compare head with spouse
-tag_list = c("_level_lincome","_level_lincome_head","_level_lincome_spouse")
+tag_list = c("","_level_lincome_head","_level_lincome_spouse")
 tag_list_legend = c("Total","Head","Spouse")
 
 #First do liquid wealth
@@ -920,7 +920,7 @@ robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:nu
 robustness_plot(tag_list, "moments_by_liquid_wealth_quantile", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "Spouse_permMPX_liquidwealth", param_col=3, x_label="Quintile")
 
 # Compare head with total
-tag_list = c("_level_lincome","_level_lincome_head")
+tag_list = c("","_level_lincome_head")
 tag_list_legend = c("Total","Head")
 
 #URE
@@ -930,7 +930,7 @@ robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_lis
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by URE Decile", "total_permMPX_URE", param_col=3,legend_xpos = 2, x_label="Decile")
 
 # Compare levels with log
-tag_list = c("_level_lincome_head","")
+tag_list = c("","_level_lincome_logs")
 tag_list_legend = c("Baseline","Log Total (Elasticity)")
 
 #First do liquid wealth
@@ -946,7 +946,7 @@ robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_lis
 #permanent
 robustness_plot(tag_list, "moments_by_URE_quantile", as.character(1:10), tag_list_legend, "Permanent MPX by URE Decile", "Logs_permMPX_URE", param_col=3,legend_xpos = 6, x_label="Decile")
 
-tag_list = c("_level_lincome_head","_level_lincome_head_quantilesbyperminc")
+tag_list = c("","_level_lincome_quantilesbyperminc")
 tag_list_legend = c("Baseline", "Liquid Wealth/Permanent Income" )
 
 #First do liquid wealth

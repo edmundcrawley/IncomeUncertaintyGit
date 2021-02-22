@@ -9,21 +9,6 @@ moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='
 txt_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
 moments_dir_orig = paste(base_dir,"Code/ServerRcode/ServerOutput/",sep='')
 
-#############NOTE - the following files needs to be updated on MONDAY###########################################
-#moments_by_liquid_wealth_quantile_quantiles.txt
-CopyQuantileMeans <- function(moment_stub){
-  load(paste(moments_dir_orig,moment_stub,'.RData',sep=''))
-  this_quantile_means = paste(moment_stub, '$quantile_means', sep="")
-  this_file = paste(txt_dir,moment_stub,'_quantile_means','.txt',sep='')
-  write.table(eval(parse(text = this_quantile_means)), file = this_file,row.names=FALSE, col.names=FALSE, na="",sep=',')
-}
-CopyQuantileMeans("moments_by_URE_quantile")
-CopyQuantileMeans("moments_by_NNP_quantile")
-CopyQuantileMeans("moments_by_MeanCons_quantile")
-CopyQuantileMeans("moments_by_Income_quantile")
-#############NOTE - the following file needs to be updated on MONDAY###########################################
-
-
 MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X", quantile_start = 0, T=12) {
   if (moments_stub == "moments_loop_"){
     c_vec_string = "_c_vector"
@@ -52,11 +37,24 @@ MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X
     }
     
   }
-  if (moments_stub == "moments_low_inc_vol_by_liquid_wealth_quantile" | moments_stub == "moments_high_inc_vol_by_liquid_wealth_quantile" | moments_stub == "cons_2_5_moments_by_liquid_wealth_quantile_level_lincome"){
+  if (moments_stub == "moments_low_inc_vol_by_liquid_wealth_quantile"
+      | moments_stub == "moments_high_inc_vol_by_liquid_wealth_quantile" 
+      | moments_stub == "cons_2_5_moments_by_liquid_wealth_quantile_level_lincome"
+      | moments_stub == "no_stocks_moments_by_liquid_wealth_quantile_level_lincome"
+      | moments_stub == "incl_neg_cons_moments_by_liquid_wealth_quantile_level_lincome"
+      | moments_stub == "head_moments_by_liquid_wealth_quantile"
+      | moments_stub == "spouse_moments_by_liquid_wealth_quantile"
+      | moments_stub == "logs_moments_by_liquid_wealth_quantile"
+      | moments_stub == "liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome"){
     this_quantiles = as.vector(read.table(paste(txt_dir,"moments_by_liquid_wealth_quantile",'_quantiles.txt',sep=''), header = FALSE, sep = ",", dec = "."))
   } else if (moments_stub == "moments_by_age" | moments_stub == "moments_loop_"){
     this_quantiles = this_c_vector*0.0 #just a placeholder
-  }  else if (moments_stub == "cons_2_5_moments_by_URE_quantile_level_lincome"){
+  }  else if (moments_stub == "cons_2_5_moments_by_URE_quantile_level_lincome" 
+              | moments_stub == "no_stocks_moments_by_URE_quantile_level_lincome"
+              | moments_stub == "incl_neg_cons_moments_by_URE_quantile_level_lincome"
+              | moments_stub == "head_moments_by_URE_quantile_level_lincome"
+              | moments_stub == "logs_moments_by_URE_quantile_level_lincome"
+              | moments_stub == "liquid_to_income_moments_by_URE_quantile_level_lincome"){
     this_quantiles = as.vector(read.table(paste(txt_dir,"moments_by_URE_quantile",'_quantiles.txt',sep=''), header = FALSE, sep = ",", dec = "."))
   }else{
     this_quantiles = as.vector(read.table(paste(txt_dir,moments_stub,'_quantiles.txt',sep=''), header = FALSE, sep = ",", dec = "."))
@@ -129,8 +127,40 @@ moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealt
 save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_nodurableproxy.RData',sep=''))
 
 moments_by_liquid_wealth_quantile = MomentsForRDataFile('cons_2_5_moments_by_liquid_wealth_quantile_level_lincome', num_quantiles=5)
-save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_head_ConsOutliers25.RData',sep=''))
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_ConsOutliers25.RData',sep=''))
 
-moments_by_URE_quantile = MomentsForRDataFile('cons_2_5_moments_by_URE_quantile_level_lincome', num_quantiles=5)
-save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_head_ConsOutliers25.RData',sep=''))
+moments_by_URE_quantile = MomentsForRDataFile('cons_2_5_moments_by_URE_quantile_level_lincome', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_ConsOutliers25.RData',sep=''))
 
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('no_stocks_moments_by_liquid_wealth_quantile_level_lincome', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_nostocks.RData',sep=''))
+
+moments_by_URE_quantile = MomentsForRDataFile('no_stocks_moments_by_URE_quantile_level_lincome', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_nostocks.RData',sep=''))
+
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('incl_neg_cons_moments_by_liquid_wealth_quantile_level_lincome', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_negcons.RData',sep=''))
+
+moments_by_URE_quantile = MomentsForRDataFile('incl_neg_cons_moments_by_URE_quantile_level_lincome', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_negcons.RData',sep=''))
+
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('head_moments_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_head.RData',sep=''))
+
+moments_by_URE_quantile = MomentsForRDataFile('head_moments_by_URE_quantile', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_head.RData',sep=''))
+
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('spouse_moments_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_spouse.RData',sep=''))
+
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('logs_moments_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_logs.RData',sep=''))
+
+moments_by_URE_quantile = MomentsForRDataFile('logs_moments_by_URE_quantile', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_logs.RData',sep=''))
+
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_level_lincome_quantilesbyperminc.RData',sep=''))
+
+moments_by_URE_quantile = MomentsForRDataFile('liquid_to_income_moments_by_URE_quantile_level_lincome', num_quantiles=10)
+save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile_level_lincome_quantilesbyperminc.RData',sep=''))
