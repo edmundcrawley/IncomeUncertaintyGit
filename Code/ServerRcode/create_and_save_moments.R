@@ -264,31 +264,27 @@ if (levels){
     quantile_cutoffs = quantile(mean_liquidwealth[age_range][seq(1,(y/T),by=T)],quantiles, na.rm=TRUE)
     wealth_quantile = as.numeric(cut(mean_liquidwealth,breaks=quantile_cutoffs,include.lowest=TRUE, labels=1:num_quantiles))
     wealth_quantile_set = as.character(1:num_quantiles)
-    moments_by_liquid_wealth_quantile =moments_by_category(wealth_quantile, wealth_quantile_set,(first_year & age_range))
+    moments_by_liquid_wealth_quantile_d =moments_by_category(wealth_quantile, wealth_quantile_set,(first_year & age_range))
     # Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
     quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
-    moments_by_liquid_wealth_quantile$quantiles = quantiles
-    save(moments_by_liquid_wealth_quantile,file=paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,'.RData',sep=''))
+    moments_by_liquid_wealth_quantile_d$quantiles = quantiles
+    save(moments_by_liquid_wealth_quantile_d,file=paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,'.RData',sep=''))
     ##############################################################################
     # Save data for export
-    this_moment = paste('moments_by_liquid_wealth_quantile','$quantiles',sep ="")
+    this_moment = paste('moments_by_liquid_wealth_quantile_d','$quantiles',sep ="")
     this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,'_quantiles','.txt',sep ='')
     write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
     
-    this_moment = as.list(paste('moments_by_liquid_wealth_quantile','$quantile_means$V1',sep =""))
-    this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,'_quantile_means','.txt',sep ='')
-    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
-    
       for(i in 1:5){
-        this_moment = paste('moments_by_liquid_wealth_quantile','$X',i,'$','c_vector',sep ="")
+        this_moment = paste('moments_by_liquid_wealth_quantile_d','$X',i,'$','c_vector',sep ="")
         this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,i,'c_vector','.txt',sep ='')
         write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
         
-        this_moment = paste('moments_by_',quantile_type,'$X',i,'$','omega',sep ="")
+        this_moment = paste('moments_by_liquid_wealth_quantile_d','$X',i,'$','omega',sep ="")
         this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,i,'_omega','.txt',sep ='')
         write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
         
-        this_moment = paste('moments_by_',quantile_type,'$X',i,'$','delta_y_var',sep ="")
+        this_moment = paste('moments_by_liquid_wealth_quantile_d','$X',i,'$','delta_y_var',sep ="")
         this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile',durable_tag,i,'_delta_y_var','.txt',sep ='')
         write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
         }
