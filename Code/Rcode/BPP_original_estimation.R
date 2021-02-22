@@ -3,20 +3,22 @@
 
 ######################################################################################
 
-tag = "_level_lincome_head"
-if (substr(tag,1,6)=="_level") {
-  title_string = "MPX"
-  axis_string = "MPX"
-} else {
-  title_string = "Expenditure Elasticity"
-  axis_string = "Elasticity"
-}
+tag = ""
+title_string = "MPX"
+axis_string = "MPX"
 
+
+base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
 R_code_folder =  "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode"
-moments_BPP_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/BPP_original"
-moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
-figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
-tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
+# moments_BPP_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/BPP_original"
+# moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
+# figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/"
+# tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/"
+
+moments_BPP_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
+moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
+figures_dir = paste(base_dir,"Code/Rcode/Figures/AEJ_revision/",sep='')
+tables_dir = paste(base_dir,"Code/Rcode/Tables/AEJ_revision/",sep='')
 
 source(paste(R_code_folder,"/min_distance_BPP.r", sep=""))
 
@@ -102,8 +104,8 @@ plot_estimataion_output_BPP<- function(params, se, labels, category_for_title, c
 ###############################################################################
 # Full sample estimation
 #First load the moments
-c_vector = as.vector(t(read.csv(file=paste(moments_BPP_dir,"/moments_all_c_vector.txt", sep=""), header=FALSE, sep=",")))
-omega =    as.matrix(read.csv(file=paste(moments_BPP_dir,"/moments_all_omega.txt",    sep=""), header=FALSE, sep=","))
+c_vector = as.vector(t(read.csv(file=paste(moments_BPP_dir,"/BPP_moments_all_c_vector.txt", sep=""), header=FALSE, sep=",")))
+omega =    as.matrix(read.csv(file=paste(moments_BPP_dir,"/BPP_moments_all_omega.txt",    sep=""), header=FALSE, sep=","))
 T=12
 
 #Next replicate BPP
@@ -139,7 +141,7 @@ estimation_by_category_BPP<- function(moments_BPP_dir,moments_stub,category_set,
 
 ###############################################################################
 # load liquid weath quintile data and create graph
-moments_stub = "moments_by_liquid_wealth_quantile"
+moments_stub = "BPP_moments_by_liquid_wealth_quantile"
 num_quantiles = 5
 round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
@@ -160,7 +162,7 @@ plot_estimataion_output_BPP(wealth_quantile_params,wealth_quantile_se,wealth_qua
 
 ###############################################################################
 # load net weath quintile data and create graph
-moments_stub = 'moments_by_net_wealth_quantile'
+moments_stub = 'BPP_moments_by_net_wealth_quantile'
 num_quantiles = 5
 round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
@@ -189,7 +191,7 @@ mean_household_consumption = 328385
 
 ###############################################################################
 # load URE quintile data and create graph
-moments_stub = 'moments_by_URE_quantile'
+moments_stub = 'BPP_moments_by_URE_quantile'
 num_quantiles = 10
 round_digits = 2
 URE_quantile_set = as.character(1:num_quantiles)
@@ -213,7 +215,7 @@ mean_URE_MPX_se = (sum((URE_quantile_se[,4]*t(moments_by_URE_quantile$quantile_m
 ###############################################################################
 ###############################################################################
 # load NNP quintile data and create graph
-moments_stub = 'moments_by_NNP_quantile'
+moments_stub = 'BPP_moments_by_NNP_quantile'
 load(paste(moments_dir,'moments_by_NNP_quantile',durable_tag,'.RData',sep=''))
 
 num_quantiles = 10
@@ -236,7 +238,7 @@ mean_NNP_MPX_se = (sum((NNP_quantile_se[,4]*t(moments_by_NNP_quantile$quantile_m
 
 ###############################################################################
 # load Income quintile data and create graph
-moments_stub = 'moments_by_Income_quantile'
+moments_stub = 'BPP_moments_by_Income_quantile'
 load(paste(moments_dir,'moments_by_Income_quantile',durable_tag,'.RData',sep=''))
 
 num_quantiles = 10
@@ -265,7 +267,7 @@ mean_Income = mean(t(moments_by_Income_quantile$quantile_means))
 
 ###############################################################################
 # load MeanCons quintile data and create graph
-moments_stub = 'moments_by_MeanCons_quantile'
+moments_stub = 'BPP_moments_by_MeanCons_quantile'
 load(paste(moments_dir,'moments_by_MeanCons_quantile',durable_tag,'.RData',sep=''))
 
 num_quantiles = 10
