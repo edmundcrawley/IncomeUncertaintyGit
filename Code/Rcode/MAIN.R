@@ -12,7 +12,7 @@ axis_string = "MPX"
 
 # Set folders
 base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
-R_code_folder =  "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode"
+Rcode_folder =  "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
 moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
 figures_dir = paste(base_dir,"Code/Rcode/Figures/AEJ_revision/",sep='')
 tables_dir = paste(base_dir,"Code/Rcode/Tables/AEJ_revision/",sep='')
