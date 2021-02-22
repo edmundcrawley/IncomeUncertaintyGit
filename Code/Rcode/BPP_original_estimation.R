@@ -121,7 +121,7 @@ estimation_by_category_BPP<- function(moments_BPP_dir,moments_stub,category_set,
     this_category = as.character(category_set[i])
     this_c_vector = as.vector(t(read.csv(file=paste(moments_BPP_dir,"/",moments_stub,i,"c_vector.txt", sep=""), header=FALSE, sep=",")))
     this_omega = as.matrix(read.csv(file=paste(moments_BPP_dir,"/",moments_stub,i,"_omega.txt", sep=""), header=FALSE, sep=","))
-    this_BPP_output = BPP_parameter_estimation(this_c_vector, this_omega,T) 
+    this_BPP_output = BPP_parameter_estimation(this_c_vector, this_omega,T,ma=1) 
     category_params[i,1] = mean(this_BPP_output$var_perm)
     category_params[i,2] = mean(this_BPP_output$var_tran)
     category_params[i,3] = this_BPP_output$ins_perm

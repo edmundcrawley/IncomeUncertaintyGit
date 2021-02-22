@@ -250,21 +250,7 @@ dev.off()
 # 
 ###############################################################################
 # Moments by different growth period
-# saved data is divided into two files to reduce file size, put them together first
-moments_loop=list()
-load(paste(moments_dir_orig,'moments_loop_4to7',tag_orig,'.RData',sep=''))
-load(paste(moments_dir_orig,'moments_loop_8to10',tag_orig,'.RData',sep=''))
-for (i in 4:7){
-  this_moment = paste('moments_',i,sep='')
-  moments_loop[[this_moment]] = moments_loop_4to7[[this_moment]]
-}
-for (i in 8:10){
-  this_moment = paste('moments_',i,sep='')
-  moments_loop[[this_moment]] = moments_loop_8to10[[this_moment]]
-}
-#instead just load 10 diff moment
-# load(paste(moments_dir,'moments_loop_10',tag,'.RData',sep=''))
-
+load(paste(moments_dir,'moments_loop',tag,'.RData',sep=''))
 ###############################################################################
 # Plot regression coefficient of expenditure growth vs income growth for different growth periods
 max_diff = 10
@@ -296,7 +282,6 @@ for (n in 1:max_diff){
 }
 ###############################################################################
 # Find regression coefficients for high and low liquid wealth quantiles
-#load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_10_1and5',tag,'.RData',sep=''))
 load(paste(moments_dir,'moments_by_liquid_wealth_quantile_10',tag,'.RData',sep=''))
 moments_by_liquid_wealth_quantile_10_1and5 = moments_by_liquid_wealth_quantile_10
 max_diff = 10
@@ -586,6 +571,7 @@ dev.off()
 
 ###############################################################################
 # load liquid weath quintile data by non-durable proxyand create graph
+#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_0nocar','.RData',sep=''))
 load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_0nocar','.RData',sep=''))
 num_quantiles = 5
 round_digits = -3
@@ -597,6 +583,7 @@ wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
 
+#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nocar','.RData',sep=''))
 load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nocar','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
@@ -606,6 +593,7 @@ wealth_quantile_se_nocar = output$category_se
 wealth_quantile_obs_nocar = output$category_obs
 wealth_quantile_total_var_nocar = output$category_total_var
 
+#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nodurableproxy','.RData',sep=''))
 load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nodurableproxy','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
@@ -886,7 +874,7 @@ robustness_plot<- function(tag_list, moments_name, quantile_labels, tag_list_leg
   se = matrix(0.0,num_quantiles,length(tag_list))
   for (i in 1:length(tag_list)) {
     this_tag = tag_list[i]
-    load(paste(moments_dir_orig,moments_name,this_tag,'.RData',sep=''))
+    load(paste(moments_dir,moments_name,this_tag,'.RData',sep=''))
     output =estimation_by_category(eval(parse(text = moments_name)), make.names(quantile_labels))
     params[,i] = output$category_params[,param_col]
     se[,i] = output$category_se[,param_col]
