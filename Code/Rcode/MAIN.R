@@ -6,21 +6,18 @@
 #
 # 
 ###############################################################################
-
-#tag = "_level_lincome_head"
 tag = ""
 title_string = "MPX"
 axis_string = "MPX"
 
 # Set folders
-Rcode_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
-moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/AEJ_revision/"
-figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Figures/AEJ_revision/"
-tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/AEJ_revision/"
-PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
+base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
+R_code_folder =  "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode"
+moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
+figures_dir = paste(base_dir,"Code/Rcode/Figures/AEJ_revision/",sep='')
+tables_dir = paste(base_dir,"Code/Rcode/Tables/AEJ_revision/",sep='')
+PythonResults_folder = paste(base_dir,"Code/PrefShockModel/Results/",sep='')
 
-# if running for production store figures here:
-#figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
 require(latex2exp)
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
