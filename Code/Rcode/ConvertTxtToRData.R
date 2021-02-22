@@ -24,7 +24,7 @@ CopyQuantileMeans("moments_by_Income_quantile")
 #############NOTE - the following file needs to be updated on MONDAY###########################################
 
 
-MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X", quantile_start = 0) {
+MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X", quantile_start = 0, T=12) {
   if (moments_stub == "moments_loop_"){
     c_vec_string = "_c_vector"
   }  else {
@@ -37,7 +37,7 @@ MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X
     moments[[paste(quantile_stub,i+quantile_start,sep='')]][["c_vector"]] = this_c_vector$V1
     this_omega = as.matrix(read.table(paste(txt_dir,moments_stub,i+quantile_start,'_omega.txt',sep=''), header = FALSE, sep = ",", dec = "."))
     moments[[paste(quantile_stub,i+quantile_start,sep='')]][["omega"]] = this_omega
-    moments[[paste(quantile_stub,i+quantile_start,sep='')]][["T"]] = 12
+    moments[[paste(quantile_stub,i+quantile_start,sep='')]][["T"]] = T
     
     this_delta_y_var = as.vector(read.table(paste(txt_dir,moments_stub,i+quantile_start,'_delta_y_var.txt',sep=''), header = FALSE, sep = ",", dec = "."))
     #this_delta_y_var = 0.0
@@ -119,13 +119,13 @@ save(moments_high_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'mom
 moments_loop = MomentsForRDataFile('moments_loop_', num_quantiles=7, quantile_stub="moments_", quantile_start=3 )
 save(moments_loop, file=paste(moments_dir,'moments_loop.RData',sep=''))
 
-moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_0nocar', num_quantiles=5)
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_0nocar', num_quantiles=5, T=11)
 save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_0nocar.RData',sep=''))
 
-moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_nocar', num_quantiles=5)
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_nocar', num_quantiles=5, T=11)
 save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_nocar.RData',sep=''))
 
-moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_nodurableproxy', num_quantiles=5)
+moments_by_liquid_wealth_quantile = MomentsForRDataFile('moments_by_liquid_wealth_quantile_nodurableproxy', num_quantiles=5, T=11)
 save(moments_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_nodurableproxy.RData',sep=''))
 
 moments_by_liquid_wealth_quantile = MomentsForRDataFile('cons_2_5_moments_by_liquid_wealth_quantile_level_lincome', num_quantiles=5)

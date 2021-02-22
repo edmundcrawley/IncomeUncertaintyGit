@@ -19,11 +19,6 @@ figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertai
 tables_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/Tables/AEJ_revision/"
 PythonResults_folder = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/PrefShockModel/Results/"
 
-#####Currently some files come from here - need to remove all of these
-moments_dir_orig = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/"
-tag_orig = "_level_lincome_head"
-#####Currently some files come from here - need to remove all of these
-
 # if running for production store figures here:
 #figures_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Paper/Figures"
 require(zoo)
@@ -555,24 +550,10 @@ lines(0:max_diff,(0:max_diff-1.0/3.0)*CS_output_sub$ins_perm*CS_output_sub$var_p
 legend(0, 0.037, legend=c(expression(paste("Var(",Delta^N,"y) Empirical"),paste("Var(",Delta^N,"y) matched to N=3,4,5"), paste("Cov(",Delta^N,"y,",Delta^N,"c) Empirical"),paste("Cov(",Delta^N,"y,",Delta^N,"c) matched to n=3,4,5"))),lty=c("solid","solid","dashed","solid"),col=c("black","red","black","green"),bty="n")
 dev.off()
 ###############################################################################
-#
-# ###############################################################################
-# # load homeowner data and create graph
-# load(paste(moments_dir,'moments_by_home_owner',tag,'.RData',sep=''))
-# output =estimation_by_category(moments_by_home_owner, c("X0","X1"))
-# home_owner_output=output
-# home_owner_params = output$category_params
-# home_owner_se = output$category_se
-# home_owner_obs = output$category_obs
-# home_owner_total_var = output$category_total_var
-# home_owner_set = c("Renter","Owner")
-# plot_estimataion_output(home_owner_params,home_owner_se,home_owner_set ,"Homeownership","")
-# ###############################################################################
 
 ###############################################################################
 # load liquid weath quintile data by non-durable proxyand create graph
-#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_0nocar','.RData',sep=''))
-load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_0nocar','.RData',sep=''))
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_0nocar','.RData',sep=''))
 num_quantiles = 5
 round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
@@ -583,8 +564,7 @@ wealth_quantile_se = output$category_se
 wealth_quantile_obs = output$category_obs
 wealth_quantile_total_var = output$category_total_var
 
-#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nocar','.RData',sep=''))
-load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nocar','.RData',sep=''))
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nocar','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output_nocar=output
@@ -593,8 +573,7 @@ wealth_quantile_se_nocar = output$category_se
 wealth_quantile_obs_nocar = output$category_obs
 wealth_quantile_total_var_nocar = output$category_total_var
 
-#load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nodurableproxy','.RData',sep=''))
-load(paste(moments_dir_orig,'moments_by_liquid_wealth_quantile_head_nodurableproxy','.RData',sep=''))
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_nodurableproxy','.RData',sep=''))
 wealth_quantile_set = as.character(1:num_quantiles)
 output =estimation_by_category(moments_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
 wealth_quantile_output_nodurableproxy=output
