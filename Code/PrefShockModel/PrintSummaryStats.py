@@ -51,14 +51,14 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\tiny \\textbf{Notes}: Values are 2015 USD. Age refers to the age in 2008 of the main income earner in the household. For the purposes of calculation of consumption in the population, top and bottom 1\% in terms of consumption have been excluded. URE and NNP can only be calculated in the period 2009-2015 due to mortgage information being insufficiently detailed in the previous years. \n"
 output += "\end{minipage}\n"
-with open('./Tables/summary_statistics.tex','w') as f:
+with open('./Tables/AEJ_revision/summary_statistics.tex','w') as f:
     f.write(output)
     f.close()
     
     
 # This file also creates the URE and NNP table
     
-filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/AEJ_revision/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 #Do large table for paper
@@ -80,7 +80,7 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\tiny \\textbf{Notes}: NNP and URE numbers are in billions of 2015 USD. Pension Funds includes special saving such as children's savings accounts. See appendix \\ref{URE_NNP_appendix} for detail.\n"
 output += "\end{minipage}\n"
-with open('./Tables/URE_NNP_table.tex','w') as f:
+with open('./Tables/AEJ_revision/URE_NNP_table.tex','w') as f:
     f.write(output)
     f.close()
     
@@ -103,12 +103,12 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\textbf{Notes}: URE numbers are in billions of 2015 USD. \n"
 output += "\end{minipage}\n"
-with open('./Tables/URE_table.tex','w') as f:
+with open('./Tables/AEJ_revision/URE_table.tex','w') as f:
     f.write(output)
     f.close()
 
 # And a table for all sufficient stats    
-filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/AEJ_revision/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
@@ -122,13 +122,13 @@ output += "\\\\ (" + mystr2(URENNP_data[0,6]) + ") & (" + mystr2(URENNP_data[1,6
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/sufficient_stats.tex','w') as f:
+with open('./Tables/AEJ_revision/sufficient_stats.tex','w') as f:
     f.write(output)
     f.close()
     
 
 # And a table for all sufficient stats    
-filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/AEJ_revision/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.4) + "\\textwidth}\n"
@@ -143,14 +143,14 @@ output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ " \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/sufficient_stats2.tex','w') as f:
+with open('./Tables/AEJ_revision/sufficient_stats2.tex','w') as f:
     f.write(output)
     f.close()
     
     # And a table for all sufficient stats   with US  
-filename = "../Rcode/Tables/URE_NNP_positions_text.csv"
+filename = "../Rcode/Tables/AEJ_revision/URE_NNP_positions_text.csv"
 URENNP_data = np.genfromtxt(filename, delimiter=',')
-filename_US = "../Rcode/Tables/US_auclert_stats.csv"
+filename_US = "../Rcode/Tables/AEJ_revision/US_auclert_stats.csv"
 US_auclert_stats = np.genfromtxt(filename_US, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.3) + "\\textwidth}\n"
@@ -166,13 +166,13 @@ output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ "& "+" \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/sufficient_stats_with_US.tex','w') as f:
+with open('./Tables/AEJ_revision/sufficient_stats_with_US.tex','w') as f:
     f.write(output)
     f.close()
 
 
 # And a table for how well liquid wealth predicts MPX    
-filename = "../Rcode/Tables/prediction_errors.csv"
+filename = "../Rcode/Tables/AEJ_revision/prediction_errors.csv"
 prediction_errors = np.genfromtxt(filename, delimiter=',')
 
 output = "\\begin{minipage}{" + str(0.65) + "\\textwidth}\n"
@@ -191,6 +191,6 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
 output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period. \n"
-with open('./Tables/prediction_errors.tex','w') as f:
+with open('./Tables/AEJ_revision/prediction_errors.tex','w') as f:
     f.write(output)
     f.close()
