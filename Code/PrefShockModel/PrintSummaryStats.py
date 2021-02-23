@@ -51,7 +51,7 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\tiny \\textbf{Notes}: Values are 2015 USD. Age refers to the age in 2008 of the main income earner in the household. For the purposes of calculation of consumption in the population, top and bottom 1\% in terms of consumption have been excluded. URE and NNP can only be calculated in the period 2009-2015 due to mortgage information being insufficiently detailed in the previous years. \n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/summary_statistics.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/summary_statistics.tex','w') as f:
     f.write(output)
     f.close()
     
@@ -80,7 +80,7 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\tiny \\textbf{Notes}: NNP and URE numbers are in billions of 2015 USD. Pension Funds includes special saving such as children's savings accounts. See appendix \\ref{URE_NNP_appendix} for detail.\n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/URE_NNP_table.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/URE_NNP_table.tex','w') as f:
     f.write(output)
     f.close()
     
@@ -103,7 +103,7 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\\\\ \\textbf{Notes}: URE numbers are in billions of 2015 USD. \n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/URE_table.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/URE_table.tex','w') as f:
     f.write(output)
     f.close()
 
@@ -122,7 +122,7 @@ output += "\\\\ (" + mystr2(URENNP_data[0,6]) + ") & (" + mystr2(URENNP_data[1,6
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/sufficient_stats.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/sufficient_stats.tex','w') as f:
     f.write(output)
     f.close()
     
@@ -143,7 +143,7 @@ output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ " \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/sufficient_stats2.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/sufficient_stats2.tex','w') as f:
     f.write(output)
     f.close()
     
@@ -166,7 +166,7 @@ output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ "& "+" \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-with open('./Tables/AEJ_revision/sufficient_stats_with_US.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/sufficient_stats_with_US.tex','w') as f:
     f.write(output)
     f.close()
 
@@ -191,6 +191,6 @@ output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
 output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period. \n"
-with open('./Tables/AEJ_revision/prediction_errors.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/prediction_errors.tex','w') as f:
     f.write(output)
     f.close()

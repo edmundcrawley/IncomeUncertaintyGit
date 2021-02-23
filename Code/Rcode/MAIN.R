@@ -1303,6 +1303,17 @@ text(3.0, 0.92, labels = "Least Liquid", cex=1.3)
 text(6, 0.47, labels = "Most Liquid",cex=1.3)
 dev.off()
 
+#######################################################
+income_growth_std = read.csv(paste(txt_dir,"income_std.txt",sep=""), header = TRUE)[,3]
+# plot income growth std
+#dev.new()
+pdf(paste(figures_dir, "IncomeGrowthStd.pdf",sep=""))
+par(mar=c(8,7,4,5),cex.axis=1.2,cex.lab=1.5)
+plot(income_growth_year,income_growth_std,col=colors[1],ylim=c(0.0,0.15),xlab="Year",ylab="Income Growth Std.",
+     main="Income Growth Standard Deviation by Year")
+lines(income_growth_year,income_growth_std,col=colors[1])
+dev.off()
+
 ##############################################################################
 # Extra code for "Is Liquid Wealth Sufficient" section
 source(paste(Rcode_folder,"IsLiquidWealthSufficient_investigation.r",sep=""))

@@ -19,6 +19,8 @@
 %\renewcommand{\thepostfigure}{\Roman{postfig}}
 \renewcommand{\thetable}{\Roman{table}}
 \renewcommand{\thefigure}{\Roman{figure}}
+\newcommand{\figdir}{../Code/Rcode/Figures/AEJ_revision}
+\newcommand{\tabdir}{../Code/Rcode/Tables/AEJ_revision}
 
 \provideboolean{ifWeb}
 \setboolean{ifWeb}{false}
@@ -311,7 +313,7 @@
 			\caption{Summary Statistics}
 			%\captionof{table}{Summary Statistics}
 			\label{table:SummaryStatistics}
-			\input\econtexRoot/Tables/summary_statistics.tex 
+			\input\tabdir/summary_statistics.tex 
 		\end{table}
 	\end{center}
 	
@@ -321,9 +323,9 @@
 	Using our entire estimation sample we find a mean MPX out of transitory shocks of 0.50 and a mean MPX out of permanent shocks of 0.72. However, these averaged results hide a significant amount of heterogeneity. From the standpoint of consumption theory it is the ability of households to self-insure with their own wealth that mostly determines how much they smooth their consumption over shocks. We divide our estimation sample into quintiles according to liquid wealth.\footnote{We define liquid wealth as the mean bank deposit holding over the entire sample period. The results are little changed using any other definitions of liquid wealth as long as housing and debts are excluded. See online appendix \ref{robustness}.}
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByLiquidWealth_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\figdir/VarianceByLiquidWealth.pdf}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByLiquidWealth_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\figdir/MPXByLiquidWealth.pdf}
 		\caption{Variance and MPX by Liquid Wealth Quintile}
 		\label{fig:MPXByLiquidWealth}
 	\end{figure}
@@ -348,7 +350,7 @@
 	Figure \ref{fig:GrowthReg} shows what we would expect to see under three baseline models where households are subject to both transitory and permanent income shocks, as well as what we observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.75 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case set at 0.75---regardless of shock persistence. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model.\footnote{These results come from the heterogeneous beta model in \cite{carroll_distribution_2017}, calibrated to match the distribution of liquid wealth in Denmark.} In this model, the consumption response to income growth over a one year period is small because households self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases, the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.6]{\econtexRoot/Figures/basic_regression_for_paper_level_lincome_head.pdf}
+			\includegraphics[scale=0.6]{\figdir/basic_regression_for_paper.pdf}
 			\caption{Regression Coefficients of Consumption Growth on Income Growth}
 			\label{fig:GrowthReg}
 		\end{centering}
@@ -363,9 +365,9 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/VarianceByNetWealth_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\figdir/VarianceByNetWealth.pdf}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNetWealth_level_lincome_head.pdf}
+		\includegraphics[scale=0.4]{\figdir/MPXByNetWealth.pdf}
 		\caption{Variance and MPX by Net Wealth Quintile}
 		\label{fig:MPXByNetWealth}
 	\end{figure}
@@ -380,9 +382,9 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.85]{\econtexRoot/Figures/MPXByUREdetailsPaper_level_lincome_head.pdf} \\
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByNNP_level_lincome_head.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByIncome_level_lincome_head.pdf}
+			\includegraphics[scale=0.85]{\figdir/MPXByUREdetailsPaper.pdf} \\
+			\includegraphics[scale=0.4]{\figdir/MPXByNNP.pdf}
+			\includegraphics[scale=0.4]{\figdir/MPXByIncome.pdf}
 			\caption{MPX Distribution by URE, NNP, and Income}
 			\label{fig:MPCAuclert}
 		\end{centering}
@@ -407,9 +409,9 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/NW_predict_from_Liquid.pdf}
+		\includegraphics[scale=0.4]{\figdir/NW_predict_from_Liquid.pdf}
 		\centering
-		\includegraphics[scale=0.4]{\econtexRoot/Figures/URE_predict_from_Liquid.pdf}
+		\includegraphics[scale=0.4]{\figdir/URE_predict_from_Liquid.pdf}
 		\caption{Transitory MPX Interpolated From Liquid Wealth}
 		\label{fig:MPXPredict}
 	\end{figure}
@@ -421,7 +423,7 @@
 			\caption{Mean Prediction Errors Using Interpolated MPX's}
 			\label{table:prediction_errors}
 			\begin{center}
-				\input ./Tables/prediction_errors.tex
+				\input \tabdir/prediction_errors.tex
 			\end{center}
 		\end{table}
 	\end{center}
@@ -459,7 +461,7 @@
 			%\captionof{table}{Sufficient Statistics}
 			\label{table:suff_stats}
 			\begin{center}
-				\input ./Tables/sufficient_stats_with_US.tex
+				\input \tabdir/sufficient_stats_with_US.tex
 			\end{center}
 		\end{table}
 	\end{center}
@@ -486,7 +488,7 @@
 	A critique of our empirical methodology is that it does not take account of durable goods, while our data include all spending (except on real estate) and therefore include large and durable goods such as cars and home improvements. The empirical model assumes that in response to a transitive income shock, expenditure increases temporarily for up to two years, which is entirely consistent with a model that includes durable goods. However, the model assumes that in response to a permanent shock to income, expenditure increases once to a new permanent level. A model that included durable goods would instead imply a large one-off expenditure on durable goods to get the households up to their desired flow of durable good services, followed by a decrease back to a permanent level of spending that accounts for replenishing the higher level of depreciating durable goods.
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.55]{\econtexRoot/Figures/MPXByDurables_nodurableproxy.pdf}
+			\includegraphics[scale=0.55]{\figdir/MPXByDurables_nodurableproxy.pdf}
 			\caption{MPX Removing Cars and Using the Nondurable Proxy Panel}
 			\label{fig:MPXByDurables}
 		\end{centering}
@@ -548,14 +550,14 @@
 	The level of both permanent and transitory shock variance for households aged 30 to 55 is approximately 0.0035, reflecting a standard deviation of 6\%. Estimates using U.S. data are significantly higher, especially for the transitory shock variance (for example, \cite{carroll_nature_1997} estimate 0.02 for permanent and 0.04 for transitory). This difference may be due to lower income inequality in Denmark, more progressive taxation, and more generous unemployment insurance. The lower transitory variance will also be due to significantly reduced measurement error relative to the survey-based U.S. data. 
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.6]{\econtexRoot/Figures/VarianceByAge_level_lincome_head.pdf} 
+			\includegraphics[scale=0.6]{\figdir/VarianceByAge.pdf} 
 			\caption{Permanent and Transitory Shock Variance by Age}
 			\label{fig:VarianceByAge}
 		\end{centering}
 	\end{figure}
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.6]{\econtexRoot/Figures/MPXByAge_level_lincome_head.pdf} 
+			\includegraphics[scale=0.6]{\figdir/MPXByAge.pdf} 
 			\caption{MPX by Age}
 			\label{fig:MPXByAge}
 		\end{centering}
@@ -634,7 +636,7 @@
 			\caption{Aggregating Redistribution Elasticities}
 			%\captionof{table}{Aggregating Redistribution Elasticities}
 			\label{table:aggElas}
-			\input ./Tables/URE_NNP_table.tex
+			\input \tabdir/URE_NNP_table.tex
 		\end{table}
 	\end{center}
 	Much of the URE and NNP exposure is not held directly on the balance sheet of households but instead indirectly through pension funds, corporates, and the government. There is significant evidence that the MPX out of shocks to the value of pension wealth, stocks, or the government balance sheet is substantially lower than the MPX from income. We choose to use the estimate from \cite{maggio_stock_2018} that households' MPX from changes in stock market wealth is about 10\%. This choice is the most quantitatively important for the sufficient statistics, as the bin containing the most exposure is the financial sector, which is positively exposed to interest rate increases. This positive interest rate exposure may seem surprising because banks are typically thought to have long-term assets and short-term debt that would result in negative URE exposure. However, our findings are in line with those of \cite{landier_banks_2013}, who find that the financial sector benefits from interest rate hikes overall. An important caveat is due here: we focus on the MPX out of changes in the assets indirectly held by households through the financial sector and do not assume any spending or lending response at the bank level. This assumption may be reasonable in good times when banks are not credit constrained, but may not hold during a banking crisis. Financial frictions could possibly result in monetary policy being much less effective during a banking crisis as the interest rate exposure channel to household spending is counterbalanced by a channel from bank balance sheet interest rate exposure to lending.\footnote{It should be noted that our analysis is all on the household side. Evidence suggests that firms are also sensitive to changes in cash flow; for example, see \cite{blanchard_what_1994}.} 
@@ -668,7 +670,7 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXByLiquidWealthBPP_level_lincome_head.pdf}
+			\includegraphics[scale=0.4]{\figdir/MPXByLiquidWealthBPP.pdf}
 			\caption{Estimates by Liquid Wealth Quintile Obtained Using BPP's Methodology}
 			\label{fig:BPP_liquid}
 		\end{centering}
@@ -724,7 +726,7 @@
 	\begin{center}
 		\captionof{table}{$\psi$ Estimates Using Different $N$}
 		\label{table:psi_estimates}
-		\input ./Tables/Psi_array_empirical.tex
+		\input \tabdir/Psi_array_empirical.tex
 	\end{center}
 	Table \ref{table:psi_estimates} shows the estimates of the transitory MPX that we recover from our estimation sample when we just use $N=n_1,n_2$ in our identification equations \ref{variance} and \ref{covariance}. Remember in our main results we used GMM with $N=3,4,5$ and we have circled $N=3,5$ to highlight where we get identification from in the paper. The purpose of this exercise is to show that the estimation results are not very sensitive to the values of $N$ chosen, providing more evidence that the assumption we made that the transitory consumption response lasts less than two years is not biasing our results significantly. In fact, the results are not changed dramatically even when $N=1,2$, which suggests the majority of the transitory consumption response is very short-lived.
 	
@@ -933,7 +935,7 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/IncreasingDiff_level_lincome_head.pdf}
+			\includegraphics[scale=0.4]{\figdir/IncreasingDiff.pdf}
 			\caption{Variance and Covariance with Years of Growth}
 			\label{fig:increasing_diff}
 		\end{centering}
@@ -960,8 +962,8 @@
 	
 	\begin{figure}
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_liquidwealth.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/Robust_tranMPX_URE.pdf}
+			\includegraphics[scale=0.4]{\figdir/Robust_tranMPX_liquidwealth.pdf}
+			\includegraphics[scale=0.4]{\figdir/Robust_tranMPX_URE.pdf}
 			\caption{Robustness of Liquid Wealth and URE Distributions}
 			\label{fig:Robust_liquidURE}
 		\end{centering}
@@ -971,8 +973,8 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/Logs_tranMPX_liquidwealth.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/Logs_tranMPX_URE.pdf}
+			\includegraphics[scale=0.4]{\figdir/Logs_tranMPX_liquidwealth.pdf}
+			\includegraphics[scale=0.4]{\figdir/Logs_tranMPX_URE.pdf}
 			\caption{Results Using Log Income and Expenditure}
 			\label{fig:Robust_Logs}
 		\end{centering}
@@ -982,7 +984,7 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/total_tranMPX_URE.pdf}
+			\includegraphics[scale=0.4]{\figdir/total_tranMPX_URE.pdf}
 			\caption{Results Using Total Labor Income and Head Labor Income}
 			\label{fig:Robust_TotalvsHead}
 		\end{centering}
@@ -992,7 +994,7 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/DivPerm_tranMPX_liquidwealth.pdf}
+			\includegraphics[scale=0.4]{\figdir/DivPerm_tranMPX_liquidwealth.pdf}
 			\caption{Results Using Quintiles of Liquid Wealth over Permanent Income vs Liquid Wealth}
 			\label{fig:Robust_DivPerm}
 		\end{centering}
@@ -1005,9 +1007,9 @@
 	Figure \ref{fig:MPCAuclert_perm} shows the distribution of both transitory and permanent MPX by NNP, URE and income decile. The transitory numbers are a repeat of figure \ref{fig:MPCAuclert}.
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermURE_level_lincome_head.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermNNP_level_lincome_head.pdf}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/MPXBypermIncome_level_lincome_head.pdf}
+			\includegraphics[scale=0.4]{\figdir/MPXBypermURE.pdf}
+			\includegraphics[scale=0.4]{\figdir/MPXBypermNNP.pdf}
+			\includegraphics[scale=0.4]{\figdir/MPXBypermIncome.pdf}
 			\caption{MPX Distribution by URE, NNP, and Income}
 			\label{fig:MPCAuclert_perm}
 		\end{centering}
@@ -1021,7 +1023,7 @@
 	
 	\begin{figure} 
 		\begin{centering}
-			\includegraphics[scale=0.4]{\econtexRoot/Figures/Spouse_tranMPX_liquidwealth.pdf}
+			\includegraphics[scale=0.4]{\figdir/Spouse_tranMPX_liquidwealth.pdf}
 			\caption{Results Using Total, Head, and Spouse Labor Income}
 			\label{fig:Robust_Spouse}
 		\end{centering}
