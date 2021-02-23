@@ -5,7 +5,6 @@ source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
 moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
 txt_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
-moments_dir_orig = paste(base_dir,"Code/ServerRcode/ServerOutput/",sep='')
 
 # load liquid weath DECILE data and create graph
 num_quantiles = 10
@@ -32,11 +31,8 @@ liquid_wealth_decile_params = category_params
 category_params = array(0, dim=c(num_quantiles,4))
 category_se = array(0, dim=c(num_quantiles,4))
 for (i in 1:num_quantiles){
-#  this_c_vector = scan(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome',i,'c_vector','.txt',sep=''))
-#  this_omega = as.matrix(read.csv(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_quantile_level_lincome',i,'_omega','.txt',sep=''), header = FALSE))
-  
-  this_c_vector = scan(paste(moments_dir_orig,'IsLiquidWealthSufficient/moments_by_liquid_to_perm_quantile',i,'c_vector','.txt',sep=''))
-  this_omega = as.matrix(read.csv(paste(moments_dir_orig,'IsLiquidWealthSufficient/moments_by_liquid_to_perm_quantile',i,'_omega','.txt',sep=''), header = FALSE))
+  this_c_vector = scan(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_decile_level_lincome',i,'c_vector','.txt',sep=''))
+  this_omega = as.matrix(read.csv(paste(txt_dir,'liquid_to_income_moments_by_liquid_wealth_decile_level_lincome',i,'_omega','.txt',sep=''), header = FALSE))
   this_CS_output = CS_parameter_estimation(this_c_vector, this_omega,T)
   category_params[i,1] = this_CS_output$var_perm
   category_params[i,2] = this_CS_output$var_tran

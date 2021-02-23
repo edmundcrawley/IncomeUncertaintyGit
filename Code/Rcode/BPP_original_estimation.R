@@ -180,9 +180,8 @@ plot_estimataion_output_BPP(wealth_quantile_params,wealth_quantile_se,wealth_qua
 
 ###########################################################
 # Do Adrien Auclert Stuff
-#durable_tag ="_head_nodurableproxy"
 durable_tag =tag
-mean_household_consumption = 328385
+mean_household_consumption = 318083.36 # from URE_NNP_positions_NationalAccounts.xlxs. This is only used in the graphs to calc URE/consumption etc
 
 ###############################################################################
 # load URE quintile data and create graph
