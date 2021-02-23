@@ -215,6 +215,68 @@ for(quantile_type in c("liquid_wealth_quantile","URE_quantile")){
       }
 }
 
+
+if (robust_type == "liquid_to_income") {
+
+###############################################################################
+# Sort into liquid wealth deciles and calculate related moments
+num_quantiles =10
+mean_log_liquidwealth = array(0.0, dim=c(y,1))
+for (k in 0:((y/T)-1)){
+  i <- k*T
+  mean_log_liquidwealth[(i+1):(i+T),] = mean(all_data[(i+1):(i+T),liquidasset_col],na.rm=TRUE)
+}
+quantiles = seq(0,1.0,length=(num_quantiles+1))
+quantile_cutoffs = quantile(mean_log_liquidwealth[age_range][seq(1,(y/T),by=T)],quantiles, na.rm=TRUE)
+wealth_quantile = as.numeric(cut(mean_log_liquidwealth,breaks=quantile_cutoffs,include.lowest=TRUE, labels=1:num_quantiles))
+wealth_quantile_set = as.character(1:num_quantiles)
+moments_by_liquid_wealth_decile =moments_by_category(wealth_quantile, wealth_quantile_set,age_range)
+# Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
+quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
+if (levels==TRUE) {
+  quantiles = quantiles/6.87 #convert to 2015 USD
+} else {
+  quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+}
+moments_by_liquid_wealth_decile$quantiles = quantiles
+save(moments_by_liquid_wealth_decile,file=paste(moments_dir,robust_type,'_moments_by_liquid_wealth_decile',tag,'.RData',sep=''))
+###############################################################################
+
+for(quantile_type in c("liquid_wealth_decile")){
+  if (quantile_type=="net_wealth_quantile" || quantile_type== "liquid_wealth_quantile") {
+    num_quantiles = 5
+  }
+  else {
+    num_quantiles = 10
+  }
+  
+  this_moment = paste('moments_by_',quantile_type,'$quantiles',sep ="")
+  this_file = paste(moments_dir,robust_type,'_moments_by_',quantile_type,'_quantiles',tag,'.txt',sep ='')
+  write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+  
+  
+  for(i in 1:num_quantiles){
+    this_moment = paste('moments_by_',quantile_type,'$X',i,'$','c_vector',sep ="")
+    this_file = paste(moments_dir,robust_type,'_moments_by_',quantile_type,tag,i,'c_vector','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+    this_moment = paste('moments_by_',quantile_type,'$X',i,'$','omega',sep ="")
+    this_file = paste(moments_dir,robust_type,'_moments_by_',quantile_type,tag,i,'_omega','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+    this_moment = paste('moments_by_',quantile_type,'$X',i,'$','delta_y_var',sep ="")
+    this_file = paste(moments_dir,robust_type,'_moments_by_',quantile_type,tag,i,'_delta_y_var','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+    
+  }
+}
+
+
+
+}
+
+
 }
 
 
