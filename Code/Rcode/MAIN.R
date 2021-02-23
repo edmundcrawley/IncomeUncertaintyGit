@@ -715,9 +715,8 @@ dev.off()
 
 ###########################################################
 # Do Adrien Auclert Stuff
-#durable_tag ="_head_nodurableproxy"
 durable_tag =tag
-mean_household_consumption = 328385
+mean_household_consumption = 318083.36 # from URE_NNP_positions_NationalAccounts.xlxs. This is only used in the graphs to calc URE/consumption etc
 
 ###############################################################################
 # load URE quintile data and create graph
@@ -735,11 +734,6 @@ URE_quantile_total_var = output$category_total_var
 URE_quantile_set = t(round(moments_by_URE_quantile$quantile_means/mean_household_consumption,round_digits))
 plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","URE",transitory_only = TRUE, category_label = "URE/Mean Expenditure")
 plot_estimataion_output(URE_quantile_params,URE_quantile_se,URE_quantile_set ,"URE Quantile","permURE",transitory_only = FALSE, category_label = "URE/Mean Expenditure")
-
-
-#Now calculate the sufficient statistic
-elas_URE_NR = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
-elas_URE = elas_URE_NR - mean(URE_quantile_params[,4])*mean(t(moments_by_URE_quantile$quantile_means /mean_household_consumption))
 
 mean_URE_MPX = mean(URE_quantile_params[,4]*t(moments_by_URE_quantile$quantile_means))
 mean_URE_MPX_se = (sum((URE_quantile_se[,4]*t(moments_by_URE_quantile$quantile_means))^2)^0.5)/num_quantiles
@@ -762,10 +756,6 @@ NNP_quantile_set = t(round(moments_by_NNP_quantile$quantile_means /mean_househol
 plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","NNP",transitory_only = TRUE, category_label = "NNP/Mean Expenditure")
 plot_estimataion_output(NNP_quantile_params,NNP_quantile_se,NNP_quantile_set ,"NNP Quantile","permNNP",transitory_only = FALSE, category_label = "NNP/Mean Expenditure")
 
-#Now calculate the sufficient statistic
-elas_NNP_NR = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
-elas_NNP = elas_NNP_NR - mean(NNP_quantile_params[,4])*mean(t(moments_by_NNP_quantile$quantile_means /mean_household_consumption))
-
 mean_NNP_MPX = mean(NNP_quantile_params[,4]*t(moments_by_NNP_quantile$quantile_means))
 mean_NNP_MPX_se = (sum((NNP_quantile_se[,4]*t(moments_by_NNP_quantile$quantile_means))^2)^0.5)/num_quantiles
 
@@ -785,10 +775,6 @@ Income_quantile_total_var = output$category_total_var
 Income_quantile_set = round(t(moments_by_Income_quantile$quantile_means /mean_household_consumption),round_digits)
 plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","Income",transitory_only = TRUE, category_label = "Income/Mean Expenditure")
 plot_estimataion_output(Income_quantile_params,Income_quantile_se,Income_quantile_set ,"Income Quantile","permIncome",transitory_only = FALSE, category_label = "Income/Mean Expenditure")
-
-#Now calculate the sufficient statistic
-elas_Income_NR = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
-elas_Income = elas_Income_NR - mean(Income_quantile_params[,4])*mean(t(moments_by_Income_quantile$quantile_means /mean_household_consumption))
 
 mean_Income_MPX = mean(Income_quantile_params[,4]*t(moments_by_Income_quantile$quantile_means))
 mean_Income_MPX_se = (sum((Income_quantile_se[,4]*t(moments_by_Income_quantile$quantile_means))^2)^0.5)/num_quantiles
@@ -814,10 +800,6 @@ MeanCons_quantile_obs = output$category_obs
 MeanCons_quantile_total_var = output$category_total_var
 MeanCons_quantile_set = t(round(moments_by_MeanCons_quantile$quantile_means/mean_household_consumption,round_digits))
 plot_estimataion_output(MeanCons_quantile_params,MeanCons_quantile_se,MeanCons_quantile_set ,"Consumption Quantile","MeanCons",transitory_only = TRUE)
-
-#Now calculate the sufficient statistic
-elas_MeanCons_NR = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
-elas_MeanCons = elas_MeanCons_NR - mean(MeanCons_quantile_params[,4])*mean(t(moments_by_MeanCons_quantile$quantile_means /mean_household_consumption))
 
 mean_cons_MPX = mean(MeanCons_quantile_params[,4]*t(moments_by_MeanCons_quantile$quantile_means))
 mean_cons_MPX_se = (sum((MeanCons_quantile_se[,4]*t(moments_by_MeanCons_quantile$quantile_means))^2)^0.5)/num_quantiles
