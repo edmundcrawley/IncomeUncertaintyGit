@@ -26,6 +26,7 @@ for (i in 1:num_quantiles){
 }
   
 liquid_wealth_decile_params = category_params
+liquid_wealth_decile_se = category_se
 
 
 category_params = array(0, dim=c(num_quantiles,4))
@@ -69,10 +70,10 @@ exchange_rate = 6.87
 liquid_decile_stats = read.csv(paste(txt_dir,'liquid_decile_stats1.txt',sep=''))
 lw2perminc_decile_stats = read.csv(paste(txt_dir,'liquidtoinc_decile_stats1.txt',sep=''))
 
-MPC_tran_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,param_num],rule=2)
+MPC_tran_predict =    approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,param_num],rule=2)
+MPC_tran_predict_se = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_se[,param_num],rule=2)
 MPC_tran_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,param_num],rule=2)
-MPC_tran_predict_from_pctile = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_params[,param_num],rule=2)
-
+MPC_tran_predict_from_pctile    = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_params[,param_num],rule=2)
 MPC_perm_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,3],rule=2)
 MPC_perm_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,3],rule=2)
 
@@ -296,8 +297,8 @@ liq_by_URE_decile = array(0, dim=c(10))
 liq_by_liq_decile = array(0, dim=c(10))
 for (i in 1:10){
   URE_by_decile[i] = weighted.mean(SCF_data$URE[SCF_data$URE_decile==i],SCF_data$wgt[SCF_data$URE_decile==i])
-  #URE_MPC_predict_by_decile_median[i] = MPC_tran_predict(weighted.median(SCF_data$liq[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i]))
-  URE_MPC_predict_by_decile_median[i] = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i]))
+  #URE_MPC_predict_by_decile_median[i] =   MPC_tran_predict(weighted.median(SCF_data$liq[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i]))
+  URE_MPC_predict_by_decile_median[i]    = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i]))
   liq_by_URE_decile[i] = weighted.median(SCF_data$liq[SCF_data$URE_decile==i], SCF_data$wgt[SCF_data$URE_decile==i])
   liq_by_liq_decile[i] = weighted.median(SCF_data$liq[SCF_data$liq_decile==i], SCF_data$wgt[SCF_data$liq_decile==i])
   }
@@ -314,7 +315,7 @@ liq_by_NNP_decile = array(0, dim=c(10))
 for (i in 1:10){
   NNP_by_decile[i] = weighted.mean(SCF_data$NNP[SCF_data$NNP_decile==i],SCF_data$wgt[SCF_data$NNP_decile==i])
   #NNP_MPC_predict_by_decile_median[i] = MPC_tran_predict(weighted.median(SCF_data$liq[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i]))
-  NNP_MPC_predict_by_decile_median[i] = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i]))
+  NNP_MPC_predict_by_decile_median[i]    = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i]))
   liq_by_NNP_decile[i] = weighted.median(SCF_data$liq[SCF_data$NNP_decile==i], SCF_data$wgt[SCF_data$NNP_decile==i])
 }
 
@@ -324,7 +325,7 @@ Inc_by_decile = array(0, dim=c(10))
 liq_by_Inc_decile = array(0, dim=c(10))
 for (i in 1:10){
   Inc_by_decile[i] = weighted.mean(SCF_data$income[SCF_data$inc_decile==i],SCF_data$wgt[SCF_data$inc_decile==i])
-  Inc_MPC_predict_by_decile_median[i] = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$inc_pctile[SCF_data$inc_decile==i], SCF_data$wgt[SCF_data$inc_decile==i]))
+  Inc_MPC_predict_by_decile_median[i]    = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[SCF_data$inc_decile==i], SCF_data$wgt[SCF_data$inc_decile==i]))
   liq_by_Inc_decile[i] = weighted.median(SCF_data$liq[SCF_data$inc_decile==i], SCF_data$wgt[SCF_data$inc_decile==i])
 }
 
@@ -336,22 +337,86 @@ total_C = 0.7*18.7*1000000000000 #18.7 trillion GDP, 70% consumption
 total_households = sum(SCF_data$wgt)
 C_per_HH = total_C/total_households
 
-E_R_unbalanced = sum(URE_by_decile/10*URE_MPC_predict_by_decile_median/C_per_HH)
+#####################################
+auclert_elasticity<- function(liquid_wealth_decile_MPX, value, decile) {
+  MPC_tran_predict_from_pctile = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_MPX,rule=2)
+  MPC_predict_by_decile_median = array(0, dim=c(10))
+  value_by_decile = array(0, dim=c(10))
+  for (i in 1:10){
+    value_by_decile[i] = weighted.mean(value[decile==i],SCF_data$wgt[decile==i])
+    MPC_predict_by_decile_median[i]    = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[decile==i], SCF_data$wgt[decile==i]))
+  }
+  elasticity = sum(value_by_decile/10*MPC_predict_by_decile_median/C_per_HH)
+  return (elasticity)
+}
+auclert_elasticity_se <-function(liquid_wealth_decile_MPX, value, decile) {
+  elasticity_0 = auclert_elasticity(liquid_wealth_decile_MPX, SCF_data$URE, SCF_data$URE_decile )
+  epsilon = 0.000001
+  delta = c(1:10 *0)
+  for (i in 1:10){
+    shock = c(1:10 *0)
+    shock[i] = epsilon
+    delta[i] = (auclert_elasticity(liquid_wealth_decile_MPX+shock, SCF_data$URE, SCF_data$URE_decile ) - elasticity_0)/epsilon
+  }
+  se = sum( (delta*liquid_wealth_decile_se[,3])^2 )^0.5
+  return (se)
+}
+E_Y_elasticity<- function(liquid_wealth_decile_MPX, value, decile) {
+  MPC_tran_predict_from_pctile = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_MPX,rule=2)
+  MPC_predict_by_decile_median = array(0, dim=c(10))
+  value_by_decile = array(0, dim=c(10))
+  for (i in 1:10){
+    value_by_decile[i] = weighted.mean(value[decile==i],SCF_data$wgt[decile==i])
+    MPC_predict_by_decile_median[i]    = MPC_tran_predict_from_pctile(weighted.mean(SCF_data$liq_pctile[decile==i], SCF_data$wgt[decile==i]))
+  }
+  elasticity = sum(value_by_decile/10*MPC_predict_by_decile_median/C_per_HH) - mean(MPC_predict_by_decile_median)
+  return (elasticity)
+}
+E_Y_elasticity_se <-function(liquid_wealth_decile_MPX, value, decile) {
+  elasticity_0 = M_elasticity(liquid_wealth_decile_MPX, SCF_data$URE, SCF_data$URE_decile )
+  epsilon = 0.000001
+  delta = c(1:10 *0)
+  for (i in 1:10){
+    shock = c(1:10 *0)
+    shock[i] = epsilon
+    delta[i] = (M_elasticity(liquid_wealth_decile_MPX+shock, SCF_data$URE, SCF_data$URE_decile ) - elasticity_0)/epsilon
+  }
+  se = sum( (delta*liquid_wealth_decile_se[,3])^2 )^0.5
+  return (se)
+}
+
+#####################################
+auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$URE, SCF_data$URE_decile )
+
+auclert_elasticity_se(liquid_wealth_decile_params[,4], SCF_data$URE, SCF_data$URE_decile )
+
+E_R_unbalanced = auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$URE, SCF_data$URE_decile )
+E_R_se = auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$URE, SCF_data$URE_decile )
 E_R = E_R_unbalanced -sum(URE_by_decile/10)*0.1/C_per_HH #assume MPC=0.1 for indirectly held assets
 
 
-E_P_unbalanced = sum(NNP_by_decile/10*NNP_MPC_predict_by_decile_median/C_per_HH)
+E_P_unbalanced = auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$NNP, SCF_data$NNP_decile )
+E_P_se = auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$NNP, SCF_data$NNP_decile )
 E_P = E_P_unbalanced -sum(NNP_by_decile/10)*0.1/C_per_HH #assume MPC=0.1 for indirectly held assets
 
 M = sum(Inc_by_decile/10*Inc_MPC_predict_by_decile_median/C_per_HH)
-E_Y = M -mean(Inc_MPC_predict_by_decile_median)
+
+M = auclert_elasticity(liquid_wealth_decile_params[,4], SCF_data$income, SCF_data$inc_decile )
+M_se = auclert_elasticity_se(liquid_wealth_decile_params[,4], SCF_data$income, SCF_data$inc_decile )
+
+E_Y = E_Y_elasticity(liquid_wealth_decile_params[,4], SCF_data$income, SCF_data$inc_decile )
+E_Y_se = E_Y_elasticity_se(liquid_wealth_decile_params[,4], SCF_data$income, SCF_data$inc_decile )
 
 
 # Write outputs to csv file
-output = matrix(NA,nrow=1,ncol=4)
+output = matrix(NA,nrow=2,ncol=4)
 output[1,1] = M
 output[1,2] = E_Y
 output[1,3] = E_P
 output[1,4] = E_R
+output[2,1] = M_se
+output[2,2] = E_Y_se
+output[2,3] = E_P_se
+output[2,4] = E_R_se
 write.table(output, file = paste(tables_dir,"US_auclert_stats.csv",sep=""),row.names=FALSE, na="",col.names=FALSE, sep=",")
 
