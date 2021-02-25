@@ -5,6 +5,7 @@ base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertainty
 Rcode_folder = paste(base_dir,"Code/Rcode/",sep='')
 moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
 txt_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
+SCF_dir = paste(base_dir,"Code/SCF/",sep='')
 
 source(paste(Rcode_folder,"min_distance_CS.r",sep=""))
 ###############################################################################
@@ -291,7 +292,7 @@ write.table(output, file = paste(tables_dir,"prediction_errors.csv",sep=""),row.
 
 ############################## Load SCF data
 
-SCF_data = read.csv(paste("C:\\Users\\edmun\\OneDrive\\Documents\\Research\\SCF\\StataDownload",'\\SCF_Auclert','.csv',sep=''), header = TRUE)
+SCF_data = read.csv(paste(SCF_dir,'SCF_Auclert','.csv',sep=''), header = TRUE)
 
 URE_MPC_predict_by_decile = array(0, dim=c(10))
 URE_MPC_predict_by_decile_median = array(0, dim=c(10))
