@@ -7,7 +7,6 @@
 base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
 moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
 txt_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
-moments_dir_orig = paste(base_dir,"Code/ServerRcode/ServerOutput/",sep='')
 
 MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X", quantile_start = 0, T=12) {
   if (moments_stub == "moments_loop_"){

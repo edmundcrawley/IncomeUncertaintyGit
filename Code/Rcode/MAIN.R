@@ -12,10 +12,11 @@ axis_string = "MPX"
 
 # Set folders
 base_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/"
-Rcode_folder =  "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/Rcode/"
+Rcode_folder = paste(base_dir,"Code/Rcode/",sep='')
 moments_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/",sep='')
 figures_dir = paste(base_dir,"Code/Rcode/Figures/AEJ_revision/",sep='')
 tables_dir = paste(base_dir,"Code/Rcode/Tables/AEJ_revision/",sep='')
+txt_dir = paste(base_dir,"Code/ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/",sep='')
 PythonResults_folder = paste(base_dir,"Code/PrefShockModel/Results/",sep='')
 
 require(zoo)
