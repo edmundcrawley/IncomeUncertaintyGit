@@ -158,10 +158,10 @@ output = "\\begin{minipage}{" + str(0.3) + "\\textwidth}\n"
 output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lcc}  \n"
 output += " & Denmark & U.S. \n"
 output += "\\\\ \\midrule "
-output += "$\mathcal{M}$ & "+ mystr2(URENNP_data[0,5])+ "&"+ mystr2(US_auclert_stats[0])+ " \n"
-output += "\\\\  $\mathcal{E}_Y$ & "+ mystr2(URENNP_data[1,5])+ "&"+ mystr2(US_auclert_stats[1])+" \n"
-output += "\\\\  $\mathcal{E}_P$  & "+ mystr2(URENNP_data[2,5])+ "&"+ mystr2(US_auclert_stats[2])+" \n"
-output += "\\\\  $\mathcal{E}_R$ & "+ mystr2(URENNP_data[3,5])+ "&"+ mystr2(US_auclert_stats[3])+" \n"
+output += "$\mathcal{M}$ & "+ mystr2(URENNP_data[0,5])+ "&"+ mystr2(US_auclert_stats[0,0])+ " \n"
+output += "\\\\  $\mathcal{E}_Y$ & "+ mystr2(URENNP_data[1,5])+ "&"+ mystr2(US_auclert_stats[0,1])+" \n"
+output += "\\\\  $\mathcal{E}_P$  & "+ mystr2(URENNP_data[2,5])+ "&"+ mystr2(US_auclert_stats[0,2])+" \n"
+output += "\\\\  $\mathcal{E}_R$ & "+ mystr2(URENNP_data[3,5])+ "&"+ mystr2(US_auclert_stats[0,3])+" \n"
 output += "\\\\  $\mathcal{S}$ & "+ mystr2(URENNP_data[4,5])+ "& "+" \n"
 output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
@@ -170,6 +170,21 @@ with open('../Rcode/Tables/AEJ_revision/sufficient_stats_with_US.tex','w') as f:
     f.write(output)
     f.close()
 
+# Table for Denmark and US including standard errors
+output = "\\begin{minipage}{" + str(0.7) + "\\textwidth}\n"
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccccc}  \n"
+output += "& $\mathcal{M}$ & $\mathcal{E}_Y$ & $\mathcal{E}_P$  & $\mathcal{E}_R$ & $\mathcal{S}$ \n"
+output += "\\\\ \\midrule "
+output += "Denmark & " + mystr2(URENNP_data[0,5]) + " & " + mystr2(URENNP_data[1,5]) + " & "+ mystr2(URENNP_data[2,5]) + " & "+ mystr2(URENNP_data[3,5]) + " & "+ mystr2(URENNP_data[4,5]) + " \n"
+output += "\\\\ & (" + mystr2(URENNP_data[0,6]) + ") & (" + mystr2(URENNP_data[1,6]) + ") & ("+ mystr2(URENNP_data[2,6]) + ") & ("+ mystr2(URENNP_data[3,6]) + ") & ("+ mystr2(URENNP_data[4,6]) + ") \n"
+output += "\\\\ US & " + mystr2(US_auclert_stats[0,0]) + " & " + mystr2(US_auclert_stats[0,1]) + " & "+ mystr2(US_auclert_stats[0,2]) + " & "+ mystr2(US_auclert_stats[0,3]) + " &    \n"
+output += "\\\\ & (" + mystr2(US_auclert_stats[1,0]) + ") & (" + mystr2(US_auclert_stats[1,1]) + ") & ("+ mystr2(US_auclert_stats[1,2]) + ") & ("+ mystr2(US_auclert_stats[1,3]) + ") &  \n"
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+with open('../Rcode/Tables/AEJ_revision/sufficient_stats_with_US_se.tex','w') as f:
+    f.write(output)
+    f.close()
 
 # And a table for how well liquid wealth predicts MPX    
 filename = "../Rcode/Tables/AEJ_revision/prediction_errors.csv"
@@ -194,3 +209,44 @@ output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated v
 with open('../Rcode/Tables/AEJ_revision/prediction_errors.tex','w') as f:
     f.write(output)
     f.close()
+
+
+#### Save estimate arrays to LaTex
+def PrintEstimateTable(estimate_array,num_labelas_vals,num_pref_vals,labor_elas,pref_vals,filename,width=0.45):
+    output = "\\begin{minipage}{" + str(width) + "\\textwidth}\n"
+   
+    output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lc|*{" + str(num_labelas_vals) + "}{c}}  \n"
+    for i in range(num_labelas_vals//2):
+        output += "& "
+    output += " $n_2$ \n"
+    output += "\\\\ &  "
+    for i in range(num_labelas_vals):
+        output += " & " +  "{:.0f}".format(labor_elas[i])
+    output += "\\\\ \\toprule  \n"
+    for row in range(num_pref_vals):
+        if row==num_pref_vals/2-1:
+            output += " $n_1$ & " + "{:.0f}".format(pref_vals[row]) + " & "
+        else:
+            output += " & " + "{:.0f}".format(pref_vals[row]) + " & "
+        for column in range(num_labelas_vals):
+            if (row==2 and column==4):
+                output += "\\circled{" + "{:.2f}".format(estimate_array[row,column]) + "}"
+            elif ~np.isnan(estimate_array[row,column]) and ~(estimate_array[row,column]==0.0):
+                output += "{:.2f}".format(estimate_array[row,column])
+            if column!=num_labelas_vals-1:
+                output += " & "
+            else:
+                output += " \n "
+                output += "\\\\ "
+    output += "\\\\ \\bottomrule  \n"
+    output += "\end{tabular}}\n"
+    output += "\end{minipage}\n"
+    with open('../Rcode/Tables/AEJ_revision/' + filename + '.tex','w') as f:
+        f.write(output)
+        f.close()
+        
+filename = "../Rcode/Tables/AEJ_revision/ins_tran_array_6.txt"
+psi_array_different_n = np.genfromtxt(filename, delimiter=' ')
+PrintEstimateTable(psi_array_different_n,6,6,np.array(range(6))+1,np.array(range(6))+1,'Psi_array_empirical')
+
+
