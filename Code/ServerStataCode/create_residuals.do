@@ -376,6 +376,15 @@ replace highest_educ = "Masters +" if famhoejstudda / 1000 < 7.1 & famhoejstudda
 
 // Employment - use pstill (is there a less fine version?)
 
+* Sector
+gen pri_1 = 1 if industry_agg_1 != "" 
+replace pri_1 = 0 if substr(industry_agg_1,1,3) == "8 O" | substr(industry_agg_1,1,3) == "9 O" | substr(industry_agg_1,1,3) == "10 " 
+gen pri_2 = 1 if industry_agg_2 != "" 
+replace pri_2 = 0 if substr(industry_agg_2,1,3) == "8 O" | substr(industry_agg_2,1,3) == "9 O" | substr(industry_agg_2,1,3) == "10 " 
+gen pri = pri_1
+replace pri = 1 if pri_2 == 1
+bys familie_id: egen n_pri = total(pri)
+
 egen marital_status = group(civst_head)
 // gender of single households. Couples are '3'
 gen gender = koen_head
@@ -584,7 +593,7 @@ keep familie_id year delta_y delta_c delta_lincome_head delta_lincome_spouse del
 		delta_c_0nocar delta_c_nocar delta_c_nodurableproxy alder_head fambankakt famnyformue_net PRISS112  ///
 		region part_of_country highest_educ  homeowner famrentudgpr famkursakt famoblakt fampantakt fambankakt ///
 		fambankgaeld famoblgaeld fampantgaeld  famqpassivn  famafdrag_for mortgage_refinance_1y famindkefterskat famforbrug1 PRISS112 ///
-		mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies mean_nominal_assets mean_nominal_liabilities URE NNP mean_consumption sd_inc inc_perm
+		mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies mean_nominal_assets mean_nominal_liabilities URE NNP mean_consumption sd_inc inc_perm n_pri
 //These are legacy pieces of data needed to column numbering to be correct in R code
 gen industry_agg_head =.
 gen industry_level4_head =.
@@ -746,6 +755,41 @@ xtset id year
 	}
 	else{
 	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_high_inc_vol.csv",comma replace
+	}
+restore
+	
+
+	
+* Split by at least 3 years of private sector employment
+preserve
+keep if n_pri >= 3 & n_pri !=. 
+keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
+order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
+
+xtset id year
+
+	if $five_percent_sample == 1 {
+	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}_pri.csv",comma replace
+	}
+	else{
+	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_pri.csv",comma replace
+	}
+restore
+	
+	
+	
+preserve
+keep if n_pri < 3 | n_pri == .
+keep id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
+order id year delta_y y_included delta_c c_included agegroup liquidassets_adj netwealth_adj alder_head emp_status_head region part_of_country highest_educ industry_agg_head industry_level4_head work_function_agg_head work_function_level4_head homeowner delta_c_0nocar delta_c_nocar delta_c_nodurableproxy car_included mean_inc_after_tax mean_cons_with_interest mean_maturing_assets mean_maturing_liabiliies URE mean_nominal_assets mean_nominal_liabilities NNP mean_consumption
+
+xtset id year
+
+	if $five_percent_sample == 1 {
+	outsheet using "${savedirectory}\input_for_R_5percentsample_level${lab_inc_tag}_nonpri.csv",comma replace
+	}
+	else{
+	outsheet using "${savedirectory}\input_for_R_fullsample_level${lab_inc_tag}_nonpri.csv",comma replace
 	}
 restore
 	

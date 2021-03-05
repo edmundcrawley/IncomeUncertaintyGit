@@ -37,7 +37,9 @@ MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X
     
   }
   if (moments_stub == "moments_low_inc_vol_by_liquid_wealth_quantile"
-      | moments_stub == "moments_high_inc_vol_by_liquid_wealth_quantile" 
+      | moments_stub == "moments_high_inc_vol_by_liquid_wealth_quantile"
+      | moments_stub == "moments_pri_by_liquid_wealth_quantile"
+      | moments_stub == "moments_nonpri_by_liquid_wealth_quantile"
       | moments_stub == "cons_2_5_moments_by_liquid_wealth_quantile_level_lincome"
       | moments_stub == "no_stocks_moments_by_liquid_wealth_quantile_level_lincome"
       | moments_stub == "incl_neg_cons_moments_by_liquid_wealth_quantile_level_lincome"
@@ -75,6 +77,12 @@ save(moments_low_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'mome
 moments_high_inc_vol_by_liquid_wealth_quantile = MomentsForRDataFile('moments_high_inc_vol_by_liquid_wealth_quantile', num_quantiles=5)
 save(moments_high_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_high_inc_vol_by_liquid_wealth_quantile.RData',sep=''))
 
+moments_pri_by_liquid_wealth_quantile = MomentsForRDataFile('moments_pri_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_pri_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_pri_by_liquid_wealth_quantile.RData',sep=''))
+
+moments_nonpri_by_liquid_wealth_quantile = MomentsForRDataFile('moments_nonpri_by_liquid_wealth_quantile', num_quantiles=5)
+save(moments_nonpri_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_nonpri_by_liquid_wealth_quantile.RData',sep=''))
+
 moments_by_URE_quantile = MomentsForRDataFile('moments_by_URE_quantile', num_quantiles=10)
 save(moments_by_URE_quantile, file=paste(moments_dir,'moments_by_URE_quantile.RData',sep=''))
 
@@ -106,12 +114,6 @@ save(moments_by_age_28to55, file=paste(moments_dir,'moments_by_age_28to55.RData'
 
 moments_by_age_56to80 = MomentsForRDataFile('moments_by_age', num_quantiles=25, quantile_stub="age", quantile_start=55 )
 save(moments_by_age_56to80, file=paste(moments_dir,'moments_by_age_56to80.RData',sep=''))
-
-moments_low_inc_vol_by_liquid_wealth_quantile = MomentsForRDataFile('moments_low_inc_vol_by_liquid_wealth_quantile', num_quantiles=5)
-save(moments_low_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_low_inc_vol_by_liquid_wealth_quantile.RData',sep=''))
-
-moments_high_inc_vol_by_liquid_wealth_quantile = MomentsForRDataFile('moments_high_inc_vol_by_liquid_wealth_quantile', num_quantiles=5)
-save(moments_high_inc_vol_by_liquid_wealth_quantile, file=paste(moments_dir,'moments_high_inc_vol_by_liquid_wealth_quantile.RData',sep=''))
 
 moments_loop = MomentsForRDataFile('moments_loop_', num_quantiles=7, quantile_stub="moments_", quantile_start=3 )
 save(moments_loop, file=paste(moments_dir,'moments_loop.RData',sep=''))
