@@ -26,6 +26,7 @@ error_var = 0.0
 
 phi = 0.8
 psi = 0.8
+phi_d = 0.5
 set.seed(7)
 perm_shocks = t(perm_var**0.5*replicate(num_subperiods*(years+ignore_periods), rnorm(num_agents)) )/num_subperiods**1.5
 tran_shocks = t(tran_var**0.5*replicate(num_subperiods*(years+ignore_periods), rnorm(num_agents)) )/num_subperiods**0.5
@@ -43,7 +44,7 @@ for (i in 1:(num_subperiods*(years+ignore_periods)-1)){
   perm_c[i+1,] = perm_c[i,] + phi*perm_shocks[i+1,]
 }
 y = tran_y + perm_y 
-c = tran_c + perm_c + 0.5*perm_shocks*num_subperiods**1
+c = tran_c + perm_c + phi_d*perm_shocks*num_subperiods**1
 y_annual = matrix(0,years,num_agents)
 c_annual = matrix(0,years,num_agents)
 for (year in (1:years)){
