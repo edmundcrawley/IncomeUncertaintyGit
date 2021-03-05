@@ -60,6 +60,46 @@ wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_
 plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Liquid Wealth Quantile, High Income Vol","HighIncVolLiquidWealth")
 ###############################################################################
 
+###############################################################################
+# load private sector liquid weath quintile data and create graph
+load(paste(moments_dir,'moments_pri_by_liquid_wealth_quantile',tag,'.RData',sep=''))
+num_quantiles = 5
+round_digits = -3
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_pri_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output=output
+wealth_quantile_params = output$category_params
+wealth_quantile_se = output$category_se
+wealth_quantile_obs = output$category_obs
+wealth_quantile_total_var = output$category_total_var
+wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Liquid Wealth Quantile, Private Sector","Private")
+###############################################################################
+
+###############################################################################
+# load non-private sector liquid weath quintile data and create graph
+load(paste(moments_dir,'moments_nonpri_by_liquid_wealth_quantile',tag,'.RData',sep=''))
+num_quantiles = 5
+round_digits = -3
+wealth_quantile_set = as.character(1:num_quantiles)
+output =estimation_by_category(moments_nonpri_by_liquid_wealth_quantile, make.names(wealth_quantile_set))
+wealth_quantile_output=output
+wealth_quantile_params = output$category_params
+wealth_quantile_se = output$category_se
+wealth_quantile_obs = output$category_obs
+wealth_quantile_total_var = output$category_total_var
+wealth_quantile_set = c(paste('$0-',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[1]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[2]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('$',format(round(moments_by_liquid_wealth_quantile$quantiles[[3]],round_digits),big.mark=",", trim=TRUE),'-',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+wealth_quantile_set = c(wealth_quantile_set,paste('> $',format(round(moments_by_liquid_wealth_quantile$quantiles[[4]],round_digits),big.mark=",", trim=TRUE),sep=''))
+plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantile_set ,"Liquid Wealth Quantile, Non-Private Sector","NonPrivate")
+###############################################################################
+
 # Function to plot shock variances and consumption elasticities
 vol_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, title_string, filename, param_col=4, legend_xpos = NULL, x_label="Quantile") {
   
@@ -80,6 +120,9 @@ vol_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, ti
   pdf(paste(figures_dir, filename,".pdf",sep=""))
   par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
   plotTop = max(max(params),1.0)
+  if (param_col==1 | param_col==2){
+    plotTop = max(params)*1.15
+  }
   #plotTop = max(params)
   barCenters <- barplot(height=t(params),
                         names.arg=quantile_labels,
@@ -121,3 +164,18 @@ num_quantiles = 5
 vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Liquid Wealth Quintile", "HighLowVol_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
 #permanent
 vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "HighLowVol_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+
+
+tag_list = c("_pri_by_liquid_wealth_quantile","_by_liquid_wealth_quantile","_nonpri_by_liquid_wealth_quantile")
+tag_list_legend = c("Private","Baseline","Non-private" )
+
+#First do liquid wealth
+num_quantiles = 5
+#transitory
+vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Transitory MPX by Liquid Wealth Quintile", "pri_nonpri_tranMPX_liquidwealth", param_col=4, x_label="Quintile")
+vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Transitory Variance by Liquid Wealth Quintile", "pri_nonpri_tranVar_liquidwealth", param_col=2, x_label="Quintile")
+
+#permanent
+vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Permanent MPX by Liquid Wealth Quintile", "pri_nonpri_permMPX_liquidwealth", param_col=3, x_label="Quintile")
+vol_plot(tag_list, "moments", as.character(1:num_quantiles), tag_list_legend, "Permanent Variance by Liquid Wealth Quintile", "pri_nonpri_permVar_liquidwealth", param_col=1, x_label="Quintile")
+
