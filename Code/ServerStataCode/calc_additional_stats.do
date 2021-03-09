@@ -187,85 +187,107 @@ replace dec_URE = dec_URE+1
 replace dec_NNP = dec_NNP+1
 replace dec_cons = dec_cons+1
 */
-	matrix URE_decile_stats = J(10,6,.)
-	matrix NNP_decile_stats = J(10,6,.)
-	matrix con_decile_stats = J(10,6,.)
-	matrix inc_decile_stats = J(10,6,.)
-	matrix netwealth_decile_stats = J(10,6,.)
-	matrix liquid_decile_stats = J(10,6,.)
-	matrix liquidtoinc_decile_stats = J(10,6,.)
+	matrix URE_decile_stats = J(10,8,.)
+	matrix NNP_decile_stats = J(10,8,.)
+	matrix con_decile_stats = J(10,8,.)
+	matrix inc_decile_stats = J(10,8,.)
+	matrix netwealth_decile_stats = J(10,8,.)
+	matrix liquid_decile_stats = J(10,8,.)
+	matrix liquidtoinc_decile_stats = J(10,8,.)
 	matrix liquid_decile_stats_1 = J(10,12,.)
+	matrix liquid_decile_stats_m = J(10,12,.)
 	
 	
 	
 	forvalues i= 1(1)10 {
 	sum liquidassets_adj if dec_URE==`i', d
 	matrix URE_decile_stats[`i',1] = r(p50)
-	matrix URE_decile_stats[`i',4] = r(mean)
+	matrix URE_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_URE==`i', d
 	matrix URE_decile_stats[`i',2] = r(p50)
-	matrix URE_decile_stats[`i',5] = r(mean)
+	matrix URE_decile_stats[`i',6] = r(mean)
 	sum liquidassets_adj if dec_NNP==`i', d
 	matrix NNP_decile_stats[`i',1] = r(p50)
-	matrix NNP_decile_stats[`i',4] = r(mean)	
+	matrix NNP_decile_stats[`i',5] = r(mean)	
 	sum netwealth_adj if dec_NNP==`i', d
 	matrix NNP_decile_stats[`i',2] = r(p50)
-	matrix NNP_decile_stats[`i',5] = r(mean)
+	matrix NNP_decile_stats[`i',6] = r(mean)
 	sum liquidassets_adj if dec_cons==`i', d
 	matrix con_decile_stats[`i',1] = r(p50)
-	matrix con_decile_stats[`i',4] = r(mean)
+	matrix con_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_cons==`i', d
 	matrix con_decile_stats[`i',2] = r(p50)
-	matrix con_decile_stats[`i',5] = r(mean)
+	matrix con_decile_stats[`i',6] = r(mean)
 	sum liquid_to_income if dec_URE==`i', d
 	matrix URE_decile_stats[`i',3] = r(p50)
-	matrix URE_decile_stats[`i',6] = r(mean)
+	matrix URE_decile_stats[`i',7] = r(mean)
 	sum liquid_to_income if dec_NNP==`i', d
 	matrix NNP_decile_stats[`i',3] = r(p50)
-	matrix NNP_decile_stats[`i',6] = r(mean)
+	matrix NNP_decile_stats[`i',7] = r(mean)
 	sum liquid_to_income if dec_cons==`i', d
 	matrix con_decile_stats[`i',3] = r(p50)
-	matrix con_decile_stats[`i',6] = r(mean)
+	matrix con_decile_stats[`i',7] = r(mean)
+	sum inc_adj if dec_URE==`i', d
+	matrix URE_decile_stats[`i',4] = r(p50)
+	matrix URE_decile_stats[`i',8] = r(mean)
+	sum inc_adj if dec_NNP==`i', d
+	matrix NNP_decile_stats[`i',4] = r(p50)
+	matrix NNP_decile_stats[`i',8] = r(mean)
+	sum inc_adj if dec_cons==`i', d
+	matrix con_decile_stats[`i',4] = r(p50)
+	matrix con_decile_stats[`i',8] = r(mean)
 	
 	sum liquidassets_adj if dec_inc==`i', d
 	matrix inc_decile_stats[`i',1] = r(p50)
-	matrix inc_decile_stats[`i',4] = r(mean)
+	matrix inc_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_inc==`i', d
 	matrix inc_decile_stats[`i',2] = r(p50)
-	matrix inc_decile_stats[`i',5] = r(mean)
+	matrix inc_decile_stats[`i',6] = r(mean)
 	sum liquid_to_income if dec_inc==`i', d
 	matrix inc_decile_stats[`i',3] = r(p50)
-	matrix inc_decile_stats[`i',6] = r(mean)
+	matrix inc_decile_stats[`i',7] = r(mean)
+	sum inc_adj if dec_inc==`i', d
+	matrix inc_decile_stats[`i',4] = r(p50)
+	matrix inc_decile_stats[`i',8] = r(mean)
 	
 	sum liquidassets_adj if dec_netwealth_adj==`i', d
 	matrix netwealth_decile_stats[`i',1] = r(p50)
-	matrix netwealth_decile_stats[`i',4] = r(mean)
+	matrix netwealth_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_netwealth_adj==`i', d
 	matrix netwealth_decile_stats[`i',2] = r(p50)
-	matrix netwealth_decile_stats[`i',5] = r(mean)
+	matrix netwealth_decile_stats[`i',6] = r(mean)
 	sum liquid_to_income if dec_netwealth_adj==`i', d
 	matrix netwealth_decile_stats[`i',3] = r(p50)
-	matrix netwealth_decile_stats[`i',6] = r(mean)
+	matrix netwealth_decile_stats[`i',7] = r(mean)
+	sum inc_adj if dec_netwealth_adj==`i', d
+	matrix netwealth_decile_stats[`i',4] = r(p50)
+	matrix netwealth_decile_stats[`i',8] = r(mean)
 
 	sum liquidassets_adj if dec_liquid==`i', d
 	matrix liquid_decile_stats[`i',1] = r(p50)
-	matrix liquid_decile_stats[`i',4] = r(mean)
+	matrix liquid_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_liquid==`i', d
 	matrix liquid_decile_stats[`i',2] = r(p50)
-	matrix liquid_decile_stats[`i',5] = r(mean)
+	matrix liquid_decile_stats[`i',6] = r(mean)
 	sum liquid_to_income if dec_liquid==`i', d
 	matrix liquid_decile_stats[`i',3] = r(p50)
-	matrix liquid_decile_stats[`i',6] = r(mean)
+	matrix liquid_decile_stats[`i',7] = r(mean)
+	sum inc_adj if dec_liquid==`i', d
+	matrix liquid_decile_stats[`i',4] = r(p50)
+	matrix liquid_decile_stats[`i',8] = r(mean)
 	
 	sum liquidassets_adj if dec_liquid_to_income==`i', d
 	matrix liquidtoinc_decile_stats[`i',1] = r(p50)
-	matrix liquidtoinc_decile_stats[`i',4] = r(mean)
+	matrix liquidtoinc_decile_stats[`i',5] = r(mean)
 	sum netwealth_adj if dec_liquid_to_income==`i', d
 	matrix liquidtoinc_decile_stats[`i',2] = r(p50)
-	matrix liquidtoinc_decile_stats[`i',5] = r(mean)
+	matrix liquidtoinc_decile_stats[`i',6] = r(mean)
 	sum liquid_to_income if dec_liquid_to_income==`i', d
 	matrix liquidtoinc_decile_stats[`i',3] = r(p50)
-	matrix liquidtoinc_decile_stats[`i',6] = r(mean)
+	matrix liquidtoinc_decile_stats[`i',7] = r(mean)
+	sum inc_adj if dec_liquid_to_income==`i', d
+	matrix liquidtoinc_decile_stats[`i',4] = r(p50)
+	matrix liquidtoinc_decile_stats[`i',8] = r(mean)
 	
 	* Additional stats for external validity analysis
 	sum liquidassets_adj if dec_liquid==`i', d
@@ -292,19 +314,50 @@ replace dec_cons = dec_cons+1
 	matrix liquid_decile_stats_1[`i',11] = r(mean) 
 	sum higher_educ if dec_liquid==`i', d
 	matrix liquid_decile_stats_1[`i',12] = r(mean)
+	
+	
+	* stats for external validity analysis - medians
+	sum liquidassets_adj if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',1] = r(p50)
+	sum netwealth_adj if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',2] = r(p50)
+	sum liquid_to_income if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',3] = r(p50)
+	sum mean_inc_after_tax if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',4] = r(p50) 
+	sum sd_inc_after_tax if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',5] = r(p50)
+	sum alder_head_08 if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',6] = r(p50)
+	sum homeowner if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',7] = r(p50)
+	sum carowner if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',8] = r(p50)
+	sum URE if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',9] = r(p50)
+	sum NNP if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',10] = r(p50)
+	sum mean_nominal_liabilities if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',11] = r(p50) 
+	sum higher_educ if dec_liquid==`i', d
+	matrix liquid_decile_stats_m[`i',12] = r(p50)
 	}
 		
-	matrix cat_age_stats = J(5,6,.)
+		
+	matrix cat_age_stats = J(5,8,.)
 	forvalues i= 1(1)5 {
 	sum liquidassets_adj if cat_age==`i', d
 	matrix cat_age_stats[`i',1] = r(p50)
-	matrix cat_age_stats[`i',4] = r(mean)
+	matrix cat_age_stats[`i',5] = r(mean)
 	sum netwealth_adj if cat_age==`i', d
 	matrix cat_age_stats[`i',2] = r(p50)
-	matrix cat_age_stats[`i',5] = r(mean)
+	matrix cat_age_stats[`i',6] = r(mean)
 	sum liquid_to_income if cat_age==`i', d
 	matrix cat_age_stats[`i',3] = r(p50)
-	matrix cat_age_stats[`i',6] = r(mean)
+	matrix cat_age_stats[`i',7] = r(mean)
+	sum inc_adj if cat_age==`i', d
+	matrix cat_age_stats[`i',4] = r(p50)
+	matrix cat_age_stats[`i',8] = r(mean)
 	
 	}
 		
@@ -316,13 +369,15 @@ foreach var in URE_decile_stats NNP_decile_stats con_decile_stats inc_decile_sta
 	rename `var'1  liquidassets_adj_p50
 	rename `var'2  netwealth_adj_p50
 	rename `var'3  liquid_to_perm_p50
-	rename `var'4  liquidassets_adj_mean
-	rename `var'5  netwealth_adj_mean
-	rename `var'6  liquid_to_perm_mean
+	rename `var'4  inc_after_tax_p50
+	rename `var'5  liquidassets_adj_mean
+	rename `var'6  netwealth_adj_mean
+	rename `var'7  liquid_to_perm_mean
+	rename `var'8  inc_after_tax_mean
 	
-	outsheet liquidassets_adj_p50 netwealth_adj_p50 liquid_to_perm_p50 liquidassets_adj_mean netwealth_adj_mean liquid_to_perm_mean using "${savedirectory}\\`var'1.txt" if liquidassets_adj_p50<., replace comma
+	outsheet liquidassets_adj_p50 netwealth_adj_p50 liquid_to_perm_p50 inc_after_tax_p50 liquidassets_adj_mean netwealth_adj_mean liquid_to_perm_mean inc_after_tax_mean using "${savedirectory}\\`var'1.txt" if liquidassets_adj_p50<., replace comma
 	
-	drop liquidassets_adj_p50 netwealth_adj_p50 liquid_to_perm_p50 liquidassets_adj_mean netwealth_adj_mean liquid_to_perm_mean
+	drop liquidassets_adj_p50 netwealth_adj_p50 liquid_to_perm_p50 inc_after_tax_p50 liquidassets_adj_mean netwealth_adj_mean liquid_to_perm_mean inc_after_tax_mean
 	
 }
 		/*
@@ -346,6 +401,10 @@ foreach var in URE_decile_stats NNP_decile_stats con_decile_stats inc_decile_sta
 	
 	svmat double liquid_decile_stats_1
 	outsheet liquid_decile_stats_1* using "${savedirectory}\\liquid_decile_stats_ext_val.txt" if liquid_decile_stats_11<., replace comma nonames
+	
+	svmat double liquid_decile_stats_m
+	outsheet liquid_decile_stats_m* using "${savedirectory}\\liquid_decile_stats_ext_val_medians.txt" if liquid_decile_stats_m1<., replace comma nonames
+	
 	
 preserve
 
