@@ -68,18 +68,39 @@ for (i in 1:num_quantiles){
 }
 net_wealth_decile_params = category_params
 
+category_params = array(0, dim=c(num_quantiles,4))
+category_se = array(0, dim=c(num_quantiles,4))
+for (i in 1:num_quantiles){
+  this_c_vector = scan(paste(txt_dir,'moments_by_Income_quantile',i,'c_vector','.txt',sep=''))
+  this_omega = as.matrix(read.csv(paste(txt_dir,'moments_by_Income_quantile',i,'_omega','.txt',sep=''), header = FALSE))
+  this_CS_output = CS_parameter_estimation(this_c_vector, this_omega,T)
+  category_params[i,1] = this_CS_output$var_perm
+  category_params[i,2] = this_CS_output$var_tran
+  category_params[i,3] = this_CS_output$ins_perm
+  category_params[i,4] = this_CS_output$ins_tran
+  category_se[i,1] = this_CS_output$var_perm_se
+  category_se[i,2] = this_CS_output$var_tran_se
+  category_se[i,3] = this_CS_output$ins_perm_se
+  category_se[i,4] = this_CS_output$ins_tran_se
+}
+income_decile_params = category_params
+
 
 
 param_num = 4 #3 permanent, 4 transitory
 exchange_rate = 6.87
 liquid_decile_stats = read.csv(paste(txt_dir,'liquid_decile_stats1.txt',sep=''))
 lw2perminc_decile_stats = read.csv(paste(txt_dir,'liquidtoinc_decile_stats1.txt',sep=''))
+Inc_decile_stats = read.csv(paste(txt_dir,'inc_decile_stats1.txt',sep=''))
 
 MPC_tran_predict =    approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,param_num],rule=2)
 MPC_tran_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,param_num],rule=2)
 MPC_tran_predict_from_pctile    = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_params[,param_num],rule=2)
+MPC_tran_predict_income =    approxfun(as.matrix(liquid_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,param_num],rule=2)
 MPC_perm_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,3],rule=2)
 MPC_perm_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,3],rule=2)
+MPC_perm_predict_income = approxfun(as.matrix(liquid_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,3],rule=2)
+
 
 
 URE_decile_stats = read.csv(paste(txt_dir,'URE_decile_stats1.txt',sep=''))
@@ -121,6 +142,11 @@ mean_abs_pred_error_ratio_URE      = mean(abs(URE_decile_estimates     -URE_deci
 mean_abs_pred_error_URE_perm       = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_perm))
 mean_abs_pred_error_URE_ratio_perm = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_ratio_perm))
 
+URE_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(URE_decile_stats['inc_after_tax_p50'])/exchange_rate)
+URE_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(URE_decile_stats['inc_after_tax_p50'])/exchange_rate)
+mean_abs_pred_error_URE_income            = mean(abs(URE_decile_estimates     -URE_decile_MPC_predict_income))
+mean_abs_pred_error_URE_perm_income       = mean(abs(URE_decile_estimates_perm-URE_decile_MPC_predict_perm_income))
+
 
 NNP_decile_stats = read.csv(paste(txt_dir,'NNP_decile_stats1.txt',sep=''))
 NNP_decile_MPC_predict = MPC_tran_predict(as.matrix(NNP_decile_stats['liquidassets_adj_p50'])/exchange_rate)
@@ -154,6 +180,11 @@ mean_abs_pred_error_NNP            = mean(abs(NNP_decile_estimates     -NNP_deci
 mean_abs_pred_error_ratio_NNP      = mean(abs(NNP_decile_estimates     -NNP_decile_MPC_predict_ratio))
 mean_abs_pred_error_NNP_perm       = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_perm))
 mean_abs_pred_error_NNP_ratio_perm = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_ratio_perm))
+
+NNP_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(NNP_decile_stats['inc_after_tax_p50'])/exchange_rate)
+NNP_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(NNP_decile_stats['inc_after_tax_p50'])/exchange_rate)
+mean_abs_pred_error_NNP_income            = mean(abs(NNP_decile_estimates     -NNP_decile_MPC_predict_income))
+mean_abs_pred_error_NNP_perm_income       = mean(abs(NNP_decile_estimates_perm-NNP_decile_MPC_predict_perm_income))
 
 
 Inc_decile_stats = read.csv(paste(txt_dir,'inc_decile_stats1.txt',sep=''))
@@ -190,6 +221,11 @@ mean_abs_pred_error_ratio_Inc      = mean(abs(Inc_decile_estimates     -Inc_deci
 mean_abs_pred_error_Inc_perm       = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_perm))
 mean_abs_pred_error_Inc_ratio_perm = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_ratio_perm))
 
+Inc_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
+Inc_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
+mean_abs_pred_error_Inc_income            = mean(abs(Inc_decile_estimates     -Inc_decile_MPC_predict_income))
+mean_abs_pred_error_Inc_perm_income       = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_perm_income))
+
 
 Con_decile_stats = read.csv(paste(txt_dir,'con_decile_stats1.txt',sep=''))
 Con_decile_MPC_predict = MPC_tran_predict(as.matrix(Con_decile_stats['liquidassets_adj_p50'])/exchange_rate)
@@ -224,6 +260,11 @@ mean_abs_pred_error_Con            = mean(abs(Con_decile_estimates     -Con_deci
 mean_abs_pred_error_ratio_Con      = mean(abs(Con_decile_estimates     -Con_decile_MPC_predict_ratio))
 mean_abs_pred_error_Con_perm       = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_perm))
 mean_abs_pred_error_Con_ratio_perm = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_ratio_perm))
+
+Con_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(Con_decile_stats['inc_after_tax_p50'])/exchange_rate)
+Con_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(Con_decile_stats['inc_after_tax_p50'])/exchange_rate)
+mean_abs_pred_error_Con_income            = mean(abs(Con_decile_estimates     -Con_decile_MPC_predict_income))
+mean_abs_pred_error_Con_perm_income       = mean(abs(Con_decile_estimates_perm-Con_decile_MPC_predict_perm_income))
 
 
 NW_decile_stats = read.csv(paste(txt_dir,'netwealth_decile_stats1.txt',sep=''))
@@ -263,29 +304,66 @@ mean_abs_pred_error_ratio_NW      = mean(abs(NW_decile_estimates     -NW_decile_
 mean_abs_pred_error_NW_perm       = mean(abs(NW_decile_estimates_perm-NW_decile_MPC_predict_perm))
 mean_abs_pred_error_NW_ratio_perm = mean(abs(NW_decile_estimates_perm-NW_decile_MPC_predict_ratio_perm))
 
+NW_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(NW_decile_stats['inc_after_tax_p50'])/exchange_rate)
+NW_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(NW_decile_stats['inc_after_tax_p50'])/exchange_rate)
+mean_abs_pred_error_NW_income            = mean(abs(NW_decile_estimates     -NW_decile_MPC_predict_income))
+mean_abs_pred_error_NW_perm_income       = mean(abs(NW_decile_estimates_perm-NW_decile_MPC_predict_perm_income))
+
+###########################################
+# Make graphs for prediction using income as well as liquid wealth
+three_colors = c('#fb8072','#bebada','#ffffb3')
+pdf(paste(figures_dir, "URE_predict_from_HHCharacteristics.pdf",sep=""))
+barCenters <- barplot(height=t(cbind(URE_decile_estimates,URE_decile_MPC_predict,URE_decile_MPC_predict_income)), 
+                      beside=TRUE, col = three_colors, ylim = c(0,1),
+                      main="Transitory MPX by URE Decile")
+this_legend=c("Actual Estimate","Based on Liquid Wealth","Based on Income")
+text(x=barCenters[1,]+1, y =-0.05, adj=1, labels=c(1,2,3,4,5,6,7,8,9,10),xpd=TRUE)
+legend(1, 1, legend=this_legend, fill=three_colors,bty="n")
+dev.off()
+
+three_colors = c('#fb8072','#bebada','#ffffb3')
+pdf(paste(figures_dir, "NW_predict_from_HHCharacteristics.pdf",sep=""))
+barCenters <- barplot(height=t(cbind(NW_decile_estimates,NW_decile_MPC_predict,NW_decile_MPC_predict_income)), 
+                      beside=TRUE, col = three_colors, ylim = c(0,1),
+                      main="Transitory MPX by Net Wealth Decile")
+this_legend=c("Actual Estimate","Based on Liquid Wealth","Based on Income")
+text(x=barCenters[1,]+1, y =-0.05, adj=1, labels=c(1,2,3,4,5,6,7,8,9,10),xpd=TRUE)
+legend(1, 1, legend=this_legend, fill=three_colors,bty="n")
+dev.off()
+###########################################
 
 # Write outputs to csv file
-output = matrix(NA,nrow=5,ncol=4)
+output = matrix(NA,nrow=5,ncol=6)
 output[1,1] = mean_abs_pred_error_URE
 output[1,2] = mean_abs_pred_error_ratio_URE
 output[1,3] = mean_abs_pred_error_URE_perm
 output[1,4] = mean_abs_pred_error_URE_ratio_perm
+output[1,5] = mean_abs_pred_error_URE_income
+output[1,6] = mean_abs_pred_error_URE_perm_income
 output[2,1] = mean_abs_pred_error_NNP
 output[2,2] = mean_abs_pred_error_ratio_NNP
 output[2,3] = mean_abs_pred_error_NNP_perm
 output[2,4] = mean_abs_pred_error_NNP_ratio_perm
+output[2,5] = mean_abs_pred_error_NNP_income
+output[3,6] = mean_abs_pred_error_NNP_perm_income
 output[3,1] = mean_abs_pred_error_Inc
 output[3,2] = mean_abs_pred_error_ratio_Inc
 output[3,3] = mean_abs_pred_error_Inc_perm
 output[3,4] = mean_abs_pred_error_Inc_ratio_perm
+output[3,5] = mean_abs_pred_error_Inc_income
+output[3,6] = mean_abs_pred_error_Inc_perm_income
 output[4,1] = mean_abs_pred_error_Con
 output[4,2] = mean_abs_pred_error_ratio_Con
 output[4,3] = mean_abs_pred_error_Con_perm
 output[4,4] = mean_abs_pred_error_Con_ratio_perm
+output[4,5] = mean_abs_pred_error_Con_income
+output[4,6] = mean_abs_pred_error_Con_perm_income
 output[5,1] = mean_abs_pred_error_NW
 output[5,2] = mean_abs_pred_error_ratio_NW
 output[5,3] = mean_abs_pred_error_NW_perm
 output[5,4] = mean_abs_pred_error_NW_ratio_perm
+output[5,5] = mean_abs_pred_error_NW_income
+output[5,6] = mean_abs_pred_error_NW_perm_income
 
 write.table(output, file = paste(tables_dir,"prediction_errors.csv",sep=""),row.names=FALSE, na="",col.names=FALSE, sep=",")
 
