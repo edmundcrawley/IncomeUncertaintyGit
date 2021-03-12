@@ -221,8 +221,8 @@ mean_abs_pred_error_ratio_Inc      = mean(abs(Inc_decile_estimates     -Inc_deci
 mean_abs_pred_error_Inc_perm       = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_perm))
 mean_abs_pred_error_Inc_ratio_perm = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_ratio_perm))
 
-Inc_decile_MPC_predict_income = MPC_tran_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
-Inc_decile_MPC_predict_perm_income = MPC_tran_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
+Inc_decile_MPC_predict_income             = MPC_tran_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
+Inc_decile_MPC_predict_perm_income        = MPC_perm_predict_income(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate)
 mean_abs_pred_error_Inc_income            = mean(abs(Inc_decile_estimates     -Inc_decile_MPC_predict_income))
 mean_abs_pred_error_Inc_perm_income       = mean(abs(Inc_decile_estimates_perm-Inc_decile_MPC_predict_perm_income))
 
