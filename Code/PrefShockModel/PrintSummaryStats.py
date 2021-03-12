@@ -209,6 +209,31 @@ output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated v
 with open('../Rcode/Tables/AEJ_revision/prediction_errors.tex','w') as f:
     f.write(output)
     f.close()
+    
+
+# And a table for how well liquid wealth and income predicts MPX    
+filename = "../Rcode/Tables/AEJ_revision/prediction_errors.csv"
+prediction_errors = np.genfromtxt(filename, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.65) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lcccccc}  \n"
+output += " & \multicolumn{3}{c}{Transitory} & \multicolumn{3}{c}{Permanent} \n"
+output += "\\\\  Interpolate using: & Liq. Wealth & Liq. Wealth Ratio & Income & Liq. Wealth & Liq. Wealth Ratio  \n"
+output += "\\\\ \\midrule "
+output += "\\\\  URE Deciles" + " & " + mystr2(prediction_errors[0,0]) + " & "+ mystr2(prediction_errors[0,1]) + " & "+ mystr2(prediction_errors[0,4]) + " & "+ mystr2(prediction_errors[0,2]) + " & "+ mystr2(prediction_errors[0,3]) + " & "+ mystr2(prediction_errors[0,5]) + " \n"
+output += "\\\\  NNP Deciles" + " & " + mystr2(prediction_errors[1,0]) + " & "+ mystr2(prediction_errors[1,1]) + " & "+ mystr2(prediction_errors[1,4]) + " & "+ mystr2(prediction_errors[1,2]) + " & "+ mystr2(prediction_errors[1,3]) + " & "+ mystr2(prediction_errors[1,5]) + " \n"
+output += "\\\\  Income Deciles" + " & " + mystr2(prediction_errors[2,0]) + " & "+ mystr2(prediction_errors[2,1]) + " & "+ mystr2(prediction_errors[2,4]) + " & "+ mystr2(prediction_errors[2,2]) + " & "+ mystr2(prediction_errors[2,3]) + " & "+ mystr2(prediction_errors[2,5]) + " \n"
+output += "\\\\  Net Wealth Deciles" + " & " + mystr2(prediction_errors[4,0]) + " & "+ mystr2(prediction_errors[4,1]) + " & "+ mystr2(prediction_errors[4,4]) + " & "+ mystr2(prediction_errors[4,2]) + " & "+ mystr2(prediction_errors[4,3]) + " & "+ mystr2(prediction_errors[4,5]) + " \n"
+
+output += "\\\\ \\bottomrule  \n"
+output += "\end{tabular}}\n"
+output += "\end{minipage}\n"
+output += "\\\\ \\textbf{Notes}: Mean absolute errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, or the ratio of liquid wealth to mean income over the sample period, or income. \n"
+with open('../Rcode/Tables/AEJ_revision/prediction_errors_with_income.tex','w') as f:
+    f.write(output)
+    f.close()
+
 
 
 #### Save estimate arrays to LaTex

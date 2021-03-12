@@ -136,7 +136,18 @@ plot_estimataion_output<- function(params, se, labels, category_for_title, categ
 
 }
 ###############################################################################
-
+#Get an overall estimate for all household
+c_vector_all = as.vector(read.table(paste(txt_dir,"moments_all_c_vector.txt",sep=''), header = FALSE, sep = ",", dec = "."))
+omega_all = as.matrix(read.table(paste(txt_dir,"moments_all_omega.txt",sep=''), header = FALSE, sep = ",", dec = "."))
+output_all = CS_parameter_estimation(c_vector_all$V1, omega_all,T=12)
+c_matrix_all = matrix(0,nrow=12,ncol=8)
+for (i in 1:12){
+  c_matrix_all[i,] = c_vector_all$V1[((i-1)*8+1):(i*8)]
+}
+c_matrix_all[7:12,]/c_matrix_all[1:6,]
+for (i in 1:8){
+  c_matrix_all[,i] = c_vector_all$V1[((i-1)*12+1):(i*12)]
+}
 ###############################################################################
 # load liquid weath quintile data and create graph
 load(paste(moments_dir,'moments_by_liquid_wealth_quantile',tag,'.RData',sep=''))
@@ -311,7 +322,7 @@ for (this_moment in c("X1","X5")) {
 # Pull in consumption saving numbers from Python output
 FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
 FromPython <- scan(paste(PythonResults_folder,'benchmark_br_all.txt',sep=''), what=double(), sep=",")
-solow_spending = 0.75
+solow_spending = 0.73
 # Now draw graph
 #png(paste(figures_dir, "basic_regression_complete",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression_complete",tag,".pdf",sep=""))
@@ -410,9 +421,9 @@ arrows(2, 0.12, 9, 0.12)
 arrows(9, 0.12, 2, 0.12)
 text(3.5, 0.22, labels = "Relatively more \n transitory variance")
 text(7.5, 0.22, labels = "Relatively more \n permanent variance")
-text(1.8, 0.645, labels = "All Households", cex=0.8)
-text(3.0, 0.92, labels = "Least Liquid", cex=0.8)
-text(3.75, 0.44, labels = "Most Liquid", cex=0.8)
+text(5.5, 0.69, labels = "All Households", cex=0.8)
+text(3.0, 0.88, labels = "Least Liquid", cex=0.8)
+text(3.75, 0.41, labels = "Most Liquid", cex=0.8)
 dev.off()
 
 ##############################################################################

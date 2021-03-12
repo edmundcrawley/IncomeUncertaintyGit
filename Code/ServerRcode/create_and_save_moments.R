@@ -680,6 +680,60 @@ save(moments_by_liquid_wealth_quantile_10_1and5,file=paste(moments_dir,'moments_
 
 
 
+
+
+
+
+
+
+
+###############################################################################
+# Sort into liquid wealth and income quintiles and calculate related moments
+num_quantiles =5
+mean_log_liquidwealth = array(0.0, dim=c(y,1))
+for (k in 0:((y/T)-1)){
+  i <- k*T
+  mean_log_liquidwealth[(i+1):(i+T),] = mean(all_data[(i+1):(i+T),liquidasset_col],na.rm=TRUE)
+}
+quantiles_liq = seq(0,1.0,length=(num_quantiles+1))
+quantile_cutoffs_liq = quantile(mean_log_liquidwealth[age_range][seq(1,(y/T),by=T)],quantiles_liq, na.rm=TRUE)
+wealth_quantile = as.numeric(cut(mean_log_liquidwealth,breaks=quantile_cutoffs_liq,include.lowest=TRUE, labels=1:num_quantiles))
+wealth_quantile_set = as.character(1:num_quantiles)
+
+Income_col =24
+for (k in 0:((y/T)-1)){
+  i <- k*T
+  Income[(i+1):(i+T),] = mean(raw_data[(i+1):(i+T),Income_col],na.rm=TRUE)
+}
+quantiles_inc = seq(0,1.0,length=(num_quantiles+1))
+quantile_cutoffs_inc = quantile(Income[age_range][seq(1,(y/T),by=T)],quantiles_liq, na.rm=TRUE)
+income_quantile = as.numeric(cut(Income,breaks=quantile_cutoffs_inc,include.lowest=TRUE, labels=1:num_quantiles))
+income_quantile_set = as.character(1:num_quantiles)
+
+joint_quantile = as.numeric(income_quantile*10 + wealth_quantile)
+joint_quantile_set = as.character(c(seq(11,15,1),seq(21,25,1),seq(31,35,1),seq(41,45,1),seq(51,55,1)))
+
+moments_by_inc_liq_quantile =moments_by_category(joint_quantile,joint_quantile_set,age_range)
+# Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
+#quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
+#if (levels==TRUE) {
+#  quantiles = quantiles/6.87 #convert to 2015 USD
+#} else {
+#  quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+#}
+#moments_by_inc_liq_quantile$quantiles = quantiles
+save(moments_by_inc_liq_quantile,file=paste(moments_dir,'moments_by_inc_liq_quantile',tag,'.RData',sep=''))
+###############################################################################
+
+
+
+
+
+
+
+
+
+# Export to txt files
 ###############################################################################
 #moments_all
 write.table(moments_all$c_vector, file = paste(moments_dir,'moments_all','_c_vector','.txt',sep =''),row.names = FALSE, col.names = FALSE, na="",sep =',') 
@@ -784,3 +838,27 @@ for(quantile_type in c("liquid_wealth_quantile","liquid_wealth_decile","net_weal
     
   }
   
+  
+  
+  
+#moments by income and liquidity quantiles
+
+  
+  
+  for(i in c(seq(11,15,1),seq(21,25,1),seq(31,35,1),seq(41,45,1),seq(51,55,1))){
+    this_moment = paste('moments_by_inc_liq_quantile','$X',i,'$','c_vector',sep ="")
+    this_file = paste(moments_dir,'moments_by_inc_liq_quantile',i,'c_vector','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+    this_moment = paste('moments_by_inc_liq_quantile','$X',i,'$','omega',sep ="")
+    this_file = paste(moments_dir,'moments_by_inc_liq_quantile',i,'_omega','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+    this_moment = paste('moments_by_inc_liq_quantile','$X',i,'$','delta_y_var',sep ="")
+    this_file = paste(moments_dir,'moments_by_inc_liq_quantile',i,'_delta_y_var','.txt',sep ='')
+    write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+    
+  }
+
+
+ 
