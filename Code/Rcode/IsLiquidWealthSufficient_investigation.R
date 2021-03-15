@@ -96,10 +96,10 @@ Inc_decile_stats = read.csv(paste(txt_dir,'inc_decile_stats1.txt',sep=''))
 MPC_tran_predict =    approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,param_num],rule=2)
 MPC_tran_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,param_num],rule=2)
 MPC_tran_predict_from_pctile    = approxfun(c(5,15,25,35,45,55,65,75,85,95),liquid_wealth_decile_params[,param_num],rule=2)
-MPC_tran_predict_income =    approxfun(as.matrix(liquid_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,param_num],rule=2)
+MPC_tran_predict_income =    approxfun(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,param_num],rule=2)
 MPC_perm_predict = approxfun(as.matrix(liquid_decile_stats['liquidassets_adj_p50'])/exchange_rate,liquid_wealth_decile_params[,3],rule=2)
 MPC_perm_predict_lw2perminc = approxfun(as.matrix(lw2perminc_decile_stats['liquid_to_perm_p50']),liquid_wealth_to_perm_inc_decile_params[,3],rule=2)
-MPC_perm_predict_income = approxfun(as.matrix(liquid_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,3],rule=2)
+MPC_perm_predict_income = approxfun(as.matrix(Inc_decile_stats['inc_after_tax_p50'])/exchange_rate,income_decile_params[,3],rule=2)
 
 
 
