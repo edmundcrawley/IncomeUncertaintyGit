@@ -678,6 +678,34 @@ save(moments_by_liquid_wealth_quantile_10_1and5,file=paste(moments_dir,'moments_
 
 ###############################################################################
 
+###############################################################################
+# Sort into liquid wealth quintiles and calculate using diff 7 moments
+num_quantiles =5
+mean_log_liquidwealth = array(0.0, dim=c(y,1))
+for (k in 0:((y/T)-1)){
+  i <- k*T
+  mean_log_liquidwealth[(i+1):(i+T),] = mean(all_data[(i+1):(i+T),liquidasset_col],na.rm=TRUE)
+}
+quantiles = seq(0,1.0,length=(num_quantiles+1))
+quantile_cutoffs = quantile(mean_log_liquidwealth[age_range][seq(1,(y/T),by=T)],quantiles, na.rm=TRUE)
+wealth_quantile = as.numeric(cut(mean_log_liquidwealth,breaks=quantile_cutoffs,include.lowest=TRUE, labels=1:num_quantiles))
+wealth_quantile_set = as.character(1:num_quantiles)
+moments_by_liquid_wealth_quantile_7 =moments_by_category(wealth_quantile, wealth_quantile_set,age_range,max_diff=1:7)
+# Calculate quantile ranges in terms of dollars, take off 0 and 100% to avoid identifying individuals
+quantiles = quantile_cutoffs[2:(length(quantile_cutoffs)-1)]
+if (levels==TRUE) {
+  quantiles = quantiles/6.87 #convert to 2015 USD
+} else {
+  quantiles = exp(quantiles)*100.0/6.87 #convert to 2015 USD
+}
+moments_by_liquid_wealth_quantile_7$quantiles = quantiles
+save(moments_by_liquid_wealth_quantile_7,file=paste(moments_dir,'moments_by_liquid_wealth_quantile_7',tag,'.RData',sep=''))
+#just quantiles 1 and 5
+moments_by_liquid_wealth_quantile_7_1and5 = list()
+moments_by_liquid_wealth_quantile_7_1and5[['X1']] = moments_by_liquid_wealth_quantile_7[['X1']]
+moments_by_liquid_wealth_quantile_7_1and5[['X5']] = moments_by_liquid_wealth_quantile_7[['X5']]
+save(moments_by_liquid_wealth_quantile_7_1and5,file=paste(moments_dir,'moments_by_liquid_wealth_quantile_7_1and5',tag,'.RData',sep=''))
+
 
 
 
@@ -743,8 +771,8 @@ write.table(moments_all$d_dif, file = paste(moments_dir,'moments_all','_d_dif','
 
 
 #moments by quantiles
-for(quantile_type in c("liquid_wealth_quantile","liquid_wealth_decile","net_wealth_quantile","net_wealth_decile","URE_quantile","NNP_quantile","Income_quantile","MeanCons_quantile","liquid_wealth_quantile_10")){
-  if (quantile_type=="net_wealth_quantile" || quantile_type== "liquid_wealth_quantile") {
+for(quantile_type in c("liquid_wealth_quantile","liquid_wealth_decile","net_wealth_quantile","net_wealth_decile","URE_quantile","NNP_quantile","Income_quantile","MeanCons_quantile","liquid_wealth_quantile_10","liquid_wealth_quantile_7")){
+  if (quantile_type=="net_wealth_quantile" || quantile_type== "liquid_wealth_quantile" || quantile_type== "liquid_wealth_quantile_10" || quantile_type== "liquid_wealth_quantile_7") {
     num_quantiles = 5
   }
   else {
@@ -839,7 +867,20 @@ for(quantile_type in c("liquid_wealth_quantile","liquid_wealth_decile","net_weal
   }
   
   
+# additonal elements for loop 7
+  for(i in 1:5){
+  this_moment = paste('moments_by_liquid_wealth_quantile_7$X',i,'$','reg_coef',sep ="")
+  this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile_7',i,'_reg_coef','.txt',sep ='')
+  write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
   
+  this_moment = paste('moments_by_liquid_wealth_quantile_7$X',i,'$','moment_y2',sep ="")
+  this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile_7',i,'_y2','.txt',sep ='')
+  write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+  
+  this_moment = paste('moments_by_liquid_wealth_quantile_7$X',i,'$','moment_cy',sep ="")
+  this_file = paste(moments_dir,'moments_by_liquid_wealth_quantile_7',i,'_cy','.txt',sep ='')
+  write.table(eval(parse(text = this_moment)),file = this_file,row.names = FALSE, col.names = FALSE, na ="",sep =',')
+  }
   
 #moments by income and liquidity quantiles
 
