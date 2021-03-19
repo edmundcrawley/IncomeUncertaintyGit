@@ -257,7 +257,7 @@ dev.off()
 load(paste(moments_dir,'moments_loop',tag,'.RData',sep=''))
 ###############################################################################
 # Plot regression coefficient of expenditure growth vs income growth for different growth periods
-max_diff = 10
+max_diff = 7
 this_moment = paste('moments_',max_diff,sep='')
 T = moments_loop[[this_moment]]$T
 reg_coefs = array(0,dim=c(max_diff,1))
@@ -286,15 +286,15 @@ for (n in 1:max_diff){
 }
 ###############################################################################
 # Find regression coefficients for high and low liquid wealth quantiles
-load(paste(moments_dir,'moments_by_liquid_wealth_quantile_10',tag,'.RData',sep=''))
-moments_by_liquid_wealth_quantile_10_1and5 = moments_by_liquid_wealth_quantile_10
-max_diff = 10
+load(paste(moments_dir,'moments_by_liquid_wealth_quantile_7',tag,'.RData',sep=''))
+moments_by_liquid_wealth_quantile_7_1and5 = moments_by_liquid_wealth_quantile_7
+max_diff = 7
 reg_coefs_liquid_wealth = list()
 std_errors_liquid_wealth = list()
 for (this_moment in c("X1","X5")) {
   reg_coefs_liquid_wealth[[this_moment]] = array(0,dim=c(max_diff,1))
   std_errors_liquid_wealth[[this_moment]] = array(0,dim=c(max_diff,1))
-  T = moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$T
+  T = moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$T
   # Use an average of the variance of delta y over every year, and an average of the covariance of delta y and delta c
   for (n in 1:max_diff){
     moments_used =c()
@@ -310,11 +310,11 @@ for (this_moment in c("X1","X5")) {
       moments_used_all = c(moments_used_all,moments_used+i*(max_diff*(max_diff+1))/2)
     }
     num_moments = length(moments_used_all)/2
-    reg_coefs_liquid_wealth[[this_moment]][n] = mean(moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]])/mean(moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])
-    omega = moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$omega
+    reg_coefs_liquid_wealth[[this_moment]][n] = mean(moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]])/mean(moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])
+    omega = moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$omega
     function_gradient = array(0,dim=c(dim(omega)[1],1))
-    function_gradient[moments_used_all[(num_moments+1):(2*num_moments)],] = 1.0/((moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])*length(moments_used_all[(num_moments+1):(2*num_moments)]))
-    function_gradient[moments_used_all[1:num_moments],] = -moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]]/((moments_by_liquid_wealth_quantile_10_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])**2 *length(moments_used_all[(num_moments+1):(2*num_moments)]))
+    function_gradient[moments_used_all[(num_moments+1):(2*num_moments)],] = 1.0/((moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])*length(moments_used_all[(num_moments+1):(2*num_moments)]))
+    function_gradient[moments_used_all[1:num_moments],] = -moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$c_vector[moments_used_all[(num_moments+1):(2*num_moments)]]/((moments_by_liquid_wealth_quantile_7_1and5[[this_moment]]$c_vector[moments_used_all[1:num_moments]])**2 *length(moments_used_all[(num_moments+1):(2*num_moments)]))
     std_errors_liquid_wealth[[this_moment]][n] = (t(function_gradient)  %*% omega %*% function_gradient)**0.5
   }
 }
@@ -322,14 +322,14 @@ for (this_moment in c("X1","X5")) {
 # Pull in consumption saving numbers from Python output
 FromPython <- scan(paste(PythonResults_folder,'basic_regressions.txt',sep=''), what=double(), sep=",")
 FromPython <- scan(paste(PythonResults_folder,'benchmark_br_all.txt',sep=''), what=double(), sep=",")
-solow_spending = 0.73
+solow_spending = 0.695
 # Now draw graph
 #png(paste(figures_dir, "basic_regression_complete",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression_complete",tag,".pdf",sep=""))
 #svg(paste(figures_dir, "basic_regression_complete",tag,".svg",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
-legend(6, 0.53, legend=c("Complete Markets","","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+legend(4, 0.45, legend=c("Complete Markets","","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
 dev.off()
 #png(paste(figures_dir, "basic_regression_solow",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression_solow",tag,".pdf",sep=""))
@@ -337,7 +337,7 @@ pdf(paste(figures_dir, "basic_regression_solow",tag,".pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
-legend(6, 0.53, legend=c("Complete Markets","Solow","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+legend(4, 0.45, legend=c("Complete Markets","Solow","",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
 dev.off()
 #png(paste(figures_dir, "basic_regression_BS",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression_BS",tag,".pdf",sep=""))
@@ -346,11 +346,11 @@ par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plot(array(0.0,dim=dim(reg_coefs)), ylim=c(0,1),lty='solid',col='blue',type='o', xlab='N, Years of Growth',ylab=TeX('$\\beta^N$, Regression Coefficient'),main='Regressing Consumption Growth on Income Growth')
 lines(array(solow_spending,dim=dim(reg_coefs)),lty='solid',col='green',type='o')
 lines(FromPython[1:dim(reg_coefs)[1]],lty='solid',col='red',type='o')
-legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.12, 9, 0.12)
-arrows(9, 0.12, 2, 0.12)
-text(3.5, 0.22, labels = "Relatively more \n transitory variance")
-text(7.5, 0.22, labels = "Relatively more \n permanent variance")
+legend(4, 0.45, legend=c("Complete Markets","Solow","Buffer-Stock",""), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(1, 0.06, 7, 0.06)
+arrows(7, 0.06, 1, 0.06)
+text(2.2, 0.16, labels = "Relatively more \n transitory variance")
+text(5.8, 0.16, labels = "Relatively more \n permanent variance")
 dev.off()
 #png(paste(figures_dir, "basic_regression",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression",tag,".pdf",sep=""))
@@ -363,11 +363,11 @@ points(reg_coefs)
 lines(reg_coefs)
 lines(reg_coefs+1.96*std_errors,lty='dashed')
 lines(reg_coefs-1.96*std_errors,lty='dashed')
-legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.12, 9, 0.12)
-arrows(9, 0.12, 2, 0.12)
-text(3.5, 0.22, labels = "Relatively more \n transitory variance")
-text(7.5, 0.22, labels = "Relatively more \n permanent variance")
+legend(4, 0.45, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(1, 0.06, 7, 0.06)
+arrows(7, 0.06, 1, 0.06)
+text(2.2, 0.16, labels = "Relatively more \n transitory variance")
+text(5.8, 0.16, labels = "Relatively more \n permanent variance")
 dev.off()
 #png(paste(figures_dir, "basic_regression_liquid_wealth",tag,".png",sep=""))
 pdf(paste(figures_dir, "basic_regression_liquid_wealth",tag,".pdf",sep=""))
@@ -389,13 +389,13 @@ points(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5+1.96*std_errors_liquid_wealth$X5,lty='dashed')
 lines(reg_coefs_liquid_wealth$X5-1.96*std_errors_liquid_wealth$X5,lty='dashed')
-legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.12, 9, 0.12)
-arrows(9, 0.12, 2, 0.12)
-text(3.5, 0.22, labels = "Relatively more \n transitory variance")
-text(7.5, 0.22, labels = "Relatively more \n permanent variance")
-text(3.0, 0.92, labels = "Least Liquid")
-text(3.75, 0.44, labels = "Most Liquid")
+legend(4, 0.45, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(1, 0.06, 7, 0.06)
+arrows(7, 0.06, 1, 0.06)
+text(2.2, 0.16, labels = "Relatively more \n transitory variance")
+text(5.8, 0.16, labels = "Relatively more \n permanent variance")
+text(3.0, 0.88, labels = "Least Liquid", cex=0.8)
+text(2.75, 0.39, labels = "Most Liquid", cex=0.8)
 dev.off()
 
 pdf(paste(figures_dir, "basic_regression_for_paper",tag,".pdf",sep=""))
@@ -416,14 +416,14 @@ points(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5)
 lines(reg_coefs_liquid_wealth$X5+1.96*std_errors_liquid_wealth$X5,lty='dashed')
 lines(reg_coefs_liquid_wealth$X5-1.96*std_errors_liquid_wealth$X5,lty='dashed')
-legend(6, 0.53, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
-arrows(2, 0.12, 9, 0.12)
-arrows(9, 0.12, 2, 0.12)
-text(3.5, 0.22, labels = "Relatively more \n transitory variance")
-text(7.5, 0.22, labels = "Relatively more \n permanent variance")
-text(5.5, 0.69, labels = "All Households", cex=0.8)
+legend(4, 0.45, legend=c("Complete Markets","Solow","Buffer-Stock","Data"), col=c("blue","green","red","black"),lty=c("solid","solid","solid","solid"),bty="n")
+arrows(1, 0.06, 7, 0.06)
+arrows(7, 0.06, 1, 0.06)
+text(2.2, 0.16, labels = "Relatively more \n transitory variance")
+text(5.8, 0.16, labels = "Relatively more \n permanent variance")
+text(5.5, 0.665, labels = "All Households", cex=0.8)
 text(3.0, 0.88, labels = "Least Liquid", cex=0.8)
-text(3.75, 0.41, labels = "Most Liquid", cex=0.8)
+text(2.75, 0.39, labels = "Most Liquid", cex=0.8)
 dev.off()
 
 ##############################################################################

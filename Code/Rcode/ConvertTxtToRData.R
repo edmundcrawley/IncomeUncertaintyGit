@@ -15,7 +15,11 @@ MomentsForRDataFile<- function(moments_stub, num_quantiles=5, quantile_stub = "X
     c_vec_string = "c_vector"
   }
   moments <- list()
-  for (i in 1:num_quantiles){
+  quantile_list = 1:num_quantiles
+  if (moments_stub == 'moments_by_liquid_wealth_quantile_7'){
+    quantile_list = c(1,5)
+  }
+  for (i in quantile_list){
     moments[[paste(quantile_stub,i+quantile_start,sep='')]] = list()
     this_c_vector = as.vector(read.table(paste(txt_dir,moments_stub,i+quantile_start,c_vec_string,".txt",sep=''), header = FALSE, sep = ",", dec = "."))
     moments[[paste(quantile_stub,i+quantile_start,sep='')]][["c_vector"]] = this_c_vector$V1
@@ -100,6 +104,9 @@ save(moments_by_Income_quantile, file=paste(moments_dir,'moments_by_Income_quant
 
 moments_by_liquid_wealth_quantile_10 = MomentsForRDataFile('moments_by_liquid_wealth_quantile_10', num_quantiles=5)
 save(moments_by_liquid_wealth_quantile_10, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_10.RData',sep=''))
+
+moments_by_liquid_wealth_quantile_7 = MomentsForRDataFile('moments_by_liquid_wealth_quantile_7', num_quantiles=5)
+save(moments_by_liquid_wealth_quantile_7, file=paste(moments_dir,'moments_by_liquid_wealth_quantile_7.RData',sep=''))
 
 #Liquid wealth DECILES are stored in a different directory
 moments_dir = "C:/Users/edmun/OneDrive/Documents/Research/Denmark/IncomeUncertaintyGit/Code/ServerRcode/ServerOutput/AEJ_revision/IsLiquidWealthSufficient/"
