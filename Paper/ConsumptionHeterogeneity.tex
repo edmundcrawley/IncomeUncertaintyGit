@@ -326,7 +326,7 @@ In the online appendix we address a number of identification concerns.\footnote{
 	\end{align*}
 	where $N$, the number of years over which growth is measured, varies from 1 to 10. The identification of permanent and transitory MPCs in section \ref{cov_restrictions} comes from the fact that transitory income shocks make up a relatively large proportion of the variance of income growth over a short period, while permanent income shocks dominate the variance of income growth over a long period. While the coefficients $\beta^N$ in this section do not represent MPCs, we would expect their values for large $N$ to be close the the permanent MPC, and for small $N$ to be closer to the transitory MPC. 
 	
-	Figure \ref{fig:GrowthReg} shows what we would expect to see under three baseline models where households are subject to both transitory and permanent income shocks, as well as what we observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.73 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case set at 0.73---regardless of shock persistence. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model---these particular results come from the heterogeneous beta model in \cite{carroll_distribution_2017}, calibrated to match the distribution of liquid wealth in Denmark. In the buffer-stock model, the consumption response to income growth over a one-year period is small because households self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases, the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
+	Figure \ref{fig:GrowthReg} shows what we would expect to see under three baseline models where households are subject to both transitory and permanent income shocks, as well as what we observe in the data. First, the blue horizontal line at zero shows what we would see in a complete markets model. With complete markets, all idiosyncratic shocks to income are insured against, resulting in no relation between idiosyncratic income and consumption growth. Second, the green horizontal line at 0.73 shows what we would see in a Solow model. Households in the Solow model do not optimize, but instead spend a constant proportion of their income each period---in this case set at 0.69---regardless of shock persistence. Third, the red, upward-sloping line shows the results for a typical buffer-stock saving model---these particular results come from the heterogeneous beta model in \cite{carroll_distribution_2017}, calibrated to match the distribution of liquid wealth in Denmark. In the buffer-stock model, the consumption response to income growth over a one-year period is small because households self-insure against the transitory shocks that dominate at this frequency. As the time period over which income growth is measured increases, the observed income growth is proportionally more permanent and self-insurance is not possible. The red line asymptotes toward 1.0 as N gets large.
 	\begin{figure} 
 		\begin{centering}
 			\includegraphics[scale=0.6]{\figdir/basic_regression_for_paper.pdf}
@@ -337,7 +337,23 @@ In the online appendix we address a number of identification concerns.\footnote{
 	
 	The gray line, along with 95\% confidence intervals, shows the results of these regressions using all households in the Danish sample. It is striking that the data appear to be closest to the Solow model, with only a small decrease in the regression coefficient over short periods. However, aggregating all households in this way hides a large degree of heterogeneity, particularly across households with different levels of liquid wealth.
 	
-	The two black lines show the regression coefficients where the sample is restricted to households in the lowest and highest quintiles of liquid wealth (averaged over the observed period), respectively. For households in the lowest quintile there is no evidence of consumption smoothing: the consumption response to income growth over one year is both high and almost identical to that over 10 years, strongly suggesting the MPCs for this group out of transitory and permanent shocks are similar and high. Indeed, this is what we see in the lowest quintile of figure \ref{fig:MPXByLiquidWealth}---a result that is highly robust to misspecification. Households in the top quintile of liquid wealth show a clear upward slope in figure \ref{fig:GrowthReg}, indicating a substantial degree of consumption smoothing. The fact that the regression coefficient for this group appears to asymptote well below 1 also suggests, in contrast to standard buffer-stock models, that the MPC out of permanent shocks for liquid households is significantly lower than 1.
+	The two black lines show the regression coefficients where the sample is restricted to households in the lowest and highest quintiles of liquid wealth (averaged over the observed period), respectively. For households in the lowest quintile there is little evidence of consumption smoothing: the consumption response to income growth over one year is both high and almost identical to that over 7 years, strongly suggesting the MPCs for this group out of transitory and permanent shocks are similar and high. Indeed, this is what we see in the lowest quintile of figure \ref{fig:MPXByLiquidWealth}---a result that is highly robust to misspecification. Households in the top quintile of liquid wealth show a clear upward slope in figure \ref{fig:GrowthReg}, indicating a substantial degree of consumption smoothing. The fact that the regression coefficient for this group appears to asymptote well below 1 also suggests, in contrast to standard buffer-stock models, that the MPC out of permanent shocks for liquid households is significantly lower than 1.
+	
+	\subsection{Comparison with BPP and \cite{commault_how_2017}} \label{result_comparison}
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.6]{\figdir/Commault_BPP.pdf}
+		\caption{Estimation using methods from \cite{blundell_consumption_2008} and \cite{commault_how_2017}}
+		\label{fig:compare}
+	\end{centering}
+	\end{figure}
+	Figure \ref{fig:compare} shows the transitory MPX estimates from the Danish data, using the estimation methodology from BPP and \cite{commault_how_2017}. The methodology from BPP is subject to two criticisms. The first criticism, detailed in \cite{crawley_time_2020}, is that the time aggregated nature of the income data can result in a large downward bias in the transitory MPX estimate. The intuition, although there is more nuance, is that the BPP method uses the change in income from period $t$ to period $t+1$ as an instrument for transitory shocks in period $t$, under the assumption that the permanent shocks are uncorrelated from period to period. Therefore, a negative change in income is related to a positive transitory shock in the previous period but unrelated to permanent shocks in the previous period. This does not hold when permanent shocks can occur, for example, half way through the period. In this case, the permanent component on income will display positive correlation across periods---see \cite{working_note_1960}---and so a negative change in income is also associated with a negative permanent income shock in the previous period. As a negative permanent shock will likely result in lower consumption, negative permanent shocks---that are mistaken for positive transitory shocks---pull the estimated consumption response to transitory shocks in the BPP method toward zero.
+	
+	The second criticism comes from \cite{commault_how_2017} who shows that the BPP methodology is not robust when transitory income shocks have some persistence and consumption does not follow a random walk. The suggested robust estimator uses the change in income from period $t+1$ to $t+2$ as an instrument for transitory shocks in period $t$. For this estimate to be unbiased, transitory shocks to income must have some persistence up to one year, but not further than that. Under certain conditions, this robust estimator is also free of time-aggregation bias.
+	
+	The methodology in this paper is also robust to both criticisms, although we have taken a different approach to \cite{commault_how_2017}. In place of the assumption that transitory income persists less than one year, we allow for two years of persistence but also make the assumption that the consumption response to the transitory shocks lasts no more than two years.
+	
+	The estimation results for the transitory MPX for all three methods is shown in figure \ref{fig:compare}. Both our baseline estimates and those form the Commault robust estimator show a clear negative relation between MPX and liquid wealth quintile, while the BPP methodology estimates do not. The Commault robust estimator has larger standard errors than our baseline and also tends to find lower MPX than our baseline, possibly as result of transitory income persistence longer than one year. In online appendix ************ we describe in more detail the differences between these methodologies. 
 	
 	\section{Distribution of MPX across Net Wealth, NNP, URE, and Income}
 	In this section we estimate the distribution of MPX along the dimensions of net wealth,  Net Nominal Position (NNP), Unhedged Interest Rate Exposure (URE) and income. Having uncovered clear patterns of heterogeneity, we show that these patterns are well predicted by the liquid wealth holdings of households along these dimensions.  
@@ -406,6 +422,27 @@ In the online appendix we address a number of identification concerns.\footnote{
 			\end{center}
 		\end{table}
 	\end{center}
+
+	Indeed, conditional on liquid wealth quintile, household income quintile has very little, if any, further information on a household's MPX. This can be seen in the step pattern of figure, in which MPX steps down along the liquid wealth quintile, but if flat along the income quintile.
+	
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.3]{\figdir/TranMPXByIncLiq.png}
+		\caption{Transitory MPX estimation by Liquid Wealth and Income Quintile}
+		\label{fig:LW_Income}
+	\end{centering}
+	\end{figure}
+
+	\section{External Validity}
+	**************NEED TO WRITE THIS UP****************
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\figdir/pri_nonpri_tranVar_liquidwealth.pdf}
+		\includegraphics[scale=0.4]{\figdir/pri_nonpri_tranMPX_liquidwealth.pdf}
+		\caption{Comparing private and non-private sector workers}
+		\label{fig:external_validity}
+	\end{centering}
+\end{figure}
 	
 	\section{Monetary Policy and the Redistribution Channel} \label{monetary_policy}
 	\cite{auclert_monetary_2017} lays out a clear and intuitive theory as to how heterogeneity in the MPC out of transitory shocks affects the transmission mechanism of monetary policy. He identifies channels through which monetary policy can act, including those involving redistribution. He then uses this theory to identify a small set of sufficient statistics that help distinguish which of these channels are of quantitative importance.
@@ -448,7 +485,7 @@ In the online appendix we address a number of identification concerns.\footnote{
 	%\FloatBarrier
 	
 	\section{Conclusion}
-	In this paper we have presented a new method to measure the sensitivity of consumption to permanent and transitory income shocks for different groups of households. Our focus has been to use this method to test the microfoundations of heterogeneous agent models and quantify the importance of consumption heterogeneity for monetary policy. With administrative data from Denmark, we have been able to dig into the distribution of MPC across wealth, URE and NNP in far more detail than has previously been possible. We find that MPCs vary systematically along these dimensions and in ways that are important for monetary policy transmission, although the current generation of heterogeneous agent models struggle to fit the high sensitivity to income that we observe.
+	In this paper we have presented a new method to measure the sensitivity of consumption to permanent and transitory income shocks for different groups of households. With administrative data from Denmark, we have been able to dig into the distribution of MPC across wealth, URE and NNP in far more detail than has previously been possible. We find that MPCs vary systematically with household liquid wealth, and that liquid wealth accurately predicts MPC along every other dimension we consider. 
 	
 	Our hope is that the method we present in this paper, or variants of it, can also be of use to economists in a variety of fields. More and more high-quality microdata on consumption are becoming available, such as the administrative data used here, or the even more detailed transaction-level data available from financial aggregators. If this trend continues, as we hope it will, methods such as ours will become even more valuable in bridging the gap between models and data.\\
 	%\begin{flushleft}
@@ -511,6 +548,45 @@ In the online appendix we address a number of identification concerns.\footnote{
 	\end{figure}
 	
 	While it would be possible to stick very closely to the original BPP model and adjust the covariance restrictions to take account of the time aggregation problem,\footnote{\citeappendix{crawley_time_2020} takes this more straightforward approach using the same PSID data as used in BPP.} we have found that in practice the underlying assumptions made by BPP (in particular that consumption follows a random walk) do not fit with the data. The random walk assumption was previously thought to be benign. Not only were the estimates of the consumption response to transitory shocks in BPP small and consistent with such an assumption, \citeappendix{kaplan_how_2010} show that without time aggregation, the BPP method correctly identifies the transitory consumption response in the period of the income shock regardless of the consumption dynamics going forward. This fact is again not robust to the time aggregation problem. With time aggregation taken into account, the estimates are highly sensitive to assumptions about short-term consumption dynamics---online appendix \ref{BPP_compare} shows how the random walk assumption affects MPX estimates. Therefore we have chosen to attain identification in a manner similar to \citeappendix{carroll_nature_1997}, which allows us to be agnostic about the exact short-term dynamics of income and consumption.
+	
+	\section{Comparison to \cite{blundell_consumption_2008}} \label{BPP_compare}
+	In this section we provide MPX estimates using the Danish data derived from the original estimation method from BPP.\footnote{As in our baseline, we perform the estimation in levels, not logs, so that we can interpret our results as MPX provided the variance of permanent income change over the sample period is not large.} The estimates are shown in figure \ref{fig:BPP_liquid}. Two different sets of questions arise: 1) why do these results from the Danish data look so different to those obtained from the PSID, and 2) why do these results look so different to the baseline results presented in the main text?
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.4]{\figdir/MPXByLiquidWealthBPP.pdf}
+		\caption{Estimates by Liquid Wealth Quintile Obtained Using BPP's Methodology}
+		\label{fig:BPP_liquid}
+	\end{centering}
+	\end{figure}
+	\subsection{Why do these results from the Danish data look so different to those obtained from the PSID?}
+	\begin{itemize}
+		\item Timing of consumption - PSID consumption is snapshot at year end, Danish data is time-aggregated.Note: our method DOES NOT WORK when there is a snapshot of consumption at the end of the year---we would need to assume much more about the path of consumption. (Commault may get away with it because she identifies fairly persistent transitory shocks so the year-end effect may be similar to the intial impact.)
+		\item Durables - PSID is non durable only, our data includes durables (see below for discussion)
+		\item PSID consumption is MUCH less tied to income than in the Danish data - our prior is that this is a problem with the PSID. See links.
+	\end{itemize}
+	\subsection{Why do these results look so different to the baseline results presented in the main text?}
+	\begin{itemize}
+		\item Bring in appendix I started about BPP, random walks and durables.
+		\item Note: Random walk assumption is not-viable, make note of estimate recovered if we keep this assumption.
+	\end{itemize}
+
+
+	\section{Comparison to \cite{commault_how_2017}}
+	\begin{figure} 
+	\begin{centering}
+		\includegraphics[scale=0.6]{\figdir/Commault.pdf} 
+		\caption{Commault Robust Estimator for t=1 and 2}
+		\label{fig:commault}
+	\end{centering}
+	\end{figure}
+	\begin{itemize}
+	\item Commault's robust estimator is roughly in line with our estimates, though lower.
+	\item Commault assumes transitory income lasts no more that one year, or alternatively two years. The graph shows estimates for both the one and two year assumptions.
+	\item There is clear evidence that the two year estimates are statistically significant (check if relevant covaraince is statistically significant)). This would bias her estimates down, just as she shows in the paper that persistence to one year biases BPP down.
+	\item Overall the jury is out, but I would bet on our method
+	\item Note the intuition graph strongly suggests our results are more reasonable.
+	\end{itemize}
+	
 	
 	\section{Sample Selection} \label{sample_selection}
 	\setcounter{figure}{0}   
@@ -638,23 +714,6 @@ In the online appendix we address a number of identification concerns.\footnote{
 	NNP for the whole economy should, in principle, sum to 0. However, the household-level microdata on bank deposits that we have access to is exclusive of certain types of savings (specialized children's savings accounts as well as some forms of pension savings accounts administered by banks), which are included in the financial accounts statistics. For the age group included in our sample, these types of accounts can be assumed to be largely illiquid. We therefore group those deposits (33 billion USD) together with the assets of pension funds (see table \ref{table:aggElas}).\footnote{In practice, this amount is calculated as a residual, which may also reflect other minor differences between the household-level data and the national accounts statistics. For example, holdings of banknotes and coins are not observed in the microdata but are allocated based on certain assumptions in the financial accounts. For our exercise, the impact of such other differences is likely to be very small.}
 	
 	URE for non-households is also based on the financial accounts. In the national accounts, we do not observe the maturity of different asset and liability classes. We hold household URE fixed at the values from the micro-level data and take advantage of the identity that total URE in the economy must be 0 to calibrate the maturity for the remaining sectors of the economy. This results in a maturity of assets and liabilities for non-households of 3.65 years.
-	
-	\section{Comparison to \cite{blundell_consumption_2008}} \label{BPP_compare}
-	Are the differences in our estimates to those in BPP driven by the data or by the method? Here we apply BPP's original method to moments obtained from the Danish administrative data. Applied to the entire dataset, this method estimates the response to permanent income shocks to be 0.75 and to transitory income shocks to be 0.43. 
-	
-	\begin{figure} 
-		\begin{centering}
-			\includegraphics[scale=0.4]{\figdir/MPXByLiquidWealthBPP.pdf}
-			\caption{Estimates by Liquid Wealth Quintile Obtained Using BPP's Methodology}
-			\label{fig:BPP_liquid}
-		\end{centering}
-	\end{figure}
-	
-	Figure \ref{fig:BPP_liquid} shows the results of using BPP's method on quintiles of liquid wealth. The downward sloping pattern for transitory shocks, evident in figure \ref{fig:MPXByLiquidWealth} is no longer seen.
-	
-	Our method differs from BPP in two respects: first we model time aggregation and second we impose that consumption responses to transitory income shocks are short lived, in contrast to the random walk behavior in BPP. \citeappendix{crawley_time_2020} shows how just the first of these, modeling time aggregation, significantly changes BPP's estimates in the PSID data. With the high MPX's that we estimate in our data, it is clear that the random walk assumption cannot be valid. If we only make this first change and estimate again using the Danish administrative data, we estimate the response to permanent income shocks to be 1.18 and to transitory income shocks to be 1.86. These unreasonably high estimates come as a result of the assumption that consumption follows a random walk. In particular, the fact that the response to transitory income shocks is significantly greater than one comes from the method extending the short term response over the period of one year.
-	
-	This exercise has shown that the original BPP method is both biased and sensitive to assumptions made about the path of consumption. In appendices \ref{Consumption_persistence}, \ref{rip_hip_appendix}, and \ref{time_varying_risk} we show that, in contrast, our method is relatively robust to misspecification.
 	
 	\section{Persistent Consumption Response} \label{Consumption_persistence}
 	\setcounter{figure}{0}   

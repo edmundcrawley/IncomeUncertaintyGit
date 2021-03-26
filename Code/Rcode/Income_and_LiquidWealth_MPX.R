@@ -1,5 +1,5 @@
 require(barplot3d)
-require(rgl
+require(rgl)
 require(ks)
 
 T=12
@@ -48,7 +48,7 @@ par3d(windowRect=c(50,50,1250,1150))
 these_colors = cols[ vec(max.colors - floor(max.colors *( t(ins_perm) -min_MPX) /( max_MPX- min_MPX))) ]
 barplot3d(rows=liq_wealth_dim ,cols=income_dim,z=vec(t(ins_perm)),scalexy=0.25,alpha=1.0,theta=30,phi=50,
           topcolors =vec(these_colors),sidecolors=these_colors, xlabels = 1:liq_wealth_dim ,ylabels=1:income_dim,
-          xsub="Liquid Wealth Quintile",ysub="Income Quintile",zsub="MPX",gap=0)
+          xsub="Liquid Wealth Quintile",ysub="Income Quintile",zsub="MPX",gap=0, cex.names=2)
 rgl.snapshot(paste(figures_dir, "PermMPXByIncLiq.png",sep=""))
 
 

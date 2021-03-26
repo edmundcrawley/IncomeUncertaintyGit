@@ -128,14 +128,14 @@ for_commault_plot_se = array(0,dim=c(5,3))
 for_commault_plot_se[,1] = wealth_quantile_output$category_se[,4]
 for_commault_plot_se[,2:3] = commault_output$category_params_se[,3:4]
 
-for_commault_plot = for_commault_plot[,1:2]
-for_commault_plot_se = for_commault_plot_se[,1:2]
+#for_commault_plot = for_commault_plot[,1:2]
+#for_commault_plot_se = for_commault_plot_se[,1:2]
 
 
 pdf(paste(figures_dir, "Commault.pdf",sep=""))
-  this_legend=c("Baseline","Commault Robust Estimator")
-  xlabel_pos = 1
-  this_colors=c(colors[1:2])
+  this_legend=c("Baseline","Commault Robust Estimator, t=1","Commault Robust Estimator, t=2")
+  xlabel_pos = 2
+  this_colors=c(colors[1:3])
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
 plotTop = max(max(for_commault_plot),1.0)
 barCenters <- barplot(height=t(for_commault_plot),
@@ -153,7 +153,7 @@ arrows(barCenters, t(for_commault_plot-for_commault_plot_se*1.96),
        barCenters,
        t(for_commault_plot+for_commault_plot_se*1.96), lwd=1.5,
        angle=90,code=3, length=0.05)
-legend(2, plotTop, legend=this_legend, fill=this_colors,bty="n")
+legend(6, plotTop, legend=this_legend, fill=this_colors,bty="n")
 #dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,tag,".png",sep=""))
 #dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
 #dev.copy(svg, paste(figures_dir, "MPXBy",category_for_save,tag,".svg",sep=""))
@@ -162,3 +162,45 @@ dev.off()
 
 ###############################################################################
 
+###############################################################################
+# load liquid weath quintile data and create graph
+moments_stub = "BPP_moments_by_liquid_wealth_quantile"
+num_quantiles = 5
+round_digits = -3
+wealth_quantile_set = as.character(1:num_quantiles)
+BPP_output =estimation_by_category_BPP(moments_BPP_dir,moments_stub, make.names(wealth_quantile_set), T=12)
+###############################################################################
+for_commault_BPP_plot = array(0,dim=c(5,3))
+for_commault_BPP_plot[,1:2] = for_commault_plot[,1:2]
+for_commault_BPP_plot[,3] = BPP_output$category_params[,4]
+
+for_commault_BPP_plot_se = array(0,dim=c(5,3))
+for_commault_BPP_plot_se[,1:2] = for_commault_plot_se[,1:2]
+for_commault_BPP_plot_se[,3] = BPP_output$category_se[,4]
+
+pdf(paste(figures_dir, "Commault_BPP.pdf",sep=""))
+this_legend=c("Baseline","Commault Robust Estimator", "BPP")
+xlabel_pos = 2
+this_colors=c(colors[1:3])
+par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)
+plotTop = max(max(for_commault_BPP_plot),1.0)
+barCenters <- barplot(height=t(for_commault_BPP_plot),
+                      names.arg=wealth_quantile_set,
+                      cex.names=0.75,
+                      beside=TRUE,col=this_colors,
+                      las=2,ylim=c(0,plotTop), xaxt="n",
+                      main=paste("Transitory MPX by Liquid Wealth"),
+                      ylab = "MPX", border="black", axes=TRUE)
+text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=45, adj=1, labels=wealth_quantile_set,xpd=TRUE)
+segments(barCenters, t(for_commault_BPP_plot-for_commault_BPP_plot_se*1.96),
+         barCenters,
+         t(for_commault_BPP_plot+for_commault_BPP_plot_se*1.96), lwd=1.5)
+arrows(barCenters, t(for_commault_BPP_plot-for_commault_BPP_plot_se*1.96),
+       barCenters,
+       t(for_commault_BPP_plot+for_commault_BPP_plot_se*1.96), lwd=1.5,
+       angle=90,code=3, length=0.05)
+legend(8, plotTop, legend=this_legend, fill=this_colors,bty="n")
+#dev.copy(png, paste(figures_dir, "MPXBy",category_for_save,tag,".png",sep=""))
+#dev.copy(pdf, paste(figures_dir, "MPXBy",category_for_save,tag,".pdf",sep=""))
+#dev.copy(svg, paste(figures_dir, "MPXBy",category_for_save,tag,".svg",sep=""))
+dev.off()
