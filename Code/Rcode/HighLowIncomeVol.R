@@ -103,6 +103,12 @@ plot_estimataion_output(wealth_quantile_params,wealth_quantile_se,wealth_quantil
 # Function to plot shock variances and consumption elasticities
 vol_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, title_string, filename, param_col=4, legend_xpos = NULL, x_label="Quantile") {
   
+  if (param_col==4 | param_col==3){
+    axis_string = "MPX"
+  }else if (param_col==2 | param_col==1){
+    axis_string = "Variance"
+  }
+  
   this_colors = c('#fb8072','#bebada','#ffffb3','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#8dd3c7')
   this_colors = this_colors[1:length(tag_list)]
   num_quantiles = length(quantile_labels)
@@ -130,10 +136,13 @@ vol_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, ti
                         beside=TRUE,col=this_colors,
                         las=2,ylim=c(0,plotTop), xaxt="n",
                         main=title_string,
-                        ylab = axis_string,
+                        ylab = "",
                         xlab = x_label,
                         border="black",
                         axes=TRUE)
+  mtext(text = axis_string,
+        side = 2, #side 2 = left
+        line = 4,cex=1.5)
   text(x=barCenters[1,]+xlabel_pos, y =-plotTop*0.02,srt=0, adj=1, labels=quantile_labels,xpd=TRUE)
   segments(barCenters, t(params-se*1.96),
            barCenters,
@@ -143,7 +152,7 @@ vol_plot<- function(tag_list, moments_name, quantile_labels, tag_list_legend, ti
          t(params+se*1.96), lwd=1.5,
          angle=90,code=3, length=0.05)
   if (is.null(legend_xpos)){
-    legend_xpos = 3*num_quantiles
+    legend_xpos = 2.5*num_quantiles
   }
   legend(legend_xpos, plotTop, legend=tag_list_legend, fill=this_colors,bty="n")
   #dev.copy(png, paste(figures_dir, filename,".png",sep=""))
