@@ -118,9 +118,9 @@ this_colors = c('#fb8072','#bebada','#ffffb3','#80b1d3','#fdb462','#b3de69','#fc
 this_colors = this_colors[1:2]
 axis_string = "MPX"
 xlabel_pos = 0.5
-tag_list_legend = c("True Parameters","Simulation")
+tag_list_legend = c("Short-term Quintile","Long-term Quintile")
 x_label = "Qunitile"
-legend_xpos = 2*5
+legend_xpos = 7.5
 
 pdf(paste(figures_dir, filename,".pdf",sep=""))
 par(mar=c(8,7,4,5)+0.1,cex.axis=1.2,cex.lab=1.5)

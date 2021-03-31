@@ -227,10 +227,25 @@ output += "\\\\  Income Deciles" + " & " + mystr2(prediction_errors[2,0]) + " & 
 output += "\\\\  Net Wealth Deciles" + " & " + mystr2(prediction_errors[4,0]) + " & "+ mystr2(prediction_errors[4,1]) + " & "+ mystr2(prediction_errors[4,4]) + " & "+ mystr2(prediction_errors[4,2]) + " & "+ mystr2(prediction_errors[4,3]) + " & "+ mystr2(prediction_errors[4,5]) + " \n"
 
 output += "\\\\ \\bottomrule  \n"
+
+
+    # A table for US sufficient stats under different interpolation methods
+filename_US = "../Rcode/Tables/AEJ_revision/US_auclert_different_interpolations.csv"
+US_auclert_stats = np.genfromtxt(filename_US, delimiter=',')
+
+output = "\\begin{minipage}{" + str(0.65) + "\\textwidth}\n"
+   
+output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{lccc}  \n"
+output += " & Baseline & Absolute Liquidity & Liquidy to Income Ratio \n"
+output += "\\\\ \\midrule "
+output += "$\mathcal{M}$ & "         + mystr2(US_auclert_stats[0,0])+ "&"+ mystr2(US_auclert_stats[1,0])+ "&"+mystr2(US_auclert_stats[2,0])+ " \n"
+output += "\\\\  $\mathcal{E}_Y$ & " + mystr2(US_auclert_stats[0,1])+ "&"+ mystr2(US_auclert_stats[1,1])+ "&"+mystr2(US_auclert_stats[2,1])+ " \n"
+output += "\\\\  $\mathcal{E}_P$  & "+ mystr2(US_auclert_stats[0,2])+ "&"+ mystr2(US_auclert_stats[1,2])+ "&"+mystr2(US_auclert_stats[2,2])+ " \n"
+output += "\\\\  $\mathcal{E}_R$ & " + mystr2(US_auclert_stats[0,3])+ "&"+ mystr2(US_auclert_stats[1,3])+ "&"+mystr2(US_auclert_stats[2,3])+ " \n"
+output += "\\\\ \\bottomrule  \n"
 output += "\end{tabular}}\n"
 output += "\end{minipage}\n"
-output += "\\\\ \\small \\textbf{Notes}: Mean absolute errors are for the interpolated values relative to the MPX estimated using the full estimation procedure. Interpolation uses either the absolute value of liquid wealth, the ratio of liquid wealth to mean income over the sample period, or income. \n"
-with open('../Rcode/Tables/AEJ_revision/prediction_errors_with_income.tex','w') as f:
+with open('../Rcode/Tables/AEJ_revision/sufficient_stats_different_interpolation.tex','w') as f:
     f.write(output)
     f.close()
 
@@ -274,4 +289,28 @@ filename = "../Rcode/Tables/AEJ_revision/ins_tran_array_6.txt"
 psi_array_different_n = np.genfromtxt(filename, delimiter=' ')
 PrintEstimateTable(psi_array_different_n,6,6,np.array(range(6))+1,np.array(range(6))+1,'Psi_array_empirical')
 
+
+for name in ["transition_liquid","transition_income"]:
+    # A table for how much time is spent in each quintile  
+    filename = "../ServerRcode/ServerOutput/AEJ_revision/TxtFilesFromAndreas/"+name+".csv"
+    transition_prob = np.genfromtxt(filename, delimiter=',')
+    
+    output = "\\begin{minipage}{" + str(0.65) + "\\textwidth}\n"
+       
+    output += "\\resizebox{\\textwidth}{!}{\\begin{tabular}{ccccccc}  \n"
+    output += " & & \multicolumn{5}{c}{Short-term Quintile}  \n"
+    output += "\\\\ & &  1 & 2 & 3 & 4 & 5  \n"
+    output += "\\\\ \\midrule "
+    output += "\\\\  " + " & 1 &"           + mystr2(transition_prob[0,0]) + " & "+ mystr2(transition_prob[0,1]) + " & "+ mystr2(transition_prob[0,2]) + " & "+ mystr2(transition_prob[0,3]) + " & "+ mystr2(transition_prob[0,4])  + " \n"
+    output += "\\\\  Long-term"  + " & 2 &" + mystr2(transition_prob[1,0]) + " & "+ mystr2(transition_prob[1,1]) + " & "+ mystr2(transition_prob[1,2]) + " & "+ mystr2(transition_prob[1,3]) + " & "+ mystr2(transition_prob[1,4])  + " \n"
+    output += "\\\\  Quintile" + " & 3 &"   + mystr2(transition_prob[2,0]) + " & "+ mystr2(transition_prob[2,1]) + " & "+ mystr2(transition_prob[2,2]) + " & "+ mystr2(transition_prob[2,3]) + " & "+ mystr2(transition_prob[2,4])  + " \n"
+    output += "\\\\  " + " & 4 &"           + mystr2(transition_prob[3,0]) + " & "+ mystr2(transition_prob[3,1]) + " & "+ mystr2(transition_prob[3,2]) + " & "+ mystr2(transition_prob[3,3]) + " & "+ mystr2(transition_prob[3,4])  + " \n"
+    output += "\\\\  " + " & 5 &"           + mystr2(transition_prob[4,0]) + " & "+ mystr2(transition_prob[4,1]) + " & "+ mystr2(transition_prob[4,2]) + " & "+ mystr2(transition_prob[4,3]) + " & "+ mystr2(transition_prob[4,4])  + " \n"
+    output += "\\\\ \\bottomrule  \n"
+    output += "\end{tabular}}\n"
+    output += "\end{minipage}\n"
+    output += "\\\\ \\small \\textbf{Notes}: Each row shows the percentage of time a household of that long run quintile will spend in the respective short-run quintile  \n"
+    with open('../Rcode/Tables/AEJ_revision/'+name+'.tex','w') as f:
+        f.write(output)
+        f.close()
 
