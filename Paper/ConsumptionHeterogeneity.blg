@@ -1,9 +1,55 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: ConsumptionHeterogeneity.aux
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ConsumptionHeterogeneity.aux
+Reallocating 'name_of_file' (item size: 1) to 33 items.
 The style file: ./texmf-local/bibtex/bst/econtex.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
 Database file #1: AllPapers.bib
+Warning--to sort, need author or key in karger_heterogeneity_2020
+Warning--empty author in karger_heterogeneity_2020
 Warning--empty institution in abildgren_consistency_2018
 Warning--empty institution in commault_how_2017
 Warning--empty institution in gelman_what_2016
-Warning--empty institution in hryshko_income_2018
 Done.
-(There were 4 warnings)
+You've used 60 entries,
+            2327 wiz_defined-function locations,
+            847 strings with 13543 characters,
+and the built_in function-call counts, 29935 in all, are:
+= -- 2901
+> -- 1904
+< -- 14
++ -- 634
+- -- 576
+* -- 2811
+:= -- 5813
+add.period$ -- 61
+call.type$ -- 60
+change.case$ -- 393
+chr.to.int$ -- 60
+cite$ -- 67
+duplicate$ -- 978
+empty$ -- 1703
+format.name$ -- 628
+if$ -- 5708
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 38
+newline$ -- 192
+num.names$ -- 354
+pop$ -- 293
+preamble$ -- 1
+purify$ -- 385
+quote$ -- 0
+skip$ -- 900
+stack$ -- 0
+substring$ -- 1552
+swap$ -- 180
+text.length$ -- 14
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 660
+warning$ -- 5
+while$ -- 318
+width$ -- 0
+write$ -- 730
+(There were 5 warnings)

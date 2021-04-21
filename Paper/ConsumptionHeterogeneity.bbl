@@ -9,6 +9,11 @@
 \fi
 \begin{thebibliography}{}
 
+\harvarditem[kar]{kar}{2020}{karger_heterogeneity_2020}
+ (2020): ``{Heterogeneity in the Marginal Propensity to Consume: Evidence from
+  Covid-19 Stimulus Payments},'' Working Paper Series WP 2020-15, Federal
+  Reserve Bank of Chicago.
+
 \harvarditem[Abildgren, Kuchler, Rasmussen, and Sorensen]{Abildgren, Kuchler,
   Rasmussen, and Sorensen}{2018}{abildgren_consistency_2018}
 \textsc{Abildgren, Kim, Andreas Kuchler, America Solange~Lohmann Rasmussen,
@@ -41,12 +46,6 @@
   {Household} {Inequality},'' {SSRN} {Scholarly} {Paper} ID 3223542, Social
   Science Research Network, Rochester, NY.
 
-\harvarditem[Arellano, Blundell, and Bonhomme]{Arellano, Blundell, and
-  Bonhomme}{2017}{arellano_earnings_2017}
-\textsc{Arellano, Manuel, Richard Blundell,  {and} St\'ephane Bonhomme}
-  (2017): ``Earnings and {Consumption} {Dynamics}: {A} {Nonlinear} {Panel}
-  {Data} {Framework},'' \emph{Econometrica}, 85(3), 693--734.
-
 \harvarditem[Auclert]{Auclert}{2019}{auclert_monetary_2017}
 \textsc{Auclert, Adrien}  (2019): ``Monetary Policy and the Redistribution
   Channel,'' \emph{American Economic Review}, 109(6), 2333--67.
@@ -56,6 +55,13 @@
   Shocks: Validation and Application of Linked Financial Account Data,''
   \emph{Journal of Political Economy}, 126(4), 1504--57.
 
+\harvarditem[Baker, Farrokhnia, Meyer, Pagel, and Yannelis]{Baker, Farrokhnia,
+  Meyer, Pagel, and Yannelis}{2020}{baker_income_2020}
+\textsc{Baker, Scott~R, R.~A Farrokhnia, Steffen Meyer, Michaela Pagel,  {and}
+  Constantine Yannelis}  (2020): ``Income, Liquidity, and the Consumption
+  Response to the 2020 Economic Stimulus Payments,'' Working Paper 27097,
+  National Bureau of Economic Research.
+
 \harvarditem[Baker, Kueng, Pagel, and Meyer]{Baker, Kueng, Pagel, and
   Meyer}{2018}{baker_measurement_2018}
 \textsc{Baker, Scott~R., Lorenz Kueng, Michaela Pagel,  {and} Steffen Meyer}
@@ -63,21 +69,9 @@
   {Scholarly} {Paper} ID 3179117, Social Science Research Network, Rochester,
   NY.
 
-\harvarditem[Best, Cloyne, Ilzetzki, and Kleven]{Best, Cloyne, Ilzetzki, and
-  Kleven}{2019}{best_estimating_2018}
-\textsc{Best, Michael~Carlos, James~S Cloyne, Ethan Ilzetzki,  {and} Henrik~J
-  Kleven}  (2019): ``{Estimating the Elasticity of Intertemporal Substitution
-  Using Mortgage Notches},'' \emph{Review of Economic Studies}, Forthcoming.
-
 \harvarditem[Bewley]{Bewley}{1983}{bewley_difficulty_1983}
 \textsc{Bewley, Truman}  (1983): ``A {Difficulty} with the {Optimum} {Quantity}
   of {Money},'' \emph{Econometrica}, 51(5), 1485--504.
-
-\harvarditem[Blanchard, Lopez-de Silanes, and Shleifer]{Blanchard, Lopez-de
-  Silanes, and Shleifer}{1994}{blanchard_what_1994}
-\textsc{Blanchard, Olivier~Jean, Florencio Lopez-de Silanes,  {and} Andrei
-  Shleifer}  (1994): ``What Do Firms Do with Cash Windfalls?,'' \emph{Journal
-  of Financial Economics}, 36(3), 337--60.
 
 \harvarditem[Blundell, Pistaferri, and Preston]{Blundell, Pistaferri, and
   Preston}{2008}{blundell_consumption_2008}
@@ -120,16 +114,12 @@
   White}  (2017): ``The Distribution of Wealth and the Marginal Propensity to
   Consume,'' \emph{Quantitative Economics}, 8(3), 977--1020.
 
-\harvarditem[Carroll]{Carroll}{2001}{carroll_death_2001}
-\textsc{Carroll, Christopher~Dixon}  (2001): ``Death to the {Log}-{Linearized}
-  {Consumption} {Euler} {Equation}! ({And} {Very} {Poor} {Health} to the
-  {Second}-{Order} {Approximation}),'' \emph{Advances in Macroeconomics}, 1(1).
-
-\harvarditem[Cloyne, Ferreira, and Surico]{Cloyne, Ferreira, and
-  Surico}{2019}{cloyne_monetary_2016}
-\textsc{Cloyne, James, Clodomiro Ferreira,  {and} Paolo Surico}  (2019):
-  ``{Monetary Policy when Households Have Debt: New Evidence on the
-  Transmission Mechanism},'' \emph{Review of Economic Studies}, Forthcoming.
+\harvarditem[Chetty, Friedman, Hendren, Stepner, and Team]{Chetty, Friedman,
+  Hendren, Stepner, and Team}{2020}{chetty_economic_2020}
+\textsc{Chetty, Raj, John~N Friedman, Nathaniel Hendren, Michael Stepner,
+  {and} The Opportunity~Insights Team}  (2020): ``The Economic Impacts of
+  COVID-19: Evidence from a New Public Database Built Using Private Sector
+  Data,'' Working Paper 27431, National Bureau of Economic Research.
 
 \harvarditem[Commault]{Commault}{2017}{commault_how_2017}
 \textsc{Commault, Jeanne}  (2017): ``How {Does} {Consumption} {Respond} to a
@@ -190,10 +180,12 @@
   {News} and {Loans},'' NBER {Working} {Paper} 24386, National Bureau of
   Economic Research.
 
-\harvarditem[Ganong and Noel]{Ganong and Noel}{2019}{ganong_consumer_2017}
-\textsc{Ganong, Peter,  {and} Pascal Noel}  (2019): ``{Consumer Spending during
-  Unemployment: Positive and Normative Implications},'' \emph{American Economic
-  Review}, 109(7), 2383--2424.
+\harvarditem[Ganong, Jones, Noel, Greig, Farrell, and Wheat]{Ganong, Jones,
+  Noel, Greig, Farrell, and Wheat}{2020}{ganong_wealth_2020}
+\textsc{Ganong, Peter, Damon Jones, Pascal~J Noel, Fiona~E Greig, Diana
+  Farrell,  {and} Chris Wheat}  (2020): ``Wealth, Race, and Consumption
+  Smoothing of Typical Income Shocks,'' Working Paper 27552, National Bureau of
+  Economic Research.
 
 \harvarditem[Garriga, Kydland, and Sustek]{Garriga, Kydland, and
   Sustek}{2017}{garriga_mortgages_2017}
@@ -214,48 +206,15 @@
   {Response} of {Consumer} {Spending} to {Changes} in {Gasoline} {Prices},''
   NBER {Working} {Paper} 22969, National Bureau of Economic Research.
 
-\harvarditem[Gelman, Kariv, Shapiro, Silverman, and Tadelis]{Gelman, Kariv,
-  Shapiro, Silverman, and Tadelis}{2014}{gelman_harnessing_2014}
-\textsc{Gelman, Michael, Shachar Kariv, Matthew~D. Shapiro, Dan Silverman,
-  {and} Steven Tadelis}  (2014): ``Harnessing Naturally Occurring Data to
-  Measure the Response of Spending to Income,'' \emph{Science}, 345(6193),
-  212--15.
-
 \harvarditem[Greenwald]{Greenwald}{2018}{greenwald_mortgage_2018}
 \textsc{Greenwald, Daniel}  (2018): ``The {Mortgage} {Credit} {Channel} of
   {Macroeconomic} {Transmission},'' {SSRN} {Scholarly} {Paper} ID 2735491,
   Social Science Research Network, Rochester, NY.
 
-\harvarditem[Guvenen]{Guvenen}{2007}{guvenen_learning_2007}
-\textsc{Guvenen, Fatih}  (2007): ``Learning {Your} {Earning}: {Are} {Labor}
-  {Income} {Shocks} {Really} {Very} {Persistent}?,'' \emph{American Economic
-  Review}, 97(3), 687--712.
-
-\harvarditem[Guvenen]{Guvenen}{2009}{guvenen_empirical_2009}
-\textsc{\BySame{}}  (2009): ``An Empirical Investigation of labor income
-  Processes,'' \emph{Review of Economic Dynamics}, 12(1), 58--79.
-
 \harvarditem[Hausman]{Hausman}{2012}{hausmanVeteransBonus}
 \textsc{Hausman, Joshua~K.}  (2012): ``Fiscal Policy and Economic Recovery: The
   Case of the 1936 Veterans' Bonus,'' mimeo, University of California,
   Berkeley.
-
-\harvarditem[Havranek]{Havranek}{2015}{havranek_measuring_2015}
-\textsc{Havranek, Tomas}  (2015): ``Measuring {Intertemporal} {Substitution}:
-  {The} {Importance} of {Method} {Choices} and {Selective} {Reporting},''
-  \emph{Journal of the European Economic Association}, 13(6), 1180--1204.
-
-\harvarditem[Heathcote, Perri, and Violante]{Heathcote, Perri, and
-  Violante}{2010}{heathcote_unequal_2010}
-\textsc{Heathcote, Jonathan, Fabrizio Perri,  {and} Giovanni~L. Violante}
-  (2010): ``Unequal We Stand: {An} Empirical Analysis of Economic Inequality in
-  the {United} {States}, 1967-2006,'' \emph{Review of Economic Dynamics},
-  13(1), 15--51.
-
-\harvarditem[Hryshko and Manovskii]{Hryshko and
-  Manovskii}{2018}{hryshko_income_2018}
-\textsc{Hryshko, Dmytro,  {and} Iourii Manovskii}  (2018): ``Income Dynamics
-  and Consumption Insurance,'' Working {Paper}.
 
 \harvarditem[Hsieh]{Hsieh}{2003}{hsieh:alaska}
 \textsc{Hsieh, Chang-Tai}  (2003): ``Do Consumers React to Anticipated Income
@@ -324,57 +283,16 @@
   {Heterogeneity} in the {Macroeconomy},'' \emph{Journal of Political Economy},
   106(5), 867--96.
 
-\harvarditem[Landier, Sraer, and Thesmar]{Landier, Sraer, and
-  Thesmar}{2013}{landier_banks_2013}
-\textsc{Landier, Augustin, David Sraer,  {and} David Thesmar}  (2013): ``Banks'
-  {Exposure} to {Interest} {Rate} {Risk} and {the} {Transmission} of {Monetary}
-  {Policy},'' NBER {Working} {Paper} 18857, National Bureau of Economic
-  Research.
-
-\harvarditem[Low, Meghir, and Pistaferri]{Low, Meghir, and
-  Pistaferri}{2010}{low_wage_2010}
-\textsc{Low, Hamish, Costas Meghir,  {and} Luigi Pistaferri}  (2010): ``Wage
-  {Risk} and {Employment} {Risk} over the {Life} {Cycle},'' \emph{American
-  Economic Review}, 100(4), 1432--67.
-
 \harvarditem[Lusardi]{Lusardi}{1996}{lusardi}
 \textsc{Lusardi, Annamaria}  (1996): ``Permanent Income, Current Income, and
   Consumption: Evidence from Two Panel Data Sets,'' \emph{Journal of Business
   and Economic Statistics}, 14(1), 81--90.
-
-\harvarditem[Maggio, Kermani, and Majlesi]{Maggio, Kermani, and
-  Majlesi}{2019}{maggio_stock_2018}
-\textsc{Maggio, Marco~Di, Amir Kermani,  {and} Kaveh Majlesi}  (2019): ``Stock
-  {Market} {Returns} and {Consumption},'' \emph{Journal of Finance},
-  Forthcoming.
 
 \harvarditem[Manovskii and Hryshko]{Manovskii and
   Hryshko}{2017}{manovskii_how_2017}
 \textsc{Manovskii, Iourii,  {and} Dmytro Hryshko}  (2017): ``How {Much}
   {Consumption} {Insurance} in the {U}.{S}.?,'' Working {Paper} 1584, Society
   for Economic Dynamics.
-
-\harvarditem[Meghir and Pistaferri]{Meghir and
-  Pistaferri}{2004}{meghir_income_2004}
-\textsc{Meghir, Costas,  {and} Luigi Pistaferri}  (2004): ``Income {Variance}
-  {Dynamics} and {Heterogeneity},'' \emph{Econometrica}, 72(1), 1--32.
-
-\harvarditem[Moffitt and Zhang]{Moffitt and Zhang}{2018}{moffitt_income_2018}
-\textsc{Moffitt, Robert,  {and} Sisi Zhang}  (2018): ``Income Volatility and
-  the PSID: Past Research and New Results,'' \emph{AEA Papers and Proceedings},
-  108, 277--80.
-
-\harvarditem[Moffitt and Gottschalk]{Moffitt and
-  Gottschalk}{2012}{moffitt_trends_2012}
-\textsc{Moffitt, Robert~A.,  {and} Peter Gottschalk}  (2012): ``Trends in the
-  {Transitory} {Variance} of {Male} {Earnings} {Methods} and {Evidence},''
-  \emph{Journal of Human Resources}, 47(1), 204--36.
-
-\harvarditem[Nielsen and Vissing-jorgensen]{Nielsen and
-  Vissing-jorgensen}{2004}{nielsen_impact_2004}
-\textsc{Nielsen, Helena~Skyt,  {and} Annette Vissing-jorgensen}  (2004): ``The
-  {Impact} of {Labor} {Income} {Risk} on {Educational} {Choices}: {Estimates}
-  and {Implied} {Risk} {Aversion},'' Working {Paper}, University of Aarhus.
 
 \harvarditem[Olafsson and Pagel]{Olafsson and
   Pagel}{2018}{vardardottir_liquid_2016}
@@ -432,10 +350,5 @@
 \textsc{Wong, Arlene}  (2016): ``Population Aging and the Transmission of
   Monetary Policy to Consumption,'' 2016 {Meeting} {Paper} 716, Society for
   Economic Dynamics.
-
-\harvarditem[Working]{Working}{1960}{working_note_1960}
-\textsc{Working, Holbrook}  (1960): ``Note on the {Correlation} of {First}
-  {Differences} of {Averages} in a {Random} {Chain},'' \emph{Econometrica},
-  28(4), 916--18.
 
 \end{thebibliography}
