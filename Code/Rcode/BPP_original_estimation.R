@@ -111,14 +111,18 @@ BPP_with_TimeAgg_output = BPP_with_TimeAgg_parameter_estimation(c_vector, omega,
 
 ###############################################################################
 # Function to estimate parameters for each category for which we have moments
-estimation_by_category_BPP<- function(moments_BPP_dir,moments_stub,category_set, T=12) {
+estimation_by_category_BPP<- function(moments_BPP_dir,moments_stub,category_set, T=12, time_agg = FALSE) {
   category_params = array(0, dim=c(length(category_set),4))
   category_se = array(0, dim=c(length(category_set),4))
   for (i in 1:length(category_set)){
     this_category = as.character(category_set[i])
     this_c_vector = as.vector(t(read.csv(file=paste(moments_BPP_dir,"/",moments_stub,i,"c_vector.txt", sep=""), header=FALSE, sep=",")))
     this_omega = as.matrix(read.csv(file=paste(moments_BPP_dir,"/",moments_stub,i,"_omega.txt", sep=""), header=FALSE, sep=","))
-    this_BPP_output = BPP_parameter_estimation(this_c_vector, this_omega,T,ma=1) 
+    if (time_agg){
+      this_BPP_output = BPP_with_TimeAgg_parameter_estimation(this_c_vector, this_omega,T,ma=1) 
+    } else {
+      this_BPP_output = BPP_parameter_estimation(this_c_vector, this_omega,T,ma=1) 
+    }
     category_params[i,1] = mean(this_BPP_output$var_perm)
     category_params[i,2] = mean(this_BPP_output$var_tran)
     category_params[i,3] = this_BPP_output$ins_perm
@@ -140,7 +144,10 @@ moments_stub = "BPP_moments_by_liquid_wealth_quantile"
 num_quantiles = 5
 round_digits = -3
 wealth_quantile_set = as.character(1:num_quantiles)
-output =estimation_by_category_BPP(moments_BPP_dir,moments_stub, make.names(wealth_quantile_set), T=12)
+output =        estimation_by_category_BPP(moments_BPP_dir,moments_stub, make.names(wealth_quantile_set), T=12)
+output_timeagg =estimation_by_category_BPP(moments_BPP_dir,moments_stub, make.names(wealth_quantile_set), T=12, time_agg = TRUE)
+wealth_quantile_params_timeagg = output_timeagg$category_params
+
 wealth_quantile_output=output
 wealth_quantile_params = output$category_params
 wealth_quantile_se = output$category_se
